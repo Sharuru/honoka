@@ -5,14 +5,10 @@
 
 	<display-name>Honoka</display-name>
 
+    <!-- 静态资源管理 -->
     <servlet-mapping>
         <servlet-name>default</servlet-name>
-        <url-pattern>*.css</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>default</servlet-name>
-        <url-pattern>*.js</url-pattern>
+        <url-pattern>/resources/*</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -21,6 +17,7 @@
         <load-on-startup>1</load-on-startup>
 	</servlet>
 
+    <!-- 主 dispatcher -->
 	<servlet-mapping>
 		<servlet-name>mvc-dispatcher</servlet-name>
 		<url-pattern>/</url-pattern>
