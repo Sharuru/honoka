@@ -18,21 +18,17 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("a").click(function (event) {
-                alert(event.target.id);
-                loadAjax(event.target.id);
+                loadContent(event.target.id);
             });
         });
-        function loadAjax(route) {
-            //$('#'+route.substring(0,route.length-3)).load("/staff");
+        function loadContent(dest) {
             $.ajax({
-                type: "POST",
-                url: "staff",
+                type: "GET",
+                url: dest,
                 data: {
                     userInput: "abcdefg"
                 }, success: function (data) {
-                    //$('#'+route).html(data);
-                    //alert("succuess" + data);
-                    $('#staff').html(data);
+                    $("#" + dest + "Content").html(data);
                 }
             });
         }
@@ -41,31 +37,46 @@
 <body role="document">
 <div class="container theme-showcase" role="main">
     <div style="margin-top:20px;" class="jumbotron">
-        <h1><b>PROJCET HONOKA</b></h1>
+        <h1><b>PROJECT HONOKA</b></h1>
 
         <p> MBPSH Location Based Service Center </p>
     </div>
-    <ul id="myTab" class="nav nav-pills">
-        <li class="active"><a href="#home" id="homenavi" data-toggle="tab">首页</a></li>
-        <li><a href="#staff" id="staffnav" data-toggle="tab">员工数据管理</a></li>
-        <li><a href="#publicaa" data-toggle="tab">地铁数据管理</a></li>
-        <li><a href="#bat" data-toggle="tab">LBS 计算</a></li>
-        <li><a href="#logout" data-toggle="tab">退出登录</a></li>
+    <!-- 导航 -->
+    <ul id="mainNav" class="nav nav-pills">
+        <li class="active"><a href="#dashboardContent" id="dashboard" data-toggle="tab">仪表盘</a></li>
+        <li><a href="#staffAdminContent" id="staffAdmin" data-toggle="tab">员工数据管理</a></li>
+        <li><a href="#metroAdminContent" id="metroAdmin" data-toggle="tab">地铁站点数据管理</a></li>
+        <li><a href="#lbsCalcContent" id="lbsCalc" data-toggle="tab">LBS 计算</a></li>
+        <li><a href="#importStaffContent" id="importStaff" data-toggle="tab">员工数据批量导入</a></li>
+        <li><a href="#logoutContent" id="logout" data-toggle="tab">退出登录</a></li>
     </ul>
-    <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade in active" id="home">
-            <p>非常酷炫的第一页</p>
+    <!-- 页面内容区，通过 AJAX 进行替换 -->
+    <div id="mainContent" class="tab-content" style="margin-top:20px;">
+        <div class="tab-pane fade in active" id="dashboardContent">
+            <p></p>
         </div>
-        <div class="tab-pane fade" id="staff">
+        <div class="tab-pane fade" id="staffAdminContent">
             <p>1</p>
         </div>
-        <div class="tab-pane fade" id="publicaa">
+        <div class="tab-pane fade" id="metroAdminContent">
             <p>2</p>
         </div>
-        <div class="tab-pane fade" id="bat">
+        <div class="tab-pane fade" id="lbsCalcContent">
             <p>3</p>
         </div>
+        <div class="tab-pane fade" id="importStaffContent">
+            <p>4</p>
+        </div>
+        <div class="tab-pane fade" id="logoutContent">
+            <p>5</p>
+        </div>
     </div>
+    <!-- 页面加载完毕后自动点击仪表盘按钮替换内容 -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#dashboard").click();
+        });
+    </script>
 </div>
 </body>
 </html>
