@@ -18,6 +18,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.1.1.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.1.1.RELEASE" />
           <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.3.0" />
+          <element id="library" level="project" name="Maven: org.postgresql:postgresql:9.4-1203-jdbc42" />
         </element>
       </element>
       <element id="directory" name="META-INF">
