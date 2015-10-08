@@ -3,7 +3,13 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
 	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
-	<display-name>Spring MVC Application</display-name>
+	<display-name>Honoka</display-name>
+
+    <!-- 静态资源管理 -->
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/resources/*</url-pattern>
+    </servlet-mapping>
 
     <servlet>
 		<servlet-name>mvc-dispatcher</servlet-name>
@@ -11,8 +17,11 @@
         <load-on-startup>1</load-on-startup>
 	</servlet>
 
+    <!-- 主 dispatcher -->
 	<servlet-mapping>
 		<servlet-name>mvc-dispatcher</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+
+
 </web-app>

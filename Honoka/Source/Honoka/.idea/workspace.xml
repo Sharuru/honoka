@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="7fd67e19-3059-4c94-a82c-cb77f0516df0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/dashboard" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/dashboard/dashMain.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mbp/webController/MainRouter.java" afterPath="$PROJECT_DIR$/src/main/java/com/mbp/webController/MainRouter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/main.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/main.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/Honoka.war" afterPath="$PROJECT_DIR$/target/Honoka.war" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/Honoka/WEB-INF/mvc-dispatcher-servlet.xml" afterPath="$PROJECT_DIR$/target/Honoka/WEB-INF/mvc-dispatcher-servlet.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/Honoka/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/target/Honoka/WEB-INF/web.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Honoka.iws" />
@@ -40,14 +39,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainRouter.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainRouter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mbp/webController/MainRouter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6111111">
+            <state vertical-scroll-proportion="0.0">
               <caret line="22" column="43" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6666667">
+              <caret line="62" column="26" selection-start-line="62" selection-start-column="26" selection-end-line="62" selection-end-column="26" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -86,6 +95,7 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/main.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/dashboard/dashMain.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/mbp/webController/MainRouter.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>
@@ -682,7 +692,7 @@
       <created>1444284078919</created>
       <option name="number" value="Default" />
       <updated>1444284078919</updated>
-      <workItem from="1444284082058" duration="9077000" />
+      <workItem from="1444284082058" duration="9215000" />
     </task>
     <task id="LOCAL-00001" summary="添加 BS 3 文件">
       <created>1444284654439</created>
@@ -696,11 +706,17 @@
       <option name="project" value="LOCAL" />
       <updated>1444288238772</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="仪表盘模板完成">
+      <created>1444294408229</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1444294408229</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9077000" />
+    <option name="totallyTimeSpent" value="9215000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1688" height="1030" extended-state="6" />
@@ -841,11 +857,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mbp/webController/MainRouter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6111111">
+        <state vertical-scroll-proportion="0.0">
           <caret line="22" column="43" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6666667">
+          <caret line="62" column="26" selection-start-line="62" selection-start-column="26" selection-end-line="62" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
