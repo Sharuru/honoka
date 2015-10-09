@@ -18,4 +18,9 @@ public class APIKeyServiceImpl implements APIKeyService {
 		return apiKeyMapper.selectUsableAPIKeyByProvider(provider);
 	}
 
+	@Override
+	public Integer selectAmountByAPIKey(String key) {
+		return apiKeyMapper.selectAmountByAPIKey(key);
+	}
+
 }

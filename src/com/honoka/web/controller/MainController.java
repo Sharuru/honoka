@@ -1,5 +1,8 @@
 package com.honoka.web.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -26,9 +29,18 @@ public class MainController {
 	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
 	public String dashboardRouter(ModelMap model) {
 		System.out.println("In Dashboard");
-		//apiKeyService.selectUsableAPIKeyByProvider("BAIDU");
-		model.addAttribute("baiduAmount", apiKeyService.selectUsableAPIKeyByProvider("BAIDU"));
+		//TODO: 这里的 Service 未来需要组合，返回一个批量的 API KEY / 额度结果集
+		Map<String, Object> obj = new HashMap<String, Object>();
+		obj.put("baiduKey", apiKeyService.selectUsableAPIKeyByProvider("BAIDU"));
+		obj.put("baiduAmount",100000 - apiKeyService.selectAmountByAPIKey(obj.get("baiduKey").toString()));
+		model.addAttribute("obj", obj);
 		return "dashboard/dashMain";
+	}
+	
+	//LBS 计算
+	@RequestMapping(value = "/lbsCalc", method = RequestMethod.GET)
+	public String lbsCalcRouter(ModelMap model){
+		return "lbsCalc/lbsMain";
 	}
 
 }

@@ -22,9 +22,10 @@
 		</div>
 	</div>
 	<div class="panel panel-default">
-		<div class="panel-heading">API 额度</div>
+		<div class="panel-heading">API 状态</div>
 		<div class="panel-body">
-			<p>百度地图剩余可用 API 额度为：${baiduAmount }</p>
+			<p>当前使用的百度地图 API KEY 为：${obj.baiduKey}</p>
+			<p>剩余可用额度为：${obj.baiduAmount}</p>
 			<p>高德地图剩余可用 API 额度为：</p>
 			<p>谷歌地图剩余可用 API 额度为：</p>
 		</div>
