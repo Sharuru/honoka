@@ -24,7 +24,7 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">API 额度</div>
 		<div class="panel-body">
-			<p>百度地图剩余可用 API 额度为：</p>
+			<p>百度地图剩余可用 API 额度为：${baiduAmount }</p>
 			<p>高德地图剩余可用 API 额度为：</p>
 			<p>谷歌地图剩余可用 API 额度为：</p>
 		</div>

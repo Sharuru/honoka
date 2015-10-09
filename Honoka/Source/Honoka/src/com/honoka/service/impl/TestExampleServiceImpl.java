@@ -3,7 +3,6 @@ package com.honoka.service.impl;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.honoka.DAO.TestExampleMapper;

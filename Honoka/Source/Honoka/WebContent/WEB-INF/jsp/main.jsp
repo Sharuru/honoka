@@ -16,11 +16,13 @@
 <title>Project Honoka</title>
 <link href="resources/css/bootstrap.min.css" rel="stylesheet">
 <script type="text/javascript">
+	//绑定导航栏点击事件
 	$(document).ready(function() {
 		$("a").click(function(event) {
 			loadContent(event.target.id);
 		});
 	});
+	//AJAX 获取子页面的内容
 	function loadContent(dest) {
 		$.ajax({
 			type : "GET",
@@ -41,7 +43,6 @@
 			<h1>
 				<b>PROJECT HONOKA</b>
 			</h1>
-
 			<p>MBPSH Location Based Service Center</p>
 		</div>
 		<!-- 导航 -->

@@ -1,7 +1,9 @@
 package com.honoka.entity;
 
 public class TestExample {
+
 	private Integer recordId;
+
 	private String recordContent;
 
 	public Integer getRecordId() {
