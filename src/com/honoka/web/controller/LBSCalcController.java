@@ -1,5 +1,6 @@
 package com.honoka.web.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,12 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.honoka.service.APIKeyService;
+import com.honoka.service.BaiduAPIService;
 
 @Controller
 public class LBSCalcController {
 
 	@Resource
 	private APIKeyService apiKeyService;
+	@Resource
+	private BaiduAPIService baiduAPIService;
 	
 	//地址解析初始画面
 	@RequestMapping(value = "/geoCoding", method = RequestMethod.GET)
@@ -30,6 +34,7 @@ public class LBSCalcController {
 	public String reqGeoCodingRouter(ModelMap model, String reqAddr){
 		System.out.println("In REQ Geo Coding");
 		System.out.println("Get: reqAddr is: " + reqAddr);
+		baiduAPIService.BaiduGeoCoding(reqAddr);
 		return "lbsCalc/geoCoding";
 	}
 
