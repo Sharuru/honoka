@@ -40,6 +40,7 @@ public class MainController {
 	//LBS 计算
 	@RequestMapping(value = "/lbsCalc", method = RequestMethod.GET)
 	public String lbsCalcRouter(ModelMap model){
+		System.out.println("In LBS calc");
 		return "lbsCalc/lbsMain";
 	}
 
