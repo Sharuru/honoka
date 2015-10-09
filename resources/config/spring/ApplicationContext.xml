@@ -26,7 +26,7 @@
 		<property name="driverClassName" value="org.postgresql.Driver" />
 		<property name="url" value="jdbc:postgresql://172.16.66.121:5432/Honoka" />
 		<property name="username" value="postgres" />
-		<property name="password" value="" />
+		<property name="password" value="abcd.1234" />
 	</bean>
 
 	<!-- mybatis配置 -->
