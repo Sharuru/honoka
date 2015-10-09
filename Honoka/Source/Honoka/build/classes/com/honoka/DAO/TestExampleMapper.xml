@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.honoka.DAO.TestExampleMapper">
+	<resultMap id="testResultMap" type="com.honoka.entity.TestExample">
+		<id column="record_id" property="recordId" jdbcType="INTEGER"/>
+		<result column="record_content" property="recordContent" jdbcType="VARCHAR"/>	
+	</resultMap>
+	<select id="selectTestExample" resultMap="testResultMap" parameterType="com.honoka.entity.TestExample">
+		select * from test	
+	</select>
+</mapper>
