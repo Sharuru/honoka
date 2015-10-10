@@ -17,6 +17,8 @@ import java.io.IOException;
 
 import org.springframework.stereotype.Service;
 
+import com.honoka.service.impl.BaiduAPIServiceImpl.BaiduJson;
+
 @Service
 public interface BaiduAPIService {
 	
@@ -25,8 +27,9 @@ public interface BaiduAPIService {
 	 *
 	 * @param reqAddr 请求解析的地址
 	 * @return the string 解析坐标结果
+	 * @throws Exception 
 	 * @throws IOException 
 	 */
-	public String BaiduGeoCoding(String reqAddr);
+	public BaiduJson BaiduGeoCoding(String reqAddr) throws Exception;
 	
 }
