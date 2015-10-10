@@ -1,5 +1,7 @@
 package com.honoka.web.controller;
 
+import java.util.Vector;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,8 @@ public class LBSCalcController {
 	private BaiduAPIService baiduAPIService;
 	@Resource
 	private AmapAPIService amapAPIService;
+	private BaiduJsonGeocoding bdReqResult;
+	private AmapJsonGeocoding apReqResult;
 
 	// 地址解析初始画面
 	@RequestMapping(value = "/geoCoding", method = RequestMethod.GET)
@@ -37,19 +41,43 @@ public class LBSCalcController {
 	// 请求地址解析
 	@RequestMapping(value = "/reqGeoCoding", method = RequestMethod.POST)
 	public String reqGeoCodingRouter(ModelMap model, String reqAddr) {
-		// TODO： 多 API 时 result 是一个结果集，或者分别调用设置（控制性好）
-		BaiduJsonGeocoding bdReqResult = null;
-		AmapJsonGeocoding apReqResult = null;
 		System.out.println("In REQ Geo Coding");
 		System.out.println("Get: reqAddr is: " + reqAddr);
-		try {
-			//TODO： 异步请求
-			bdReqResult = baiduAPIService.BaiduGeoCoding(reqAddr);
-			apReqResult = amapAPIService.AmapGeoCoding(reqAddr);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		// 子线程并发发起 API 请求
+		Vector<Thread> threads = new Vector<Thread>();
+		Thread reqBdThread = new Thread(new Runnable() {
+			public void run() {
+				try {
+					bdReqResult = baiduAPIService.BaiduGeoCoding(reqAddr);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		threads.add(reqBdThread);
+		reqBdThread.start();
+		Thread reqApThread = new Thread(new Runnable() {
+			public void run() {
+				try {
+					apReqResult = amapAPIService.AmapGeoCoding(reqAddr);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		threads.add(reqApThread);
+		reqApThread.start();
+		for (Thread checkThread : threads) {
+			try {
+				// 所有线程执行完毕
+				checkThread.join();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
+		System.out.println("All sub-thread finished.");
 		// TODO: Error Handler
 		// 解析状态处理
 		if (bdReqResult.getStatus() == 0) {
@@ -64,12 +92,12 @@ public class LBSCalcController {
 		}
 		if (apReqResult.getStatus() == 1 && apReqResult.getCount() >= 1) {
 			// 高德通道正常解析且有记录
-			//TODO： 高德的 API 只要你连上去了都丢给你状态码 1，要进行判断不仅要靠 info 还要靠 count
+			// TODO： 高德的 API 只要你连上去了都丢给你状态码 1，要进行判断不仅要靠 info 还要靠 count
 			model.addAttribute("apGeocodingResult", "高德解析结果：" + apReqResult.getGeocodes()[0].getLocation());
 			model.addAttribute("apReqStatus", "success");
 		} else {
 			model.addAttribute("apGeocodingResult", "在解析时发生异常");
-			//model.addAttribute("apGeocodingResult", apReqResult.getInfo());
+			// model.addAttribute("apGeocodingResult", apReqResult.getInfo());
 			model.addAttribute("apReqStatus", "danger");
 		}
 		model.addAttribute("userInput", reqAddr);
