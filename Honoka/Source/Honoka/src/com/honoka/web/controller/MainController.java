@@ -39,6 +39,13 @@ public class MainController {
 		return "dashboard/dashMain";
 	}
 	
+	// 员工数据管理
+	@RequestMapping(value = "/staffAdmin", method = RequestMethod.GET)
+	public String staffAdminRouter(ModelMap model) {
+		System.out.println("In Staff admin");
+		return "staffAdmin/staffMain";
+	}
+	
 	//LBS 计算
 	@RequestMapping(value = "/lbsCalc", method = RequestMethod.GET)
 	public String lbsCalcRouter(ModelMap model){
