@@ -18,7 +18,7 @@
 <script type="text/javascript">
 	//绑定导航栏点击事件
 	$(document).ready(function() {
-		$("a").click(function(event) {
+		$("#mainNav").click(function(event) {
 			loadContent(event.target.id);
 		});
 	});
@@ -65,7 +65,7 @@
 			<div class="tab-pane fade" id="importStaffContent"></div>
 			<div class="tab-pane fade" id="logoutContent"></div>
 		</div>
-		<!-- 页面加载完毕后自动点击仪表盘按钮替换内容 -->
+  		<!-- 页面加载完毕后自动点击仪表盘按钮替换内容 -->
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$("#dashboard").click();
