@@ -29,10 +29,12 @@ public class MainController {
 	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
 	public String dashboardRouter(ModelMap model) {
 		System.out.println("In Dashboard");
-		//TODO: 这里的 Service 未来需要组合，返回一个批量的 API KEY / 额度结果集
+		//TODO：这里的 Service 未来需要组合，返回一个批量的 API KEY / 额度结果集
 		Map<String, Object> obj = new HashMap<String, Object>();
 		obj.put("baiduKey", apiKeyService.selectUsableAPIKeyByProvider("BAIDU"));
 		obj.put("baiduAmount",100000 - apiKeyService.selectAmountByAPIKey(obj.get("baiduKey").toString()));
+		obj.put("amapKey", apiKeyService.selectUsableAPIKeyByProvider("AMAPWEB"));
+		//obj.put("baiduAmount",100000 - apiKeyService.selectAmountByAPIKey(obj.get("baiduKey").toString()));
 		model.addAttribute("obj", obj);
 		return "dashboard/dashMain";
 	}
