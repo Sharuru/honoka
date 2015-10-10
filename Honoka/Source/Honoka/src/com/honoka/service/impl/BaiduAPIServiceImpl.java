@@ -19,17 +19,11 @@ public class BaiduAPIServiceImpl implements BaiduAPIService {
 	private APIKeyService apiKeyService;
 
 	@Override
-	public BaiduJsonGeocoding BaiduGeoCoding(String reqAddr) {
+	public BaiduJsonGeocoding BaiduGeoCoding(String reqAddr) throws Exception {
 		String json = null;
-		try {
-			json = APIUtil
-					.readUrl("http://api.map.baidu.com/geocoder/v2/?address=" + URLEncoder.encode(reqAddr, "UTF-8")
-							+ "&output=json&ak=" + apiKeyService.selectUsableAPIKeyByProvider("BAIDU"));
-			System.out.println("Get Baidu Json: " + json);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		json = APIUtil.readUrl("http://api.map.baidu.com/geocoder/v2/?address=" + URLEncoder.encode(reqAddr, "UTF-8")
+				+ "&output=json&ak=" + apiKeyService.selectUsableAPIKeyByProvider("BAIDU"));
+		System.out.println("Get Baidu Json: " + json);
 		Gson gson = new Gson();
 		BaiduJsonGeocoding bdJson = gson.fromJson(json, BaiduJsonGeocoding.class);
 		return bdJson;

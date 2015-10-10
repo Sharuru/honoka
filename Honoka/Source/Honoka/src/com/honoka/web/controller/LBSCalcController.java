@@ -1,6 +1,8 @@
 package com.honoka.web.controller;
 
-import java.util.Vector;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 import javax.annotation.Resource;
 
@@ -43,65 +45,67 @@ public class LBSCalcController {
 	public String reqGeoCodingRouter(ModelMap model, String reqAddr) {
 		System.out.println("In REQ Geo Coding");
 		System.out.println("Get: reqAddr is: " + reqAddr);
-		// 子线程并发发起 API 请求
-		Vector<Thread> threads = new Vector<Thread>();
-		Thread reqBdThread = new Thread(new Runnable() {
+		// 新建并发线程池
+		ExecutorService threadPool = Executors.newCachedThreadPool();
+		threadPool.execute(new Runnable() {
+			// 百度 API 调用
 			public void run() {
 				try {
 					bdReqResult = baiduAPIService.BaiduGeoCoding(reqAddr);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.out.println("Error happened when calling baiduAPI");
 				}
 			}
 		});
-		threads.add(reqBdThread);
-		reqBdThread.start();
-		Thread reqApThread = new Thread(new Runnable() {
+		threadPool.execute(new Runnable() {
+			// 高德 API 调用
 			public void run() {
 				try {
 					apReqResult = amapAPIService.AmapGeoCoding(reqAddr);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.out.println("Error happened when calling amapAPI");
 				}
 			}
 		});
-		threads.add(reqApThread);
-		reqApThread.start();
-		for (Thread checkThread : threads) {
-			try {
-				// 所有线程执行完毕
-				checkThread.join();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+		threadPool.shutdown();
+		try {
+			// 超时时间为 5 秒
+			threadPool.awaitTermination(5, TimeUnit.SECONDS);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 		System.out.println("All sub-thread finished.");
-		// TODO: Error Handler
-		// 解析状态处理
-		if (bdReqResult.getStatus() == 0) {
-			// 百度通道正常解析
-			model.addAttribute("bdGeocodingResult",
-					"百度解析结果：" + bdReqResult.getResult().getLocation().getLng().toString() + ","
-							+ bdReqResult.getResult().getLocation().getLat().toString());
-			model.addAttribute("bdReqStatus", "success");
-		} else {
-			model.addAttribute("bdGeocodingResult", bdReqResult.getMsg());
+		// 解析状态及超时处理
+		try {
+			if (bdReqResult.getStatus() == 0) {
+				// 百度通道正常解析
+				model.addAttribute("bdGeocodingResult",
+						"百度解析结果：" + bdReqResult.getResult().getLocation().getLng().toString() + ","
+								+ bdReqResult.getResult().getLocation().getLat().toString());
+				model.addAttribute("bdReqStatus", "success");
+			} else {
+				model.addAttribute("bdGeocodingResult", "百度解析结果：" + bdReqResult.getMsg());
+				model.addAttribute("bdReqStatus", "danger");
+			}
+		} catch (Exception e) {
+			model.addAttribute("bdGeocodingResult", "百度解析结果：解析超时");
 			model.addAttribute("bdReqStatus", "danger");
 		}
-		if (apReqResult.getStatus() == 1 && apReqResult.getCount() >= 1) {
-			// 高德通道正常解析且有记录
-			// TODO： 高德的 API 只要你连上去了都丢给你状态码 1，要进行判断不仅要靠 info 还要靠 count
-			model.addAttribute("apGeocodingResult", "高德解析结果：" + apReqResult.getGeocodes()[0].getLocation());
-			model.addAttribute("apReqStatus", "success");
-		} else {
-			model.addAttribute("apGeocodingResult", "在解析时发生异常");
-			// model.addAttribute("apGeocodingResult", apReqResult.getInfo());
+		try {
+			if (apReqResult.getStatus() == 1 && apReqResult.getCount() >= 1) {
+				// 高德通道正常解析且有记录
+				// TODO：高德的 API 只要你连上去了都丢给你状态码 1，要进行判断不仅要靠 info 还要靠 count
+				model.addAttribute("apGeocodingResult", "高德解析结果：" + apReqResult.getGeocodes()[0].getLocation());
+				model.addAttribute("apReqStatus", "success");
+			} else {
+				model.addAttribute("apGeocodingResult", "高德解析结果：在解析时发生异常");
+				model.addAttribute("apReqStatus", "danger");
+			}
+		} catch (Exception e) {
+			model.addAttribute("apGeocodingResult", "高德解析结果：解析超时");
 			model.addAttribute("apReqStatus", "danger");
 		}
 		model.addAttribute("userInput", reqAddr);
 		return "lbsCalc/geoCoding";
 	}
-
 }

@@ -21,15 +21,9 @@ public class AmapAPIServiceImpl implements AmapAPIService {
 	@Override
 	public AmapJsonGeocoding AmapGeoCoding(String reqAddr) throws Exception {
 		String json = null;
-		try {
-			json = APIUtil
-					.readUrl("http://restapi.amap.com/v3/geocode/geo?address=" + URLEncoder.encode(reqAddr, "UTF-8")
-							+ "&output=json&key=" + apiKeyService.selectUsableAPIKeyByProvider("AMAPWEB"));
-			System.out.println("Get Amap Json: " + json);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		json = APIUtil.readUrl("http://restapi.amap.com/v3/geocode/geo?address=" + URLEncoder.encode(reqAddr, "UTF-8")
+				+ "&output=json&key=" + apiKeyService.selectUsableAPIKeyByProvider("AMAPWEB"));
+		System.out.println("Get Amap Json: " + json);
 		Gson gson = new Gson();
 		AmapJsonGeocoding amapJson = gson.fromJson(json, AmapJsonGeocoding.class);
 		return amapJson;
