@@ -7,12 +7,12 @@
 <html>
 <head>
 <script type="text/javascript">
-	//子功能加载后绑定导航栏点击事件
-	$(document).ready(function() {
-		$("a").click(function(event) {
+	//子功能加载后绑定点击事件
+ 	$(document).ready(function() {
+		$("#lbsNav").click(function(event) {
 			loadContent(event.target.id);
 		});
-	});
+	}); 
 	//AJAX 获取子页面的内容
 	function loadContent(dest) {
 		$.ajax({
@@ -45,7 +45,7 @@
 				<div class="tab-pane fade" id="geoFencingContent"></div>
 			</div>
 			<!-- 页面加载完毕后自动点击按钮替换内容 -->
-			<script type="text/javascript">
+ 			<script type="text/javascript">
 				$(document).ready(function() {
 					$("#geoCoding").click();
 				});
