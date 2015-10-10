@@ -17,7 +17,7 @@
 				reqAddr : userInput
 			},
 			success : function(data) {
-				//TODO: 这里的 data 应该是获取到的解析结果
+				//TODO: 目前是重绘页面，理论可以直接发送需要的数据
 				$("#geoCodingContent").html(data);
 			}
 		});
@@ -34,8 +34,11 @@
 					onclick="reqGeoCoding();">解析</button>
 			</span>
 		</div>
-		<div style="margin-top: 15px;margin-bottom: 5px;" class="alert alert-${reqStatus}" role="alert">
+		<div style="margin-top: 15px;margin-bottom: 5px;" class="alert alert-${bdReqStatus}" role="alert">
 			<b>${bdGeocodingResult }</b>
+		</div>
+		<div style="margin-top: 15px;margin-bottom: 5px;" class="alert alert-${apReqStatus}" role="alert">
+			<b>${apGeocodingResult }</b>
 		</div>
 	</div>
 
