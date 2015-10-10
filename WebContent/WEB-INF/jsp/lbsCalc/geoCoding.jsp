@@ -15,22 +15,27 @@
 			url : "reqGeoCoding",
 			data : {
 				reqAddr : userInput
-			},//function(data) {
-		//TODO: 这里的 data 应该是获取到的解析结果
-		//$("#" + dest + "Content").html(data);
-		//}
+			},
+			success : function(data) {
+				//TODO: 这里的 data 应该是获取到的解析结果
+				$("#geoCodingContent").html(data);
+			}
 		});
 	}
 </script>
 </head>
 <body>
-	<div>
+	<div id="geoCodingContent">
 		<div class="input-group">
 			<input type="text" class="form-control" id="inputUserInput"
-				placeholder="请输入需要解析的地址……"> <span class="input-group-btn">
+				placeholder="请输入需要解析的地址……" value="${userInput}"><span
+				class="input-group-btn">
 				<button class="btn btn-default" type="button"
 					onclick="reqGeoCoding();">解析</button>
 			</span>
+		</div>
+		<div style="margin-top: 15px;margin-bottom: 5px;" class="alert alert-${reqStatus}" role="alert">
+			<b>${bdGeocodingResult }</b>
 		</div>
 	</div>
 
