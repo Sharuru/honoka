@@ -13,6 +13,9 @@
 		$("#pageNav").click(function(event) {
 			loadStaffListContent(event.target.id);
 		});
+		$("#staffModal").click(function(event) {
+			loadStaffDetailInfo(event.target.id);
+		});
 	});
 	//AJAX 获取子页面的内容
 	function loadStaffListContent(dest) {
@@ -21,6 +24,15 @@
 			url : "staffAdmin&reqPage=" + dest,
 			success : function(data) {
 				$("#staffListDiv").html(data);
+			}
+		});
+	}
+	function loadStaffDetailInfo(staffId) {
+		$.ajax({
+			type : "GET",
+			url : "staffDetail&reqStaffId=" + staffId,
+			success : function(data) {
+				$("#staffInfoModal").html(data);
 			}
 		});
 	}
@@ -62,7 +74,9 @@
 									<td>${currStaff.staffLevelId }</td>
 									<td>${currStaff.staffTel}</td>
 									<td>${currStaff.staffAddr}</td>
-									<td><button type="button" class="btn btn-xs btn-default">查看详情</button></td>
+									<td><button id="staffModal" type="button"
+											class="btn btn-xs btn-default" data-toggle="modal"
+											data-target="#staffInfoModal">查看详情</button></td>
 								</tr>
 							</c:forEach>
 						</c:if>
@@ -83,20 +97,15 @@
 						</c:forEach>
 						<!-- 若为最后一页不显示右箭头 -->
 						<c:if test="${currPage lt totalCount/2}">
-							<li><a href="#" id="${currPage + 1}" aria-label="Next"> <span
-									aria-hidden="true">&raquo;</span>
+							<li><a href="#" id="${currPage + 1}" aria-label="Next">
+									<span aria-hidden="true">&raquo;</span>
 							</a></li>
 						</c:if>
 					</ul>
 				</nav>
-
-
-				<!-- LBS 计算页面内容区，通过 AJAX 进行替换 -->
-				<!-- <div id="lbsContent" class="tab-content" style="margin-top: 20px;">
-				<div class="tab-pane fade in active" id="geoCodingContent"></div>
-				<div class="tab-pane fade" id="twoPointCalcContent"></div>
-				<div class="tab-pane fade" id="geoFencingContent"></div>
-			</div> -->
+				<!-- 员工详情模态框，通过 AJAX 进行替换 -->
+				<div class="modal fade" id="staffInfoModal" tabindex="-1"
+					role="dialog"></div>
 				<!-- 页面加载完毕设置分页激活样式 -->
 				<script type="text/javascript">
 					$(document).ready(function() {

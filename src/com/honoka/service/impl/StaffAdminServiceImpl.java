@@ -26,4 +26,9 @@ public class StaffAdminServiceImpl implements StaffAdminService {
 		return staffAdminMapper.selectStaffInfoByPage(page);
 	}
 
+	@Override
+	public Staff selectStaffDetailByStaffId(String staffId) {
+		return staffAdminMapper.selectStaffDetailByStaffId(staffId);
+	}
+
 }

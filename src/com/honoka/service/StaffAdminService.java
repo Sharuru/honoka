@@ -13,4 +13,5 @@ public interface StaffAdminService {
 	
 	List<Staff> selectStaffInfoByPage(Integer page);
 
+	Staff selectStaffDetailByStaffId(String staffId);
 }

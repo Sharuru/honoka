@@ -21,9 +21,16 @@
 	<select id="selectStaffInfoByPage" resultMap="StaffAdminResultMap" parameterType="java.lang.Integer">
 		SELECT "RECORD_ID", "STAFF_COM_ID", "STAFF_DEPT_ID", "STAFF_LEVEL_ID", "STAFF_ID", "STAFF_NAME", "STAFF_TEL", "STAFF_ADDR", "DELETE_FLAG"
 		FROM "STAFF_INFO"
+		WHERE "DELETE_FLAG" = 0	
 		ORDER BY "RECORD_ID" ASC
 		<!-- 这里也要设置 -->
 		LIMIT 2
 		OFFSET #{page,jdbcType=INTEGER}*2 - 2
+	</select>
+	
+	<select id="selectStaffDetailByStaffId" resultMap="StaffAdminResultMap" parameterType="java.lang.String">
+		SELECT "RECORD_ID", "STAFF_COM_ID", "STAFF_DEPT_ID", "STAFF_LEVEL_ID", "STAFF_ID", "STAFF_NAME", "STAFF_TEL", "STAFF_ADDR", "DELETE_FLAG"
+		FROM "STAFF_INFO"
+		WHERE "STAFF_ID" = #{staffId,jdbcType=VARCHAR}
 	</select>
 </mapper>
