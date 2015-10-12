@@ -50,49 +50,42 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td>S1500001</td>
-						<td>爱新觉罗</td>
-						<td>MBP 上海</td>
-						<td>综合管理部</td>
-						<td>软件工程师</td>
-						<td>021-00001111</td>
-						<td>上海市松江区泗泾镇沪松公路2517弄86支弄62号1303室</td>
-						<td><button type="button" class="btn btn-xs btn-default">查看详情</button></td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>S1500002</td>
-						<td>爱新觉罗2</td>
-						<td>MBP 上海</td>
-						<td>综合管理部</td>
-						<td>软件工程师</td>
-						<td>021-00001111</td>
-						<td>上海市松江区泗泾镇沪松公路1111弄86支弄62号1303室</td>
-						<td><button type="button" class="btn btn-xs btn-default">查看详情</button></td>
-					</tr>
+					<c:if test="${staffInfoList != null && staffInfoList.size() > 0}">
+						<c:forEach items="${staffInfoList}" var="currStaff">
+							<tr>
+								<td>${currStaff.recordId}</td>
+								<td>${currStaff.staffId}</td>
+								<td>${currStaff.staffName}</td>
+								<td>${currStaff.staffComId}</td>
+								<td>${currStaff.staffDeptId}</td>
+								<td>${currStaff.staffLevelId }</td>
+								<td>${currStaff.staffTel}</td>
+								<td>${currStaff.staffAddr}</td>
+								<td><button type="button" class="btn btn-xs btn-default">查看详情</button></td>
+							</tr>
+						</c:forEach>
+					</c:if>
 				</tbody>
 			</table>
 
 			<nav style="text-align: center">
 				<ul class="pagination">
-				<!-- 若为第一页不显示左箭头 -->
-				<c:if test="${currPage gt 1}"> 
-					<li><a href="#" aria-label="Previous"> <span
-							aria-hidden="true">&laquo;</span>
-					</a></li>
-				</c:if>
-				<!-- 循环设置页码 -->
-				<c:forEach var="pageNum"  begin="1" end="${totalCount/20 + 1}">
-					<li><a href="#">${pageNum}</a></li>
-				</c:forEach>
-				<!-- 若为最后一页不显示右箭头 -->
-				<c:if test="${currPage lt totalCount/20}">
-					<li><a href="#" aria-label="Next"> <span
-							aria-hidden="true">&raquo;</span>
-					</a></li>
-				</c:if>
+					<!-- 若为第一页不显示左箭头 -->
+					<c:if test="${currPage gt 1}">
+						<li><a href="#" aria-label="Previous"> <span
+								aria-hidden="true">&laquo;</span>
+						</a></li>
+					</c:if>
+					<!-- 循环设置页码 -->
+					<c:forEach var="pageNum" begin="1" end="${totalCount/20 + 1}">
+						<li><a href="#">${pageNum}</a></li>
+					</c:forEach>
+					<!-- 若为最后一页不显示右箭头 -->
+					<c:if test="${currPage lt totalCount/20}">
+						<li><a href="#" aria-label="Next"> <span
+								aria-hidden="true">&raquo;</span>
+						</a></li>
+					</c:if>
 				</ul>
 			</nav>
 
