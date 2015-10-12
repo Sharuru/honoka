@@ -48,6 +48,9 @@ public class MainController {
 		System.out.println("In Staff admin");
 		model.addAttribute("currPage", 1);
 		model.addAttribute("totalCount", staffAdminService.countStaffInfo());
+		//TODO：这里还要对获得的 ID 转义
+		//获取第一页数据
+		model.addAttribute("staffInfoList", staffAdminService.selectStaffInfoByPage(1));
 		return "staffAdmin/staffMain";
 	}
 	
