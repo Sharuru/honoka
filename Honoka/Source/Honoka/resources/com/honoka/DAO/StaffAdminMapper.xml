@@ -22,7 +22,8 @@
 		SELECT "RECORD_ID", "STAFF_COM_ID", "STAFF_DEPT_ID", "STAFF_LEVEL_ID", "STAFF_ID", "STAFF_NAME", "STAFF_TEL", "STAFF_ADDR", "DELETE_FLAG"
 		FROM "STAFF_INFO"
 		ORDER BY "RECORD_ID" ASC
-		LIMIT 20
-		OFFSET #{page,jdbcType=INTEGER} - 1
+		<!-- 这里也要设置 -->
+		LIMIT 2
+		OFFSET #{page,jdbcType=INTEGER}*2 - 2
 	</select>
 </mapper>
