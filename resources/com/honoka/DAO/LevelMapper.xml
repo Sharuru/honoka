@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.honoka.DAO.LevelMapper">
+	<resultMap id="LevelResultMap" type="com.honoka.entity.Level">
+		<id column="RECORD_ID" property="recordId" jdbcType="INTEGER"/>
+		<result column="LEVEL_ID" property="levelId" jdbcType="VARCHAR"/>
+		<result column="LEVEL_NAME" property="levelName" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<select id="getLevelMap" resultMap="LevelResultMap">
+		SELECT "LEVEL_ID", "LEVEL_NAME"
+		FROM "LEVEL_INFO"
+		ORDER BY "RECORD_ID" ASC
+	</select>
+</mapper>

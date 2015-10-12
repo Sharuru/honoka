@@ -15,6 +15,7 @@ import com.honoka.entity.Staff;
 import com.honoka.service.APIKeyService;
 import com.honoka.service.CompanyService;
 import com.honoka.service.DepartmentService;
+import com.honoka.service.LevelService;
 import com.honoka.service.StaffAdminService;
 
 @Controller
@@ -28,6 +29,8 @@ public class MainController {
 	private CompanyService companyService;
 	@Resource
 	private DepartmentService departmantService;
+	@Resource
+	private LevelService levelService;
 
 	// 首页
 	@RequestMapping(value = "/Main")
@@ -60,11 +63,13 @@ public class MainController {
 		// TODO：这里还要对获得的 ID 转义
 		Map<String, String> comMap = companyService.getCompanyMap();
 		Map<String, String> deptMap = departmantService.getDeptMap();
+		Map<String, String> levelMap = levelService.getLevelMap();
 		// 翻译
 		List<Staff> staffList = staffAdminService.selectStaffInfoByPage(1);
 		for (int i = 0; i < staffList.size(); i++) {
 			staffList.get(i).setStaffComId(comMap.get(staffList.get(i).getStaffComId()));
 			staffList.get(i).setStaffDeptId(deptMap.get(staffList.get(i).getStaffDeptId()));
+			staffList.get(i).setStaffLevelId(levelMap.get(staffList.get(i).getStaffLevelId()));
 		}
 		// 获取第一页数据
 		model.addAttribute("staffInfoList", staffList);
