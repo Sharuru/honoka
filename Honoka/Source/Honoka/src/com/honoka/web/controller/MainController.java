@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.honoka.entity.Staff;
 import com.honoka.service.APIKeyService;
 import com.honoka.service.CompanyService;
+import com.honoka.service.DepartmentService;
 import com.honoka.service.StaffAdminService;
 
 @Controller
@@ -25,6 +26,8 @@ public class MainController {
 	private StaffAdminService staffAdminService;
 	@Resource
 	private CompanyService companyService;
+	@Resource
+	private DepartmentService departmantService;
 
 	// 首页
 	@RequestMapping(value = "/Main")
@@ -56,11 +59,12 @@ public class MainController {
 		model.addAttribute("totalCount", staffAdminService.countStaffInfo());
 		// TODO：这里还要对获得的 ID 转义
 		Map<String, String> comMap = companyService.getCompanyMap();
-		System.out.println(comMap.get("S001"));
+		Map<String, String> deptMap = departmantService.getDeptMap();
 		// 翻译
 		List<Staff> staffList = staffAdminService.selectStaffInfoByPage(1);
 		for (int i = 0; i < staffList.size(); i++) {
 			staffList.get(i).setStaffComId(comMap.get(staffList.get(i).getStaffComId()));
+			staffList.get(i).setStaffDeptId(deptMap.get(staffList.get(i).getStaffDeptId()));
 		}
 		// 获取第一页数据
 		model.addAttribute("staffInfoList", staffList);

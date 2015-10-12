@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.honoka.DAO.DepartmentMapper">
+	<resultMap id="DepartmentResultMap" type="com.honoka.entity.Department">
+		<id column="RECORD_ID" property="recordId" jdbcType="INTEGER"/>
+		<result column="DEPT_ID" property="deptId" jdbcType="VARCHAR"/>
+		<result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<select id="getDeptmarmentMap" resultMap="DepartmentResultMap">
+		SELECT "DEPT_ID", "DEPT_NAME"
+		FROM "DEPT_INFO"
+		ORDER BY "RECORD_ID" ASC
+	</select>
+</mapper>

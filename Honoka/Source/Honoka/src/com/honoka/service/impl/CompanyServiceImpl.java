@@ -17,17 +17,19 @@ public class CompanyServiceImpl implements CompanyService {
 
 	@Resource
 	private CompanyMapper companyMapper;
+	private static Map<String, String> comMap = new HashMap<String, String>();
 
 	@Override
 	public Map<String, String> getCompanyMap() {
 		// 只设置一次字典
-		Map<String, String> comMap = new HashMap<String, String>();
-		List<Company> comList = companyMapper.getCompanyMap();
-		// 将列表转换成对应的字典
-		for (int i = 0; i < comList.size(); i++) {
-			comMap.put(comList.get(i).getComId(), comList.get(i).getComName());
+		if (comMap.isEmpty()) {
+			comMap = new HashMap<String, String>();
+			List<Company> comList = companyMapper.getCompanyMap();
+			// 将列表转换成对应的字典
+			for (int i = 0; i < comList.size(); i++) {
+				comMap.put(comList.get(i).getComId(), comList.get(i).getComName());
+			}
 		}
-		System.out.println(comMap.get("S001"));
 		return comMap;
 	}
 
