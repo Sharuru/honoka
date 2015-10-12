@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.honoka.DAO.StaffAdminMapper">
-	<resultMap id="StaffAdminResultMap" type="com.honoka.entity.StaffAdminMapper">
+	<resultMap id="StaffAdminResultMap" type="com.honoka.entity.Staff">
 		<id column="RECORD_ID" property="recordId" jdbcType="INTEGER"/>
 		<result column="STAFF_COM_ID" property="staffComId" jdbcType="VARCHAR"/>
 		<result column="STAFF_DEPT_ID" property="staffDeptId" jdbcType="VARCHAR" />
-		<result column="STAFF_LEVEL_ID" property=“staffLevelId” jdbcType="VARCHAR" />
+		<result column="STAFF_LEVEL_ID" property="staffLevelId" jdbcType="VARCHAR" />
 		<result column="STAFF_ID" property="staffId" jdbcType="VARCHAR"/>
 		<result column="STAFF_NAME" property="staffName" jdbcType="VARCHAR" />
 		<result column="STAFF_TEL" property="staffTel" jdbcType="VARCHAR" />
 		<result column="STAFF_ADDR" property="staffAddr" jdbcType="VARCHAR" />
 		<result column="DELETE_FLAG" property="deleteFlag" jdbcType="INTEGER" />
 	</resultMap>
-	<select id="selectStaffInfoWithPointByPage" resultMap="StaffAdminResultMap" parameterType="java.lang.Integer">
+	<select id="countStaffInfo" resultType="java.lang.Integer">
+		SELECT COUNT (*)
+		FROM "STAFF_INFO"
+		WHERE "DELETE_FLAG" = 0	
+	</select>
+	
+	<select id="selectStaffInfoByPage" resultMap="StaffAdminResultMap" parameterType="java.lang.Integer">
 		SELECT "RECORD_ID", "STAFF_COM_ID", "STAFF_DEPT_ID", "STAFF_LEVEL_ID", "STAFF_ID", "STAFF_NAME", "STAFF_TEL", "STAFF_ADDR", "DELETE_FLAG"
 		FROM "STAFF_INFO"
 		ORDER BY "RECORD_ID" ASC
 		LIMIT 20
-		OFFSET #{page,jdbcType=INTEFER} - 1
+		OFFSET #{page,jdbcType=INTEGER} - 1
 	</select>
 </mapper>

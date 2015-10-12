@@ -3,6 +3,7 @@
   Date: 2015/10/10 0008
   Time: 17:02
 --%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
@@ -44,7 +45,7 @@
 						<th>所属部门</th>
 						<th>职称</th>
 						<th>联系电话</th>
-						<th>解析坐标</th>
+						<th>家庭住址</th>
 						<th>操作</th>
 					</tr>
 				</thead>
@@ -57,7 +58,7 @@
 						<td>综合管理部</td>
 						<td>软件工程师</td>
 						<td>021-00001111</td>
-						<td>(121.3331,112.33331)</td>
+						<td>上海市松江区泗泾镇沪松公路2517弄86支弄62号1303室</td>
 						<td><button type="button" class="btn btn-xs btn-default">查看详情</button></td>
 					</tr>
 					<tr>
@@ -68,7 +69,7 @@
 						<td>综合管理部</td>
 						<td>软件工程师</td>
 						<td>021-00001111</td>
-						<td>(1221.3331,1122.33331)</td>
+						<td>上海市松江区泗泾镇沪松公路1111弄86支弄62号1303室</td>
 						<td><button type="button" class="btn btn-xs btn-default">查看详情</button></td>
 					</tr>
 				</tbody>
@@ -76,17 +77,22 @@
 
 			<nav style="text-align: center">
 				<ul class="pagination">
+				<!-- 若为第一页不显示左箭头 -->
+				<c:if test="${currPage gt 1}"> 
 					<li><a href="#" aria-label="Previous"> <span
 							aria-hidden="true">&laquo;</span>
 					</a></li>
-					<li><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
+				</c:if>
+				<!-- 循环设置页码 -->
+				<c:forEach var="pageNum"  begin="1" end="${totalCount/20 + 1}">
+					<li><a href="#">${pageNum}</a></li>
+				</c:forEach>
+				<!-- 若为最后一页不显示右箭头 -->
+				<c:if test="${currPage lt totalCount/20}">
 					<li><a href="#" aria-label="Next"> <span
 							aria-hidden="true">&raquo;</span>
 					</a></li>
+				</c:if>
 				</ul>
 			</nav>
 
