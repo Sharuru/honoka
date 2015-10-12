@@ -9,4 +9,6 @@ public interface StaffAdminMapper {
 	Integer countStaffInfo();
 	
 	List<Staff> selectStaffInfoByPage(Integer page);
+	
+	Staff selectStaffDetailByStaffId(String staffId);
 }
