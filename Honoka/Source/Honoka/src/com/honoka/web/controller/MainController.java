@@ -1,18 +1,15 @@
 package com.honoka.web.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.honoka.entity.Staff;
 import com.honoka.service.APIKeyService;
 import com.honoka.service.CompanyService;
 import com.honoka.service.DepartmentService;
@@ -60,6 +57,13 @@ public class MainController {
 	public String staffAdminRouterInit(ModelMap model, Integer reqPage) {
 		System.out.println("In Staff admin init");
 		return "redirect:staffAdmin&reqPage=1";
+	}
+
+	// 地铁站点管理画面
+	@RequestMapping(value = "/metroAdmin", method = RequestMethod.GET)
+	public String metroAdminRouterInit(ModelMap model) {
+		System.out.println("In Metro admin init");
+		return "redirect:metroAdmin&reqPage=1";
 	}
 
 	// LBS 计算
