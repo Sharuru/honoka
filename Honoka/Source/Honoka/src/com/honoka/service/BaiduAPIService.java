@@ -13,9 +13,13 @@
   */
 package com.honoka.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.honoka.entity.BaiduJson.BaiduJsonGeocoding;
+import com.honoka.entity.BaiduJson.BaiduJsonPlace;
+import com.honoka.entity.BaiduJson.PlaceResults;
 
 @Service
 public interface BaiduAPIService {
@@ -30,5 +34,7 @@ public interface BaiduAPIService {
 	 *             the exception
 	 */
 	public BaiduJsonGeocoding BaiduGeoCoding(String reqAddr) throws Exception;
+	
+	public List<PlaceResults> BaiduPlace(String reqKeyWord) throws Exception;
 
 }
