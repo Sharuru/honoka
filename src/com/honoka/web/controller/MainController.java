@@ -5,11 +5,14 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.honoka.entity.Staff;
 import com.honoka.service.APIKeyService;
@@ -56,22 +59,30 @@ public class MainController {
 
 	// 员工数据管理画面初始化
 	@RequestMapping(value = "/staffAdmin", method = RequestMethod.GET)
-	public String staffAdminRouter(ModelMap model) {
+	public String staffAdminRouterInit(ModelMap model, Integer reqPage) {
+		System.out.println("In Staff admin init");
+		return "redirect:staffAdmin&reqPage=1";
+	}
+
+	// 员工数据管理画面
+	@RequestMapping(value = "/staffAdmin&reqPage={reqPage}", method = RequestMethod.GET)
+	public String staffAdminRouter(ModelMap model, @PathVariable Integer reqPage) {
 		System.out.println("In Staff admin");
-		model.addAttribute("currPage", 1);
+		System.out.println("currPage = " + reqPage);
+		//TODO：这里似乎有性能问题
+		model.addAttribute("currPage", reqPage);
 		model.addAttribute("totalCount", staffAdminService.countStaffInfo());
-		// TODO：这里还要对获得的 ID 转义
+		List<Staff> staffList;
+		staffList = staffAdminService.selectStaffInfoByPage(reqPage);
+		// 翻译
 		Map<String, String> comMap = companyService.getCompanyMap();
 		Map<String, String> deptMap = departmantService.getDeptMap();
 		Map<String, String> levelMap = levelService.getLevelMap();
-		// 翻译
-		List<Staff> staffList = staffAdminService.selectStaffInfoByPage(1);
 		for (int i = 0; i < staffList.size(); i++) {
 			staffList.get(i).setStaffComId(comMap.get(staffList.get(i).getStaffComId()));
 			staffList.get(i).setStaffDeptId(deptMap.get(staffList.get(i).getStaffDeptId()));
 			staffList.get(i).setStaffLevelId(levelMap.get(staffList.get(i).getStaffLevelId()));
 		}
-		// 获取第一页数据
 		model.addAttribute("staffInfoList", staffList);
 		return "staffAdmin/staffMain";
 	}
