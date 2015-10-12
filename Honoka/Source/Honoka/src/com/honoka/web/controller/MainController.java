@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.honoka.service.APIKeyService;
+import com.honoka.service.StaffAdminService;
 
 @Controller
 public class MainController {
 
 	@Resource
 	private APIKeyService apiKeyService;
+	@Resource
+	private StaffAdminService staffAdminService;
 
 	// 首页
 	@RequestMapping(value = "/Main")
@@ -39,10 +42,12 @@ public class MainController {
 		return "dashboard/dashMain";
 	}
 	
-	// 员工数据管理
+	// 员工数据管理画面初始化
 	@RequestMapping(value = "/staffAdmin", method = RequestMethod.GET)
 	public String staffAdminRouter(ModelMap model) {
 		System.out.println("In Staff admin");
+		model.addAttribute("currPage", 1);
+		model.addAttribute("totalCount", staffAdminService.countStaffInfo());
 		return "staffAdmin/staffMain";
 	}
 	
