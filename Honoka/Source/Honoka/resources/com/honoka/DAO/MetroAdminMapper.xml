@@ -13,8 +13,7 @@
 		"METRO_INFO"
 	</select>
 
-	<select id="selectMetroInfoByPage" resultMap="MetroResultMap"
-		parameterType="java.lang.Integer">
+	<select id="selectMetroInfoByPage" resultMap="MetroResultMap" parameterType="java.lang.Integer">
 		SELECT "RECORD_ID", "LINE_NAME", "STA_ID", "STA_NAME"
 		FROM "METRO_INFO"
 		ORDER BY "RECORD_ID" ASC
@@ -23,4 +22,13 @@
 		OFFSET #{page,jdbcType=INTEGER}*2 - 2
 	</select>
 
+	<insert id="insertMetroInfo" parameterType="map">
+		INSERT INTO "METRO_INFO" ("LINE_NAME", "STA_ID", "STA_NAME")
+		VALUES (#{lineName,jdbcType=VARCHAR},#{staId,jdbcType=VARCHAR},#{staName,jdbcType=VARCHAR})
+	</insert>
+	
+	<select id="initMetroInfo">
+		TRUNCATE TABLE "METRO_INFO"
+	</select>
+	
 </mapper>

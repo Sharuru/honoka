@@ -25,4 +25,14 @@ public class MetroAdminServiceImpl implements MetroAdminService {
 	public Integer countMetroInfo() {
 		return metroAdminMapper.countMetroInfo();
 	}
+
+	@Override
+	public void insertMetroInfo(String lineName, String staId, String staName) {
+		metroAdminMapper.insertMetroInfo(lineName, staId, staName);
+	}
+
+	@Override
+	public void initMetroInfo() {
+		metroAdminMapper.initMetroInfo();		
+	}
 }
