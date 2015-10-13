@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.honoka.DAO.PointMapper">
-	<!--<resultMap id="MetroResultMap" type="com.honoka.entity.Point">
+	<resultMap id="PointResultMap" type="com.honoka.entity.POINT">
 		<id column="RECORD_ID" property="recordId" jdbcType="INTEGER" />
-		<result column="LINE_NAME" property="lineName" jdbcType="VARCHAR" />
-		<result column="STA_ID" property="staId" jdbcType="VARCHAR" />
-		<result column="STA_NAME" property="staName" jdbcType="INTEGER" />
-	</resultMap> -->
+		<result column="KEY_ID" property="keyId" jdbcType="VARCHAR" />
+		<result column="BAIDU_RECORD_LNG" property="baiduRecordLng" jdbcType="VARCHAR" />
+		<result column="BAIDU_RECORD_LAT" property="baiduRecordLat" jdbcType="VARCHAR" />
+		<result column="AMAP_RECORD_LNG" property="amapRecordLng" jdbcType="VARCHAR" />
+		<result column="AMAP_RECORD_LAT" property="amapRecordLat" jdbcType="VARCHAR" />		
+	</resultMap>
 	<insert id="insertPointInfo" parameterType="map">
 		INSERT INTO "POINT_INFO" ("KEY_ID","BAIDU_RECORD_LNG","BAIDU_RECORD_LAT","AMAP_RECORD_LNG","AMAP_RECORD_LAT")
 		VALUES (#{keyId,jdbcType=VARCHAR},
@@ -23,4 +25,11 @@
 		FROM "POINT_INFO" 
 		WHERE "KEY_ID" LIKE 'sta%'	
 	</select>
-	</mapper>
+	
+	<select id="selectAllStaffPointInfo" resultMap="PointResultMap">
+		SELECT "RECORD_ID", "KEY_ID", "BAIDU_RECORD_LNG", "BAIDU_RECORD_LAT", "AMAP_RECORD_LNG", "AMAP_RECORD_LAT"
+		FROM "POINT_INFO"
+		WHERE "KEY_ID" LIKE 'S_______'
+		ORDER BY "RECORD_ID" ASC
+	</select>
+</mapper>

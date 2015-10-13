@@ -1,5 +1,6 @@
 package com.honoka.web.controller;
 
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -13,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.honoka.entity.AmapJson.AmapJsonGeocoding;
 import com.honoka.entity.BaiduJson.BaiduJsonGeocoding;
+import com.honoka.entity.POINT;
 import com.honoka.service.APIKeyService;
 import com.honoka.service.AmapAPIService;
 import com.honoka.service.BaiduAPIService;
+import com.honoka.service.PointService;
 
 @Controller
 public class LBSCalcController {
@@ -26,6 +29,8 @@ public class LBSCalcController {
 	private BaiduAPIService baiduAPIService;
 	@Resource
 	private AmapAPIService amapAPIService;
+	@Resource
+	private PointService pointService;
 	private BaiduJsonGeocoding bdReqResult;
 	private AmapJsonGeocoding apReqResult;
 
@@ -122,12 +127,18 @@ public class LBSCalcController {
 		System.out.println("In req two poing calc");
 		System.out.println(destPointLng + " , " + destPointLat);
 		// 计算目标点和库中所有员工数据的直线距离
-		System.out.println("GG" + Double.toString(
-				Distance(Double.parseDouble(destPointLat), Double.parseDouble(destPointLng), 31.223341, 121.53794)));
+		List<POINT> resPointList = pointService.selectAllStaffPointInfo();
+		//循环计算距离
+		Double totalDist = 0.0;
+		for(int i =0;i<resPointList.size();i++){
+			totalDist += getDistance(Double.parseDouble(destPointLat), Double.parseDouble(destPointLng), resPointList.get(i).getBaiduRecordLat(), resPointList.get(i).getBaiduRecordLng());
+		}
+		Double avgDist = totalDist / resPointList.size();
+		System.out.println("AVG IS " + Double.toString(avgDist));
 		return "GOOD FORM BACK";
 	}
 
-	public static double Distance(double long1, double lat1, double long2, double lat2) {
+	public double getDistance(double long1, double lat1, double long2, double lat2) {
 		double a, b, R;
 		R = 6378137; // 地球半径
 		lat1 = lat1 * Math.PI / 180.0;
