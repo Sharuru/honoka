@@ -1,17 +1,21 @@
 package com.honoka.web.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.honoka.common.JsonUtil;
 import com.honoka.entity.AmapJson.AmapJsonGeocoding;
 import com.honoka.entity.BaiduJson.BaiduJsonGeocoding;
 import com.honoka.entity.POINT;
@@ -119,11 +123,12 @@ public class LBSCalcController {
 	public String twoPointRouter(ModelMap model) {
 		System.out.println("In two point");
 		model.addAttribute("bdAPIKey", apiKeyService.selectUsableAPIKeyByProvider("BAIDU"));
+		model.addAttribute("calcResult", "等待点选");
 		return "lbsCalc/twoPointCalc";
 	}
 
 	@RequestMapping(value = "/reqTwoPointCalc", method = RequestMethod.POST)
-	public String reqTwoPointRouter(ModelMap model, String destPointLng, String destPointLat) {
+	public void reqTwoPointRouter(ModelMap model, String destPointLng, String destPointLat, HttpServletResponse response) throws Exception {
 		System.out.println("In req two poing calc");
 		System.out.println(destPointLng + " , " + destPointLat);
 		// 计算目标点和库中所有员工数据的直线距离
@@ -135,7 +140,11 @@ public class LBSCalcController {
 		}
 		Double avgDist = totalDist / resPointList.size();
 		System.out.println("AVG IS " + Double.toString(avgDist));
-		return "GOOD FORM BACK";
+		//model.addAttribute("avgDist", avgDist);
+		JsonUtil.sentJson(avgDist, response);
+		//model.addAttribute("bdAPIKey", apiKeyService.selectUsableAPIKeyByProvider("BAIDU"));
+		//model.addAttribute("calcResult", avgDist);
+		//return "lbsCalc/twoPointCalc";
 	}
 
 	public double getDistance(double lng1, double lat1, double lng2, double lat2) {
