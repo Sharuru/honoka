@@ -13,11 +13,11 @@
 	function postPoint(destPointLng, destPointLat){
 		$.ajax({
 			type : "POST",
+			url : "reqTwoPointCalc",
 			data : {
 				destPointLng : destPointLng,
 				destPointLat : destPointLat
 			},
-			url : "reqTwoPointCalc",
 			success : function(data) {
 				//$("#" + dest + "Content").html(data);
 				alert("Get your data");
