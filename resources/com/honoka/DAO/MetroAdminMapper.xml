@@ -16,10 +16,10 @@
 	<select id="selectMetroInfoByPage" resultMap="MetroResultMap" parameterType="java.lang.Integer">
 		SELECT "RECORD_ID", "LINE_NAME", "STA_ID", "STA_NAME"
 		FROM "METRO_INFO"
-		ORDER BY "RECORD_ID" ASC
+		ORDER BY "LINE_NAME" ASC
 		<!-- 这里也要设置 -->
-		LIMIT 2
-		OFFSET #{page,jdbcType=INTEGER}*2 - 2
+		LIMIT 20
+		OFFSET #{page,jdbcType=INTEGER}*20 - 20
 	</select>
 
 	<insert id="insertMetroInfo" parameterType="map">

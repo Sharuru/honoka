@@ -81,11 +81,11 @@
 							</a></li>
 						</c:if>
 						<!-- 循环设置页码 -->
-						<c:forEach var="pageNum" begin="1" end="${totalCount/2+1}">
+						<c:forEach var="pageNum" begin="1" end="${totalCount/20+1}">
 							<li id="pageNav${pageNum}"><a href="#" id="${pageNum}">${pageNum}</a></li>
 						</c:forEach>
 						<!-- 若为最后一页不显示右箭头 -->
-						<c:if test="${currPage lt totalCount/2}">
+						<c:if test="${currPage lt totalCount/20}">
 							<li><a href="#" id="${currPage + 1}" aria-label="Next">
 									<span aria-hidden="true">&raquo;</span>
 							</a></li>
