@@ -58,9 +58,9 @@ public class StaffAdminController {
 		model.addAttribute("totalCount", staffAdminService.countStaffInfo());
 		//Staff staffDetail = staffAdminService.selectStaffDetailByStaffId(reqId);
 		// 翻译
-		Map<String, String> comMap = companyService.getCompanyMap();
-		Map<String, String> deptMap = departmantService.getDeptMap();
-		Map<String, String> levelMap = levelService.getLevelMap();
+//		Map<String, String> comMap = companyService.getCompanyMap();
+//		Map<String, String> deptMap = departmantService.getDeptMap();
+//		Map<String, String> levelMap = levelService.getLevelMap();
 //		staffDetail.setStaffComId(comMap.get(staffDetail.getStaffComId()));
 //		staffDetail.setStaffDeptId(deptMap.get(staffDetail.getStaffDeptId()));
 //		staffDetail.setStaffLevelId(levelMap.get(staffDetail.getStaffLevelId()));

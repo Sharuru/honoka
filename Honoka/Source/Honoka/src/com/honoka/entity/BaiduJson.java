@@ -109,7 +109,7 @@ public class BaiduJson {
 		Integer status;
 		String message;
 		Integer total;
-		List<PlaceResults> results;
+		List<BaiduPlaceResults> results;
 
 		public Integer getStatus() {
 			return status;
@@ -135,17 +135,17 @@ public class BaiduJson {
 			this.total = total;
 		}
 
-		public List<PlaceResults> getResults() {
+		public List<BaiduPlaceResults> getResults() {
 			return results;
 		}
 
-		public void setResults(List<PlaceResults> results) {
+		public void setResults(List<BaiduPlaceResults> results) {
 			this.results = results;
 		}
 
 	}
 
-	public static class PlaceResults {
+	public static class BaiduPlaceResults {
 		String name;
 		PlaceLocation location;
 		String address;

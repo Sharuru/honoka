@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 
 import com.honoka.entity.BaiduJson.BaiduJsonGeocoding;
 import com.honoka.entity.BaiduJson.BaiduJsonPlace;
-import com.honoka.entity.BaiduJson.PlaceResults;
+import com.honoka.entity.BaiduJson.BaiduPlaceResults;
 
 @Service
 public interface BaiduAPIService {
@@ -34,7 +34,7 @@ public interface BaiduAPIService {
 	 *             the exception
 	 */
 	public BaiduJsonGeocoding BaiduGeoCoding(String reqAddr) throws Exception;
-	
-	public List<PlaceResults> BaiduPlace(String reqKeyWord) throws Exception;
+
+	public BaiduJsonPlace BaiduPlace(String reqKeyWord, Integer pageNum, String reqReqion) throws Exception;
 
 }
