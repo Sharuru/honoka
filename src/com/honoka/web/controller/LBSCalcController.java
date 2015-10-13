@@ -116,4 +116,13 @@ public class LBSCalcController {
 		model.addAttribute("bdAPIKey", apiKeyService.selectUsableAPIKeyByProvider("BAIDU"));
 		return "lbsCalc/twoPointCalc";
 	}
+	
+	@RequestMapping(value="/reqTwoPointCalc", method = RequestMethod.POST)
+	public String reqTwoPointRouter(ModelMap model,String destPointLng, String destPointLat){
+		System.out.println("In req two poing calc");
+		System.out.println(destPointLng + " , " + destPointLat);
+		//计算目标点和库中所有员工数据的直线距离
+		
+		return null;
+	}
 }
