@@ -1,7 +1,6 @@
 package com.honoka.web.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.honoka.entity.BaiduJson.BaiduJsonPlace;
+import com.honoka.entity.BaiduJson.BaiduPlaceResults;
 import com.honoka.entity.Metro;
 import com.honoka.service.BaiduAPIService;
 import com.honoka.service.MetroAdminService;
@@ -46,11 +46,18 @@ public class MetroAdminController {
 			//TODO：这里的结果处理要优化
 			//如果获得解析结果
 			if(bdReqResult.getStatus() == 0){
+				//先清空所有已有数据
+				metroAdminService.initMetroInfo();
 				//循环发起请求获取结果
 				for(int i=0;i<bdReqResult.getTotal()/20;i++){
 					bdReqResult = baiduAPIService.BaiduPlace("地铁站", i, "上海市");
+					//写入数据库
 					for(int j=0;j<bdReqResult.getResults().size();j++){
-						System.out.println(bdReqResult.getResults().get(j).getName());
+						String[] lineNameSplit = bdReqResult.getResults().get(j).getAddress().split(";");
+						//不同线路单独写入
+						for(int k=0;k<lineNameSplit.length;k++){
+							metroAdminService.insertMetroInfo(lineNameSplit[k], "HOLD", bdReqResult.getResults().get(j).getName());
+						}
 					}
 				}
 			}

@@ -8,7 +8,12 @@ import com.honoka.entity.Metro;
 
 @Service
 public interface MetroAdminService {
-	
+
 	Integer countMetroInfo();
+
 	List<Metro> selectMetroInfoByPage(Integer page);
+	
+	void initMetroInfo();
+	
+	void insertMetroInfo(String lineName,String staId, String staName);
 }
