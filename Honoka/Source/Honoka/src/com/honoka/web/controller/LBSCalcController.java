@@ -108,4 +108,12 @@ public class LBSCalcController {
 		model.addAttribute("userInput", reqAddr);
 		return "lbsCalc/geoCoding";
 	}
+	
+	// 两点计算初始画面
+	@RequestMapping(value = "/twoPointCalc", method = RequestMethod.GET)
+	public String twoPointRouter(ModelMap model) {
+		System.out.println("In two point");
+		model.addAttribute("bdAPIKey", apiKeyService.selectUsableAPIKeyByProvider("BAIDU"));
+		return "lbsCalc/twoPointCalc";
+	}
 }
