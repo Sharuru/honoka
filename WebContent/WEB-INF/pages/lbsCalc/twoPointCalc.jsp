@@ -33,7 +33,7 @@
 	}
 	function init() {
 		var map = new BMap.Map("mapContent"); // 创建Map实例
-		var point = new BMap.Point(121.53794, 31.223341); // 创建点坐标
+		var point = new BMap.Point(121.538487, 31.223365); // 创建点坐标
 		var marker = new BMap.Marker(point);	//设置覆盖物
 		var top_left_control = new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT});// 左上角，添加比例尺
 		var top_left_navigation = new BMap.NavigationControl();  //左上角，添加默认缩放平移控件
@@ -88,6 +88,5 @@
 		<p>请点击任意位置计算目前系统所有员工至目标点的平均直线距离</p>
 		<div id="mapContent" style="height:630px"></div>
 	</div>
-
 </body>
 </html>

@@ -1,6 +1,10 @@
 package com.honoka.DAO;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
+
+import com.honoka.entity.POINT;
 
 public interface PointMapper {
 
@@ -9,4 +13,6 @@ public interface PointMapper {
 			@Param("amapRecordLat") double amapRecordLat);
 	
 	void initMetroPoint();
+	
+	List<POINT> selectAllStaffPointInfo();
 }
