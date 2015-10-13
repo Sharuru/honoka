@@ -13,13 +13,10 @@
   */
 package com.honoka.service;
 
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 
 import com.honoka.entity.BaiduJson.BaiduJsonGeocoding;
 import com.honoka.entity.BaiduJson.BaiduJsonPlace;
-import com.honoka.entity.BaiduJson.BaiduPlaceResults;
 
 @Service
 public interface BaiduAPIService {

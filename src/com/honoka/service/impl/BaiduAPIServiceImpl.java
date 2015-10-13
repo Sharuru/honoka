@@ -1,7 +1,6 @@
 package com.honoka.service.impl;
 
 import java.net.URLEncoder;
-import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -13,14 +12,12 @@ import com.honoka.service.BaiduAPIService;
 import com.honoka.common.APIUtil;
 import com.honoka.entity.BaiduJson.BaiduJsonGeocoding;
 import com.honoka.entity.BaiduJson.BaiduJsonPlace;
-import com.honoka.entity.BaiduJson.BaiduPlaceResults;
 
 @Service
 public class BaiduAPIServiceImpl implements BaiduAPIService {
 
 	@Resource
 	private APIKeyService apiKeyService;
-	private List<BaiduPlaceResults> bdJsonList;
 
 	@Override
 	public BaiduJsonGeocoding BaiduGeoCoding(String reqAddr) throws Exception {
@@ -36,7 +33,6 @@ public class BaiduAPIServiceImpl implements BaiduAPIService {
 	@Override
 	public BaiduJsonPlace BaiduPlace(String reqKeyWord, Integer pageNum, String reqRegion) throws Exception {
 		String json = null;
-		bdJsonList = null;
 		json = APIUtil.readUrl(
 				"http://api.map.baidu.com/place/v2/search?ak=" + apiKeyService.selectUsableAPIKeyByProvider("BAIDU")
 						+ "&output=json&query=" + URLEncoder.encode(reqKeyWord, "UTF-8") + "&page_size=20&page_num="
