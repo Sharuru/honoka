@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.google.gson.Gson;
 import com.honoka.common.JsonUtil;
 import com.honoka.entity.AmapJson.AmapJsonGeocoding;
 import com.honoka.entity.BaiduJson.BaiduJsonGeocoding;
@@ -141,7 +142,11 @@ public class LBSCalcController {
 		Double avgDist = totalDist / resPointList.size();
 		System.out.println("AVG IS " + Double.toString(avgDist));
 		//model.addAttribute("avgDist", avgDist);
-		JsonUtil.sentJson(avgDist, response);
+		//JsonUtil.sentJson(avgDist, response);
+		response.setContentType("text/json");
+		response.setCharacterEncoding("UTF-8");
+		Gson gson = new Gson();  
+		response.getWriter().write(gson.toJson("abccccc"));
 		//model.addAttribute("bdAPIKey", apiKeyService.selectUsableAPIKeyByProvider("BAIDU"));
 		//model.addAttribute("calcResult", avgDist);
 		//return "lbsCalc/twoPointCalc";
