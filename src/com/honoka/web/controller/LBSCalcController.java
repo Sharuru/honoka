@@ -131,20 +131,20 @@ public class LBSCalcController {
 		//循环计算距离
 		Double totalDist = 0.0;
 		for(int i =0;i<resPointList.size();i++){
-			totalDist += getDistance(Double.parseDouble(destPointLat), Double.parseDouble(destPointLng), resPointList.get(i).getBaiduRecordLat(), resPointList.get(i).getBaiduRecordLng());
+			totalDist += getDistance(Double.parseDouble(destPointLng), Double.parseDouble(destPointLat), resPointList.get(i).getBaiduRecordLng(), resPointList.get(i).getBaiduRecordLat());
 		}
 		Double avgDist = totalDist / resPointList.size();
 		System.out.println("AVG IS " + Double.toString(avgDist));
 		return "GOOD FORM BACK";
 	}
 
-	public double getDistance(double long1, double lat1, double long2, double lat2) {
+	public double getDistance(double lng1, double lat1, double lng2, double lat2) {
 		double a, b, R;
 		R = 6378137; // 地球半径
 		lat1 = lat1 * Math.PI / 180.0;
 		lat2 = lat2 * Math.PI / 180.0;
 		a = lat1 - lat2;
-		b = (long1 - long2) * Math.PI / 180.0;
+		b = (lng1 - lng2) * Math.PI / 180.0;
 		double d;
 		double sa2, sb2;
 		sa2 = Math.sin(a / 2.0);
