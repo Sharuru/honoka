@@ -1,7 +1,6 @@
 package com.honoka.web.controller;
 
 import java.util.List;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -46,7 +45,6 @@ public class MetroAdminController {
 	@RequestMapping(value = "/reqRefreshMetroInfo")
 	public String mainRouter() {
 		System.out.println("In req Refresh Metro Info");
-		Map<String, Integer> staIdMap;
 		try {
 			BaiduJsonPlace bdReqResult = baiduAPIService.BaiduPlace("地铁站", 0, "上海市");
 			// TODO：这里的结果处理要优化
