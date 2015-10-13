@@ -56,7 +56,10 @@ public class MetroAdminController {
 						String[] lineNameSplit = bdReqResult.getResults().get(j).getAddress().split(";");
 						//不同线路单独写入
 						for(int k=0;k<lineNameSplit.length;k++){
-							metroAdminService.insertMetroInfo(lineNameSplit[k], "HOLD", bdReqResult.getResults().get(j).getName());
+							if(!("null".equals(lineNameSplit[k]))){
+								//线路名不为空时写入（比如松江站，松江新城站）
+								metroAdminService.insertMetroInfo(lineNameSplit[k], "HOLD", bdReqResult.getResults().get(j).getName());
+							}
 						}
 					}
 				}
