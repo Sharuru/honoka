@@ -1,6 +1,5 @@
 package com.honoka.web.controller;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -14,9 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.Gson;
-import com.honoka.common.JsonUtil;
 import com.honoka.entity.AmapJson.AmapJsonGeocoding;
 import com.honoka.entity.BaiduJson.BaiduJsonGeocoding;
 import com.honoka.entity.POINT;
@@ -129,27 +126,40 @@ public class LBSCalcController {
 	}
 
 	@RequestMapping(value = "/reqTwoPointCalc", method = RequestMethod.POST)
-	public void reqTwoPointRouter(ModelMap model, String destPointLng, String destPointLat, HttpServletResponse response) throws Exception {
+	public void reqTwoPointRouter(ModelMap model, String destPointLng, String destPointLat,
+			HttpServletResponse response) throws Exception {
 		System.out.println("In req two poing calc");
 		System.out.println(destPointLng + " , " + destPointLat);
 		// 计算目标点和库中所有员工数据的直线距离
 		List<POINT> resPointList = pointService.selectAllStaffPointInfo();
-		//循环计算距离
+		// 循环计算距离
 		Double totalDist = 0.0;
-		for(int i =0;i<resPointList.size();i++){
-			totalDist += getDistance(Double.parseDouble(destPointLng), Double.parseDouble(destPointLat), resPointList.get(i).getBaiduRecordLng(), resPointList.get(i).getBaiduRecordLat());
+		for (int i = 0; i < resPointList.size(); i++) {
+			totalDist += getDistance(Double.parseDouble(destPointLng), Double.parseDouble(destPointLat),
+					resPointList.get(i).getBaiduRecordLng(), resPointList.get(i).getBaiduRecordLat());
 		}
 		Double avgDist = totalDist / resPointList.size();
 		System.out.println("AVG IS " + Double.toString(avgDist));
-		//model.addAttribute("avgDist", avgDist);
-		//JsonUtil.sentJson(avgDist, response);
 		response.setContentType("text/json");
 		response.setCharacterEncoding("UTF-8");
-		Gson gson = new Gson();  
-		response.getWriter().write(gson.toJson("abccccc"));
-		//model.addAttribute("bdAPIKey", apiKeyService.selectUsableAPIKeyByProvider("BAIDU"));
-		//model.addAttribute("calcResult", avgDist);
-		//return "lbsCalc/twoPointCalc";
+		Gson gson = new Gson();
+		response.getWriter().write(gson.toJson(avgDist));
+	}
+	
+	// 地理围栏初始画面
+	@RequestMapping(value = "/geoFencing", method = RequestMethod.GET)
+	public String geoFencingRouter(ModelMap model) {
+		System.out.println("In geo fencing");
+		return "lbsCalc/geoFencing";
+	}
+	
+	//地理围栏计算
+	@RequestMapping(value = "/reqCalcGeoFencing", method = RequestMethod.POST)
+	public String reqCalcGeoFencing(ModelMap model, String reqRange){
+		System.out.println("In req calc geo fencing");
+		System.out.println(reqRange);
+		return "lbsCalc/geoFencing";
+		//return null;
 	}
 
 	public double getDistance(double lng1, double lat1, double lng2, double lat2) {

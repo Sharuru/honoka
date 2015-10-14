@@ -19,7 +19,7 @@
 				destPointLat : destPointLat
 			},
 			success : function(returnData, textResponse) {
-				alert("所有员工至目标点的平均直线距离为：" + returnData);
+				alert("所有员工至目标点的平均直线距离为：" + returnData + " 米");
 				var map = new BMap.Map("mapContent");
 				var point = new BMap.Point(destPointLng, destPointLat);
 				var marker = new BMap.Marker(point); //设置覆盖物
@@ -49,9 +49,14 @@
 					div.style.cursor = "pointer";
 					div.style.border = "2px solid gray";
 					div.style.backgroundColor = "white";
-					// 绑定事件,点击一次放大两级
+					// 绑定事件
 					div.onclick = function(e) {
-						map.panTo(new BMap.Point(121.538487, 31.223365));
+						map.clearOverlays(); 
+						var point = new BMap.Point(121.538487, 31.223365); // 创建点坐标
+						var marker = new BMap.Marker(point); //设置覆盖物
+						map.addOverlay(marker);
+						marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+						map.panTo(point);
 						map.setZoom(15);
 					}
 					// 添加DOM元素到地图中
@@ -109,9 +114,14 @@
 			div.style.cursor = "pointer";
 			div.style.border = "2px solid gray";
 			div.style.backgroundColor = "white";
-			// 绑定事件,点击一次放大两级
+			// 绑定事件
 			div.onclick = function(e) {
-				map.panTo(new BMap.Point(121.538487, 31.223365));
+				map.clearOverlays(); 
+				var point = new BMap.Point(121.538487, 31.223365); // 创建点坐标
+				var marker = new BMap.Marker(point); //设置覆盖物
+				map.addOverlay(marker);
+				marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+				map.panTo(point);
 				map.setZoom(15);
 			}
 			// 添加DOM元素到地图中

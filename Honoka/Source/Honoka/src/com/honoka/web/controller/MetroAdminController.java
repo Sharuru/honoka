@@ -82,6 +82,6 @@ public class MetroAdminController {
 			e.printStackTrace();
 		}
 		//TODO：替换过程
-		return "metroAdmin/metroMain";
+		return "redirect:metroAdmin&reqPage=1";
 	}
 }
