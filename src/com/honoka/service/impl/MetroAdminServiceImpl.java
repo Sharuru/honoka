@@ -35,4 +35,14 @@ public class MetroAdminServiceImpl implements MetroAdminService {
 	public void initMetroInfo() {
 		metroAdminMapper.initMetroInfo();		
 	}
+
+	@Override
+	public List<Metro> getMetroLineNameList() {
+		return metroAdminMapper.getMetroLineNameList();
+	}
+
+	@Override
+	public List<Metro> getMetroStationIdByLineName(String lineName) {
+		return metroAdminMapper.getMetroStationIdByLineName(lineName);
+	}
 }

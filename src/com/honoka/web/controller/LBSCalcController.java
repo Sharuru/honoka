@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.google.gson.Gson;
 import com.honoka.entity.AmapJson.AmapJsonGeocoding;
 import com.honoka.entity.BaiduJson.BaiduJsonGeocoding;
+import com.honoka.entity.Metro;
 import com.honoka.entity.POINT;
 import com.honoka.service.APIKeyService;
 import com.honoka.service.AmapAPIService;
 import com.honoka.service.BaiduAPIService;
+import com.honoka.service.MetroAdminService;
 import com.honoka.service.PointService;
 
 @Controller
@@ -33,6 +35,8 @@ public class LBSCalcController {
 	private AmapAPIService amapAPIService;
 	@Resource
 	private PointService pointService;
+	@Resource
+	private MetroAdminService metroAdminService;
 	private BaiduJsonGeocoding bdReqResult;
 	private AmapJsonGeocoding apReqResult;
 
@@ -145,21 +149,49 @@ public class LBSCalcController {
 		Gson gson = new Gson();
 		response.getWriter().write(gson.toJson(avgDist));
 	}
-	
+
 	// 地理围栏初始画面
 	@RequestMapping(value = "/geoFencing", method = RequestMethod.GET)
 	public String geoFencingRouter(ModelMap model) {
 		System.out.println("In geo fencing");
 		return "lbsCalc/geoFencing";
 	}
-	
-	//地理围栏计算
+
+	// 地理围栏计算
 	@RequestMapping(value = "/reqCalcGeoFencing", method = RequestMethod.POST)
-	public String reqCalcGeoFencing(ModelMap model, String reqRange){
+	public String reqCalcGeoFencing(ModelMap model, String reqRange) {
 		System.out.println("In req calc geo fencing");
-		System.out.println(reqRange);
+		System.out.println("Get reqRange = " + reqRange);
+		// 计算准备
+		// 获取员工坐标点信息
+		List<POINT> staffPointList = pointService.selectAllStaffPointInfo();
+		// 获取系统中所有已有线路列表
+		List<Metro> metroLineNameList = metroAdminService.getMetroLineNameList();
+		// 获取线路对应的站点 ID
+		for (int i = 0; i < metroLineNameList.size(); i++) {
+			System.out.println("Getting station id on: " + metroLineNameList.get(i).getLineName());
+			List<Metro> metroStationIdList = metroAdminService
+					.getMetroStationIdByLineName(metroLineNameList.get(i).getLineName());
+			// 对应站点 ID 获取 POINT 信息
+			for (int j = 0; j < metroStationIdList.size(); j++) {
+				System.out.println("Getting station point for: " + metroStationIdList.get(j).getStaId());
+				List<POINT> stationPointList = pointService
+						.selectPointInfoByKeyId(metroStationIdList.get(j).getStaId());
+				// 开始计算比对
+				for (int k = 0; k < staffPointList.size(); k++) {
+					for (int l = 0; l < stationPointList.size(); l++) {
+						if ((getDistance(staffPointList.get(k).getBaiduRecordLng(),
+								staffPointList.get(k).getBaiduRecordLat(), stationPointList.get(l).getBaiduRecordLng(),
+								stationPointList.get(l).getBaiduRecordLat())) <= Double.parseDouble(reqRange)) {
+							// 在范围内
+						}
+					}
+
+				}
+			}
+		}
 		return "lbsCalc/geoFencing";
-		//return null;
+		// return null;
 	}
 
 	public double getDistance(double lng1, double lat1, double lng2, double lat2) {

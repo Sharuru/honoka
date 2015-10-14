@@ -32,4 +32,10 @@
 		WHERE "KEY_ID" LIKE 'S_______'
 		ORDER BY "RECORD_ID" ASC
 	</select>
+	
+	<select id="selectPointInfoByKeyId" resultMap="PointResultMap">
+		SELECT "RECORD_ID", "KEY_ID", "BAIDU_RECORD_LNG", "BAIDU_RECORD_LAT", "AMAP_RECORD_LNG", "AMAP_RECORD_LAT"
+		FROM "POINT_INFO"
+		WHERE "KEY_ID" = #{keyId,jdbcType=VARCHAR}
+	</select>
 </mapper>
