@@ -23,7 +23,7 @@
 	<select id="initMetroPoint">
 		DELETE 
 		FROM "POINT_INFO" 
-		WHERE "KEY_ID" LIKE 'sta%'	
+		WHERE "KEY_ID" LIKE 'STA%'	
 	</select>
 	
 	<select id="selectAllStaffPointInfo" resultMap="PointResultMap">
@@ -37,5 +37,14 @@
 		SELECT "RECORD_ID", "KEY_ID", "BAIDU_RECORD_LNG", "BAIDU_RECORD_LAT", "AMAP_RECORD_LNG", "AMAP_RECORD_LAT"
 		FROM "POINT_INFO"
 		WHERE "KEY_ID" = #{keyId,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="trimMetroPointData">
+		DELETE FROM	"METRO_INFO" A
+		WHERE A."RECORD_ID" != (
+		SELECT	MIN (B."RECORD_ID")
+		FROM "METRO_INFO" B
+		WHERE A."STA_NAME" = B."STA_NAME"
+		AND A."LINE_NAME" = B."LINE_NAME")
 	</select>
 </mapper>

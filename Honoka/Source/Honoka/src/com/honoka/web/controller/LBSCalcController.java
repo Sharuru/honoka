@@ -1,5 +1,6 @@
 package com.honoka.web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -23,6 +24,7 @@ import com.honoka.service.AmapAPIService;
 import com.honoka.service.BaiduAPIService;
 import com.honoka.service.MetroAdminService;
 import com.honoka.service.PointService;
+import com.honoka.web.controller.LBSCalcController.fencingResult;
 
 @Controller
 public class LBSCalcController {
@@ -164,17 +166,19 @@ public class LBSCalcController {
 		System.out.println("Get reqRange = " + reqRange);
 		// TODO：数据库表要重新设计，线路 ID
 		// 计算准备
+		//结果保存
+		List<fencingResult> fencingResultList = new ArrayList<fencingResult>();
 		// 获取员工坐标点信息
 		List<POINT> staffPointList = pointService.selectAllStaffPointInfo();
 		// 获取系统中所有已有线路列表
 		List<Metro> metroLineNameList = metroAdminService.getMetroLineNameList();
 		// 获取线路对应的站点 ID
 		for (int i = 0; i < metroLineNameList.size(); i++) {
-			// System.out.println("Getting station id on: " +
-			// metroLineNameList.get(i).getLineName());
+			 System.out.println("Getting station id on: " +	 metroLineNameList.get(i).getLineName());
 			List<Metro> metroStationIdList = metroAdminService
 					.getMetroStationIdByLineName(metroLineNameList.get(i).getLineName());
 			// 对应站点 ID 获取 POINT 信息
+			System.out.println(metroStationIdList.size());
 			for (int j = 0; j < metroStationIdList.size(); j++) {
 				// System.out.println("Getting station point for: " +
 				// metroStationIdList.get(j).getStaId());
@@ -189,15 +193,20 @@ public class LBSCalcController {
 						// System.out.println("Curr dist is " + dist);
 						if (dist < Double.parseDouble(reqRange)) {
 							// 在范围内插入显示列表
-							System.out.println(staffPointList.get(k).getKeyId() + metroLineNameList.get(i).getLineName()
-									+ stationPointList.get(l).getKeyId());
+							fencingResult fRo = new fencingResult();
+							fRo.setStaffId(staffPointList.get(k).getKeyId());
+							fRo.setLineName(metroLineNameList.get(i).getLineName());
+							fRo.setStaName(metroAdminService.getMetroStationNameByStationId(stationPointList.get(l).getKeyId()));
+							fencingResultList.add(fRo);
 						}
 					}
-
 				}
 			}
 		}
 		System.out.println("Calculate finished");
+		for(int i=0;i<fencingResultList.size();i++){
+			System.out.println(fencingResultList.get(i).getLineName() + fencingResultList.get(i).getStaffId() + fencingResultList.get(i).getStaName());
+		}
 		return "lbsCalc/geoFencing";
 		// return null;
 	}

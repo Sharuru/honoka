@@ -20,4 +20,6 @@ public interface MetroAdminService {
 	List<Metro> getMetroLineNameList();
 	
 	List<Metro> getMetroStationIdByLineName(String lineName);
+	
+	String getMetroStationNameByStationId(String staId);
 }

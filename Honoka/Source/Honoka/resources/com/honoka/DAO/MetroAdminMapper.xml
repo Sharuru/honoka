@@ -42,4 +42,10 @@
 		WHERE "LINE_NAME" = #{lineName,jdbcType=VARCHAR}
 	</select>
 	
+	<select id="getMetroStationNameByStationId"  resultType="java.lang.String">
+		SELECT "STA_NAME" 
+		FROM "METRO_INFO" 
+		WHERE "STA_ID" = #{staId,jdbcType=VARCHAR}
+		LIMIT 1
+	</select>
 </mapper>

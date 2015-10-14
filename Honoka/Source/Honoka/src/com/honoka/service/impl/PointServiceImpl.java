@@ -38,4 +38,10 @@ public class PointServiceImpl implements PointService {
 		return pointMapper.selectPointInfoByKeyId(keyId);
 	}
 
+	@Override
+	public void trimMetroPointData() {
+		pointMapper.trimMetroPointData();
+		
+	}
+
 }

@@ -16,4 +16,6 @@ public interface PointService {
 	List<POINT> selectAllStaffPointInfo();
 	
 	List<POINT> selectPointInfoByKeyId(String keyId);
+	
+	void trimMetroPointData();
 }
