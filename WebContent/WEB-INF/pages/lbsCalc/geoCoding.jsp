@@ -7,9 +7,15 @@
 <html>
 <head>
 <script type="text/javascript">
-	//解析地址
+	//子功能加载后绑定点击事件
+		$(document).ready(function() {
+		$("#btnReqGeoCoding").click(function(event) {
+			reqGeoCoding();
+		});
+	}); 
+	//解析地址请求
 	function reqGeoCoding() {
-		var userInput = document.getElementById("inputUserInput").value;
+		var userInput = document.getElementById("inputReqAddr").value;
 		$.ajax({
 			type : "POST",
 			url : "reqGeoCoding",
@@ -17,7 +23,7 @@
 				reqAddr : userInput
 			},
 			success : function(data) {
-				//TODO: 目前是重绘页面，理论可以直接发送需要的数据
+				//重绘页面，显示结果数据
 				$("#geoCodingContent").html(data);
 			}
 		});
@@ -27,20 +33,18 @@
 <body>
 	<div id="geoCodingContent">
 		<div class="input-group">
-			<input type="text" class="form-control" id="inputUserInput"
-				placeholder="请输入需要解析的地址……" value="${userInput}"><span
+			<input type="text" class="form-control" id="inputReqAddr"
+				placeholder="请输入需要解析的地址……" value="${pageParaMap.inputReqAddr}"><span
 				class="input-group-btn">
-				<button class="btn btn-default" type="button"
-					onclick="reqGeoCoding();">解析</button>
+				<button class="btn btn-default" type="button" id="btnReqGeoCoding">解析</button>
 			</span>
 		</div>
-		<div style="margin-top: 15px;margin-bottom: 5px;" class="alert alert-${bdReqStatus}" role="alert">
-			<b>${bdGeocodingResult }</b>
+		<div style="margin-top: 15px;margin-bottom: 5px;" class="alert alert-${pageParaMap.bdReqStatus}" role="alert">
+			<b>${pageParaMap.bdGeocodingResult }</b>
 		</div>
-		<div style="margin-top: 15px;margin-bottom: 5px;" class="alert alert-${apReqStatus}" role="alert">
-			<b>${apGeocodingResult }</b>
+		<div style="margin-top: 15px;margin-bottom: 5px;" class="alert alert-${pageParaMap.apReqStatus}" role="alert">
+			<b>${pageParaMap.apGeocodingResult }</b>
 		</div>
 	</div>
-
 </body>
 </html>

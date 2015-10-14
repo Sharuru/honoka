@@ -54,8 +54,6 @@
 				data-toggle="tab">LBS 计算</a></li>
 			<li><a href="#importStaffContent" id="importStaff"
 				data-toggle="tab">员工数据批量导入</a></li>
-			<li><a href="#logoutContent" id="logout" 
-				data-toggle="tab">退出登录</a></li>
 		</ul>
 		<!-- 页面内容区，通过 AJAX 进行替换 -->
 		<div id="mainContent" class="tab-content" style="margin-top: 20px;">
@@ -64,7 +62,6 @@
 			<div class="tab-pane fade" id="metroAdminContent"></div>
 			<div class="tab-pane fade" id="lbsCalcContent"></div>
 			<div class="tab-pane fade" id="importStaffContent"></div>
-			<div class="tab-pane fade" id="logoutContent"></div>
 		</div>
 		<!-- 页面加载完毕后自动点击仪表盘按钮替换内容 -->
 		<script type="text/javascript">

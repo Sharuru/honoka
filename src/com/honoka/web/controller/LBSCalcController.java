@@ -1,7 +1,9 @@
 package com.honoka.web.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -24,7 +26,6 @@ import com.honoka.service.AmapAPIService;
 import com.honoka.service.BaiduAPIService;
 import com.honoka.service.MetroAdminService;
 import com.honoka.service.PointService;
-import com.honoka.web.controller.LBSCalcController.fencingResult;
 
 @Controller
 public class LBSCalcController {
@@ -45,19 +46,23 @@ public class LBSCalcController {
 	// 地址解析初始画面
 	@RequestMapping(value = "/geoCoding", method = RequestMethod.GET)
 	public String geoCodingRouter(ModelMap model) {
-		System.out.println("In Geo Coding");
-		model.addAttribute("bdReqStatus", "info");
-		model.addAttribute("apReqStatus", "info");
-		model.addAttribute("bdGeocodingResult", "百度通道等待用户输入……");
-		model.addAttribute("apGeocodingResult", "高德通道等待用户输入……");
+		System.out.println("In /geoCoding");
+		// 参数设置
+		Map<String, Object> pageParaMap = new HashMap<String, Object>();
+		pageParaMap.put("reqAddr", "");
+		pageParaMap.put("bdReqStatus", "info");
+		pageParaMap.put("apReqStatus", "info");
+		pageParaMap.put("bdGeocodingResult", "百度通道等待用户输入……");
+		pageParaMap.put("apGeocodingResult", "高德通道等待用户输入……");
+		model.addAttribute("pageParaMap", pageParaMap);
 		return "lbsCalc/geoCoding";
 	}
 
 	// 请求地址解析
 	@RequestMapping(value = "/reqGeoCoding", method = RequestMethod.POST)
 	public String reqGeoCodingRouter(ModelMap model, String reqAddr) {
-		System.out.println("In REQ Geo Coding");
-		System.out.println("Get: reqAddr is: " + reqAddr);
+		System.out.println("In /reqGeoCoding");
+		System.out.println("reqAddr is: " + reqAddr);
 		// 新建并发线程池
 		ExecutorService threadPool = Executors.newCachedThreadPool();
 		threadPool.execute(new Runnable() {
@@ -85,40 +90,39 @@ public class LBSCalcController {
 			// 超时时间为 5 秒
 			threadPool.awaitTermination(5, TimeUnit.SECONDS);
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+			System.out.println("Error happened when awaitTermination");
 		}
-		System.out.println("All sub-thread finished.");
+		System.out.println("All sub-thread finished, starting main-thread");
 		// 解析状态及超时处理
-		try {
+		// 参数设置
+		Map<String, Object> pageParaMap = new HashMap<String, Object>();
+		// 百度通道
+		if (bdReqResult != null) {
 			if (bdReqResult.getStatus() == 0) {
-				// 百度通道正常解析
-				model.addAttribute("bdGeocodingResult",
+				pageParaMap.put("bdGeocodingResult",
 						"百度解析结果：" + bdReqResult.getResult().getLocation().getLng().toString() + ","
 								+ bdReqResult.getResult().getLocation().getLat().toString());
-				model.addAttribute("bdReqStatus", "success");
+				pageParaMap.put("bdReqStatus", "success");
 			} else {
-				model.addAttribute("bdGeocodingResult", "百度解析结果：" + bdReqResult.getMsg());
-				model.addAttribute("bdReqStatus", "danger");
+				pageParaMap.put("bdGeocodingResult", "百度解析结果：" + bdReqResult.getMsg());
+				pageParaMap.put("bdReqStatus", "danger");
 			}
-		} catch (Exception e) {
-			model.addAttribute("bdGeocodingResult", "百度解析结果：解析超时");
-			model.addAttribute("bdReqStatus", "danger");
+		} else {
+			pageParaMap.put("bdGeocodingResult", "百度解析结果：解析超时");
+			pageParaMap.put("bdReqStatus", "danger");
 		}
-		try {
-			if (apReqResult.getStatus() == 1 && apReqResult.getCount() >= 1) {
-				// 高德通道正常解析且有记录
-				// TODO：高德的 API 只要你连上去了都丢给你状态码 1，要进行判断不仅要靠 info 还要靠 count
-				model.addAttribute("apGeocodingResult", "高德解析结果：" + apReqResult.getGeocodes()[0].getLocation());
-				model.addAttribute("apReqStatus", "success");
-			} else {
-				model.addAttribute("apGeocodingResult", "高德解析结果：在解析时发生异常");
-				model.addAttribute("apReqStatus", "danger");
-			}
-		} catch (Exception e) {
-			model.addAttribute("apGeocodingResult", "高德解析结果：解析超时");
-			model.addAttribute("apReqStatus", "danger");
+		// 高德通道
+		// 高德的 API 只要你连上去了都丢给你状态码 1，要进行判断不仅要靠 info 还要靠 count
+		// 不对高德的 API 做特殊的异常信息处理
+		if (apReqResult != null && apReqResult.getStatus() == 1 && apReqResult.getCount() >= 1) {
+			pageParaMap.put("apGeocodingResult", "高德解析结果：" + apReqResult.getGeocodes()[0].getLocation());
+			pageParaMap.put("apReqStatus", "success");
+		} else {
+			pageParaMap.put("apGeocodingResult", "高德解析结果：在解析时发生异常");
+			pageParaMap.put("apReqStatus", "danger");
 		}
-		model.addAttribute("userInput", reqAddr);
+		pageParaMap.put("inputReqAddr", reqAddr);
+		model.addAttribute("pageParaMap",pageParaMap);
 		return "lbsCalc/geoCoding";
 	}
 
@@ -166,7 +170,7 @@ public class LBSCalcController {
 		System.out.println("Get reqRange = " + reqRange);
 		// TODO：数据库表要重新设计，线路 ID
 		// 计算准备
-		//结果保存
+		// 结果保存
 		List<fencingResult> fencingResultList = new ArrayList<fencingResult>();
 		// 获取员工坐标点信息
 		List<POINT> staffPointList = pointService.selectAllStaffPointInfo();
@@ -174,7 +178,7 @@ public class LBSCalcController {
 		List<Metro> metroLineNameList = metroAdminService.getMetroLineNameList();
 		// 获取线路对应的站点 ID
 		for (int i = 0; i < metroLineNameList.size(); i++) {
-			 System.out.println("Getting station id on: " +	 metroLineNameList.get(i).getLineName());
+			System.out.println("Getting station id on: " + metroLineNameList.get(i).getLineName());
 			List<Metro> metroStationIdList = metroAdminService
 					.getMetroStationIdByLineName(metroLineNameList.get(i).getLineName());
 			// 对应站点 ID 获取 POINT 信息
@@ -196,7 +200,8 @@ public class LBSCalcController {
 							fencingResult fRo = new fencingResult();
 							fRo.setStaffId(staffPointList.get(k).getKeyId());
 							fRo.setLineName(metroLineNameList.get(i).getLineName());
-							fRo.setStaName(metroAdminService.getMetroStationNameByStationId(stationPointList.get(l).getKeyId()));
+							fRo.setStaName(metroAdminService
+									.getMetroStationNameByStationId(stationPointList.get(l).getKeyId()));
 							fencingResultList.add(fRo);
 						}
 					}
@@ -204,8 +209,9 @@ public class LBSCalcController {
 			}
 		}
 		System.out.println("Calculate finished");
-		for(int i=0;i<fencingResultList.size();i++){
-			System.out.println(fencingResultList.get(i).getLineName() + fencingResultList.get(i).getStaffId() + fencingResultList.get(i).getStaName());
+		for (int i = 0; i < fencingResultList.size(); i++) {
+			System.out.println(fencingResultList.get(i).getLineName() + fencingResultList.get(i).getStaffId()
+					+ fencingResultList.get(i).getStaName());
 		}
 		return "lbsCalc/geoFencing";
 		// return null;
