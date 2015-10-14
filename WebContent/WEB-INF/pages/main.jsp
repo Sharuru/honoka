@@ -50,11 +50,12 @@
 				data-toggle="tab">员工数据管理</a></li>
 			<li><a href="#metroAdminContent" id="metroAdmin"
 				data-toggle="tab">地铁站点数据管理</a></li>
-			<li><a href="#lbsCalcContent" id="lbsCalc" data-toggle="tab">LBS
-					计算</a></li>
+			<li><a href="#lbsCalcContent" id="lbsCalc"
+				data-toggle="tab">LBS 计算</a></li>
 			<li><a href="#importStaffContent" id="importStaff"
 				data-toggle="tab">员工数据批量导入</a></li>
-			<li><a href="#logoutContent" id="logout" data-toggle="tab">退出登录</a></li>
+			<li><a href="#logoutContent" id="logout" 
+				data-toggle="tab">退出登录</a></li>
 		</ul>
 		<!-- 页面内容区，通过 AJAX 进行替换 -->
 		<div id="mainContent" class="tab-content" style="margin-top: 20px;">
@@ -65,7 +66,7 @@
 			<div class="tab-pane fade" id="importStaffContent"></div>
 			<div class="tab-pane fade" id="logoutContent"></div>
 		</div>
-  		<!-- 页面加载完毕后自动点击仪表盘按钮替换内容 -->
+		<!-- 页面加载完毕后自动点击仪表盘按钮替换内容 -->
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$("#dashboard").click();
