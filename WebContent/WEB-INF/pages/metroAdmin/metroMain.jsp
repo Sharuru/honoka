@@ -13,9 +13,6 @@
 		$("#pageNav").click(function(event) {
 			loadMetroListContent(event.target.id);
 		});
-		//$("#metroModal").click(function(event) {
-		//	loadStaffDetailInfo(event.target.id);
-		//});
 	});
 	//AJAX 获取子页面的内容
 	function loadMetroListContent(dest) {
@@ -24,15 +21,6 @@
 			url : "metroAdmin&reqPage=" + dest,
 			success : function(data) {
 				$("#metroListDiv").html(data);
-			}
-		});
-	}
-	function loadStaffDetailInfo(staffId) {
-		$.ajax({
-			type : "GET",
-			url : "staffDetail&reqStaffId=" + staffId,
-			success : function(data) {
-				$("#staffInfoModal").html(data);
 			}
 		});
 	}
