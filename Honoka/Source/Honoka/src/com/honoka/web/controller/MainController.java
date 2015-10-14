@@ -14,6 +14,7 @@ import com.honoka.service.APIKeyService;
 import com.honoka.service.CompanyService;
 import com.honoka.service.DepartmentService;
 import com.honoka.service.LevelService;
+import com.honoka.service.MetroAdminService;
 import com.honoka.service.StaffAdminService;
 
 @Controller
@@ -29,26 +30,27 @@ public class MainController {
 	private DepartmentService departmantService;
 	@Resource
 	private LevelService levelService;
+	@Resource
+	private MetroAdminService metroAdminService;
 
 	// 首页
 	@RequestMapping(value = "/Main")
 	public String mainRouter() {
-		System.out.println("In Main");
+		System.out.println("In /Main");
 		return "main";
 	}
 
 	// 仪表盘
 	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
 	public String dashboardRouter(ModelMap model) {
-		System.out.println("In Dashboard");
+		System.out.println("In /dashboard");
 		// TODO：这里的 Service 未来需要组合，返回一个批量的 API KEY / 额度结果集
-		Map<String, Object> obj = new HashMap<String, Object>();
-		obj.put("baiduKey", apiKeyService.selectUsableAPIKeyByProvider("BAIDU"));
-		obj.put("baiduAmount", 100000 - apiKeyService.selectAmountByAPIKey(obj.get("baiduKey").toString()));
-		obj.put("amapKey", apiKeyService.selectUsableAPIKeyByProvider("AMAPWEB"));
-		// obj.put("baiduAmount",100000 -
-		// apiKeyService.selectAmountByAPIKey(obj.get("baiduKey").toString()));
-		model.addAttribute("obj", obj);
+		Map<String, Object> pageParaMap = new HashMap<String, Object>();
+		pageParaMap.put("inSystemStaffInfoCount", staffAdminService.countStaffInfo());
+		pageParaMap.put("inSystemStationInfoCount", metroAdminService.countMetroInfo());
+		pageParaMap.put("baiduUsingKey", apiKeyService.selectUsableAPIKeyByProvider("BAIDU"));
+		pageParaMap.put("amapUsingKey", apiKeyService.selectUsableAPIKeyByProvider("AMAPWEB"));
+		model.addAttribute("pageParaMap", pageParaMap);
 		return "dashboard/dashMain";
 	}
 
