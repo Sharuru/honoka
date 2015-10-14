@@ -18,4 +18,6 @@ public interface MetroAdminMapper {
 	List<Metro> getMetroLineNameList();
 	
 	List<Metro> getMetroStationIdByLineName(String lineName);
+
+	String getMetroStationNameByStationId(String staId);
 }

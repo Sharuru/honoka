@@ -53,6 +53,7 @@ public class MetroAdminController {
 				// 先清空所有已有数据
 				metroAdminService.initMetroInfo();
 				pointService.initMetroPoint();
+				Integer staIdCount = 0;
 				// 循环发起请求获取结果，20 为 pageNum
 				for (int i = 0; i < bdReqResult.getTotal() / 20; i++) {
 					bdReqResult = baiduAPIService.BaiduPlace("地铁站", i, "上海市");
@@ -65,23 +66,26 @@ public class MetroAdminController {
 							Matcher m = p.matcher(lineNameSplit[k]);
 							// 线路名不为空时写入（比如松江站，松江新城站），线路名不为奇怪数据时写入
 							if (m.matches()) {
-								//TODO：站点 ID 需要自己生成
-								metroAdminService.insertMetroInfo(lineNameSplit[k], "sta" + bdReqResult.getResults().get(j).getUid(),
+								// TODO：站点 ID 需要自己生成
+								metroAdminService.insertMetroInfo(lineNameSplit[k], "STA" + staIdCount.toString(),
 										bdReqResult.getResults().get(j).getName());
 								// 写入坐标信息
-								pointService.insertPointInfo("sta" + bdReqResult.getResults().get(j).getUid(),
+								pointService.insertPointInfo("STA" + staIdCount.toString(),
 										bdReqResult.getResults().get(j).getLocation().getLng(),
 										bdReqResult.getResults().get(j).getLocation().getLat(), 0.0, 0.0);
+								staIdCount++;
 							}
 						}
 					}
 				}
+				//Trim
+				pointService.trimMetroPointData();
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//TODO：替换过程
+		// TODO：替换过程
 		return "redirect:metroAdmin&reqPage=1";
 	}
 }
