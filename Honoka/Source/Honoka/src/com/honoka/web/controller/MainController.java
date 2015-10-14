@@ -44,7 +44,7 @@ public class MainController {
 	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
 	public String dashboardRouter(ModelMap model) {
 		System.out.println("In /dashboard");
-		// TODO：这里的 Service 未来需要组合，返回一个批量的 API KEY / 额度结果集
+		//参数设置
 		Map<String, Object> pageParaMap = new HashMap<String, Object>();
 		pageParaMap.put("inSystemStaffInfoCount", staffAdminService.countStaffInfo());
 		pageParaMap.put("inSystemStationInfoCount", metroAdminService.countMetroInfo());
@@ -71,8 +71,7 @@ public class MainController {
 	// LBS 计算
 	@RequestMapping(value = "/lbsCalc", method = RequestMethod.GET)
 	public String lbsCalcRouter(ModelMap model) {
-		System.out.println("In LBS calc");
+		System.out.println("In /lbsCalc");
 		return "lbsCalc/lbsMain";
 	}
-
 }
