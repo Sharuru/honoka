@@ -40,7 +40,29 @@
 			</select> 
 			<a id="reqGeoFencing" href="#" class="btn btn-primary btn-xs" role="button">开始计算</a>
 		</div>
-		<div id="geoFencingResult"></div>
+		<div id="geoFencingResult"><table class="table table-hover table-striped  table-condensed"
+					contenteditable="false">
+					<thead>
+						<tr>
+							<th>工号</th>
+							<th>姓名</th>
+							<th>线路名称</th>
+							<th>站点名称</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:if test="${metroInfoList != null && metroInfoList.size() > 0}">
+							<c:forEach items="${metroInfoList}" var="currStation">
+								<tr>
+									<td>${currStation.recordId}</td>
+									<td>${currStation.lineName}</td>
+									<td>${currStation.staName}</td>
+									<td>${currStation.staName}</td>
+								</tr>
+							</c:forEach>
+						</c:if>
+					</tbody>
+				</table></div>
 	</div>
 </body>
 </html>

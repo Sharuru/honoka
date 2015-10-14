@@ -15,4 +15,6 @@ public interface PointMapper {
 	void initMetroPoint();
 	
 	List<POINT> selectAllStaffPointInfo();
+	
+	List<POINT> selectPointInfoByKeyId(String keyId);
 }

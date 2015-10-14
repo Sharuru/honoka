@@ -16,4 +16,8 @@ public interface MetroAdminService {
 	void initMetroInfo();
 	
 	void insertMetroInfo(String lineName,String staId, String staName);
+	
+	List<Metro> getMetroLineNameList();
+	
+	List<Metro> getMetroStationIdByLineName(String lineName);
 }

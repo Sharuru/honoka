@@ -31,4 +31,15 @@
 		TRUNCATE TABLE "METRO_INFO"
 	</select>
 	
+	<select id="getMetroLineNameList" resultMap="MetroResultMap">
+		SELECT DISTINCT "LINE_NAME" 
+		FROM "METRO_INFO"
+	</select>
+	
+	<select id="getMetroStationIdByLineName" resultMap="MetroResultMap">
+		SELECT "STA_ID" 
+		FROM "METRO_INFO" 
+		WHERE "LINE_NAME" = #{lineName,jdbcType=VARCHAR}
+	</select>
+	
 </mapper>
