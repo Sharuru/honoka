@@ -162,6 +162,7 @@ public class LBSCalcController {
 	public String reqCalcGeoFencing(ModelMap model, String reqRange) {
 		System.out.println("In req calc geo fencing");
 		System.out.println("Get reqRange = " + reqRange);
+		// TODO：数据库表要重新设计，线路 ID
 		// 计算准备
 		// 获取员工坐标点信息
 		List<POINT> staffPointList = pointService.selectAllStaffPointInfo();
@@ -169,27 +170,34 @@ public class LBSCalcController {
 		List<Metro> metroLineNameList = metroAdminService.getMetroLineNameList();
 		// 获取线路对应的站点 ID
 		for (int i = 0; i < metroLineNameList.size(); i++) {
-			System.out.println("Getting station id on: " + metroLineNameList.get(i).getLineName());
+			// System.out.println("Getting station id on: " +
+			// metroLineNameList.get(i).getLineName());
 			List<Metro> metroStationIdList = metroAdminService
 					.getMetroStationIdByLineName(metroLineNameList.get(i).getLineName());
 			// 对应站点 ID 获取 POINT 信息
 			for (int j = 0; j < metroStationIdList.size(); j++) {
-				System.out.println("Getting station point for: " + metroStationIdList.get(j).getStaId());
+				// System.out.println("Getting station point for: " +
+				// metroStationIdList.get(j).getStaId());
 				List<POINT> stationPointList = pointService
 						.selectPointInfoByKeyId(metroStationIdList.get(j).getStaId());
 				// 开始计算比对
 				for (int k = 0; k < staffPointList.size(); k++) {
 					for (int l = 0; l < stationPointList.size(); l++) {
-						if ((getDistance(staffPointList.get(k).getBaiduRecordLng(),
+						Double dist = getDistance(staffPointList.get(k).getBaiduRecordLng(),
 								staffPointList.get(k).getBaiduRecordLat(), stationPointList.get(l).getBaiduRecordLng(),
-								stationPointList.get(l).getBaiduRecordLat())) <= Double.parseDouble(reqRange)) {
-							// 在范围内
+								stationPointList.get(l).getBaiduRecordLat());
+						// System.out.println("Curr dist is " + dist);
+						if (dist < Double.parseDouble(reqRange)) {
+							// 在范围内插入显示列表
+							System.out.println(staffPointList.get(k).getKeyId() + metroLineNameList.get(i).getLineName()
+									+ stationPointList.get(l).getKeyId());
 						}
 					}
 
 				}
 			}
 		}
+		System.out.println("Calculate finished");
 		return "lbsCalc/geoFencing";
 		// return null;
 	}
@@ -207,5 +215,54 @@ public class LBSCalcController {
 		sb2 = Math.sin(b / 2.0);
 		d = 2 * R * Math.asin(Math.sqrt(sa2 * sa2 + Math.cos(lat1) * Math.cos(lat2) * sb2 * sb2));
 		return d;
+	}
+
+	public static class fencingResult {
+		private String staffId;
+		private String staffName;
+		private String lineName;
+		private String staName;
+		private Double dist;
+
+		public String getStaffId() {
+			return staffId;
+		}
+
+		public void setStaffId(String staffId) {
+			this.staffId = staffId;
+		}
+
+		public String getStaffName() {
+			return staffName;
+		}
+
+		public void setStaffName(String staffName) {
+			this.staffName = staffName;
+		}
+
+		public String getLineName() {
+			return lineName;
+		}
+
+		public void setLineName(String lineName) {
+			this.lineName = lineName;
+		}
+
+		public String getStaName() {
+			return staName;
+		}
+
+		public void setStaName(String staName) {
+			this.staName = staName;
+		}
+
+		public Double getDist() {
+			return dist;
+		}
+
+		public void setDist(Double dist) {
+			this.dist = dist;
+		}
+
 	}
 }
