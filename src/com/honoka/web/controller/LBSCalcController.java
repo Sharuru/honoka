@@ -129,9 +129,12 @@ public class LBSCalcController {
 	// 两点计算初始画面
 	@RequestMapping(value = "/twoPointCalc", method = RequestMethod.GET)
 	public String twoPointRouter(ModelMap model) {
-		System.out.println("In two point");
-		model.addAttribute("bdAPIKey", apiKeyService.selectUsableAPIKeyByProvider("BAIDU"));
-		model.addAttribute("calcResult", "等待点选");
+		System.out.println("In /twoPoingCalc");
+		// 参数设置
+		Map<String, Object> pageParaMap = new HashMap<String, Object>();
+		pageParaMap.put("bdAPIKey", apiKeyService.selectUsableAPIKeyByProvider("BAIDU"));
+		pageParaMap.put("calcResult", "等待点选");
+		model.addAttribute("pageParaMap", pageParaMap);
 		return "lbsCalc/twoPointCalc";
 	}
 
