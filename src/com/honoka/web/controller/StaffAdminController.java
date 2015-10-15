@@ -1,5 +1,6 @@
 package com.honoka.web.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -53,17 +54,23 @@ public class StaffAdminController {
 	// 员工数据详情
 	@RequestMapping(value = "/staffDetail&reqStaffId={reqId}", method = RequestMethod.GET)
 	public String staffDetailRouter(ModelMap model, @PathVariable String reqId) {
-		System.out.println("In Staff detail");
+		System.out.println("In /staffDetail&reqStaffId=" + reqId);
+		//参数设置
+		Map<String, Object> pageParaMap = new HashMap<String, Object>();
 		model.addAttribute("totalCount", staffAdminService.countStaffInfo());
-		//Staff staffDetail = staffAdminService.selectStaffDetailByStaffId(reqId);
+		Staff staffDetail = staffAdminService.selectStaffDetailByStaffId(reqId);
 		// 翻译
-//		Map<String, String> comMap = companyService.getCompanyMap();
-//		Map<String, String> deptMap = departmantService.getDeptMap();
-//		Map<String, String> levelMap = levelService.getLevelMap();
+		Map<String, String> comMap = companyService.getCompanyMap();
+		Map<String, String> deptMap = departmantService.getDeptMap();
+		Map<String, String> levelMap = levelService.getLevelMap();
 //		staffDetail.setStaffComId(comMap.get(staffDetail.getStaffComId()));
 //		staffDetail.setStaffDeptId(deptMap.get(staffDetail.getStaffDeptId()));
 //		staffDetail.setStaffLevelId(levelMap.get(staffDetail.getStaffLevelId()));
-//		model.addAttribute("staffDetail", staffDetail);
+		pageParaMap.put("comMap", comMap);
+		pageParaMap.put("deptMap", deptMap);
+		pageParaMap.put("levelMap", levelMap);
+		pageParaMap.put("staffDetail", staffDetail);
+		model.addAttribute("pageParaMap", pageParaMap);
 		return "staffAdmin/staffModal";
 	}
 }

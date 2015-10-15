@@ -33,7 +33,6 @@
 			type : "GET",
 			url : "reqRefreshMetroInfo",
 			success : function(data) {
-				//$("#metroListDiv").html(data);
 				$('#btnReqRefreshMetroInfo').button('reset');
 				$("#metroAdmin").click();
 			}

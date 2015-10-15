@@ -26,6 +26,7 @@ import com.honoka.service.AmapAPIService;
 import com.honoka.service.BaiduAPIService;
 import com.honoka.service.MetroAdminService;
 import com.honoka.service.PointService;
+import com.honoka.service.StaffAdminService;
 
 @Controller
 public class LBSCalcController {
@@ -40,6 +41,8 @@ public class LBSCalcController {
 	private PointService pointService;
 	@Resource
 	private MetroAdminService metroAdminService;
+	@Resource
+	private StaffAdminService staffAdminService;
 	private BaiduJsonGeocoding bdReqResult;
 	private AmapJsonGeocoding apReqResult;
 
@@ -224,7 +227,7 @@ public class LBSCalcController {
 		}
 		System.out.println("Calculate finished");
 		for (int i = 0; i < fencingResultList.size(); i++) {
-			System.out.println(fencingResultList.get(i).getLineName() + fencingResultList.get(i).getStaffId()
+			System.out.println(fencingResultList.get(i).getLineName() + fencingResultList.get(i).getStaffId() 
 					+ fencingResultList.get(i).getStaName());
 		}
 		return "lbsCalc/geoFencing";
