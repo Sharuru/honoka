@@ -64,7 +64,7 @@ public class MainController {
 	// 地铁站点管理画面
 	@RequestMapping(value = "/metroAdmin", method = RequestMethod.GET)
 	public String metroAdminRouterInit(ModelMap model) {
-		System.out.println("In Metro admin init");
+		System.out.println("In /metroAdmin");
 		return "redirect:metroAdmin&reqPage=1";
 	}
 

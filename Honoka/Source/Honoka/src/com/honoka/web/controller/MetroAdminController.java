@@ -1,6 +1,8 @@
 package com.honoka.web.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -32,18 +34,21 @@ public class MetroAdminController {
 	@RequestMapping(value = "/metroAdmin&reqPage={reqPage}", method = RequestMethod.GET)
 	public String metroAdminRouter(ModelMap model, @PathVariable Integer reqPage) {
 		System.out.println("In /metroAdmin&reqPage=" + reqPage);
+		//参数设置
+		Map<String, Object> pageParaMap = new HashMap<String, Object>();
 		System.out.println("currPage = " + reqPage);
-		model.addAttribute("currPage", reqPage);
-		model.addAttribute("totalCount", metroAdminService.countMetroInfo());
+		pageParaMap.put("currPage", reqPage);
+		pageParaMap.put("totalCount", metroAdminService.countMetroInfo());
 		List<Metro> metroList = metroAdminService.selectMetroInfoByPage(reqPage);
-		model.addAttribute("metroInfoList", metroList);
+		pageParaMap.put("metroInfoList", metroList);
+		model.addAttribute("pageParaMap", pageParaMap);
 		return "metroAdmin/metroMain";
 	}
 
 	// 更新地铁站点信息数据
 	@RequestMapping(value = "/reqRefreshMetroInfo")
 	public String mainRouter() {
-		System.out.println("In req Refresh Metro Info");
+		System.out.println("In /reqRefreshMetroInfo");
 		try {
 			BaiduJsonPlace bdReqResult = baiduAPIService.BaiduPlace("地铁站", 0, "上海市");
 			// TODO：这里的结果处理要优化
