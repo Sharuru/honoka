@@ -31,9 +31,8 @@ public class MetroAdminController {
 	// 地铁站点数据管理画面
 	@RequestMapping(value = "/metroAdmin&reqPage={reqPage}", method = RequestMethod.GET)
 	public String metroAdminRouter(ModelMap model, @PathVariable Integer reqPage) {
-		System.out.println("In Metro admin");
+		System.out.println("In /metroAdmin&reqPage=" + reqPage);
 		System.out.println("currPage = " + reqPage);
-		// TODO：这里似乎有性能问题
 		model.addAttribute("currPage", reqPage);
 		model.addAttribute("totalCount", metroAdminService.countMetroInfo());
 		List<Metro> metroList = metroAdminService.selectMetroInfoByPage(reqPage);

@@ -10,7 +10,7 @@
 <script type="text/javascript">
 	//子功能加载后绑定点击事件
 	$(document).ready(function() {
-		$("#pageNav").click(function(event) {
+		$("#staffPageNav").click(function(event) {
 			loadStaffListContent(event.target.id);
 		});
 		$("#staffModal").click(function(event) {
@@ -84,22 +84,18 @@
 				</table>
 
 				<nav style="text-align: center">
-					<ul class="pagination" id="pageNav">
+					<ul class="pagination" id="staffPageNav">
 						<!-- 若为第一页不显示左箭头 -->
 						<c:if test="${currPage gt 1}">
-							<li><a href="#" id="${currPage -1}" aria-label="Previous">
-									<span aria-hidden="true">&laquo;</span>
-							</a></li>
+							<li><a href="#" id="${currPage -1}" >&laquo;</a></li>
 						</c:if>
 						<!-- 循环设置页码 -->
 						<c:forEach var="pageNum" begin="1" end="${totalCount/2+1}">
-							<li id="pageNav${pageNum}"><a href="#" id="${pageNum}">${pageNum}</a></li>
+							<li id="staffPageNav${pageNum}"><a href="#" id="${pageNum}">${pageNum}</a></li>
 						</c:forEach>
 						<!-- 若为最后一页不显示右箭头 -->
 						<c:if test="${currPage lt totalCount/2}">
-							<li><a href="#" id="${currPage + 1}" aria-label="Next">
-									<span aria-hidden="true">&raquo;</span>
-							</a></li>
+							<li><a href="#" id="${currPage + 1}" >&raquo;</a></li>
 						</c:if>
 					</ul>
 				</nav>
@@ -109,7 +105,7 @@
 				<!-- 页面加载完毕设置分页激活样式 -->
 				<script type="text/javascript">
 					$(document).ready(function() {
-						$("#pageNav${currPage}").addClass("active");
+						$("#staffPageNav${currPage}").addClass("active");
 					});
 				</script>
 			</div>
