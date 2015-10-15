@@ -8,7 +8,7 @@
 <head>
 <script type="text/javascript">
 	$(document).ready(function() {
-		loadBaiduJScript();
+		initBaiduMap();
 	});
 	// 提交计算请求
 	function postPoint(destPointLng, destPointLat) {
@@ -23,17 +23,6 @@
 				document.getElementById("avgDist").innerText = "系统所有员工至目标点的平均直线距离为：" + returnData;
 			}
 		});
-	}
-	// 百度地图 API 功能
-	function loadBaiduJScript() {
-		// 如果资源内没 JS 则加载并回调
-		if(typeof(window.BMap_loadScriptTime)=="undefined"){
-			$.getScript('http://api.map.baidu.com/api?v=2.0&ak=${pageParaMap.bdAPIKey}&callback=initBaiduMap()')
-		}
-		// JS 已加载，直接初始化地图实例
-		else{
-			initBaiduMap();	
-		}
 	}
 	// 地图实例初始化
 	function initBaiduMap() {

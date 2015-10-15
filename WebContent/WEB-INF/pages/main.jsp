@@ -15,6 +15,7 @@
 <script src="resources/js/bootstrap.min.js"></script>
 <title>Project Honoka</title>
 <link href="resources/css/bootstrap.min.css" rel="stylesheet">
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=${pageParaMap.baiduAPIKey }"></script>
 <script type="text/javascript">
 	//绑定导航栏点击事件
 	$(document).ready(function() {
@@ -50,6 +51,8 @@
 				data-toggle="tab">员工数据管理</a></li>
 			<li><a href="#metroAdminContent" id="metroAdmin"
 				data-toggle="tab">地铁站点数据管理</a></li>
+			<li><a href="#placeSearchAdminContent" id="placeSearchAdmin"
+				data-toggle="tab">区域检索数据管理</a></li>
 			<li><a href="#lbsCalcContent" id="lbsCalc"
 				data-toggle="tab">LBS 计算</a></li>
 			<li><a href="#importStaffContent" id="importStaff"
@@ -60,6 +63,7 @@
 			<div class="tab-pane fade in active" id="dashboardContent"></div>
 			<div class="tab-pane fade" id="staffAdminContent"></div>
 			<div class="tab-pane fade" id="metroAdminContent"></div>
+			<div class="tab-pane fade" id="placeSearchAdminContent"></div>
 			<div class="tab-pane fade" id="lbsCalcContent"></div>
 			<div class="tab-pane fade" id="importStaffContent"></div>
 		</div>
