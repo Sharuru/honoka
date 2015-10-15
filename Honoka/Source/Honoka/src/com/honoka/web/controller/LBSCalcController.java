@@ -153,12 +153,21 @@ public class LBSCalcController {
 					resPointList.get(i).getBaiduRecordLng(), resPointList.get(i).getBaiduRecordLat());
 		}
 		//保留两位小数
-		Double avgDist = Math.round(totalDist / resPointList.size() * 100.0) / 100.0;;
+		Double avgDist = Math.round(totalDist / resPointList.size() * 100.0) / 100.0;
 		System.out.println("avgDist is: " + Double.toString(avgDist));
+		//转换单位
+		String avgDistStr = "";
+		if(avgDist > 1000.0){
+			//转换成公里
+			avgDistStr = Double.toString(Math.round(avgDist/1000 * 100.0) / 100.0) + " 公里";
+		}
+		else{
+			avgDistStr = Double.toString(avgDist) + " 米";
+		}
 		response.setContentType("text/json");
 		response.setCharacterEncoding("UTF-8");
 		Gson gson = new Gson();
-		response.getWriter().write(gson.toJson(avgDist));
+		response.getWriter().write(gson.toJson(avgDistStr));
 	}
 
 	// 地理围栏初始画面

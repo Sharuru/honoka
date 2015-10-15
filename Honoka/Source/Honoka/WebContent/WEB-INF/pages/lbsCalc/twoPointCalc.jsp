@@ -20,7 +20,7 @@
 				destPointLat : destPointLat
 			},
 			success : function(returnData) {
-				document.getElementById("avgDist").innerText = "系统所有员工至目标点的平均直线距离为：" + returnData + " 米";
+				document.getElementById("avgDist").innerText = "系统所有员工至目标点的平均直线距离为：" + returnData;
 			}
 		});
 	}
