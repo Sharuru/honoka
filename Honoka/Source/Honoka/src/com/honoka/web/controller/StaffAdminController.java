@@ -34,7 +34,6 @@ public class StaffAdminController {
 	public String staffAdminRouter(ModelMap model, @PathVariable Integer reqPage) {
 		System.out.println("In Staff admin");
 		System.out.println("currPage = " + reqPage);
-		// TODO：这里似乎有性能问题
 		model.addAttribute("currPage", reqPage);
 		model.addAttribute("totalCount", staffAdminService.countStaffInfo());
 		List<Staff> staffList = staffAdminService.selectStaffInfoByPage(reqPage);
