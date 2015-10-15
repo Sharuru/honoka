@@ -10,7 +10,7 @@
 	//子功能加载后绑定点击事件
  	$(document).ready(function() {
 		$("#placeNav").click(function(event) {
-			//loadPlaceSearchContent(event.target.id);
+			loadPlaceSearchContent(event.target.id);
 		});
 	}); 
 	//AJAX 获取子页面的内容

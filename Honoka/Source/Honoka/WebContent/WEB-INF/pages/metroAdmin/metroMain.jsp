@@ -96,7 +96,13 @@
 									</c:otherwise>
 								</c:choose>
 							</c:when>
-							<%-- 当页面总数小于 11 或者当前页小于 6 --%>
+							<%-- 当页面总数小于 11 --%>
+							<c:when test="${pageParaMap.totalCount/20 + 1 lt 11}">
+								<c:forEach var="pageNum" begin="1" end="${pageParaMap.totalCount/20 + 1}">
+									<li id="metroPageNav${pageNum}"><a href="#" id="${pageNum}">${pageNum}</a></li>
+								</c:forEach>
+							</c:when>
+							<%-- 总页数大于 11 当前页小于 6 --%>
 							<c:otherwise>
 								<c:forEach var="pageNum" begin="1" end="11">
 									<li id="metroPageNav${pageNum}"><a href="#" id="${pageNum}">${pageNum}</a></li>
