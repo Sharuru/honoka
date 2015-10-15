@@ -30,7 +30,8 @@
 	function loadStaffDetailInfo(staffId) {
 		$.ajax({
 			type : "GET",
-			url : "staffDetail&reqStaffId=" + staffId,
+			url: "staffDetail&reqStaffId=S0000001",
+			//url : "staffDetail&reqStaffId=" + staffId,
 			success : function(data) {
 				$("#staffInfoModal").html(data);
 			}
