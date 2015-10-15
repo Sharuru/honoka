@@ -138,11 +138,12 @@ public class LBSCalcController {
 		return "lbsCalc/twoPointCalc";
 	}
 
+	// 请求两点计算
 	@RequestMapping(value = "/reqTwoPointCalc", method = RequestMethod.POST)
 	public void reqTwoPointRouter(ModelMap model, String destPointLng, String destPointLat,
 			HttpServletResponse response) throws Exception {
-		System.out.println("In req two poing calc");
-		System.out.println(destPointLng + " , " + destPointLat);
+		System.out.println("In /reqTwoPointCalc");
+		System.out.println("Get destPoint: " + destPointLng + "," + destPointLat);
 		// 计算目标点和库中所有员工数据的直线距离
 		List<POINT> resPointList = pointService.selectAllStaffPointInfo();
 		// 循环计算距离
@@ -152,7 +153,7 @@ public class LBSCalcController {
 					resPointList.get(i).getBaiduRecordLng(), resPointList.get(i).getBaiduRecordLat());
 		}
 		Double avgDist = totalDist / resPointList.size();
-		System.out.println("AVG IS " + Double.toString(avgDist));
+		System.out.println("avgDist is: " + Double.toString(avgDist));
 		response.setContentType("text/json");
 		response.setCharacterEncoding("UTF-8");
 		Gson gson = new Gson();
