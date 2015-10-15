@@ -13,6 +13,10 @@
 		$("#metroPageNav").click(function(event) {
 			loadMetroListContent(event.target.id);
 		});
+		$('#btnReqRefreshMetroInfo').on('click', function () {
+		    var $btn = $(this).button('loading')
+		    reqRefreshMetroInfo();
+		})
 	});
 	//AJAX 获取子页面的内容
 	function loadMetroListContent(dest) {
@@ -24,14 +28,27 @@
 			}
 		});
 	}
+	function reqRefreshMetroInfo(){
+		$.ajax({
+			type : "GET",
+			url : "reqRefreshMetroInfo",
+			success : function(data) {
+				//$("#metroListDiv").html(data);
+				$('#btnReqRefreshMetroInfo').button('reset');
+				$("#metroAdmin").click();
+			}
+		});
+	}
 </script>
 </head>
 <body>
 	<div id="metroListDiv">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				地铁站点数据一览 <a href="reqRefreshMetroInfo" style="float: right;"
-					class="btn btn-warning btn-xs" role="button">更新数据</a>
+				地铁站点数据一览
+					<button type="button" style="float: right;" id="btnReqRefreshMetroInfo" data-loading-text="正在更新……" class="btn btn-warning btn-xs" autocomplete="off">
+						  更新数据
+					</button>
 			</div>
 			<div class="panel-body">
 				<table class="table table-hover table-striped  table-condensed"
@@ -41,19 +58,15 @@
 							<th>编号</th>
 							<th>线路名称</th>
 							<th>站点名称</th>
-							<th>操作</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:if test="${metroInfoList != null && metroInfoList.size() > 0}">
-							<c:forEach items="${metroInfoList}" var="currStation">
+						<c:if test="${pageParaMap.metroInfoList != null && pageParaMap.metroInfoList.size() > 0}">
+							<c:forEach items="${pageParaMap.metroInfoList}" var="currStation">
 								<tr>
 									<td>${currStation.recordId}</td>
 									<td>${currStation.lineName}</td>
 									<td>${currStation.staName}</td>
-									<td><button id="metroModal" type="button"
-											class="btn btn-xs btn-default" data-toggle="modal"
-											data-target="#staffInfoModal">查看详情</button></td>
 								</tr>
 							</c:forEach>
 						</c:if>
@@ -62,23 +75,23 @@
 				<nav style="text-align: center">
 					<ul class="pagination" id="metroPageNav">
 						<%-- 若为第一页不显示左箭头 --%>
-						<c:if test="${currPage gt 1}">
-							<li><a href="#" id="${currPage -1}">&laquo;</a></li>
+						<c:if test="${pageParaMap.currPage gt 1}">
+							<li><a href="#" id="${pageParaMap.currPage -1}">&laquo;</a></li>
 						</c:if>
 						<%-- 循环设置页码 --%>
 						<c:choose>
 							<%-- 当页面总数大于 11 并且当前页面大于 6 --%>
-							<c:when test="${totalCount/20 + 1 gt 11 and currPage gt 6}">
+							<c:when test="${pageParaMap.totalCount/20 + 1 gt 11 and pageParaMap.currPage gt 6}">
 								<c:choose>
 									<%-- 当当前页 + 6 页码大于最大页数，不滚动显示 --%>
-									<c:when test="${currPage + 6 gt totalCount/20 + 1 }">
-										<c:forEach var="pageNum" begin="${totalCount/20 + 1 - 11 }" end="${totalCount/20 + 1 }">
+									<c:when test="${pageParaMap.currPage + 6 gt pageParaMap.totalCount/20 + 1 }">
+										<c:forEach var="pageNum" begin="${pageParaMap.totalCount/20 + 1 - 11 }" end="${pageParaMap.totalCount/20 + 1 }">
 											<li id="metroPageNav${pageNum}"><a href="#" id="${pageNum}">${pageNum}</a></li>
 										</c:forEach>
 									</c:when>
 									<%-- 页码滚动 --%>
 									<c:otherwise>
-										<c:forEach var="pageNum" begin="${currPage - 5}" end="${currPage + 5 }">
+										<c:forEach var="pageNum" begin="${pageParaMap.currPage - 5}" end="${pageParaMap.currPage + 5 }">
 											<li id="metroPageNav${pageNum}"><a href="#" id="${pageNum}">${pageNum}</a></li>
 										</c:forEach>
 									</c:otherwise>
@@ -92,8 +105,8 @@
 							</c:otherwise>
 						</c:choose>
 						<%-- 若为最后一页不显示右箭头 --%>
-						<c:if test="${currPage lt totalCount/20}">
-							<li><a href="#" id="${currPage + 1}" >&raquo;</a></li>
+						<c:if test="${pageParaMap.currPage lt pageParaMap.totalCount/20}">
+							<li><a href="#" id="${pageParaMap.currPage + 1}" >&raquo;</a></li>
 						</c:if>
 					</ul>
 				</nav>
@@ -103,7 +116,7 @@
 				<!-- 页面加载完毕设置分页激活样式 -->
 				<script type="text/javascript">
 					$(document).ready(function() {
-						$("#metroPageNav${currPage}").addClass("active");
+						$("#metroPageNav${pageParaMap.currPage}").addClass("active");
 					});
 				</script>
 			</div>
