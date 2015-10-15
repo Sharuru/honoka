@@ -20,7 +20,7 @@
 				destPointLat : destPointLat
 			},
 			success : function(returnData) {
-				alert("所有员工至目标点的平均直线距离为：" + returnData + " 米");
+				document.getElementById("avgDist").innerText = "系统所有员工至目标点的平均直线距离为：" + returnData + " 米";
 			}
 		});
 	}
@@ -79,6 +79,7 @@
 				  map.addOverlay(mbpShMarker);
 				  mbpShMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
 				  map.centerAndZoom(mbpShPoint, 18);
+				  document.getElementById("avgDist").innerText = "系统所有员工至目标点的平均直线距离为：等待点选";
 			  }
 			  // 添加 DOM 元素到地图中
 			  map.getContainer().appendChild(div);
@@ -106,6 +107,7 @@
 <body>
 	<div id="twoPointContent">
 		<p>请点击任意位置计算目前系统所有员工至目标点的平均直线距离</p>
+		<p id="avgDist">系统所有员工至目标点的平均直线距离为：等待点选</p>
 		<div id="mapContent" style="height: 630px"></div>
 	</div>
 </body>

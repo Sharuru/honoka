@@ -152,7 +152,8 @@ public class LBSCalcController {
 			totalDist += getDistance(Double.parseDouble(destPointLng), Double.parseDouble(destPointLat),
 					resPointList.get(i).getBaiduRecordLng(), resPointList.get(i).getBaiduRecordLat());
 		}
-		Double avgDist = totalDist / resPointList.size();
+		//保留两位小数
+		Double avgDist = Math.round(totalDist / resPointList.size() * 100.0) / 100.0;;
 		System.out.println("avgDist is: " + Double.toString(avgDist));
 		response.setContentType("text/json");
 		response.setCharacterEncoding("UTF-8");
