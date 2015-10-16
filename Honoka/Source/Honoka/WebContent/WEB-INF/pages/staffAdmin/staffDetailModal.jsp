@@ -88,7 +88,9 @@
 			},success : function(data) {
 				$('#btnReqUpdateStaffInfo').button('reset');
 				$('#staffInfoModal').modal('hide');
-				//$("#metroAdmin").click();
+				// 成功后返回第一页，理论上应该停留在当前页
+				setTimeout(function(){loadStaffListContent(1);},200);
+				//loadStaffListContent(1);
 			}
 		});
 	}
