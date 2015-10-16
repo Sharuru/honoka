@@ -26,6 +26,16 @@
 				document.getElementById("btnReqUpdateStaffInfo").innerText = "确定保存";
 				staffInfoUpdateConfirm = true;
 			}
+		})
+		$('#btnReqDeleteStaffInfo').on('click', function () {
+			if(staffInfoDeleteConfirm){
+			    var $btn = $(this).button('loading')
+			    reqDeleteStaffInfo();
+			}
+			else{
+				document.getElementById("btnReqDeleteStaffInfo").innerText = "确定删除";
+				staffInfoDeleteConfirm = true;
+			}
 		})		
 		//延迟加载百度地图以刷新 DOM
 		setTimeout(function(){initStaffDetailBaiduMap();},200);
@@ -95,6 +105,21 @@
 				staffPointLat: document.getElementById("inputStallPoint").value.trim().split(",")[1]
 			},success : function(data) {
 				$('#btnReqUpdateStaffInfo').button('reset');
+				$('#staffInfoModal').modal('hide');
+				// 成功后返回第一页，理论上应该停留在当前页
+				setTimeout(function(){loadStaffListContent(1);},200);
+				//loadStaffListContent(1);
+			}
+		});
+	}
+	function reqDeleteStaffInfo(){
+		$.ajax({
+			type : "POST",
+			url : "reqDeleteStaffInfo",
+			data : {
+				staffId: document.getElementById("inputStaffId").value.trim()
+			},success : function(data) {
+				$('#btnReqDeleteStaffInfo').button('reset');
 				$('#staffInfoModal').modal('hide');
 				// 成功后返回第一页，理论上应该停留在当前页
 				setTimeout(function(){loadStaffListContent(1);},200);
@@ -208,7 +233,7 @@
           	</div>
 			<div class="modal-footer">
 				<button type="button" id="btnReqUpdateStaffInfo"  data-loading-text="正在保存……" class="btn btn-success" autocomplete="off">保存</button>
-				<button type="button" class="btn btn-danger" data-dismiss="modal">删除</button>
+				<button type="button" id="btnReqDeleteStaffInfo"  data-loading-text="正在删除……" class="btn btn-danger" autocomplete="off">删除</button>
 			</div>
 		</div>
 	</div>
