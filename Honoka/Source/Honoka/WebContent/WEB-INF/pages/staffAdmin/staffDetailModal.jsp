@@ -10,15 +10,23 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <script type="text/javascript">
+	var updateConfirm = false;
 	$(document).ready(function() {
 		//监听解析按钮 class，sdrgbtn 为不存在的样式 
 		$('.sdrgbtn').click(function(event) {
 			reqGeoCodingByInput();
 		});
 		$('#btnReqUpdateStaffInfo').on('click', function () {
-		    var $btn = $(this).button('loading')
-		    reqUpdateStaffInfo();
-		})
+			if(updateConfirm){
+			    var $btn = $(this).button('loading')
+			    reqUpdateStaffInfo();
+			}
+			else{
+				document.getElementById("btnReqUpdateStaffInfo").innerText = "确定保存";
+				updateConfirm = true;
+			}
+
+		})		
 		//延迟加载百度地图以刷新 DOM
 		setTimeout(function(){initStaffDetailBaiduMap();},200);
 	});
