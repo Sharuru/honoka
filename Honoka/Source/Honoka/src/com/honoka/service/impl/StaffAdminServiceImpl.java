@@ -32,8 +32,14 @@ public class StaffAdminServiceImpl implements StaffAdminService {
 	}
 
 	@Override
-	public void deleteStaffByStaffId(String staffId) {
-		staffAdminMapper.deleteStaffByStaffId(staffId);		
+	public void deleteStaffInfoByStaffId(String staffId) {
+		staffAdminMapper.deleteStaffInfoByStaffId(staffId);		
+	}
+
+	@Override
+	public void updateStaffInfo(Staff staff) {
+		staffAdminMapper.updateStaffInfo(staff);
+		
 	}
 
 }

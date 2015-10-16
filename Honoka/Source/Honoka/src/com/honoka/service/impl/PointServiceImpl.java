@@ -44,4 +44,9 @@ public class PointServiceImpl implements PointService {
 		
 	}
 
+	@Override
+	public void updatePointInfoByKeyId(POINT point) {
+		pointMapper.updatePointInfoByKeyId(point);
+	}
+
 }

@@ -79,11 +79,26 @@ public class StaffAdminController {
 		model.addAttribute("pageParaMap", pageParaMap);
 		return "staffAdmin/staffDetailModal";
 	}
-	
+
 	// 员工数据更新
 	@RequestMapping(value="/reqUpdateStaffInfo", method=RequestMethod.POST)
-	public String ReqUpdateStaffInfoRouter(ModelMap model){
+	public String ReqUpdateStaffInfoRouter(ModelMap model, String staffId, String staffName, String staffComId, String staffDeptId, String staffLevelId, String staffTel,
+			String staffAddr, String staffPointLng, String staffPointLat){
 		System.out.println("In /reqUpdateStaffInfo");
+		Staff staff = new Staff();
+		staff.setStaffId(staffId);
+		staff.setStaffName(staffName);
+		staff.setStaffComId(staffComId);
+		staff.setStaffDeptId(staffDeptId);
+		staff.setStaffLevelId(staffLevelId);
+		staff.setStaffTel(staffTel);
+		staff.setStaffAddr(staffAddr);
+		POINT point = new POINT();
+		point.setKeyId(staffId);
+		point.setBaiduRecordLng(Double.parseDouble(staffPointLng));
+		point.setBaiduRecordLat(Double.parseDouble(staffPointLat));
+		staffAdminService.updateStaffInfo(staff);
+		pointService.updatePointInfoByKeyId(point);
 		return "staffAdmin/staffMain";
 	}
 }

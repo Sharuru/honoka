@@ -15,5 +15,7 @@ public interface StaffAdminService {
 
 	Staff selectStaffDetailByStaffId(String staffId);
 	
-	void deleteStaffByStaffId(String staffId);
+	void deleteStaffInfoByStaffId(String staffId);
+	
+	void updateStaffInfo(Staff staff);
 }
