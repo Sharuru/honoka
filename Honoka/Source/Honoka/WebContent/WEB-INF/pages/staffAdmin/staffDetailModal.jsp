@@ -8,18 +8,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <script type="text/javascript">
 	$(document).ready(function() {
-		setTimeout(function(){initBaiduMap();},200);
+		setTimeout(function(){initStaffDetailBaiduMap();},200);
 	});
-	// 地图实例初始化
-	function initBaiduMap() {
+	// 员工信息详情地图实例初始化
+	function initStaffDetailBaiduMap() {
 		// 创建 Map 实例
-		var map = new BMap.Map("mapContent"); 
-		// 默认设定 MBP 上海的坐标点 
-	    var mbpShPoint = new BMap.Point(121.538487, 31.223365);
+		var map = new BMap.Map("staffDetailMapContent"); 
+		// 默认设定记录坐标点 
+	    var orgPoint = new BMap.Point(${pageParaMap.staffPoint.baiduRecordLng }, ${pageParaMap.staffPoint.baiduRecordLat });
 		// 设定覆盖物
-	    var mbpShMarker = new BMap.Marker(mbpShPoint);
+	    var mbpShMarker = new BMap.Marker(orgPoint);
 	    map.addOverlay(mbpShMarker);
 	    mbpShMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
 		// 设定地图左上角比例尺和平移控件
@@ -27,42 +28,16 @@
 		var topLeftNavigation = new BMap.NavigationControl();
 		map.addControl(topLeftControl);        
 		map.addControl(topLeftNavigation);
-		// 设定返回公司控件
-		BackToCompanyControl.prototype = new BMap.Control();
-		BackToCompanyControl.prototype.initialize = function(map){
-			  // 创建 DOM 元素
-			  var div = document.createElement("div");
-			  // 添加文字说明
-			  div.appendChild(document.createTextNode("返回公司"));
-			  // 设置样式
-			  div.style.cursor = "pointer";
-			  div.style.border = "1px solid gray";
-			  div.style.backgroundColor = "white";
-			  // 添加 DOM 元素到地图中
-			  map.getContainer().appendChild(div);
-			  // 将 DOM 元素返回
-			  return div;
-			}
-			// 创建控件
-			var backToCtrl = new BackToCompanyControl();
-			// 添加到地图当中
-			map.addControl(backToCtrl);
 		// 设定缩放级别
-	    map.centerAndZoom(mbpShPoint, 18);
+	    map.centerAndZoom(orgPoint, 16);
 		// 开启滚轮缩放功能
 	    map.enableScrollWheelZoom();   
 	    map.enableContinuousZoom();
 	}
-	// 百度地图返回公司控件
-	function BackToCompanyControl(){
-	  // 停靠位置和偏移量
-	  this.defaultAnchor = BMAP_ANCHOR_TOP_RIGHT;
-	  this.defaultOffset = new BMap.Size(10, 10);
-	}
 </script>
 </head>
 <body>
-	<div class="modal-dialog" role="document">
+	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal"
@@ -74,7 +49,10 @@
 				</h4>
 			</div>
 			<div class="modal-body">
-				<div class="input-group">
+	 			<div class="container-fluid">
+	              <div class="row">
+	                <div class="col-xs-8 col-sm-6">
+	                  <div class="input-group">
 					<span class="input-group-addon" id="inputStaffId">员工工号</span> <input
 						type="text" class="form-control" disabled value="&nbsp;${pageParaMap.staffDetail.staffId}">
 				</div>
@@ -150,12 +128,17 @@
 						type="text" class="form-control" placeholder="StaffPoint"
 						disabled value="&nbsp;${pageParaMap.staffPoint.baiduRecordLng },${pageParaMap.staffPoint.baiduRecordLat }">
 				</div>
-			</div>
+	                </div>
+	                <div class="col-xs-4 col-sm-6">
+	                  <div id="staffDetailMapContent" style="height: 272px"></div>
+	                </div>
+	              </div>
+	            </div>
+          	</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-success" data-dismiss="modal">保存</button>
 				<button type="button" class="btn btn-danger" data-dismiss="modal">删除</button>
 			</div>
-			<div id="mapContent" style="height: 630px"></div>
 		</div>
 	</div>
 </body>
