@@ -31,4 +31,9 @@ public class StaffAdminServiceImpl implements StaffAdminService {
 		return staffAdminMapper.selectStaffDetailByStaffId(staffId);
 	}
 
+	@Override
+	public void deleteStaffByStaffId(String staffId) {
+		staffAdminMapper.deleteStaffByStaffId(staffId);		
+	}
+
 }

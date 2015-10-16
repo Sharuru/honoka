@@ -34,4 +34,10 @@
 		WHERE "STAFF_ID" = #{staffId,jdbcType=VARCHAR}
 		AND "DELETE_FLAG" = 0
 	</select>
+	
+	<update id="deleteStaffByStaffId" parameterType="java.lang.String">
+		UPDATE "STAFF_INFO"
+		SET "DELETE_FLAG" = 1
+		WHERE "STAFF_ID" = #{staffId,jdbcType=VARCHAR}
+	</update>
 </mapper>

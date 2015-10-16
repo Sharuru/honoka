@@ -13,8 +13,8 @@
 		$("#staffPageNav").click(function(event) {
 			loadStaffListContent(event.target.id);
 		});
-		//监听列表模态按钮
-		$('.btn').click(function(event) {
+		//监听列表模态按钮 class，dbtn 为不存在的样式 
+		$('.dbtn').click(function(event) {
 			loadStaffDetailInfo(event.target.id);
 		});
 	});
@@ -65,8 +65,8 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:if test="${staffInfoList != null && staffInfoList.size() > 0}">
-							<c:forEach items="${staffInfoList}" var="currStaff">
+						<c:if test="${pageParaMap.staffInfoList != null && pageParaMap.staffInfoList.size() > 0}">
+							<c:forEach items="${pageParaMap.staffInfoList}" var="currStaff">
 								<tr>
 									<td>${currStaff.recordId}</td>
 									<td>${currStaff.staffId}</td>
@@ -77,7 +77,7 @@
 									<td>${currStaff.staffTel}</td>
 									<td>${currStaff.staffAddr}</td>
 									<td><button id="${currStaff.staffId}" type="button" data-toggle="modal" data-target="#staffInfoModal"
-											class="btn btn-xs btn-default" >查看详情</button></td>
+											class="dbtn btn btn-xs btn-default" >查看详情</button></td>
 								</tr>
 							</c:forEach>
 						</c:if>
@@ -87,16 +87,16 @@
 				<nav style="text-align: center">
 					<ul class="pagination" id="staffPageNav">
 						<!-- 若为第一页不显示左箭头 -->
-						<c:if test="${currPage gt 1}">
-							<li><a href="#" id="${currPage -1}" >&laquo;</a></li>
+						<c:if test="${pageParaMap.currPage gt 1}">
+							<li><a href="#" id="${pageParaMap.currPage -1}" >&laquo;</a></li>
 						</c:if>
 						<!-- 循环设置页码 -->
-						<c:forEach var="pageNum" begin="1" end="${totalCount/2+1}">
+						<c:forEach var="pageNum" begin="1" end="${pageParaMap.totalCount/2+1}">
 							<li id="staffPageNav${pageNum}"><a href="#" id="${pageNum}">${pageNum}</a></li>
 						</c:forEach>
 						<!-- 若为最后一页不显示右箭头 -->
-						<c:if test="${currPage lt totalCount/2}">
-							<li><a href="#" id="${currPage + 1}" >&raquo;</a></li>
+						<c:if test="${pageParaMap.currPage lt pageParaMap.totalCount/2}">
+							<li><a href="#" id="${pageParaMap.currPage + 1}" >&raquo;</a></li>
 						</c:if>
 					</ul>
 				</nav>
@@ -106,7 +106,7 @@
 				<!-- 页面加载完毕设置分页激活样式 -->
 				<script type="text/javascript">
 					$(document).ready(function() {
-						$("#staffPageNav${currPage}").addClass("active");
+						$("#staffPageNav${pageParaMap.currPage}").addClass("active");
 					});
 				</script>
 			</div>
