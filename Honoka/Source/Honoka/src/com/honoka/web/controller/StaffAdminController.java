@@ -79,4 +79,11 @@ public class StaffAdminController {
 		model.addAttribute("pageParaMap", pageParaMap);
 		return "staffAdmin/staffDetailModal";
 	}
+	
+	// 员工数据更新
+	@RequestMapping(value="/reqUpdateStaffInfo", method=RequestMethod.POST)
+	public String ReqUpdateStaffInfoRouter(ModelMap model){
+		System.out.println("In /reqUpdateStaffInfo");
+		return "staffAdmin/staffMain";
+	}
 }
