@@ -8,7 +8,8 @@
 <head>
 <script type="text/javascript">
 	$(document).ready(function() {
-		initBaiduMap();
+		// 延迟加载以给 DOM 元素切换属性的处理时间
+		setTimeout(function(){initBaiduMap();},200);
 	});
 	// 提交计算请求
 	function postPoint(destPointLng, destPointLat) {
