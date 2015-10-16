@@ -25,9 +25,10 @@
 		// 默认设定记录坐标点 
 	    var orgPoint = new BMap.Point(${pageParaMap.staffPoint.baiduRecordLng }, ${pageParaMap.staffPoint.baiduRecordLat });
 		// 设定覆盖物
-	    var mbpShMarker = new BMap.Marker(orgPoint);
-	    map.addOverlay(mbpShMarker);
-	    mbpShMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
+	    var orgMarker = new BMap.Marker(orgPoint);
+	    map.addOverlay(orgMarker);
+	    orgMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
+	    orgMarker.enableDragging();
 		// 设定地图左上角比例尺和平移控件
 	    var topLeftControl = new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT});
 		var topLeftNavigation = new BMap.NavigationControl();
@@ -51,6 +52,7 @@
 				var newMarker = new BMap.Marker(point);
 				map.addOverlay(newMarker);
 				newMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
+				newMarker.enableDragging();
 				var topLeftControl = new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT});
 				var topLeftNavigation = new BMap.NavigationControl();
 				map.addControl(topLeftControl);        
