@@ -8,12 +8,13 @@
 <html>
 <head>
 <script type="text/javascript">
-	//子功能加载后绑定点击事件
+	//子功能加载后绑定事件
 	$(document).ready(function() {
 		$("#staffPageNav").click(function(event) {
 			loadStaffListContent(event.target.id);
 		});
-		$("#staffModal").click(function(event) {
+		//监听列表模态按钮
+		$('.btn').click(function(event) {
 			loadStaffDetailInfo(event.target.id);
 		});
 	});
@@ -27,10 +28,10 @@
 			}
 		});
 	}
-	function loadStaffDetailInfo(staffId) {
+	function loadStaffDetailInfo(staffId){ 
 		$.ajax({
 			type : "GET",
-			url: "staffDetail&reqStaffId=S0000001",
+			url: "staffDetail&reqStaffId=" + staffId,
 			//url : "staffDetail&reqStaffId=" + staffId,
 			success : function(data) {
 				$("#staffInfoModal").html(data);
@@ -75,9 +76,8 @@
 									<td>${currStaff.staffLevelId }</td>
 									<td>${currStaff.staffTel}</td>
 									<td>${currStaff.staffAddr}</td>
-									<td><button id="staffModal" type="button"
-											class="btn btn-xs btn-default" data-toggle="modal"
-											data-target="#staffInfoModal">查看详情</button></td>
+									<td><button id="${currStaff.staffId}" type="button" data-toggle="modal" data-target="#staffInfoModal"
+											class="btn btn-xs btn-default" >查看详情</button></td>
 								</tr>
 							</c:forEach>
 						</c:if>
