@@ -15,33 +15,37 @@
 		$('.sdrgbtn').click(function(event) {
 			reqGeoCodingByInput();
 		});
+		$('#btnReqUpdateStaffInfo').on('click', function () {
+		    var $btn = $(this).button('loading')
+		    reqUpdateStaffInfo();
+		})
 		//延迟加载百度地图以刷新 DOM
 		setTimeout(function(){initStaffDetailBaiduMap();},200);
 	});
 	// 员工信息详情地图实例初始化
 	function initStaffDetailBaiduMap() {
 		// 创建 Map 实例
-		var map = new BMap.Map("staffDetailMapContent"); 
+		var map = new BMap.Map("staffDetailMapContent",{enableMapClick:false}); 
 		// 默认设定记录坐标点 
 	    var orgPoint = new BMap.Point(${pageParaMap.staffPoint.baiduRecordLng }, ${pageParaMap.staffPoint.baiduRecordLat });
 		// 设定覆盖物
 	    var orgMarker = new BMap.Marker(orgPoint);
 	    map.addOverlay(orgMarker);
 	    orgMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
-	    orgMarker.enableDragging();
+	    //orgMarker.enableDragging();
 		// 设定地图左上角比例尺和平移控件
 	    var topLeftControl = new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT});
 		var topLeftNavigation = new BMap.NavigationControl();
 		map.addControl(topLeftControl);        
 		map.addControl(topLeftNavigation);
 		// 设定缩放级别
-	    map.centerAndZoom(orgPoint, 15);
+	    map.centerAndZoom(orgPoint, 16);
 		// 开启滚轮缩放功能
 	    map.enableScrollWheelZoom();   
 	    map.enableContinuousZoom();
 	}
 	function reqGeoCodingByInput(){
-		var map = new BMap.Map("staffDetailMapContent");
+		var map = new BMap.Map("staffDetailMapContent",{enableMapClick:false});
 		// 创建地址解析器实例
 		var reqGeo = new BMap.Geocoder();
 		// 将地址解析结果显示在地图上,并调整地图视野
@@ -52,18 +56,29 @@
 				var newMarker = new BMap.Marker(point);
 				map.addOverlay(newMarker);
 				newMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
-				newMarker.enableDragging();
+				//newMarker.enableDragging();
 				var topLeftControl = new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT});
 				var topLeftNavigation = new BMap.NavigationControl();
 				map.addControl(topLeftControl);        
 				map.addControl(topLeftNavigation);
-				map.centerAndZoom(point, 15);
+				map.centerAndZoom(point, 16);
 			    map.enableScrollWheelZoom();   
 			    map.enableContinuousZoom();
 			    //回写界面信息
 			    document.getElementById("inputStallPoint").value = " " + point.lng + "," + point.lat;
 			}else{
 				alert("选择的地址没有解析到结果!");
+			}
+		});
+	}
+	function reqUpdateStaffInfo(){
+		$.ajax({
+			type : "POST",
+			url : "reqUpdateStaffInfo",
+			success : function(data) {
+				$('#btnReqUpdateStaffInfo').button('reset');
+				$('#staffInfoModal').modal('hide');
+				//$("#metroAdmin").click();
 			}
 		});
 	}
@@ -172,7 +187,7 @@
 	            </div>
           	</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-success" data-dismiss="modal">保存</button>
+				<button type="button" id="btnReqUpdateStaffInfo"  data-loading-text="正在保存……" class="btn btn-success" autocomplete="off">保存</button>
 				<button type="button" class="btn btn-danger" data-dismiss="modal">删除</button>
 			</div>
 		</div>
