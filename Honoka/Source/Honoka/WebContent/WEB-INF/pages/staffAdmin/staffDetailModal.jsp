@@ -11,6 +11,11 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
+		//监听解析按钮 class，sdrgbtn 为不存在的样式 
+		$('.sdrgbtn').click(function(event) {
+			reqGeoCodingByInput();
+		});
+		//延迟加载百度地图以刷新 DOM
 		setTimeout(function(){initStaffDetailBaiduMap();},200);
 	});
 	// 员工信息详情地图实例初始化
@@ -29,10 +34,36 @@
 		map.addControl(topLeftControl);        
 		map.addControl(topLeftNavigation);
 		// 设定缩放级别
-	    map.centerAndZoom(orgPoint, 16);
+	    map.centerAndZoom(orgPoint, 15);
 		// 开启滚轮缩放功能
 	    map.enableScrollWheelZoom();   
 	    map.enableContinuousZoom();
+	}
+	function reqGeoCodingByInput(){
+		var map = new BMap.Map("staffDetailMapContent");
+		// 创建地址解析器实例
+		var reqGeo = new BMap.Geocoder();
+		// 将地址解析结果显示在地图上,并调整地图视野
+		var newReqAddr = document.getElementById("inputStaffAddr").value.trim();
+		document.getElementById("inputStaffAddr").value = " " + newReqAddr;
+		reqGeo.getPoint(newReqAddr, function(point){
+			if (point) {
+				var newMarker = new BMap.Marker(point);
+				map.addOverlay(newMarker);
+				newMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
+				var topLeftControl = new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT});
+				var topLeftNavigation = new BMap.NavigationControl();
+				map.addControl(topLeftControl);        
+				map.addControl(topLeftNavigation);
+				map.centerAndZoom(point, 15);
+			    map.enableScrollWheelZoom();   
+			    map.enableContinuousZoom();
+			    //回写界面信息
+			    document.getElementById("inputStallPoint").value = " " + point.lng + "," + point.lat;
+			}else{
+				alert("选择的地址没有解析到结果!");
+			}
+		});
 	}
 </script>
 </head>
@@ -120,12 +151,15 @@
 						type="text" class="form-control" placeholder="联系电话" value="&nbsp;${pageParaMap.staffDetail.staffTel}">
 				</div>
 				<div class="input-group">
-					<span class="input-group-addon" id="inputStaffAddr">家庭住址</span> <input
-						type="text" class="form-control" placeholder="家庭住址" value="&nbsp;${pageParaMap.staffDetail.staffAddr}">
+					<span class="input-group-addon" >家庭住址</span> <input id="inputStaffAddr" 
+						type="text" class="form-control" placeholder="家庭住址" value="&nbsp;${pageParaMap.staffDetail.staffAddr}"><span
+				class="input-group-btn">
+				<button class="btn btn-default sdrgbtn" type="button" id="btnReqGeoCoding">解析</button>
+			</span>
 				</div>
 				<div class="input-group">
-					<span class="input-group-addon" id="inputStallPoint">解析坐标</span> <input
-						type="text" class="form-control" placeholder="StaffPoint"
+					<span class="input-group-addon" >解析坐标</span> <input
+						type="text" class="form-control" placeholder="StaffPoint" id="inputStallPoint" 
 						disabled value="&nbsp;${pageParaMap.staffPoint.baiduRecordLng },${pageParaMap.staffPoint.baiduRecordLat }">
 				</div>
 	                </div>
