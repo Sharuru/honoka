@@ -11,4 +11,6 @@ public interface StaffAdminMapper {
 	List<Staff> selectStaffInfoByPage(Integer page);
 	
 	Staff selectStaffDetailByStaffId(String staffId);
+	
+	void deleteStaffByStaffId(String staffId);
 }

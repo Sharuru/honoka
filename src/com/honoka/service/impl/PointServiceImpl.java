@@ -34,7 +34,7 @@ public class PointServiceImpl implements PointService {
 	}
 
 	@Override
-	public List<POINT> selectPointInfoByKeyId(String keyId) {
+	public POINT selectPointInfoByKeyId(String keyId) {
 		return pointMapper.selectPointInfoByKeyId(keyId);
 	}
 

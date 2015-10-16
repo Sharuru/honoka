@@ -125,7 +125,7 @@ public class LBSCalcController {
 			pageParaMap.put("apReqStatus", "danger");
 		}
 		pageParaMap.put("inputReqAddr", reqAddr);
-		model.addAttribute("pageParaMap",pageParaMap);
+		model.addAttribute("pageParaMap", pageParaMap);
 		return "lbsCalc/geoCoding";
 	}
 
@@ -155,16 +155,15 @@ public class LBSCalcController {
 			totalDist += getDistance(Double.parseDouble(destPointLng), Double.parseDouble(destPointLat),
 					resPointList.get(i).getBaiduRecordLng(), resPointList.get(i).getBaiduRecordLat());
 		}
-		//保留两位小数
+		// 保留两位小数
 		Double avgDist = Math.round(totalDist / resPointList.size() * 100.0) / 100.0;
 		System.out.println("avgDist is: " + Double.toString(avgDist));
-		//转换单位
+		// 转换单位
 		String avgDistStr = "";
-		if(avgDist > 1000.0){
-			//转换成公里
-			avgDistStr = Double.toString(Math.round(avgDist/1000 * 100.0) / 100.0) + " 公里";
-		}
-		else{
+		if (avgDist > 1000.0) {
+			// 转换成公里
+			avgDistStr = Double.toString(Math.round(avgDist / 1000 * 100.0) / 100.0) + " 公里";
+		} else {
 			avgDistStr = Double.toString(avgDist) + " 米";
 		}
 		response.setContentType("text/json");
@@ -199,35 +198,30 @@ public class LBSCalcController {
 			List<Metro> metroStationIdList = metroAdminService
 					.getMetroStationIdByLineName(metroLineNameList.get(i).getLineName());
 			// 对应站点 ID 获取 POINT 信息
-			System.out.println(metroStationIdList.size());
 			for (int j = 0; j < metroStationIdList.size(); j++) {
 				// System.out.println("Getting station point for: " +
 				// metroStationIdList.get(j).getStaId());
-				List<POINT> stationPointList = pointService
-						.selectPointInfoByKeyId(metroStationIdList.get(j).getStaId());
+				POINT stationPoint = pointService.selectPointInfoByKeyId(metroStationIdList.get(j).getStaId());
 				// 开始计算比对
 				for (int k = 0; k < staffPointList.size(); k++) {
-					for (int l = 0; l < stationPointList.size(); l++) {
-						Double dist = getDistance(staffPointList.get(k).getBaiduRecordLng(),
-								staffPointList.get(k).getBaiduRecordLat(), stationPointList.get(l).getBaiduRecordLng(),
-								stationPointList.get(l).getBaiduRecordLat());
-						// System.out.println("Curr dist is " + dist);
-						if (dist < Double.parseDouble(reqRange)) {
-							// 在范围内插入显示列表
-							fencingResult fRo = new fencingResult();
-							fRo.setStaffId(staffPointList.get(k).getKeyId());
-							fRo.setLineName(metroLineNameList.get(i).getLineName());
-							fRo.setStaName(metroAdminService
-									.getMetroStationNameByStationId(stationPointList.get(l).getKeyId()));
-							fencingResultList.add(fRo);
-						}
+					Double dist = getDistance(staffPointList.get(k).getBaiduRecordLng(),
+							staffPointList.get(k).getBaiduRecordLat(), stationPoint.getBaiduRecordLng(),
+							stationPoint.getBaiduRecordLat());
+					// System.out.println("Curr dist is " + dist);
+					if (dist < Double.parseDouble(reqRange)) {
+						// 在范围内插入显示列表
+						fencingResult fRo = new fencingResult();
+						fRo.setStaffId(staffPointList.get(k).getKeyId());
+						fRo.setLineName(metroLineNameList.get(i).getLineName());
+						fRo.setStaName(metroAdminService.getMetroStationNameByStationId(stationPoint.getKeyId()));
+						fencingResultList.add(fRo);
 					}
 				}
 			}
 		}
 		System.out.println("Calculate finished");
 		for (int i = 0; i < fencingResultList.size(); i++) {
-			System.out.println(fencingResultList.get(i).getLineName() + fencingResultList.get(i).getStaffId() 
+			System.out.println(fencingResultList.get(i).getLineName() + fencingResultList.get(i).getStaffId()
 					+ fencingResultList.get(i).getStaName());
 		}
 		return "lbsCalc/geoFencing";
