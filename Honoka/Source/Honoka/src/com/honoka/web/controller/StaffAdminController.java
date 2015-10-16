@@ -101,4 +101,12 @@ public class StaffAdminController {
 		pointService.updatePointInfoByKeyId(point);
 		return "staffAdmin/staffMain";
 	}
+	
+	// 员工数据删除
+	@RequestMapping(value="/reqDeleteStaffInfo", method=RequestMethod.POST)
+	public String ReqDeleteStaffInfoRouter(ModelMap model, String staffId){
+		System.out.println("In /reqDeleteStaffInfo");
+		staffAdminService.deleteStaffInfoByStaffId(staffId);
+		return "staffAdmin/staffMain";
+	}
 }
