@@ -75,7 +75,17 @@
 		$.ajax({
 			type : "POST",
 			url : "reqUpdateStaffInfo",
-			success : function(data) {
+			data : {
+				staffId: document.getElementById("inputStaffId").value.trim(),
+				staffName: document.getElementById("inputStaffName").value.trim(),
+				staffComId: document.getElementById("selectCom").value.trim(),
+				staffDeptId: document.getElementById("selectDept").value.trim(),
+				staffLevelId: document.getElementById("selectLevel").value.trim(),
+				staffTel: document.getElementById("inputStaffTel").value.trim(),
+				staffAddr: document.getElementById("inputStaffAddr").value.trim(),
+				staffPointLng: document.getElementById("inputStallPoint").value.trim().split(",")[0],
+				staffPointLat: document.getElementById("inputStallPoint").value.trim().split(",")[1]
+			},success : function(data) {
 				$('#btnReqUpdateStaffInfo').button('reset');
 				$('#staffInfoModal').modal('hide');
 				//$("#metroAdmin").click();
@@ -101,11 +111,11 @@
 	              <div class="row">
 	                <div class="col-xs-8 col-sm-6">
 	                  <div class="input-group">
-					<span class="input-group-addon" id="inputStaffId">员工工号</span> <input
+					<span class="input-group-addon" >员工工号</span> <input id="inputStaffId" 
 						type="text" class="form-control" disabled value="&nbsp;${pageParaMap.staffDetail.staffId}">
 				</div>
 				<div class="input-group">
-					<span class="input-group-addon" id="inputStaffName">员工姓名</span> <input
+					<span class="input-group-addon" >员工姓名</span> <input id="inputStaffName" 
 						type="text" class="form-control" placeholder="员工姓名"
 						value="&nbsp;${pageParaMap.staffDetail.staffName}">
 				</div>
@@ -148,7 +158,7 @@
 				<div class="input-group">
 					<span class="input-group-addon" id="inputLevel">员工职称</span>
 					<div class="form-group">
-						  <select class="form-control" id="selectDept">
+						  <select class="form-control" id="selectLevel">
 							<c:forEach items="${pageParaMap.levelMap}" var="map"
 								varStatus="id" begin="0">
 								<c:choose>
@@ -164,7 +174,7 @@
 					</div>
 				</div>
 				<div class="input-group">
-					<span class="input-group-addon" id="inputStaffTel">联系电话</span> <input
+					<span class="input-group-addon" >联系电话</span> <input id="inputStaffTel" 
 						type="text" class="form-control" placeholder="联系电话" value="&nbsp;${pageParaMap.staffDetail.staffTel}">
 				</div>
 				<div class="input-group">

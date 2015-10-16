@@ -35,9 +35,21 @@
 		AND "DELETE_FLAG" = 0
 	</select>
 	
-	<update id="deleteStaffByStaffId" parameterType="java.lang.String">
+	<update id="deleteStaffInfoByStaffId" parameterType="java.lang.String">
 		UPDATE "STAFF_INFO"
 		SET "DELETE_FLAG" = 1
 		WHERE "STAFF_ID" = #{staffId,jdbcType=VARCHAR}
+	</update>
+	
+	<update id="updateStaffInfo" parameterType="com.honoka.entity.Staff">
+		UPDATE "STAFF_INFO"
+		SET 
+		"STAFF_COM_ID" = #{staffComId, jdbcType=VARCHAR},
+		"STAFF_DEPT_ID" = #{staffDeptId, jdbcType=VARCHAR},
+		"STAFF_LEVEL_ID" = #{staffLevelId, jdbcType=VARCHAR},
+		"STAFF_NAME" = #{staffName, jdbcType=VARCHAR},
+		"STAFF_TEL" = #{staffTel, jdbcType=VARCHAR},
+		"STAFF_ADDR" = #{staffAddr, jdbcType=VARCHAR}
+		WHERE "STAFF_ID" = #{staffId, jdbcType=VARCHAR}
 	</update>
 </mapper>

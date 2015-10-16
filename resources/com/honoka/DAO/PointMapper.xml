@@ -47,4 +47,14 @@
 		WHERE A."STA_NAME" = B."STA_NAME"
 		AND A."LINE_NAME" = B."LINE_NAME")
 	</select>
+	
+	<update id="updatePointInfoByKeyId" parameterType="com.honoka.entity.POINT">
+		UPDATE "POINT_INFO"
+		SET 
+		"BAIDU_RECORD_LNG" = #{baiduRecordLng, jdbcType=VARCHAR},
+		"BAIDU_RECORD_LAT" = #{baiduRecordLat, jdbcType=VARCHAR},
+		"AMAP_RECORD_LNG" = #{amapRecordLng, jdbcType=VARCHAR},
+		"AMAP_RECORD_LAT" = #{amapRecordLat, jdbcType=VARCHAR}
+		WHERE "KEY_ID" = #{keyId, jdbcType=VARCHAR}
+	</update>
 </mapper>
