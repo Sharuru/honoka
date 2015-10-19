@@ -58,6 +58,23 @@ public class StaffAdminController {
 		return "staffAdmin/staffMain";
 	}
 
+	// 员工数据新增模态
+	@RequestMapping(value = "/addStaffInfo", method = RequestMethod.GET)
+	public String AddStaffInfoRouter(ModelMap model) {
+		System.out.println("In /addStaffInfo");
+		// 参数设置
+		Map<String, Object> pageParaMap = new HashMap<String, Object>();
+		// 获取对应 ID 字典以设置下拉列表
+		Map<String, String> comMap = companyService.getCompanyMap();
+		Map<String, String> deptMap = departmantService.getDeptMap();
+		Map<String, String> levelMap = levelService.getLevelMap();
+		pageParaMap.put("comMap", comMap);
+		pageParaMap.put("deptMap", deptMap);
+		pageParaMap.put("levelMap", levelMap);
+		model.addAttribute("pageParaMap", pageParaMap);
+		return "staffAdmin/addStaffModal";
+	}
+
 	// 员工数据详情
 	@RequestMapping(value = "/staffDetail&reqStaffId={reqId}", method = RequestMethod.GET)
 	public String staffDetailRouter(ModelMap model, @PathVariable String reqId) {
@@ -80,10 +97,35 @@ public class StaffAdminController {
 		return "staffAdmin/staffDetailModal";
 	}
 
+	// 员工数据新增
+	@RequestMapping(value = "/reqAddStaffInfo", method = RequestMethod.POST)
+	public String ReqAddStaffInfoRouter(ModelMap model, String staffId, String staffName, String staffComId,
+			String staffDeptId, String staffLevelId, String staffTel, String staffAddr, String staffPointLng,
+			String staffPointLat) {
+		System.out.println("In /reqAddStaffInfo");
+		Staff staff = new Staff();
+		staff.setStaffId(staffId);
+		staff.setStaffName(staffName);
+		staff.setStaffComId(staffComId);
+		staff.setStaffDeptId(staffDeptId);
+		staff.setStaffLevelId(staffLevelId);
+		staff.setStaffTel(staffTel);
+		staff.setStaffAddr(staffAddr);
+		POINT point = new POINT();
+		point.setKeyId(staffId);
+		point.setBaiduRecordLng(Double.parseDouble(staffPointLng));
+		point.setBaiduRecordLat(Double.parseDouble(staffPointLat));
+		staffAdminService.insertStaffInfo(staff);
+		//TODO: entity or param
+		pointService.insertPointInfo(staff.getStaffId(), point.getBaiduRecordLng(), point.getBaiduRecordLat(), 0.0, 0.0);
+		return "staffAdmin/staffMain";
+	}
+
 	// 员工数据更新
-	@RequestMapping(value="/reqUpdateStaffInfo", method=RequestMethod.POST)
-	public String ReqUpdateStaffInfoRouter(ModelMap model, String staffId, String staffName, String staffComId, String staffDeptId, String staffLevelId, String staffTel,
-			String staffAddr, String staffPointLng, String staffPointLat){
+	@RequestMapping(value = "/reqUpdateStaffInfo", method = RequestMethod.POST)
+	public String ReqUpdateStaffInfoRouter(ModelMap model, String staffId, String staffName, String staffComId,
+			String staffDeptId, String staffLevelId, String staffTel, String staffAddr, String staffPointLng,
+			String staffPointLat) {
 		System.out.println("In /reqUpdateStaffInfo");
 		Staff staff = new Staff();
 		staff.setStaffId(staffId);
@@ -101,10 +143,10 @@ public class StaffAdminController {
 		pointService.updatePointInfoByKeyId(point);
 		return "staffAdmin/staffMain";
 	}
-	
+
 	// 员工数据删除
-	@RequestMapping(value="/reqDeleteStaffInfo", method=RequestMethod.POST)
-	public String ReqDeleteStaffInfoRouter(ModelMap model, String staffId){
+	@RequestMapping(value = "/reqDeleteStaffInfo", method = RequestMethod.POST)
+	public String ReqDeleteStaffInfoRouter(ModelMap model, String staffId) {
 		System.out.println("In /reqDeleteStaffInfo");
 		staffAdminService.deleteStaffInfoByStaffId(staffId);
 		return "staffAdmin/staffMain";

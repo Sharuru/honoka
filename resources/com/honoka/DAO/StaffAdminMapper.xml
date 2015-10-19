@@ -24,8 +24,8 @@
 		WHERE "DELETE_FLAG" = 0	
 		ORDER BY "STAFF_ID" ASC
 		<!-- 这里也要设置 -->
-		LIMIT 2
-		OFFSET #{page,jdbcType=INTEGER}*2 - 2
+		LIMIT 20
+		OFFSET #{page,jdbcType=INTEGER}*20 - 20
 	</select>
 	
 	<select id="selectStaffDetailByStaffId" resultMap="StaffAdminResultMap" parameterType="java.lang.String">
@@ -52,4 +52,18 @@
 		"STAFF_ADDR" = #{staffAddr, jdbcType=VARCHAR}
 		WHERE "STAFF_ID" = #{staffId, jdbcType=VARCHAR}
 	</update>
+	
+	<insert id="insertStaffInfo" parameterType="com.honoka.entity.Staff">
+		INSERT INTO "STAFF_INFO"
+		("STAFF_ID","STAFF_COM_ID","STAFF_DEPT_ID","STAFF_LEVEL_ID","STAFF_NAME","STAFF_TEL","STAFF_ADDR")
+		VALUES
+		(#{staffId,jdbcType=VARCHAR},
+		#{staffComId, jdbcType=VARCHAR},
+		#{staffDeptId, jdbcType=VARCHAR},
+		#{staffLevelId, jdbcType=VARCHAR},
+		#{staffName, jdbcType=VARCHAR},
+		#{staffTel, jdbcType=VARCHAR},
+		#{staffAddr, jdbcType=VARCHAR}
+		)
+	</insert>
 </mapper>
