@@ -37,7 +37,7 @@
 				destPointLat : destPointLat
 			},
 			success : function(returnData) {
-				document.getElementById("avgDist").innerText = "&nbsp;&nbsp;&nbsp;&nbsp;系统所有员工至目标点的平均直线距离为：" + returnData;
+				document.getElementById("avgDist").innerText = "系统所有员工至目标点的平均直线距离为：" + returnData;
 			}
 		});
 	}
@@ -84,7 +84,7 @@
 			  // 绑定事件事件
 			  div.onclick = function(e){
 				  initBaiduMap(1);
-				  document.getElementById("avgDist").innerText = "&nbsp;&nbsp;&nbsp;&nbsp;系统所有员工至目标点的平均直线距离为：等待点选";
+				  document.getElementById("avgDist").innerText = "系统所有员工至目标点的平均直线距离为：等待点选";
 				  //清空检索列表
 				  $("#placeSearchResult").empty();
 				  document.getElementById("inputPlaceSearch").value="";
@@ -115,8 +115,9 @@
 </head>
 <body>
 	<div id="twoPointContent">
-		<p>&nbsp;&nbsp;&nbsp;&nbsp;请点击任意位置计算目前系统所有员工至目标点的平均直线距离</p>
-		<p id="avgDist">&nbsp;&nbsp;&nbsp;&nbsp;系统所有员工至目标点的平均直线距离为：等待点选</p>
+		<div style="margin-left:1.5%;"><p>请点击任意位置计算目前系统所有员工至目标点的平均直线距离</p>
+		<p id="avgDist">系统所有员工至目标点的平均直线距离为：等待点选</p>
+		</div>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-4 col-sm-4">
