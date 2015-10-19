@@ -71,18 +71,11 @@ public class MainController {
 		System.out.println("In /metroAdmin");
 		return "redirect:metroAdmin&reqPage=1";
 	}
-
-	// 区域检索数据管理画面
-	@RequestMapping(value = "/placeSearchAdmin", method = RequestMethod.GET)
-	public String placeSearchRouter(ModelMap model) {
-		System.out.println("In /placeSearchAdmin");
-		return "placeSearch/placeMain";
-	}
 	
-	// LBS 计算
-	@RequestMapping(value = "/lbsCalc", method = RequestMethod.GET)
-	public String lbsCalcRouter(ModelMap model) {
-		System.out.println("In /lbsCalc");
-		return "lbsCalc/lbsMain";
+	// LBS 应用
+	@RequestMapping(value = "/lbsAppl", method = RequestMethod.GET)
+	public String lbsApplRouter(ModelMap model) {
+		System.out.println("In /lbsAppl");
+		return "lbsAppl/lbsMain";
 	}
 }
