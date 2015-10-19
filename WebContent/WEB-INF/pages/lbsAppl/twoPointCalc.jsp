@@ -9,10 +9,10 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		// 延迟加载以给 DOM 元素切换属性的处理时间
-		setTimeout(function(){initBaiduMap();},200);
+		setTimeout(function(){initBaiduMap(1);},200);
 		//绑定搜索事件
 		$('#btnReqPlaceSearch').on('click', function () {
-			var map = initBaiduMap();
+			var map = initBaiduMap(-1);
 			var local = new BMap.LocalSearch(map, {
 					renderOptions: {
 						map: map, 
@@ -37,12 +37,12 @@
 				destPointLat : destPointLat
 			},
 			success : function(returnData) {
-				document.getElementById("avgDist").innerText = "系统所有员工至目标点的平均直线距离为：" + returnData;
+				document.getElementById("avgDist").innerText = "&nbsp;&nbsp;&nbsp;&nbsp;系统所有员工至目标点的平均直线距离为：" + returnData;
 			}
 		});
 	}
 	// 地图实例初始化
-	function initBaiduMap() {
+	function initBaiduMap(initType) {
 		// 创建 Map 实例
 		var map = new BMap.Map("mapContent"); 
 		// 默认设定 MBP 上海的坐标点 
@@ -56,18 +56,20 @@
 		var topLeftNavigation = new BMap.NavigationControl();
 		map.addControl(topLeftControl);        
 		map.addControl(topLeftNavigation);
-		// 绑定点击事件
-		map.addEventListener("click",function(e){
-			// 设置地图
-			map.clearOverlays(mbpShMarker);
-			var destPoint = new BMap.Point(e.point.lng, e.point.lat);
-			var destMarker = new BMap.Marker(destPoint);
-			map.addOverlay(destMarker);
-			destMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
-			map.centerAndZoom(destPoint, map.getZoom());
-			// 发起请求
-			postPoint(e.point.lng, e.point.lat);
-		});
+		if(initType == 1){
+			// 绑定点击事件
+			map.addEventListener("click",function(e){
+				// 设置地图
+				map.clearOverlays();
+				var destPoint = new BMap.Point(e.point.lng, e.point.lat);
+				var destMarker = new BMap.Marker(destPoint);
+				map.addOverlay(destMarker);
+				destMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
+				map.centerAndZoom(destPoint, map.getZoom());
+				// 发起请求
+				postPoint(e.point.lng, e.point.lat);
+			});
+		}
 		// 设定还原状态控件
 		ResetMapControl.prototype = new BMap.Control();
 		ResetMapControl.prototype.initialize = function(map){
@@ -81,11 +83,8 @@
 			  div.style.backgroundColor = "white";
 			  // 绑定事件事件
 			  div.onclick = function(e){
-				  map.clearOverlays();
-				  map.addOverlay(mbpShMarker);
-				  mbpShMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
-				  map.centerAndZoom(mbpShPoint, 18);
-				  document.getElementById("avgDist").innerText = "系统所有员工至目标点的平均直线距离为：等待点选";
+				  initBaiduMap(1);
+				  document.getElementById("avgDist").innerText = "&nbsp;&nbsp;&nbsp;&nbsp;系统所有员工至目标点的平均直线距离为：等待点选";
 				  //清空检索列表
 				  $("#placeSearchResult").empty();
 				  document.getElementById("inputPlaceSearch").value="";
@@ -116,8 +115,8 @@
 </head>
 <body>
 	<div id="twoPointContent">
-		<p>请点击任意位置计算目前系统所有员工至目标点的平均直线距离</p>
-		<p id="avgDist">系统所有员工至目标点的平均直线距离为：等待点选</p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;请点击任意位置计算目前系统所有员工至目标点的平均直线距离</p>
+		<p id="avgDist">&nbsp;&nbsp;&nbsp;&nbsp;系统所有员工至目标点的平均直线距离为：等待点选</p>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-4 col-sm-4">
