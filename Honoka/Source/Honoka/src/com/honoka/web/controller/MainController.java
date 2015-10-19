@@ -78,4 +78,11 @@ public class MainController {
 		System.out.println("In /lbsAppl");
 		return "lbsAppl/lbsMain";
 	}
+	
+	// 员工数据批量导入
+	@RequestMapping(value = "/importStaff", method = RequestMethod.GET)
+	public String importStafflRouter(ModelMap model) {
+		System.out.println("In /importStaff");
+		return "staffImport/importMain";
+	}
 }
