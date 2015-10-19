@@ -212,6 +212,7 @@ public class LBSApplController {
 						// 在范围内插入显示列表
 						fencingResult fRo = new fencingResult();
 						fRo.setStaffId(staffPointList.get(k).getKeyId());
+						fRo.setStaffName(staffAdminService.selectStaffDetailByStaffId(fRo.getStaffId()).getStaffName());
 						fRo.setLineName(metroLineNameList.get(i).getLineName());
 						fRo.setStaName(metroAdminService.getMetroStationNameByStationId(stationPoint.getKeyId()));
 						fencingResultList.add(fRo);
@@ -221,8 +222,8 @@ public class LBSApplController {
 		}
 		System.out.println("Calculate finished");
 		for (int i = 0; i < fencingResultList.size(); i++) {
-			System.out.println(fencingResultList.get(i).getLineName() + fencingResultList.get(i).getStaffId()
-					+ fencingResultList.get(i).getStaName());
+			System.out.println(fencingResultList.get(i).getLineName() + " || " + fencingResultList.get(i).getStaffId() 
+					+ " || " +fencingResultList.get(i).getStaffName() + " || " +fencingResultList.get(i).getStaName());
 		}
 		return "lbsAppl/geoFencing";
 		// return null;
