@@ -26,8 +26,12 @@
 				postPoint(poi.point.lng, poi.point.lat);
 				});
 			local.setSearchCompleteCallback(function(poi){
-				//去除边框样式
-				setTimeout(function(){$("#placeSearchResult").children().css("border","");},0);
+				//调整结果面板样式
+				setTimeout(function(){
+					$("#placeSearchResult").children().css("border","");
+					$("#placeSearchResult").children().children().children()[1].remove();
+				},0);
+
 			});
 			local.search(document.getElementById("inputPlaceSearch").value.trim());
 		});
