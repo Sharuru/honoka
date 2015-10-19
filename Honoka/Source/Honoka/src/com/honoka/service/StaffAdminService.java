@@ -18,4 +18,6 @@ public interface StaffAdminService {
 	void deleteStaffInfoByStaffId(String staffId);
 	
 	void updateStaffInfo(Staff staff);
+	
+	void insertStaffInfo(Staff staff);
 }

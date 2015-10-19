@@ -15,4 +15,6 @@ public interface StaffAdminMapper {
 	void deleteStaffInfoByStaffId(String staffId);
 	
 	void updateStaffInfo(Staff staff);
+	
+	void insertStaffInfo(Staff staff);
 }

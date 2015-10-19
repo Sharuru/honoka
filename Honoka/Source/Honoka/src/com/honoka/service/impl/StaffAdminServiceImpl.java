@@ -42,4 +42,9 @@ public class StaffAdminServiceImpl implements StaffAdminService {
 		
 	}
 
+	@Override
+	public void insertStaffInfo(Staff staff) {
+		staffAdminMapper.insertStaffInfo(staff);		
+	}
+
 }
