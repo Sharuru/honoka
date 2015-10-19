@@ -51,10 +51,8 @@
 				data-toggle="tab">员工数据管理</a></li>
 			<li><a href="#metroAdminContent" id="metroAdmin"
 				data-toggle="tab">地铁站点数据管理</a></li>
-			<li><a href="#placeSearchAdminContent" id="placeSearchAdmin"
-				data-toggle="tab">区域检索数据管理</a></li>
-			<li><a href="#lbsCalcContent" id="lbsCalc"
-				data-toggle="tab">LBS 计算</a></li>
+			<li><a href="#lbsApplContent" id="lbsAppl"
+				data-toggle="tab">LBS 应用</a></li>
 			<li><a href="#importStaffContent" id="importStaff"
 				data-toggle="tab">员工数据批量导入</a></li>
 		</ul>
@@ -63,8 +61,7 @@
 			<div class="tab-pane fade in active" id="dashboardContent"></div>
 			<div class="tab-pane fade" id="staffAdminContent"></div>
 			<div class="tab-pane fade" id="metroAdminContent"></div>
-			<div class="tab-pane fade" id="placeSearchAdminContent"></div>
-			<div class="tab-pane fade" id="lbsCalcContent"></div>
+			<div class="tab-pane fade" id="lbsApplContent"></div>
 			<div class="tab-pane fade" id="importStaffContent"></div>
 		</div>
 		<!-- 页面加载完毕后自动点击仪表盘按钮替换内容 -->

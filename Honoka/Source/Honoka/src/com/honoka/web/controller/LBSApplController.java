@@ -29,7 +29,7 @@ import com.honoka.service.PointService;
 import com.honoka.service.StaffAdminService;
 
 @Controller
-public class LBSCalcController {
+public class LBSApplController {
 
 	@Resource
 	private APIKeyService apiKeyService;
@@ -58,7 +58,7 @@ public class LBSCalcController {
 		pageParaMap.put("bdGeocodingResult", "百度通道等待用户输入……");
 		pageParaMap.put("apGeocodingResult", "高德通道等待用户输入……");
 		model.addAttribute("pageParaMap", pageParaMap);
-		return "lbsCalc/geoCoding";
+		return "lbsAppl/geoCoding";
 	}
 
 	// 请求地址解析
@@ -126,7 +126,7 @@ public class LBSCalcController {
 		}
 		pageParaMap.put("inputReqAddr", reqAddr);
 		model.addAttribute("pageParaMap", pageParaMap);
-		return "lbsCalc/geoCoding";
+		return "lbsAppl/geoCoding";
 	}
 
 	// 两点计算初始画面
@@ -138,7 +138,7 @@ public class LBSCalcController {
 		pageParaMap.put("bdAPIKey", apiKeyService.selectUsableAPIKeyByProvider("BAIDU"));
 		pageParaMap.put("calcResult", "等待点选");
 		model.addAttribute("pageParaMap", pageParaMap);
-		return "lbsCalc/twoPointCalc";
+		return "lbsAppl/twoPointCalc";
 	}
 
 	// 请求两点计算
@@ -176,7 +176,7 @@ public class LBSCalcController {
 	@RequestMapping(value = "/geoFencing", method = RequestMethod.GET)
 	public String geoFencingRouter(ModelMap model) {
 		System.out.println("In geo fencing");
-		return "lbsCalc/geoFencing";
+		return "lbsAppl/geoFencing";
 	}
 
 	// 地理围栏计算
@@ -224,7 +224,7 @@ public class LBSCalcController {
 			System.out.println(fencingResultList.get(i).getLineName() + fencingResultList.get(i).getStaffId()
 					+ fencingResultList.get(i).getStaName());
 		}
-		return "lbsCalc/geoFencing";
+		return "lbsAppl/geoFencing";
 		// return null;
 	}
 
