@@ -54,7 +54,7 @@
 			<li><a href="#lbsApplContent" id="lbsAppl"
 				data-toggle="tab">LBS 应用<span class="badge">Beta!</span></a></li>
 			<li><a href="#importStaffContent" id="importStaff"
-				data-toggle="tab">员工数据批量导入</a></li>
+				data-toggle="tab" >员工数据批量导入</a></li>
 		</ul>
 		<!-- 页面内容区，通过 AJAX 进行替换 -->
 		<div id="mainContent" class="tab-content" style="margin-top: 20px;">
