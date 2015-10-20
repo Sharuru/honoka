@@ -22,7 +22,6 @@
 				});
 			//设置回调函数
 			local.setInfoHtmlSetCallback(function(poi){
-				//$("#placeSearchResult").children().removeAttr("style");
 				postPoint(poi.point.lng, poi.point.lat);
 				});
 			local.setSearchCompleteCallback(function(poi){
