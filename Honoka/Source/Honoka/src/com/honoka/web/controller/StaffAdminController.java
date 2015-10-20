@@ -116,8 +116,9 @@ public class StaffAdminController {
 		point.setBaiduRecordLng(Double.parseDouble(staffPointLng));
 		point.setBaiduRecordLat(Double.parseDouble(staffPointLat));
 		staffAdminService.insertStaffInfo(staff);
-		//TODO: entity or param
-		pointService.insertPointInfo(staff.getStaffId(), point.getBaiduRecordLng(), point.getBaiduRecordLat(), 0.0, 0.0);
+		// TODO: entity or param
+		pointService.insertPointInfo(staff.getStaffId(), point.getBaiduRecordLng(), point.getBaiduRecordLat(), 0.0,
+				0.0);
 		return "staffAdmin/staffMain";
 	}
 
