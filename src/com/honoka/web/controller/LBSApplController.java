@@ -183,6 +183,8 @@ public class LBSApplController {
 	@RequestMapping(value = "/reqCalcGeoFencing", method = RequestMethod.POST)
 	public String reqCalcGeoFencing(ModelMap model, String reqRange) {
 		System.out.println("In req calc geo fencing");
+		//参数设置
+		Map<String, Object> pageParaMap = new HashMap<String, Object>();
 		System.out.println("Get reqRange = " + reqRange);
 		// TODO：数据库表要重新设计，线路 ID
 		// 计算准备
@@ -215,6 +217,7 @@ public class LBSApplController {
 						fRo.setStaffName(staffAdminService.selectStaffDetailByStaffId(fRo.getStaffId()).getStaffName());
 						fRo.setLineName(metroLineNameList.get(i).getLineName());
 						fRo.setStaName(metroAdminService.getMetroStationNameByStationId(stationPoint.getKeyId()));
+						fRo.setDist(Double.toString(Math.round(dist * 100.0) / 100.0) + " 米");
 						fencingResultList.add(fRo);
 					}
 				}
@@ -225,6 +228,8 @@ public class LBSApplController {
 			System.out.println(fencingResultList.get(i).getLineName() + " || " + fencingResultList.get(i).getStaffId() 
 					+ " || " +fencingResultList.get(i).getStaffName() + " || " +fencingResultList.get(i).getStaName());
 		}
+		pageParaMap.put("fencingResultList", fencingResultList);
+		model.addAttribute("pageParaMap", pageParaMap);
 		return "lbsAppl/geoFencing";
 		// return null;
 	}
@@ -249,7 +254,7 @@ public class LBSApplController {
 		private String staffName;
 		private String lineName;
 		private String staName;
-		private Double dist;
+		private String dist;
 
 		public String getStaffId() {
 			return staffId;
@@ -283,11 +288,11 @@ public class LBSApplController {
 			this.staName = staName;
 		}
 
-		public Double getDist() {
+		public String getDist() {
 			return dist;
 		}
 
-		public void setDist(Double dist) {
+		public void setDist(String dist) {
 			this.dist = dist;
 		}
 

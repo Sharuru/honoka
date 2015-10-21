@@ -3,6 +3,7 @@
   Date: 2015/10/14 0008
   Time: 10:14
 --%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
@@ -10,6 +11,7 @@
 	//子功能加载后绑定点击事件
 	$(document).ready(function() {
 		$("#reqGeoFencing").click(function(event) {
+			var $btn = $(this).button('loading');
 			loadGeoFencingContent();
 		});
 	});
@@ -22,8 +24,9 @@
 				reqRange : document.getElementById("reqRange").value
 			},
 			success : function(data) {
-				//$("#metroListDiv").html(data);
-				alert("You win");
+				$("#geoFencingContent").html(data);
+				$('#reqGeoFencing').button('reset');
+				//alert("You win");
 			}
 		});
 	}
@@ -38,9 +41,10 @@
 				<option value="1000">1000 米</option>
 				<option value="1500">1500 米</option>
 			</select> 
-			<a id="reqGeoFencing" href="#" class="btn btn-primary btn-xs" role="button">开始计算</a>
+			<button type="button" id="reqGeoFencing" data-loading-text="正在计算……" class="btn btn-primary btn-xs"  autocomplete="off" >开始计算</button>
 		</div>
-		<div id="geoFencingResult"><table class="table table-hover table-striped  table-condensed"
+		
+		<div id="geoFencingResultDiv"><table class="table table-hover table-striped  table-condensed"
 					contenteditable="false">
 					<thead>
 						<tr>
@@ -48,16 +52,18 @@
 							<th>姓名</th>
 							<th>线路名称</th>
 							<th>站点名称</th>
+							<th>距离</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:if test="${metroInfoList != null && metroInfoList.size() > 0}">
-							<c:forEach items="${metroInfoList}" var="currStation">
+						<c:if test="${pageParaMap.fencingResultList != null && pageParaMap.fencingResultList.size() > 0}">
+							<c:forEach items="${pageParaMap.fencingResultList}" var="currStation">
 								<tr>
-									<td>${currStation.recordId}</td>
+									<td>${currStation.staffId}</td>
+									<td>${currStation.staffName}</td>
 									<td>${currStation.lineName}</td>
 									<td>${currStation.staName}</td>
-									<td>${currStation.staName}</td>
+									<td>${currStation.dist}</td>
 								</tr>
 							</c:forEach>
 						</c:if>
