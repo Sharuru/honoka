@@ -1,6 +1,10 @@
+/**
+ * 高德地图 API 返回 Json POJO
+ */
 package com.honoka.entity;
 
 public class AmapJson {
+	// 高德地图地址解析 Json POJO
 	public static class AmapJsonGeocoding {
 		// 状态
 		Integer status;
@@ -45,6 +49,7 @@ public class AmapJson {
 
 	}
 
+	// 地址解析结果
 	public static class Geocodes {
 		// 地址信息
 		String formatted_address;
@@ -54,21 +59,21 @@ public class AmapJson {
 		String citycode;
 		// 城市
 		String city;
-		//高德的 API 很厉害，有结果的时候丢 STRING，没结果的时候丢 ARRAY，咱先不 Handle 这个鬼玩意儿了
-		//区
-		//String district;
+		// 高德的 API 很厉害，有结果的时候丢 STRING，没结果的时候丢 ARRAY，咱先不 Handle 这个鬼玩意儿了
+		// 区
+		// String district;
 		// 乡镇
-		//String[] township;
+		// String[] township;
 		// 社区信息
-		//Neighborhood neighborhood;
+		// Neighborhood neighborhood;
 		// 楼信息
-		//Building building;
+		// Building building;
 		// 所属兴趣点所在区域编码
-		//String adcode;
+		// String adcode;
 		// 街道
-		//String[] street;
+		// String[] street;
 		// 门牌
-		//String[] number;
+		// String[] number;
 		// 坐标
 		String location;
 		// 匹配级别
@@ -106,13 +111,13 @@ public class AmapJson {
 			this.city = city;
 		}
 
-//		public String getDistrict() {
-//			return district;
-//		}
-//
-//		public void setDistrict(String district) {
-//			this.district = district;
-//		}
+		// public String getDistrict() {
+		// return district;
+		// }
+		//
+		// public void setDistrict(String district) {
+		// this.district = district;
+		// }
 
 		// public String[] getTownship() {
 		// return township;
@@ -179,6 +184,7 @@ public class AmapJson {
 		}
 	}
 
+	// 社区
 	public static class Neighborhood {
 		// 社区名称
 		String[] name;
@@ -203,6 +209,7 @@ public class AmapJson {
 
 	}
 
+	// 建筑
 	public static class Building {
 		// 建筑名称
 		String[] name;

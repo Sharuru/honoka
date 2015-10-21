@@ -1,3 +1,6 @@
+/**
+ * 服务实现类功能注释请查看对应同名 Service 类
+ */
 package com.honoka.service.impl;
 
 import java.net.URLEncoder;
@@ -22,10 +25,12 @@ public class BaiduAPIServiceImpl implements BaiduAPIService {
 	@Override
 	public BaiduJsonGeocoding BaiduGeoCoding(String reqAddr) throws Exception {
 		String json = null;
+		// 拼接请求字符串获得内容
 		json = APIUtil.readUrl("http://api.map.baidu.com/geocoder/v2/?address=" + URLEncoder.encode(reqAddr, "UTF-8")
 				+ "&output=json&ak=" + apiKeyService.selectUsableAPIKeyByProvider("BAIDU"));
 		// System.out.println("Get Baidu Json: " + json);
 		Gson gson = new Gson();
+		// Json to POJO
 		BaiduJsonGeocoding bdJson = gson.fromJson(json, BaiduJsonGeocoding.class);
 		return bdJson;
 	}

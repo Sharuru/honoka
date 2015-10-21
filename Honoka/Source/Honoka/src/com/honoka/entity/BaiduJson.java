@@ -1,8 +1,12 @@
+/**
+ * 百度地图返回 Json POJO
+ */
 package com.honoka.entity;
 
 import java.util.List;
 
 public class BaiduJson {
+	// 百度地图地址解析 POJO
 	public static class BaiduJsonGeocoding {
 		// 状态
 		Integer status;
@@ -37,6 +41,7 @@ public class BaiduJson {
 
 	}
 
+	// 地址解析结果
 	public static class GeocodingResult {
 		// 附加信息，是否精确查找
 		Integer precise;
@@ -81,6 +86,7 @@ public class BaiduJson {
 
 	}
 
+	// 地址解析坐标
 	public static class GeocodingLocation {
 		// 纬度值
 		Float lat;
@@ -105,10 +111,15 @@ public class BaiduJson {
 
 	}
 
+	// 百度地图位置搜索 POJO
 	public static class BaiduJsonPlace {
+		// 状态
 		Integer status;
+		// 信息
 		String message;
+		// 数据总数
 		Integer total;
+		// 结果
 		List<BaiduPlaceResults> results;
 
 		public Integer getStatus() {
@@ -145,12 +156,19 @@ public class BaiduJson {
 
 	}
 
+	// 位置搜索结果
 	public static class BaiduPlaceResults {
+		// POI 名
 		String name;
+		// 位置
 		PlaceLocation location;
+		// 地址
 		String address;
+		// 街道 ID
 		String street_id;
+		// 详细级数
 		Integer detail;
+		// 记录 ID
 		String uid;
 
 		public String getName() {
@@ -203,8 +221,11 @@ public class BaiduJson {
 
 	}
 
+	// 位置搜索位置
 	public static class PlaceLocation {
+		// 纬度值
 		float lat;
+		// 经度值
 		float lng;
 
 		public float getLat() {

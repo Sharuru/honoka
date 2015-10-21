@@ -9,8 +9,12 @@
 	</resultMap>
 	
 	<select id="getCompanyMap" resultMap="CompanyResultMap">
-		SELECT "COM_ID", "COM_NAME"
-		FROM "COM_INFO"
-		ORDER BY "RECORD_ID" ASC
+		SELECT 
+			"COM_ID", 
+			"COM_NAME"
+		FROM 
+			"COM_INFO"
+		ORDER BY 
+			"RECORD_ID" ASC
 	</select>
 </mapper>

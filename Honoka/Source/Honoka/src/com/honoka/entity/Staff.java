@@ -1,14 +1,26 @@
+/**
+ * STAFF_INFO 表 POJO
+ */
 package com.honoka.entity;
 
 public class Staff {
+	// 记录 ID
 	private Integer recordId;
+	// 员工公司 ID
 	private String staffComId;
+	// 员工部门 ID
 	private String staffDeptId;
+	// 员工职称 ID
 	private String staffLevelId;
+	// 员工工号
 	private String staffId;
+	// 员工姓名
 	private String staffName;
+	// 员工电话
 	private String staffTel;
+	// 员工地址
 	private String staffAddr;
+	// 员工删除标记
 	private String deleteFlag;
 
 	public Integer getRecordId() {

@@ -1,3 +1,6 @@
+/**
+ * 地铁站点数据管理 Controller
+ */
 package com.honoka.web.controller;
 
 import java.util.HashMap;
@@ -34,7 +37,7 @@ public class MetroAdminController {
 	@RequestMapping(value = "/metroAdmin&reqPage={reqPage}", method = RequestMethod.GET)
 	public String metroAdminRouter(ModelMap model, @PathVariable Integer reqPage) {
 		System.out.println("In /metroAdmin&reqPage=" + reqPage);
-		//参数设置
+		// 参数设置
 		Map<String, Object> pageParaMap = new HashMap<String, Object>();
 		System.out.println("currPage = " + reqPage);
 		pageParaMap.put("currPage", reqPage);
@@ -82,7 +85,7 @@ public class MetroAdminController {
 						}
 					}
 				}
-				//Trim
+				// Trim
 				pointService.trimMetroPointData();
 			}
 		} catch (Exception e) {

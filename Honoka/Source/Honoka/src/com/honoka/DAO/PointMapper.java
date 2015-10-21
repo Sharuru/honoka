@@ -1,3 +1,6 @@
+/**
+ * 映射类功能注释请查看对应同名 Service 类
+ */
 package com.honoka.DAO;
 
 import java.util.List;
@@ -11,16 +14,16 @@ public interface PointMapper {
 	void insertPointInfo(@Param("keyId") String keyId, @Param("baiduRecordLng") double baiduRecordLng,
 			@Param("baiduRecordLat") double baiduReocordLat, @Param("amapRecordLng") double amapRecordLng,
 			@Param("amapRecordLat") double amapRecordLat);
-	
+
 	void initMetroPoint();
-	
+
 	List<POINT> selectAllStaffPointInfo();
-	
+
 	POINT selectPointInfoByKeyId(String keyId);
-	
+
 	void trimMetroPointData();
-	
+
 	void updatePointInfoByKeyId(POINT point);
-	
+
 	void deletePointInfoByKeyId(String keyId);
 }

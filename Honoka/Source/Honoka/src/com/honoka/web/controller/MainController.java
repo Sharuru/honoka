@@ -1,3 +1,6 @@
+/**
+ * 主要 Controller
+ */
 package com.honoka.web.controller;
 
 import java.util.HashMap;
@@ -37,7 +40,7 @@ public class MainController {
 	@RequestMapping(value = "/Main")
 	public String mainRouter(ModelMap model) {
 		System.out.println("In /Main");
-		//参数设置
+		// 参数设置
 		Map<String, Object> pageParaMap = new HashMap<String, Object>();
 		pageParaMap.put("baiduAPIKey", apiKeyService.selectUsableAPIKeyByProvider("BAIDU"));
 		model.addAttribute("pageParaMap", pageParaMap);
@@ -48,7 +51,7 @@ public class MainController {
 	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
 	public String dashboardRouter(ModelMap model) {
 		System.out.println("In /dashboard");
-		//参数设置
+		// 参数设置
 		Map<String, Object> pageParaMap = new HashMap<String, Object>();
 		pageParaMap.put("inSystemStaffInfoCount", staffAdminService.countStaffInfo());
 		pageParaMap.put("inSystemStationInfoCount", metroAdminService.countMetroInfo());
@@ -71,14 +74,14 @@ public class MainController {
 		System.out.println("In /metroAdmin");
 		return "redirect:metroAdmin&reqPage=1";
 	}
-	
+
 	// LBS 应用
 	@RequestMapping(value = "/lbsAppl", method = RequestMethod.GET)
 	public String lbsApplRouter(ModelMap model) {
 		System.out.println("In /lbsAppl");
 		return "lbsAppl/lbsMain";
 	}
-	
+
 	// 员工数据批量导入
 	@RequestMapping(value = "/importStaff", method = RequestMethod.GET)
 	public String importStafflRouter(ModelMap model) {

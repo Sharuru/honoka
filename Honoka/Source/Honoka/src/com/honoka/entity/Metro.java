@@ -1,9 +1,16 @@
+/**
+ * METRO_INFO 表 POJO
+ */
 package com.honoka.entity;
 
 public class Metro {
+	// 记录 ID
 	private Integer recordId;
+	// 线路名字
 	private String lineName;
+	// 站点 ID
 	private String staId;
+	// 站点名字
 	private String staName;
 
 	public Integer getRecordId() {

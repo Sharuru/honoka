@@ -1,17 +1,21 @@
+/**
+ * API_KEY 表 POJO
+ */
 package com.honoka.entity;
 
 import java.sql.Date;
 
 public class APIKey {
 
+	// 记录 ID
 	private Integer recordId;
-
+	// API KEY
 	private String key;
-
+	// 提供者
 	private String provider;
-
+	// 使用次数
 	private Integer amount;
-
+	// 上一次使用时间
 	private Date lastCall;
 
 	public Integer getRecordId() {

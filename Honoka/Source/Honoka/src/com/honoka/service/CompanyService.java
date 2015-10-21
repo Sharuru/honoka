@@ -6,6 +6,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface CompanyService {
-	
-	Map<String,String> getCompanyMap();
+
+	/**
+	 * 获取 CompanyMap。
+	 *
+	 * @return company map
+	 */
+	Map<String, String> getCompanyMap();
 }

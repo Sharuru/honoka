@@ -1,3 +1,6 @@
+/**
+ * 服务实现类功能注释请查看对应同名 Service 类
+ */
 package com.honoka.service.impl;
 
 import java.util.HashMap;
@@ -21,7 +24,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
 	@Override
 	public Map<String, String> getDeptMap() {
-		// 只设置一次字典
+		// 只在字典为空时设置一次字典
 		if (deptMap.isEmpty()) {
 			List<Department> deptList = departmentMapper.getDeptmarmentMap();
 			// 将列表转换成对应的字典
