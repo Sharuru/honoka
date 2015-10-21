@@ -30,6 +30,7 @@
 		SELECT "RECORD_ID", "KEY_ID", "BAIDU_RECORD_LNG", "BAIDU_RECORD_LAT", "AMAP_RECORD_LNG", "AMAP_RECORD_LAT"
 		FROM "POINT_INFO"
 		WHERE "KEY_ID" LIKE 'S_______'
+		AND "DELETE_FLAG" = 0
 		ORDER BY "RECORD_ID" ASC
 	</select>
 	
@@ -55,6 +56,13 @@
 		"BAIDU_RECORD_LAT" = #{baiduRecordLat, jdbcType=VARCHAR},
 		"AMAP_RECORD_LNG" = #{amapRecordLng, jdbcType=VARCHAR},
 		"AMAP_RECORD_LAT" = #{amapRecordLat, jdbcType=VARCHAR}
+		WHERE "KEY_ID" = #{keyId, jdbcType=VARCHAR}
+	</update>
+	
+	<update id="deletePointInfoByKeyId" parameterType="java.lang.String">
+		UPDATE "POINT_INFO"
+		SET
+		"DELETE_FLAG" = 1
 		WHERE "KEY_ID" = #{keyId, jdbcType=VARCHAR}
 	</update>
 </mapper>

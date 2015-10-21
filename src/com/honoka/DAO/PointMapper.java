@@ -21,4 +21,6 @@ public interface PointMapper {
 	void trimMetroPointData();
 	
 	void updatePointInfoByKeyId(POINT point);
+	
+	void deletePointInfoByKeyId(String keyId);
 }
