@@ -8,21 +8,21 @@
 <html>
 <head>
 <script type="text/javascript">
-	//子功能加载后绑定事件
+	// 子功能加载后绑定事件
 	$(document).ready(function() {
 		$("#staffPageNav").click(function(event) {
 			loadStaffListContent(event.target.id);
 		});
-		//监听列表模态按钮 class，dbtn 为不存在的样式 
+		// 监听列表模态按钮 class，dbtn 为不存在的样式 
 		$('.dbtn').click(function(event) {
 			loadStaffDetailInfo(event.target.id);
 		});
-		//监听列新增按钮 class，adbtn 为不存在的样式 
+		// 监听列新增按钮 class，adbtn 为不存在的样式 
 		$('.adbtn').click(function(event) {
 			loadAddStaffModal();
 		});
 	});
-	//AJAX 获取子页面的内容
+	// AJAX 获取子页面的内容
 	function loadStaffListContent(dest) {
 		$.ajax({
 			type : "GET",
@@ -32,6 +32,7 @@
 			}
 		});
 	}
+	// 触发模态框，读取员工详情
 	function loadStaffDetailInfo(staffId){ 
 		$.ajax({
 			type : "GET",
@@ -41,6 +42,7 @@
 			}
 		});
 	}
+	// 触发模态，读取新增模态画面
 	function loadAddStaffModal(){
 		$.ajax({
 			type : "GET",
@@ -57,8 +59,7 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				员工数据一览
-				<button style="float: right;" type="button"
-					class="btn adbtn btn-xs btn-default" data-toggle="modal" data-target="#addStaffInfoModal">新增数据</button>
+				<button style="float: right;" type="button" class="btn adbtn btn-xs btn-default" data-toggle="modal" data-target="#addStaffInfoModal">新增数据</button>
 			</div>
 			<div class="panel-body">
 				<table class="table table-hover table-striped  table-condensed"
@@ -88,8 +89,9 @@
 									<td>${currStaff.staffLevelId }</td>
 									<td>${currStaff.staffTel}</td>
 									<td>${currStaff.staffAddr}</td>
-									<td><button id="${currStaff.staffId}" type="button" data-toggle="modal" data-target="#staffInfoModal"
-											class="dbtn btn btn-xs btn-default" >查看详情</button></td>
+									<td>
+										<button id="${currStaff.staffId}" type="button" data-toggle="modal" data-target="#staffInfoModal" class="dbtn btn btn-xs btn-default" >查看详情</button>
+									</td>
 								</tr>
 							</c:forEach>
 						</c:if>
@@ -153,5 +155,6 @@
 				</script>
 			</div>
 		</div>
+	</div>
 </body>
 </html>
