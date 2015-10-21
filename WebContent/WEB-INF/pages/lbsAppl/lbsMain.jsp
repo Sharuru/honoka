@@ -36,7 +36,7 @@
 				<li><a href="#twoPointCalcContent" id="twoPointCalc"
 					data-toggle="tab">兴趣点</a></li>
 				<li><a href="#geoFencingContent" id="geoFencing"
-					data-toggle="tab">地理围栏<span class="badge">Alpha!</span></a></li>
+					data-toggle="tab">地铁站点围栏<span class="badge">Alpha!</span></a></li>
 			</ul>
 			<!-- LBS 应用页面内容区，通过 AJAX 进行替换 -->
 			<div id="lbsContent" class="tab-content" style="margin-top: 20px;">
