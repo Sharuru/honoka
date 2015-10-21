@@ -1,3 +1,6 @@
+/**
+ * LBS 应用 Controller
+ */
 package com.honoka.web.controller;
 
 import java.util.ArrayList;
@@ -166,6 +169,7 @@ public class LBSApplController {
 		} else {
 			avgDistStr = Double.toString(avgDist) + " 米";
 		}
+		// 返回 Json
 		response.setContentType("text/json");
 		response.setCharacterEncoding("UTF-8");
 		Gson gson = new Gson();
@@ -183,7 +187,7 @@ public class LBSApplController {
 	@RequestMapping(value = "/reqCalcGeoFencing", method = RequestMethod.POST)
 	public String reqCalcGeoFencing(ModelMap model, String reqRange) {
 		System.out.println("In req calc geo fencing");
-		//参数设置
+		// 参数设置
 		Map<String, Object> pageParaMap = new HashMap<String, Object>();
 		System.out.println("Get reqRange = " + reqRange);
 		// TODO：数据库表要重新设计，线路 ID
@@ -202,7 +206,6 @@ public class LBSApplController {
 			// 对应站点 ID 获取 POINT 信息
 			for (int j = 0; j < metroStationIdList.size(); j++) {
 				// System.out.println("Getting station point for: " +
-				// metroStationIdList.get(j).getStaId());
 				POINT stationPoint = pointService.selectPointInfoByKeyId(metroStationIdList.get(j).getStaId());
 				// 开始计算比对
 				for (int k = 0; k < staffPointList.size(); k++) {
@@ -225,15 +228,16 @@ public class LBSApplController {
 		}
 		System.out.println("Calculate finished");
 		for (int i = 0; i < fencingResultList.size(); i++) {
-			System.out.println(fencingResultList.get(i).getLineName() + " || " + fencingResultList.get(i).getStaffId() 
-					+ " || " +fencingResultList.get(i).getStaffName() + " || " +fencingResultList.get(i).getStaName());
+			System.out.println(
+					fencingResultList.get(i).getLineName() + " || " + fencingResultList.get(i).getStaffId() + " || "
+							+ fencingResultList.get(i).getStaffName() + " || " + fencingResultList.get(i).getStaName());
 		}
 		pageParaMap.put("fencingResultList", fencingResultList);
 		model.addAttribute("pageParaMap", pageParaMap);
 		return "lbsAppl/geoFencing";
-		// return null;
 	}
 
+	// 两点距离计算
 	public double getDistance(double lng1, double lat1, double lng2, double lat2) {
 		double a, b, R;
 		R = 6378137; // 地球半径
@@ -249,11 +253,17 @@ public class LBSApplController {
 		return d;
 	}
 
+	// 站点围栏 POJO
 	public static class fencingResult {
+		// 员工工号
 		private String staffId;
+		// 员工姓名
 		private String staffName;
+		// 线路名
 		private String lineName;
+		// 站点名
 		private String staName;
+		// 距离
 		private String dist;
 
 		public String getStaffId() {

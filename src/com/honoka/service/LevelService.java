@@ -6,5 +6,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface LevelService {
-	Map<String,String> getLevelMap();
+
+	/**
+	 * 获取 LevelMap。
+	 *
+	 * @return level map
+	 */
+	Map<String, String> getLevelMap();
 }

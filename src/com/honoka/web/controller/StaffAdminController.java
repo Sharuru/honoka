@@ -1,3 +1,6 @@
+/**
+ * 员工数据管理 Controller
+ */
 package com.honoka.web.controller;
 
 import java.util.HashMap;
@@ -37,7 +40,7 @@ public class StaffAdminController {
 	// 员工数据管理画面
 	@RequestMapping(value = "/staffAdmin&reqPage={reqPage}", method = RequestMethod.GET)
 	public String staffAdminRouter(ModelMap model, @PathVariable Integer reqPage) {
-		System.out.println("In //staffAdmin&reqPage=" + reqPage);
+		System.out.println("In /staffAdmin&reqPage=" + reqPage);
 		// 参数设置
 		Map<String, Object> pageParaMap = new HashMap<String, Object>();
 		System.out.println("currPage = " + reqPage);
@@ -103,6 +106,7 @@ public class StaffAdminController {
 			String staffDeptId, String staffLevelId, String staffTel, String staffAddr, String staffPointLng,
 			String staffPointLat) {
 		System.out.println("In /reqAddStaffInfo");
+		// TODO：这段代码有点事儿逼
 		Staff staff = new Staff();
 		staff.setStaffId(staffId);
 		staff.setStaffName(staffName);

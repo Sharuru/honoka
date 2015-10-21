@@ -8,8 +8,11 @@
 	</resultMap>
 	
 	<select id="getLevelMap" resultMap="LevelResultMap">
-		SELECT "LEVEL_ID", "LEVEL_NAME"
-		FROM "LEVEL_INFO"
+		SELECT 
+			"LEVEL_ID", 
+			"LEVEL_NAME"
+		FROM 
+			"LEVEL_INFO"
 		ORDER BY "RECORD_ID" ASC
 	</select>
 </mapper>

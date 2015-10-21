@@ -1,3 +1,6 @@
+/**
+ * 测试用 POJO
+ */
 package com.honoka.entity;
 
 public class TestExample {

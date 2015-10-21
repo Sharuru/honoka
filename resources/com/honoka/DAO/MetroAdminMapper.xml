@@ -8,14 +8,20 @@
 		<result column="STA_NAME" property="staName" jdbcType="INTEGER" />
 	</resultMap>
 	<select id="countMetroInfo" resultType="java.lang.Integer">
-		SELECT COUNT (*)
+		SELECT 
+			COUNT (*)
 		FROM
-		"METRO_INFO"
+			"METRO_INFO"
 	</select>
 
 	<select id="selectMetroInfoByPage" resultMap="MetroResultMap" parameterType="java.lang.Integer">
-		SELECT "RECORD_ID", "LINE_NAME", "STA_ID", "STA_NAME"
-		FROM "METRO_INFO"
+		SELECT
+			"RECORD_ID", 
+			"LINE_NAME", 
+			"STA_ID", 
+			"STA_NAME"
+		FROM 
+			"METRO_INFO"
 		ORDER BY "LINE_NAME" ASC
 		<!-- 这里也要设置 -->
 		LIMIT 20
@@ -23,8 +29,13 @@
 	</select>
 
 	<insert id="insertMetroInfo" parameterType="map">
-		INSERT INTO "METRO_INFO" ("LINE_NAME", "STA_ID", "STA_NAME")
-		VALUES (#{lineName,jdbcType=VARCHAR},#{staId,jdbcType=VARCHAR},#{staName,jdbcType=VARCHAR})
+		INSERT INTO 
+			"METRO_INFO" ("LINE_NAME", "STA_ID", "STA_NAME")
+		VALUES (
+			#{lineName,jdbcType=VARCHAR},
+			#{staId,jdbcType=VARCHAR},
+			#{staName,jdbcType=VARCHAR}
+		)
 	</insert>
 	
 	<select id="initMetroInfo">
@@ -32,20 +43,28 @@
 	</select>
 	
 	<select id="getMetroLineNameList" resultMap="MetroResultMap">
-		SELECT DISTINCT "LINE_NAME" 
-		FROM "METRO_INFO"
+		SELECT
+			DISTINCT "LINE_NAME" 
+		FROM 
+			"METRO_INFO"
 	</select>
 	
 	<select id="getMetroStationIdByLineName" resultMap="MetroResultMap">
-		SELECT "STA_ID" 
-		FROM "METRO_INFO" 
-		WHERE "LINE_NAME" = #{lineName,jdbcType=VARCHAR}
+		SELECT 
+			"STA_ID" 
+		FROM 
+			"METRO_INFO" 
+		WHERE
+			"LINE_NAME" = #{lineName,jdbcType=VARCHAR}
 	</select>
 	
 	<select id="getMetroStationNameByStationId"  resultType="java.lang.String">
-		SELECT "STA_NAME" 
-		FROM "METRO_INFO" 
-		WHERE "STA_ID" = #{staId,jdbcType=VARCHAR}
+		SELECT 
+			"STA_NAME" 
+		FROM 
+			"METRO_INFO" 
+		WHERE 
+			"STA_ID" = #{staId,jdbcType=VARCHAR}
 		LIMIT 1
 	</select>
 </mapper>

@@ -8,8 +8,11 @@
 	</resultMap>
 	
 	<select id="getDeptmarmentMap" resultMap="DepartmentResultMap">
-		SELECT "DEPT_ID", "DEPT_NAME"
-		FROM "DEPT_INFO"
+		SELECT 
+			"DEPT_ID", 
+			"DEPT_NAME"
+		FROM 
+			"DEPT_INFO"
 		ORDER BY "RECORD_ID" ASC
 	</select>
 </mapper>

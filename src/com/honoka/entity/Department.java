@@ -1,8 +1,14 @@
+/**
+ * DEPT_INFO 表 POJO
+ */
 package com.honoka.entity;
 
 public class Department {
+	// 记录 ID
 	private Integer recordId;
+	// 部门 ID
 	private String deptId;
+	// 部门名字
 	private String deptName;
 
 	public Integer getRecordId() {

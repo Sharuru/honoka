@@ -1,16 +1,3 @@
-/**
-  * BaiduAPIService.java
-  *
-  * 分類　　：Honoka-com.honoka.service
-  * 名称　　：
-  * 説明　　：
-  * 備考　　：
-  * 作成　　：[日付] 2015/10/09 [氏名] 顧張融
-  * 履歴：
-  * [NO]  [日付]　        [Ver]　    [更新者]　         [内容]
-  *  1   2015/10/09  V1      MBP)顧張融       初版。
-  * Copyright (C) 2016, MBP All Rights Reserved.
-  */
 package com.honoka.service;
 
 import org.springframework.stereotype.Service;
@@ -26,12 +13,25 @@ public interface BaiduAPIService {
 	 *
 	 * @param reqAddr
 	 *            请求解析的地址
-	 * @return the baidu json geocoding 返回 JSON 对象
+	 * @return 返回 JSON 对象
 	 * @throws Exception
-	 *             the exception
+	 *             异常
 	 */
 	public BaiduJsonGeocoding BaiduGeoCoding(String reqAddr) throws Exception;
 
+	/**
+	 * 百度 API 位置搜索。
+	 *
+	 * @param reqKeyWord
+	 *            搜索关键字
+	 * @param pageNum
+	 *            要求页码
+	 * @param reqReqion
+	 *            搜索区域
+	 * @return 返回 JSON 对象
+	 * @throws Exception
+	 *             异常
+	 */
 	public BaiduJsonPlace BaiduPlace(String reqKeyWord, Integer pageNum, String reqReqion) throws Exception;
 
 }

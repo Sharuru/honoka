@@ -6,6 +6,9 @@
 		<result column="record_content" property="recordContent" jdbcType="VARCHAR"/>	
 	</resultMap>
 	<select id="selectTestExample" resultMap="testResultMap" parameterType="com.honoka.entity.TestExample">
-		select * from test	
+		SELECT
+			*
+		FROM 
+			TEST
 	</select>
 </mapper>

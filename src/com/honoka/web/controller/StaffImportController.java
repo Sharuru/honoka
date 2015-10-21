@@ -1,7 +1,9 @@
+/**
+ * 员工数据批量导入 Controller
+ */
 package com.honoka.web.controller;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +21,10 @@ public class StaffImportController {
 		// TODO：保存文件路径
 		File file = new File("D:/pending.xls");
 		multipartFile.transferTo(file);
-
+		// 本地读取
+		// 解析文件
+		// 转换成对应 POJO
+		// Service
 		return "Uploaded: " + multipartFile.getSize() + " bytes";
 	}
 }

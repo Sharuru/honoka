@@ -6,7 +6,7 @@ import java.net.URL;
 
 public class APIUtil {
 
-	// 发起 Http 请求并捕获返回的 Json
+	// 发起 Http 请求并捕获返回内容
 	public static String readUrl(String urlString) throws Exception {
 		BufferedReader reader = null;
 		try {
