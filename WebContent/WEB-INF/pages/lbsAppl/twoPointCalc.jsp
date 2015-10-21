@@ -10,7 +10,7 @@
 	$(document).ready(function() {
 		// 延迟加载以给 DOM 元素切换属性的处理时间
 		setTimeout(function(){initBaiduMap(1);},200);
-		//绑定搜索事件
+		// 绑定搜索事件
 		$('#btnReqPlaceSearch').on('click', function () {
 			var map = initBaiduMap(-1);
 			var local = new BMap.LocalSearch(map, {
@@ -20,17 +20,16 @@
 						selectFirstResult: false},
 						pageCapacity: 6
 				});
-			//设置回调函数
+			// 设置回调函数
 			local.setInfoHtmlSetCallback(function(poi){
 				postPoint(poi.point.lng, poi.point.lat);
 				});
 			local.setSearchCompleteCallback(function(poi){
-				//调整结果面板样式
+				// 调整结果面板样式
 				setTimeout(function(){
 					$("#placeSearchResult").children().css("border","");
 					$("#placeSearchResult").children().children().children()[1].remove();
 				},0);
-
 			});
 			local.search(document.getElementById("inputPlaceSearch").value.trim());
 		});
@@ -137,7 +136,7 @@
 					        <button class="btn btn-default" type="button" id="btnReqPlaceSearch">检索</button>
 					      </span>
 					    </div>
-					  <div class="panel-body" id="placeSearchResult" style="margin-left:-5%;width:109%;height:625px;"> </div>
+					  	<div class="panel-body" id="placeSearchResult" style="margin-left:-5%;width:109%;height:625px;"> </div>
 					  </div>
 					</div>
 				</div>

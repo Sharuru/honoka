@@ -12,21 +12,23 @@
 <script type="text/javascript">
 	var staffInfoUpdateConfirm = false;
 	$(document).ready(function() {
-		//监听解析按钮 class，asbtn 为不存在的样式 
+		// 监听解析按钮 class，asbtn 为不存在的样式 
 		$('.asbtn').click(function(event) {
 			reqGeoCodingByInput();
 		});
 		$('#btnReqAddStaffInfo').on('click', function () {
 			if(staffInfoUpdateConfirm){
+				// 更改按钮状态
 			    var $btn = $(this).button('loading')
 			    reqAddStaffInfo();
 			}
 			else{
+				// 二次确认保存
 				document.getElementById("btnReqAddStaffInfo").innerText = "确定保存";
 				staffInfoUpdateConfirm = true;
 			}
 		});	
-		//延迟加载百度地图以刷新 DOM
+		// 延迟加载百度地图以刷新 DOM
 		setTimeout(function(){initStaffDetailBaiduMap();},200);
 	});
 	// 员工信息详情地图实例初始化
@@ -35,12 +37,10 @@
 		var map = new BMap.Map("AddStaffMapContent",{enableMapClick:false}); 
 		// 默认设定记录坐标点 
 		var orgPoint = new BMap.Point(0,0);
-	    //var orgPoint = new BMap.Point(121.538487,31.223365);
 		// 设定覆盖物
 	    var orgMarker = new BMap.Marker(orgPoint);
 	    map.addOverlay(orgMarker);
 	    orgMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
-	    //orgMarker.enableDragging();
 		// 设定地图左上角比例尺和平移控件
 	    var topLeftControl = new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT});
 		var topLeftNavigation = new BMap.NavigationControl();
@@ -64,7 +64,6 @@
 				var newMarker = new BMap.Marker(point);
 				map.addOverlay(newMarker);
 				newMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
-				//newMarker.enableDragging();
 				var topLeftControl = new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT});
 				var topLeftNavigation = new BMap.NavigationControl();
 				map.addControl(topLeftControl);        
@@ -72,7 +71,7 @@
 				map.centerAndZoom(point, 16);
 			    map.enableScrollWheelZoom();   
 			    map.enableContinuousZoom();
-			    //回写界面信息
+			    // 回写界面信息
 			    document.getElementById("inputStallPoint").value = " " + point.lng + "," + point.lat;
 			}else{
 				alert("选择的地址没有解析到结果!");
@@ -98,7 +97,6 @@
 				$('#addStaffInfoModal').modal('hide');
 				// 成功后返回第一页，理论上应该停留在当前页
 				setTimeout(function(){loadStaffListContent(1);},200);
-				//loadStaffListContent(1);
 			}
 		});
 	}
@@ -113,7 +111,6 @@
 				$('#staffInfoModal').modal('hide');
 				// 成功后返回第一页，理论上应该停留在当前页
 				setTimeout(function(){loadStaffListContent(1);},200);
-				//loadStaffListContent(1);
 			}
 		});
 	}
@@ -123,8 +120,7 @@
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 				<h4 class="modal-title" id="myModalLabel">
@@ -135,62 +131,62 @@
 	 			<div class="container-fluid">
 	              <div class="row">
 	                <div class="col-xs-8 col-sm-6">
-	                  <div class="input-group">
-					<span class="input-group-addon" >员工工号</span> <input id="inputStaffId" 
-						type="text" class="form-control">
-				</div>
-				<div class="input-group">
-					<span class="input-group-addon" >员工姓名</span> <input id="inputStaffName" 
-						type="text" class="form-control" placeholder="员工姓名">
-				</div>
-				<div class="input-group">
-					<span class="input-group-addon" id="inputCom">所属公司</span>
-						<div class="form-group">
-						  <select class="form-control" id="selectCom">
-							<c:forEach items="${pageParaMap.comMap}" var="map"
-								varStatus="id" begin="0">
-								<option value="${map.key}">${map.value}</option>
-							</c:forEach>
-						  </select>
+						<div class="input-group">
+							<span class="input-group-addon" >员工工号</span> 
+							<input id="inputStaffId" type="text" class="form-control">
 						</div>
-				</div>
-				<div class="input-group">
-					<span class="input-group-addon" id="inputDept">所属部门</span>
-						<div class="form-group">
-						  <select class="form-control" id="selectDept">
-							<c:forEach items="${pageParaMap.deptMap}" var="map"
-								varStatus="id" begin="0">
-								<option value="${map.key}">${map.value}</option>
-							</c:forEach>
-						  </select>
+						<div class="input-group">
+							<span class="input-group-addon" >员工姓名</span> 
+							<input id="inputStaffName" type="text" class="form-control" placeholder="员工姓名">
 						</div>
-				</div>
-				<div class="input-group">
-					<span class="input-group-addon" id="inputLevel">员工职称</span>
-					<div class="form-group">
-						  <select class="form-control" id="selectLevel">
-							<c:forEach items="${pageParaMap.levelMap}" var="map"
-								varStatus="id" begin="0">
-								<option value="${map.key}">${map.value}</option>
-							</c:forEach>
-						  </select>
-					</div>
-				</div>
-				<div class="input-group">
-					<span class="input-group-addon" >联系电话</span> <input id="inputStaffTel" 
-						type="text" class="form-control" placeholder="联系电话">
-				</div>
-				<div class="input-group">
-					<span class="input-group-addon" >家庭住址</span> <input id="inputStaffAddr" 
-						type="text" class="form-control" placeholder="家庭住址"><span
-				class="input-group-btn">
-				<button class="btn btn-default asbtn" type="button" id="btnReqGeoCoding">解析</button>
-			</span>
-				</div>
-				<div class="input-group">
-					<span class="input-group-addon" >解析坐标</span> <input
-						type="text" class="form-control" disable placeholder="请单击解析按钮" id="inputStallPoint" >
-				</div>
+						<div class="input-group">
+							<span class="input-group-addon" id="inputCom">所属公司</span>
+							<div class="form-group">
+							  <select class="form-control" id="selectCom">
+								<c:forEach items="${pageParaMap.comMap}" var="map"
+									varStatus="id" begin="0">
+									<option value="${map.key}">${map.value}</option>
+								</c:forEach>
+							  </select>
+							</div>
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon" id="inputDept">所属部门</span>
+							<div class="form-group">
+							  <select class="form-control" id="selectDept">
+								<c:forEach items="${pageParaMap.deptMap}" var="map"
+									varStatus="id" begin="0">
+									<option value="${map.key}">${map.value}</option>
+								</c:forEach>
+							  </select>
+							</div>
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon" id="inputLevel">员工职称</span>
+							<div class="form-group">
+							  <select class="form-control" id="selectLevel">
+								<c:forEach items="${pageParaMap.levelMap}" var="map"
+									varStatus="id" begin="0">
+									<option value="${map.key}">${map.value}</option>
+								</c:forEach>
+							  </select>
+							</div>
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon" >联系电话</span>
+							<input id="inputStaffTel" type="text" class="form-control" placeholder="联系电话">
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon" >家庭住址</span>
+							<input id="inputStaffAddr" type="text" class="form-control" placeholder="家庭住址">
+							<span class="input-group-btn">
+								<button class="btn btn-default asbtn" type="button" id="btnReqGeoCoding">解析</button>
+							</span>
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon" >解析坐标</span> <input
+								type="text" class="form-control" disable placeholder="请单击解析按钮" id="inputStallPoint" >
+						</div>
 	                </div>
 	                <div class="col-xs-4 col-sm-6">
 	                  <div id="AddStaffMapContent" style="height: 272px"></div>

@@ -17,7 +17,7 @@
 <link href="resources/css/bootstrap.min.css" rel="stylesheet">
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=${pageParaMap.baiduAPIKey }"></script>
 <script type="text/javascript">
-	//绑定导航栏点击事件
+	//绑定主导航栏点击事件
 	$(document).ready(function() {
 		$("#mainNav").click(function(event) {
 			loadContent(event.target.id);

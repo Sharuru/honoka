@@ -8,13 +8,13 @@
 <html>
 <head>
 <script type="text/javascript">
-	 //子功能加载后绑定事件
+	 // 模块加载后绑定事件
 	$(document).ready(function() {
-		//监听上传按钮
+		// 监听上传按钮
 		$('#btnUploadFile').click(function(event) {
 		 var formData = new FormData();
 	        formData.append('file', $('input[type=file]')[0].files[0]);
-	        console.log("form data " + formData);
+	        // POST 数据
 	        $.ajax({
 	            url : 'uploadStaffFile',
 	            data : formData,
@@ -30,34 +30,6 @@
 	        });
 		});
 	});
-	/*//AJAX 获取子页面的内容
-	function loadStaffListContent(dest) {
-		$.ajax({
-			type : "GET",
-			url : "staffAdmin&reqPage=" + dest,
-			success : function(data) {
-				$("#staffListDiv").html(data);
-			}
-		});
-	}
-	function loadStaffDetailInfo(staffId){ 
-		$.ajax({
-			type : "GET",
-			url: "staffDetail&reqStaffId=" + staffId,
-			success : function(data) {
-				$("#staffInfoModal").html(data);
-			}
-		});
-	}
-	function loadAddStaffModal(){
-		$.ajax({
-			type : "GET",
-			url : "addStaffInfo",
-			success : function(data) {
-				$("#addStaffInfoModal").html(data);
-			}
-		});
-	} */
 </script>
 </head>
 <body>

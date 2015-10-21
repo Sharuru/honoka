@@ -8,7 +8,7 @@
 <html>
 <head>
 <script type="text/javascript">
-	//子功能加载后绑定点击事件
+	// 子功能加载后绑定点击事件
 	$(document).ready(function() {
 		$("#metroPageNav").click(function(event) {
 			loadMetroListContent(event.target.id);
@@ -18,7 +18,7 @@
 		    reqRefreshMetroInfo();
 		})
 	});
-	//AJAX 获取子页面的内容
+	// AJAX 获取子页面的内容
 	function loadMetroListContent(dest) {
 		$.ajax({
 			type : "GET",
@@ -126,5 +126,6 @@
 				</script>
 			</div>
 		</div>
+	</div>
 </body>
 </html>
