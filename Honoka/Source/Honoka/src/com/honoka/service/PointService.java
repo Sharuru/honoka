@@ -20,4 +20,6 @@ public interface PointService {
 	void trimMetroPointData();
 	
 	void updatePointInfoByKeyId(POINT point);
+	
+	void deletePointInfoByKeyId(String keyId);
 }

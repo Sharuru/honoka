@@ -25,7 +25,7 @@ public class PointServiceImpl implements PointService {
 
 	@Override
 	public void initMetroPoint() {
-		pointMapper.initMetroPoint();		
+		pointMapper.initMetroPoint();
 	}
 
 	@Override
@@ -41,12 +41,17 @@ public class PointServiceImpl implements PointService {
 	@Override
 	public void trimMetroPointData() {
 		pointMapper.trimMetroPointData();
-		
+
 	}
 
 	@Override
 	public void updatePointInfoByKeyId(POINT point) {
 		pointMapper.updatePointInfoByKeyId(point);
+	}
+
+	@Override
+	public void deletePointInfoByKeyId(String keyId) {
+		pointMapper.deletePointInfoByKeyId(keyId);
 	}
 
 }

@@ -150,6 +150,7 @@ public class StaffAdminController {
 	public String ReqDeleteStaffInfoRouter(ModelMap model, String staffId) {
 		System.out.println("In /reqDeleteStaffInfo");
 		staffAdminService.deleteStaffInfoByStaffId(staffId);
+		pointService.deletePointInfoByKeyId(staffId);
 		return "staffAdmin/staffMain";
 	}
 }
