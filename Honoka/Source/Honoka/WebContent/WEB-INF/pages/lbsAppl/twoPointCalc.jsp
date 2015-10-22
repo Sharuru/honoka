@@ -12,8 +12,8 @@
 		setTimeout(function(){initBaiduMap(1);},200);
 		// 绑定搜索事件
 		$('#btnReqPlaceSearch').on('click', function () {
-			var map = initBaiduMap(-1);
-			var local = new BMap.LocalSearch(map, {
+			//var map = initBaiduMap(-1);
+			/* var local = new BMap.LocalSearch(map, {
 					renderOptions: {
 						map: map, 
 						panel: "placeSearchResult",
@@ -31,7 +31,7 @@
 					$("#placeSearchResult").children().children().children()[1].remove();
 				},0);
 			});
-			local.search(document.getElementById("inputPlaceSearch").value.trim());
+			local.search(document.getElementById("inputPlaceSearch").value.trim()); */
 			// 二阶段：将前端 API 调用转移至后台
 			reqPOIList(document.getElementById("inputPlaceSearch").value.trim(),1);
 		});
@@ -45,8 +45,9 @@
 				reqKeyword : reqKeyword
 			},
 			success : function(returnData) {
-				alert(returnData);
+				//alert(returnData);
 				//document.getElementById("avgDist").innerText = "系统所有员工至目标点的平均直线距离为：" + returnData;
+				$("#placeSearchResult").html(returnData);
 			}
 		});
 	}
@@ -152,7 +153,7 @@
 					        <button class="btn btn-default" type="button" id="btnReqPlaceSearch">检索</button>
 					      </span>
 					    </div>
-					  	<div class="panel-body" id="placeSearchResult" style="margin-left:-5%;width:109%;height:625px;"> </div>
+					  	<div class="panel-body" id="placeSearchResult" style="margin-left:-3.5%;width:107%;height:625px;"> </div>
 					  </div>
 					</div>
 				</div>

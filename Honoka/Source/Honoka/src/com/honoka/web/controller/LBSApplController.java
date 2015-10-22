@@ -156,7 +156,7 @@ public class LBSApplController {
 		System.out.println("currPage = " + reqPage);
 		System.out.println("reqKeyword = " + reqKeyword);
 		try {
-			BaiduJsonPlace bdPlaceReqResult = baiduAPIService.BaiduPlace(reqKeyword, reqPage - 1, "上海市");
+			BaiduJsonPlace bdPlaceReqResult = baiduAPIService.BaiduPlace(reqKeyword, 5, reqPage - 1, "上海市");
 			for (int i = 0; i < bdPlaceReqResult.getResults().size(); i++) {
 				POISearchResult poiSr = new POISearchResult();
 				poiSr.setPoiName(bdPlaceReqResult.getResults().get(i).getName());
@@ -180,7 +180,7 @@ public class LBSApplController {
 		// metroAdminService.selectMetroInfoByPage(reqPage);
 		// pageParaMap.put("metroInfoList", metroList);
 		model.addAttribute("pageParaMap", pageParaMap);
-		return "lbsAppl/twoPointCalc";
+		return "lbsAppl/poiList";
 	}
 
 	// 请求两点计算

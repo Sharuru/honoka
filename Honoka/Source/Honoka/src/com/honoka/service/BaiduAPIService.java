@@ -38,6 +38,8 @@ public interface BaiduAPIService {
 	 *
 	 * @param reqKeyWord
 	 *            搜索关键字
+	 * @param pageSize
+	 *            页面尺寸
 	 * @param pageNum
 	 *            要求页码
 	 * @param reqReqion
@@ -46,7 +48,8 @@ public interface BaiduAPIService {
 	 * @throws Exception
 	 *             异常
 	 */
-	public BaiduJsonPlace BaiduPlace(String reqKeyWord, Integer pageNum, String reqReqion) throws Exception;
+	public BaiduJsonPlace BaiduPlace(String reqKeyWord, Integer pageSize, Integer pageNum, String reqReqion)
+			throws Exception;
 
 	/**
 	 * 百度 Direction 驾车线路。
