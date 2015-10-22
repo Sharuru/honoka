@@ -36,7 +36,7 @@
 </script>
 </head>
 <body role="document">
-	<div class="container theme-showcase" role="main">
+	<div class="container theme-showcase" style="width:95%" role="main">
 		<div style="margin-top: 20px;" class="jumbotron">
 			<h1>
 				<b>PROJECT HONOKA</b>

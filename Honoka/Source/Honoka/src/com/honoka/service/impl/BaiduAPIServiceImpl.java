@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 import com.honoka.service.APIKeyService;
 import com.honoka.service.BaiduAPIService;
 import com.honoka.common.APIUtil;
+import com.honoka.entity.BaiduJson.BaiduJsonDirectionDriving;
 import com.honoka.entity.BaiduJson.BaiduJsonGeocoding;
 import com.honoka.entity.BaiduJson.BaiduJsonPlace;
 
@@ -45,5 +46,11 @@ public class BaiduAPIServiceImpl implements BaiduAPIService {
 		Gson gson = new Gson();
 		BaiduJsonPlace bdJson = gson.fromJson(json, BaiduJsonPlace.class);
 		return bdJson;
+	}
+
+	@Override
+	public BaiduJsonDirectionDriving BaiduDirectionDriving(String reqKeyword) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

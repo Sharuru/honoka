@@ -166,6 +166,8 @@ public class BaiduJson {
 		String address;
 		// 街道 ID
 		String street_id;
+		// 联系电话
+		String telephone;
 		// 详细级数
 		Integer detail;
 		// 记录 ID
@@ -201,6 +203,14 @@ public class BaiduJson {
 
 		public void setStreet_id(String street_id) {
 			this.street_id = street_id;
+		}
+
+		public String getTelephone() {
+			return telephone;
+		}
+
+		public void setTelephone(String telephone) {
+			this.telephone = telephone;
 		}
 
 		public Integer getDetail() {
@@ -242,6 +252,102 @@ public class BaiduJson {
 
 		public void setLng(float lng) {
 			this.lng = lng;
+		}
+
+	}
+
+	// Direction API POJO
+	public static class BaiduJsonDirectionDriving {
+		// 状态码
+		Integer stauts;
+		// 状态码对应信息
+		String message;
+		// 返回数据类型
+		Integer type;
+		// 版权信息
+		String info;
+		// 返回的结果
+		BaiduDirectionDrivingResult result;
+
+		public Integer getStauts() {
+			return stauts;
+		}
+
+		public void setStauts(Integer stauts) {
+			this.stauts = stauts;
+		}
+
+		public String getMessage() {
+			return message;
+		}
+
+		public void setMessage(String message) {
+			this.message = message;
+		}
+
+		public Integer getType() {
+			return type;
+		}
+
+		public void setType(Integer type) {
+			this.type = type;
+		}
+
+		public String getInfo() {
+			return info;
+		}
+
+		public void setInfo(String info) {
+			this.info = info;
+		}
+
+		public BaiduDirectionDrivingResult getResult() {
+			return result;
+		}
+
+		public void setResult(BaiduDirectionDrivingResult result) {
+			this.result = result;
+		}
+
+	}
+
+	// Direction API 返回的结果
+	public static class BaiduDirectionDrivingResult {
+		// 路径
+		BaiduDirectionDrivingRoutes[] routes;
+		// 其余元素暂缓
+
+		public BaiduDirectionDrivingRoutes[] getRoutes() {
+			return routes;
+		}
+
+		public void setRoutes(BaiduDirectionDrivingRoutes[] routes) {
+			this.routes = routes;
+		}
+
+	}
+
+	// 路径详情
+	public static class BaiduDirectionDrivingRoutes {
+		// 方案距离
+		Integer distance;
+		// 线路耗时
+		Integer duration;
+
+		public Integer getDistance() {
+			return distance;
+		}
+
+		public void setDistance(Integer distance) {
+			this.distance = distance;
+		}
+
+		public Integer getDuration() {
+			return duration;
+		}
+
+		public void setDuration(Integer duration) {
+			this.duration = duration;
 		}
 
 	}
