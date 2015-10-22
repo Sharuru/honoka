@@ -16,12 +16,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.google.gson.Gson;
 import com.honoka.entity.AmapJson.AmapJsonGeocoding;
 import com.honoka.entity.BaiduJson.BaiduJsonGeocoding;
+import com.honoka.entity.BaiduJson.BaiduJsonPlace;
 import com.honoka.entity.Metro;
 import com.honoka.entity.POINT;
 import com.honoka.service.APIKeyService;
@@ -46,7 +48,7 @@ public class LBSApplController {
 	private MetroAdminService metroAdminService;
 	@Resource
 	private StaffAdminService staffAdminService;
-	private BaiduJsonGeocoding bdReqResult;
+	private BaiduJsonGeocoding bdGeoReqResult;
 	private AmapJsonGeocoding apReqResult;
 
 	// 地址解析初始画面
@@ -75,7 +77,7 @@ public class LBSApplController {
 			// 百度 API 调用
 			public void run() {
 				try {
-					bdReqResult = baiduAPIService.BaiduGeoCoding(reqAddr);
+					bdGeoReqResult = baiduAPIService.BaiduGeoCoding(reqAddr);
 				} catch (Exception e) {
 					System.out.println("Error happened when calling baiduAPI");
 				}
@@ -103,14 +105,14 @@ public class LBSApplController {
 		// 参数设置
 		Map<String, Object> pageParaMap = new HashMap<String, Object>();
 		// 百度通道
-		if (bdReqResult != null) {
-			if (bdReqResult.getStatus() == 0) {
+		if (bdGeoReqResult != null) {
+			if (bdGeoReqResult.getStatus() == 0) {
 				pageParaMap.put("bdGeocodingResult",
-						"百度解析结果：" + bdReqResult.getResult().getLocation().getLng().toString() + ","
-								+ bdReqResult.getResult().getLocation().getLat().toString());
+						"百度解析结果：" + bdGeoReqResult.getResult().getLocation().getLng().toString() + ","
+								+ bdGeoReqResult.getResult().getLocation().getLat().toString());
 				pageParaMap.put("bdReqStatus", "success");
 			} else {
-				pageParaMap.put("bdGeocodingResult", "百度解析结果：" + bdReqResult.getMsg());
+				pageParaMap.put("bdGeocodingResult", "百度解析结果：" + bdGeoReqResult.getMsg());
 				pageParaMap.put("bdReqStatus", "danger");
 			}
 		} else {
@@ -140,6 +142,43 @@ public class LBSApplController {
 		Map<String, Object> pageParaMap = new HashMap<String, Object>();
 		pageParaMap.put("bdAPIKey", apiKeyService.selectUsableAPIKeyByProvider("BAIDU"));
 		pageParaMap.put("calcResult", "等待点选");
+		model.addAttribute("pageParaMap", pageParaMap);
+		return "lbsAppl/twoPointCalc";
+	}
+
+	// POI 检索请求
+	@RequestMapping(value = "/reqPOIList&reqPage={reqPage}", method = RequestMethod.POST)
+	public String reqPOIListRouter(ModelMap model, @PathVariable Integer reqPage, String reqKeyword) {
+		System.out.println("In /reqPOIListt&reqPage= " + reqPage);
+		// 参数设置
+		List<POISearchResult> POISearchResultList = new ArrayList<POISearchResult>();
+		Map<String, Object> pageParaMap = new HashMap<String, Object>();
+		System.out.println("currPage = " + reqPage);
+		System.out.println("reqKeyword = " + reqKeyword);
+		try {
+			BaiduJsonPlace bdPlaceReqResult = baiduAPIService.BaiduPlace(reqKeyword, reqPage - 1, "上海市");
+			for (int i = 0; i < bdPlaceReqResult.getResults().size(); i++) {
+				POISearchResult poiSr = new POISearchResult();
+				poiSr.setPoiName(bdPlaceReqResult.getResults().get(i).getName());
+				poiSr.setPoiAddr(bdPlaceReqResult.getResults().get(i).getAddress());
+				poiSr.setPoiTelephone(bdPlaceReqResult.getResults().get(i).getTelephone());
+				poiSr.setBaiduRecordLng(bdPlaceReqResult.getResults().get(i).getLocation().getLng());
+				poiSr.setBaiduRecordLat(bdPlaceReqResult.getResults().get(i).getLocation().getLat());
+				POISearchResultList.add(poiSr);
+//				System.out.println(bdPlaceReqResult.getResults().get(i).getName()
+//						+ bdPlaceReqResult.getResults().get(i).getAddress()
+//						+ bdPlaceReqResult.getResults().get(i).getTelephone());
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		pageParaMap.put("poiSearchList", POISearchResultList);
+		// pageParaMap.put("currPage", reqPage);
+		// pageParaMap.put("totalCount", metroAdminService.countMetroInfo());
+		// List<Metro> metroList =
+		// metroAdminService.selectMetroInfoByPage(reqPage);
+		// pageParaMap.put("metroInfoList", metroList);
 		model.addAttribute("pageParaMap", pageParaMap);
 		return "lbsAppl/twoPointCalc";
 	}
@@ -253,6 +292,7 @@ public class LBSApplController {
 		return d;
 	}
 
+	// TODO：CLEAN
 	// 站点围栏 POJO
 	public static class fencingResult {
 		// 员工工号
@@ -304,6 +344,61 @@ public class LBSApplController {
 
 		public void setDist(String dist) {
 			this.dist = dist;
+		}
+
+	}
+
+	// POI 检索 POJO
+	public static class POISearchResult {
+		// 兴趣点名字
+		private String poiName;
+		// 兴趣点地址
+		private String poiAddr;
+		// 兴趣点联系电话
+		private String poiTelephone;
+		// 兴趣点百度记录纬度
+		private float baiduRecordLng;
+		// 兴趣点百度记录经度
+		private float baiduRecordLat;
+
+		public String getPoiName() {
+			return poiName;
+		}
+
+		public void setPoiName(String poiName) {
+			this.poiName = poiName;
+		}
+
+		public String getPoiAddr() {
+			return poiAddr;
+		}
+
+		public void setPoiAddr(String poiAddr) {
+			this.poiAddr = poiAddr;
+		}
+
+		public String getPoiTelephone() {
+			return poiTelephone;
+		}
+
+		public void setPoiTelephone(String poiTelephone) {
+			this.poiTelephone = poiTelephone;
+		}
+
+		public Float getBaiduRecordLng() {
+			return baiduRecordLng;
+		}
+
+		public void setBaiduRecordLng(Float baiduRecordLng) {
+			this.baiduRecordLng = baiduRecordLng;
+		}
+
+		public Float getBaiduRecordLat() {
+			return baiduRecordLat;
+		}
+
+		public void setBaiduRecordLat(Float baiduRecordLat) {
+			this.baiduRecordLat = baiduRecordLat;
 		}
 
 	}

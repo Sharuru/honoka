@@ -32,9 +32,25 @@
 				},0);
 			});
 			local.search(document.getElementById("inputPlaceSearch").value.trim());
+			// 二阶段：将前端 API 调用转移至后台
+			reqPOIList(document.getElementById("inputPlaceSearch").value.trim(),1);
 		});
 	});
-	// 提交计算请求
+	// 提交 POI 检索请求
+	function reqPOIList(reqKeyword, reqPage){
+		$.ajax({
+			type : "POST",
+			url : "reqPOIList&reqPage=" + reqPage,
+			data : {
+				reqKeyword : reqKeyword
+			},
+			success : function(returnData) {
+				alert(returnData);
+				//document.getElementById("avgDist").innerText = "系统所有员工至目标点的平均直线距离为：" + returnData;
+			}
+		});
+	}
+	// 提交距离计算请求
 	function postPoint(destPointLng, destPointLat) {
 		$.ajax({
 			type : "POST",
