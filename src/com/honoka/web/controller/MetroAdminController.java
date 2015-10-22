@@ -53,7 +53,7 @@ public class MetroAdminController {
 	public String mainRouter() {
 		System.out.println("In /reqRefreshMetroInfo");
 		try {
-			BaiduJsonPlace bdReqResult = baiduAPIService.BaiduPlace("地铁站", 0, "上海市");
+			BaiduJsonPlace bdReqResult = baiduAPIService.BaiduPlace("地铁站", 20, 0, "上海市");
 			// TODO：这里的结果处理要优化
 			// 如果获得解析结果
 			if (bdReqResult.getStatus() == 0) {
@@ -63,7 +63,7 @@ public class MetroAdminController {
 				Integer staIdCount = 0;
 				// 循环发起请求获取结果，20 为 pageNum
 				for (int i = 0; i < bdReqResult.getTotal() / 20; i++) {
-					bdReqResult = baiduAPIService.BaiduPlace("地铁站", i, "上海市");
+					bdReqResult = baiduAPIService.BaiduPlace("地铁站", 20, i, "上海市");
 					// 写入数据库
 					for (int j = 0; j < bdReqResult.getResults().size(); j++) {
 						String[] lineNameSplit = bdReqResult.getResults().get(j).getAddress().split(";");

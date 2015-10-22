@@ -37,11 +37,11 @@ public class BaiduAPIServiceImpl implements BaiduAPIService {
 	}
 
 	@Override
-	public BaiduJsonPlace BaiduPlace(String reqKeyWord, Integer pageNum, String reqRegion) throws Exception {
+	public BaiduJsonPlace BaiduPlace(String reqKeyWord, Integer pageSize, Integer pageNum, String reqRegion) throws Exception {
 		String json = null;
 		json = APIUtil.readUrl(
 				"http://api.map.baidu.com/place/v2/search?ak=" + apiKeyService.selectUsableAPIKeyByProvider("BAIDU")
-						+ "&output=json&query=" + URLEncoder.encode(reqKeyWord, "UTF-8") + "&page_size=20&page_num="
+						+ "&output=json&query=" + URLEncoder.encode(reqKeyWord, "UTF-8") + "&page_size=" + pageSize + "&page_num="
 						+ pageNum + "&scope=1&region=" + URLEncoder.encode(reqRegion, "UTF-8"));
 		Gson gson = new Gson();
 		BaiduJsonPlace bdJson = gson.fromJson(json, BaiduJsonPlace.class);
