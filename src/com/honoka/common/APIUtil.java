@@ -1,28 +1,21 @@
 package com.honoka.common;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.InputStream;
 import java.net.URL;
+import java.net.URLConnection;
+
+import org.apache.commons.io.IOUtils;
 
 public class APIUtil {
 
 	// 发起 Http 请求并捕获返回内容
 	public static String readUrl(String urlString) throws Exception {
-		BufferedReader reader = null;
-		try {
-			URL url = new URL(urlString);
-			reader = new BufferedReader(new InputStreamReader(url.openStream()));
-			StringBuffer buffer = new StringBuffer();
-			int read;
-			char[] chars = new char[1024];
-			while ((read = reader.read(chars)) != -1) {
-				buffer.append(chars, 0, read);
-			}
-			return buffer.toString();
-		} finally {
-			if (reader != null) {
-				reader.close();
-			}
-		}
+		URL url = new URL(urlString);
+		URLConnection con = url.openConnection();
+		InputStream in = con.getInputStream();
+		String encoding = con.getContentEncoding();
+		encoding = encoding == null ? "UTF-8" : encoding;
+		String body = IOUtils.toString(in, encoding);
+		return body;
 	}
 }
