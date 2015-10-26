@@ -259,22 +259,22 @@ public class BaiduJson {
 	// Direction API POJO
 	public static class BaiduJsonDirectionDriving {
 		// 状态码
-		Integer stauts;
+		Integer status;
 		// 状态码对应信息
 		String message;
 		// 返回数据类型
 		Integer type;
 		// 版权信息
-		String info;
+		//String info;
 		// 返回的结果
 		BaiduDirectionDrivingResult result;
 
-		public Integer getStauts() {
-			return stauts;
+		public Integer getStatus() {
+			return status;
 		}
 
-		public void setStauts(Integer stauts) {
-			this.stauts = stauts;
+		public void setStatus(Integer status) {
+			this.status = status;
 		}
 
 		public String getMessage() {
@@ -293,13 +293,13 @@ public class BaiduJson {
 			this.type = type;
 		}
 
-		public String getInfo() {
+/*		//public String getInfo() {
 			return info;
 		}
 
-		public void setInfo(String info) {
+		//public void setInfo(String info) {
 			this.info = info;
-		}
+		}*/
 
 		public BaiduDirectionDrivingResult getResult() {
 			return result;

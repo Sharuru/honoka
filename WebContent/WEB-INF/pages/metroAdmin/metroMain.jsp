@@ -79,6 +79,12 @@
 						</c:if>
 						<%-- 循环设置页码 --%>
 						<c:choose>
+                            <%-- 当页面总数小于 11 --%>
+                            <c:when test="${pageParaMap.totalCount/20 + 1 le 11}">
+                                <c:forEach var="pageNum" begin="1" end="${pageParaMap.totalCount/20 + 1}">
+                                    <li id="metroPageNav${pageNum}"><a href="#" id="${pageNum}">${pageNum}</a></li>
+                                </c:forEach>
+                            </c:when>
 							<%-- 当页面总数大于 11 并且当前页面大于 6 --%>
 							<c:when test="${pageParaMap.totalCount/20 + 1 gt 11 and pageParaMap.currPage gt 6}">
 								<c:choose>
@@ -95,12 +101,6 @@
 										</c:forEach>
 									</c:otherwise>
 								</c:choose>
-							</c:when>
-							<%-- 当页面总数小于 11 --%>
-							<c:when test="${pageParaMap.totalCount/20 + 1 lt 11}">
-								<c:forEach var="pageNum" begin="1" end="${pageParaMap.totalCount/20 + 1}">
-									<li id="metroPageNav${pageNum}"><a href="#" id="${pageNum}">${pageNum}</a></li>
-								</c:forEach>
 							</c:when>
 							<%-- 总页数大于 11 当前页小于 6 --%>
 							<c:otherwise>
