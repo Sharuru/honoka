@@ -49,4 +49,6 @@ public interface BaiduAPIService {
      * @return 返回 JSON 对象
      */
     public BaiduJson.BaiduJsonDirectionDriving BaiduDirectionDriving(String oLat, String oLng, String dLat, String dLng, String origin_region, String destination_region) throws Exception;
+
+    public BaiduJson.BaiduJsonDirectionTransit BaiduDirectionTransit(String oLat, String oLng, String dLat, String dLng, String origin_region, String destination_region) throws Exception;
 }

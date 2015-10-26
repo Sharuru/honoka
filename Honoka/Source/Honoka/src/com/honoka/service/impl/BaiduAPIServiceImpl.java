@@ -6,6 +6,7 @@ package com.honoka.service.impl;
 import com.google.gson.Gson;
 import com.honoka.common.APIUtil;
 import com.honoka.entity.BaiduJson.BaiduJsonDirectionDriving;
+import com.honoka.entity.BaiduJson.BaiduJsonDirectionTransit;
 import com.honoka.entity.BaiduJson.BaiduJsonGeocoding;
 import com.honoka.entity.BaiduJson.BaiduJsonPlace;
 import com.honoka.service.APIKeyService;
@@ -55,9 +56,21 @@ public class BaiduAPIServiceImpl implements BaiduAPIService {
         json = APIUtil.readUrl(
                 "http://api.map.baidu.com/direction/v1?mode=driving&origin=" + oLat + "," + oLng + "&destination=" + dLat + "," + dLng + "&origin_region=" + origin_region + "&destination_region="
                         + destination_region + "&output=json&ak=" + apiKeyService.selectUsableAPIKeyByProvider("BAIDU"));
-        System.out.println(json);
+        //System.out.println(json);
         Gson gson = new Gson();
         BaiduJsonDirectionDriving bdJson = gson.fromJson(json, BaiduJsonDirectionDriving.class);
+        return bdJson;
+    }
+
+    @Override
+    public BaiduJsonDirectionTransit BaiduDirectionTransit(String oLat, String oLng, String dLat, String dLng, String origin_region, String destination_region) throws Exception {
+        String json = null;
+        json = APIUtil.readUrl(
+                "http://api.map.baidu.com/direction/v1?mode=transit&origin=" + oLat + "," + oLng + "&destination=" + dLat + "," + dLng + "&origin_region=" + origin_region + "&destination_region="
+                        + destination_region + "&output=json&ak=" + apiKeyService.selectUsableAPIKeyByProvider("BAIDU"));
+        System.out.println(json);
+        Gson gson = new Gson();
+        BaiduJsonDirectionTransit bdJson = gson.fromJson(json, BaiduJsonDirectionTransit.class);
         return bdJson;
     }
 }
