@@ -68,7 +68,7 @@ public class BaiduAPIServiceImpl implements BaiduAPIService {
         json = APIUtil.readUrl(
                 "http://api.map.baidu.com/direction/v1?mode=transit&origin=" + oLat + "," + oLng + "&destination=" + dLat + "," + dLng + "&origin_region=" + origin_region + "&destination_region="
                         + destination_region + "&output=json&ak=" + apiKeyService.selectUsableAPIKeyByProvider("BAIDU"));
-        System.out.println(json);
+        //System.out.println(json);
         Gson gson = new Gson();
         BaiduJsonDirectionTransit bdJson = gson.fromJson(json, BaiduJsonDirectionTransit.class);
         return bdJson;

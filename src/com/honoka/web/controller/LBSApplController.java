@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.geom.Arc2D;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -151,6 +152,8 @@ public class LBSApplController {
             // 设置总记录条数
             System.out.println("Get total is: " + bdPlaceReqResult.getTotal());
             pageParaMap.put("totalCount", bdPlaceReqResult.getTotal());
+            // 获取员工坐标点信息
+            List<POINT> staffPointList = pointService.selectAllStaffPointInfo();
             // 基本兴趣点信息计算
             for (int i = 0; i < bdPlaceReqResult.getResults().size(); i++) {
                 POISearchResult poiSr = new POISearchResult();
@@ -159,27 +162,33 @@ public class LBSApplController {
                 poiSr.setPoiTelephone(bdPlaceReqResult.getResults().get(i).getTelephone());
                 poiSr.setBaiduRecordLng(bdPlaceReqResult.getResults().get(i).getLocation().getLng());
                 poiSr.setBaiduRecordLat(bdPlaceReqResult.getResults().get(i).getLocation().getLat());
+                Double t1 = 0.0, t2 = 0.0, t3 = 0.0;
                 // 计算距离
-                // 直线距离
-                poiSr.setLineDistance(Double.toString(Math.round(getDistance(121.538487, 31.223365, poiSr.getBaiduRecordLng(), poiSr.getBaiduRecordLat())) * 100.0 / 100.0) + " 米");
-                // 自驾距离
-                BaiduJson.BaiduJsonDirectionDriving bdDD = baiduAPIService.BaiduDirectionDriving(Double.toString(31.223365), Double.toString(121.538487), poiSr.getBaiduRecordLat().toString(), poiSr.getBaiduRecordLng().toString(), "上海", "上海");
-                System.out.println("Driving Distance:" + bdDD.getResult().getRoutes()[0].getDistance() + " Driving Duration:" + bdDD.getResult().getRoutes()[0].getDuration());
-                poiSr.setDrivingDistance(Trimmer.distance(Double.parseDouble(String.valueOf(bdDD.getResult().getRoutes()[0].getDistance()))));
-                poiSr.setDrivingDuration(bdDD.getResult().getRoutes()[0].getDuration() + "秒");
-
-                // 公交距离
-                try{
-                    BaiduJson.BaiduJsonDirectionTransit bdDT = baiduAPIService.BaiduDirectionTransit(Double.toString(31.223365), Double.toString(121.538487), poiSr.getBaiduRecordLat().toString(), poiSr.getBaiduRecordLng().toString(), "上海", "上海");
-                    System.out.println("Transit Distance:" + bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance() + " Transit Duration:" + bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration());
-                    poiSr.setTransitDistance(Trimmer.distance(Double.parseDouble(String.valueOf(bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance()))));
-                    poiSr.setTransitDuration(bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration() + "秒");
+                for (int j = 0; j < staffPointList.size(); j++) {
+                    t1 += getDistance(staffPointList.get(j).getBaiduRecordLng(), staffPointList.get(j).getBaiduRecordLat(), poiSr.getBaiduRecordLng(), poiSr.getBaiduRecordLat());
+                    // 直线距离
+                    //poiSr.setLineDistance(Double.toString(Math.round(getDistance(staffPointList.get(j).getBaiduRecordLng(), staffPointList.get(j).getBaiduRecordLat(), poiSr.getBaiduRecordLng(), poiSr.getBaiduRecordLat())) * 100.0 / 100.0) + " 米");
+                    // 自驾距离
+                    BaiduJson.BaiduJsonDirectionDriving bdDD = baiduAPIService.BaiduDirectionDriving(Double.toString(staffPointList.get(j).getBaiduRecordLat()), Double.toString(staffPointList.get(j).getBaiduRecordLng()), poiSr.getBaiduRecordLat().toString(), poiSr.getBaiduRecordLng().toString(), "上海", "上海");
+                    //System.out.println("Driving Distance:" + bdDD.getResult().getRoutes()[0].getDistance() + " Driving Duration:" + bdDD.getResult().getRoutes()[0].getDuration());
+                    t2 += bdDD.getResult().getRoutes()[0].getDistance();
+                    //poiSr.setDrivingDistance(Trimmer.distance(Double.parseDouble(String.valueOf(bdDD.getResult().getRoutes()[0].getDistance()))));
+                    //poiSr.setDrivingDuration(bdDD.getResult().getRoutes()[0].getDuration() + "秒");
+                    // 公交距离
+                    try {
+                        BaiduJson.BaiduJsonDirectionTransit bdDT = baiduAPIService.BaiduDirectionTransit(Double.toString(staffPointList.get(j).getBaiduRecordLat()), Double.toString(staffPointList.get(j).getBaiduRecordLng()), poiSr.getBaiduRecordLat().toString(), poiSr.getBaiduRecordLng().toString(), "上海", "上海");
+                        //System.out.println("Transit Distance:" + bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance() + " Transit Duration:" + bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration());
+                        t3 += bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance();
+                        //poiSr.setTransitDistance(Trimmer.distance(Double.parseDouble(String.valueOf(bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance()))));
+                        //poiSr.setTransitDuration(bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration() + "秒");
+                    } catch (Exception e) {
+                        poiSr.setTransitDistance("无匹配交通");
+                        poiSr.setTransitDuration("无时间记录");
+                    }
                 }
-                catch (Exception e){
-                    poiSr.setTransitDistance("无匹配交通");
-                    poiSr.setTransitDuration("无时间记录");
-                }
-
+                poiSr.setLineDistance(Double.toString(t1/staffPointList.size()));
+                poiSr.setDrivingDistance(Double.toString(t2/staffPointList.size()));
+                poiSr.setTransitDistance(Double.toString(t3/staffPointList.size()));
                 POISearchResultList.add(poiSr);
             }
         } catch (Exception e) {

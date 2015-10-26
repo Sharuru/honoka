@@ -18,7 +18,9 @@ public class APIKeyServiceImpl implements APIKeyService {
 
 	@Override
 	public String selectUsableAPIKeyByProvider(String provider) {
-		return apiKeyMapper.selectUsableAPIKeyByProvider(provider);
+		//TODO：缓存 key
+        return "CqTmA6FQhjfbDQl2dQMLIBnu";
+		//return apiKeyMapper.selectUsableAPIKeyByProvider(provider);
 	}
 
 	@Override
