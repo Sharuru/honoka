@@ -14,7 +14,7 @@
 			loadMetroListContent(event.target.id);
 		});
 		$('#btnReqRefreshMetroInfo').on('click', function () {
-		    var $btn = $(this).button('loading')
+            $('#btnReqRefreshMetroInfo').button('loading');
 		    reqRefreshMetroInfo();
 		})
 	});
