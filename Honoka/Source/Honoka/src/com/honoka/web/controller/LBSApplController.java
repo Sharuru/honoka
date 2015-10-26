@@ -166,39 +166,53 @@ public class LBSApplController {
                 final Integer[] drivingDurationAverage = {0};
                 final Double[] transitDistanceAverage = {0.0};
                 final Integer[] transitDurationAverage = {0};
+                // 新建并发线程池
                 ExecutorService threadPool = Executors.newCachedThreadPool();
                 // 计算距离
                 for (int j = 0; j < staffPointList.size(); j++) {
-                    // 新建并发线程池
                     final int finalJ = j;
                     threadPool.execute(() -> {
-                        //System.out.println("Executing sub " + finalJ);
-                        // 直线距离
-                        lineDistanceAverage[0] += getDistance(staffPointList.get(finalJ).getBaiduRecordLng(), staffPointList.get(finalJ).getBaiduRecordLat(), poiSr.getBaiduRecordLng(), poiSr.getBaiduRecordLat());
-                        // 自驾距离
-                        BaiduJson.BaiduJsonDirectionDriving bdDD = null;
+                        // 新建子并发线程池
+                        ExecutorService subThreadPool = Executors.newCachedThreadPool();
+                        subThreadPool.execute(() -> {
+                            // 直线距离
+                            lineDistanceAverage[0] += getDistance(staffPointList.get(finalJ).getBaiduRecordLng(), staffPointList.get(finalJ).getBaiduRecordLat(), poiSr.getBaiduRecordLng(), poiSr.getBaiduRecordLat());
+                        });
+                        subThreadPool.execute(() -> {
+                            // 自驾距离
+                            BaiduJson.BaiduJsonDirectionDriving bdDD = null;
+                            try {
+                                bdDD = baiduAPIService.BaiduDirectionDriving(Double.toString(staffPointList.get(finalJ).getBaiduRecordLat()), Double.toString(staffPointList.get(finalJ).getBaiduRecordLng()), poiSr.getBaiduRecordLat().toString(), poiSr.getBaiduRecordLng().toString(), "上海", "上海");
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            if (bdDD.getResult().getRoutes() != null) {
+                                drivingDistanceAverage[0] += bdDD.getResult().getRoutes()[0].getDistance();
+                                drivingDurationAverage[0] += bdDD.getResult().getRoutes()[0].getDuration();
+                            }
+                        });
+                        subThreadPool.execute(() -> {
+                            // 公交距离
+                            BaiduJson.BaiduJsonDirectionTransit bdDT = null;
+                            try {
+                                bdDT = baiduAPIService.BaiduDirectionTransit(Double.toString(staffPointList.get(finalJ).getBaiduRecordLat()), Double.toString(staffPointList.get(finalJ).getBaiduRecordLng()), poiSr.getBaiduRecordLat().toString(), poiSr.getBaiduRecordLng().toString(), "上海", "上海");
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            //System.out.println("Transit Distance:" + bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance() + " Transit Duration:" + bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration());
+                            if (bdDT.getResult().getRoutes() != null) {
+                                transitDistanceAverage[0] += bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance();
+                                transitDurationAverage[0] += bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration();
+                            }
+                        });
+                        subThreadPool.shutdown();
                         try {
-                            bdDD = baiduAPIService.BaiduDirectionDriving(Double.toString(staffPointList.get(finalJ).getBaiduRecordLat()), Double.toString(staffPointList.get(finalJ).getBaiduRecordLng()), poiSr.getBaiduRecordLat().toString(), poiSr.getBaiduRecordLng().toString(), "上海", "上海");
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        if (bdDD.getResult().getRoutes() != null) {
-                            drivingDistanceAverage[0] += bdDD.getResult().getRoutes()[0].getDistance();
-                            drivingDurationAverage[0] += bdDD.getResult().getRoutes()[0].getDuration();
+                            // 超时时间为 5 秒
+                            subThreadPool.awaitTermination(5, TimeUnit.SECONDS);
+                        } catch (InterruptedException e) {
+                            System.out.println("Error happened when await sub Termination");
                         }
                         //System.out.println("Driving Distance:" + bdDD.getResult().getRoutes()[0].getDistance() + " Driving Duration:" + bdDD.getResult().getRoutes()[0].getDuration());
-                        // 公交距离
-                        BaiduJson.BaiduJsonDirectionTransit bdDT = null;
-                        try {
-                            bdDT = baiduAPIService.BaiduDirectionTransit(Double.toString(staffPointList.get(finalJ).getBaiduRecordLat()), Double.toString(staffPointList.get(finalJ).getBaiduRecordLng()), poiSr.getBaiduRecordLat().toString(), poiSr.getBaiduRecordLng().toString(), "上海", "上海");
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        //System.out.println("Transit Distance:" + bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance() + " Transit Duration:" + bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration());
-                        if (bdDT.getResult().getRoutes() != null) {
-                            transitDistanceAverage[0] += bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance();
-                            transitDurationAverage[0] += bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration();
-                        }
                     });
                 }
                 threadPool.shutdown();
