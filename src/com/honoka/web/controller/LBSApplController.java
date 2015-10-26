@@ -6,7 +6,6 @@ package com.honoka.web.controller;
 import com.google.gson.Gson;
 import com.honoka.common.Trimmer;
 import com.honoka.entity.AmapJson.AmapJsonGeocoding;
-import com.honoka.entity.BaiduJson;
 import com.honoka.entity.BaiduJson.BaiduJsonGeocoding;
 import com.honoka.entity.BaiduJson.BaiduJsonPlace;
 import com.honoka.entity.Metro;
@@ -178,33 +177,33 @@ public class LBSApplController {
                             // 直线距离
                             lineDistanceAverage[0] += getDistance(staffPointList.get(finalJ).getBaiduRecordLng(), staffPointList.get(finalJ).getBaiduRecordLat(), poiSr.getBaiduRecordLng(), poiSr.getBaiduRecordLat());
                         });
-                        subThreadPool.execute(() -> {
-                            // 自驾距离
-                            BaiduJson.BaiduJsonDirectionDriving bdDD = null;
-                            try {
-                                bdDD = baiduAPIService.BaiduDirectionDriving(Double.toString(staffPointList.get(finalJ).getBaiduRecordLat()), Double.toString(staffPointList.get(finalJ).getBaiduRecordLng()), poiSr.getBaiduRecordLat().toString(), poiSr.getBaiduRecordLng().toString(), "上海", "上海");
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                            if (bdDD.getResult() != null) {
-                                drivingDistanceAverage[0] += bdDD.getResult().getRoutes()[0].getDistance();
-                                drivingDurationAverage[0] += bdDD.getResult().getRoutes()[0].getDuration();
-                            }
-                        });
-                        subThreadPool.execute(() -> {
-                            // 公交距离
-                            BaiduJson.BaiduJsonDirectionTransit bdDT = null;
-                            try {
-                                bdDT = baiduAPIService.BaiduDirectionTransit(Double.toString(staffPointList.get(finalJ).getBaiduRecordLat()), Double.toString(staffPointList.get(finalJ).getBaiduRecordLng()), poiSr.getBaiduRecordLat().toString(), poiSr.getBaiduRecordLng().toString(), "上海", "上海");
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                            //System.out.println("Transit Distance:" + bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance() + " Transit Duration:" + bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration());
-                            if (bdDT.getResult() != null) {
-                                transitDistanceAverage[0] += bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance();
-                                transitDurationAverage[0] += bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration();
-                            }
-                        });
+//                        subThreadPool.execute(() -> {
+//                            // 自驾距离
+//                            BaiduJson.BaiduJsonDirectionDriving bdDD = null;
+//                            try {
+//                                bdDD = baiduAPIService.BaiduDirectionDriving(Double.toString(staffPointList.get(finalJ).getBaiduRecordLat()), Double.toString(staffPointList.get(finalJ).getBaiduRecordLng()), poiSr.getBaiduRecordLat().toString(), poiSr.getBaiduRecordLng().toString(), "上海", "上海");
+//                            } catch (Exception e) {
+//                                e.printStackTrace();
+//                            }
+//                            if (bdDD.getResult() != null) {
+//                                drivingDistanceAverage[0] += bdDD.getResult().getRoutes()[0].getDistance();
+//                                drivingDurationAverage[0] += bdDD.getResult().getRoutes()[0].getDuration();
+//                            }
+//                        });
+//                        subThreadPool.execute(() -> {
+//                            // 公交距离
+//                            BaiduJson.BaiduJsonDirectionTransit bdDT = null;
+//                            try {
+//                                bdDT = baiduAPIService.BaiduDirectionTransit(Double.toString(staffPointList.get(finalJ).getBaiduRecordLat()), Double.toString(staffPointList.get(finalJ).getBaiduRecordLng()), poiSr.getBaiduRecordLat().toString(), poiSr.getBaiduRecordLng().toString(), "上海", "上海");
+//                            } catch (Exception e) {
+//                                e.printStackTrace();
+//                            }
+//                            //System.out.println("Transit Distance:" + bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance() + " Transit Duration:" + bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration());
+//                            if (bdDT.getResult() != null) {
+//                                transitDistanceAverage[0] += bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance();
+//                                transitDurationAverage[0] += bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration();
+//                            }
+//                        });
                         subThreadPool.shutdown();
                         try {
                             // 超时时间为 5 秒
