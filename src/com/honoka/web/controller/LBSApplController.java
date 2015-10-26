@@ -161,20 +161,20 @@ public class LBSApplController {
                 poiSr.setPoiTelephone(bdPlaceReqResult.getResults().get(i).getTelephone());
                 poiSr.setBaiduRecordLng(bdPlaceReqResult.getResults().get(i).getLocation().getLng());
                 poiSr.setBaiduRecordLat(bdPlaceReqResult.getResults().get(i).getLocation().getLat());
-                final Double[] t1 = {0.0};
-                final Double[] t2 = {0.0};
-                final Double[] t3 = {0.0};
+                final Double[] lineDistanceAverage = {0.0};
+                final Double[] drivingDistanceAverage = {0.0};
+                final Integer[] drivingDurationAverage = {0};
+                final Double[] transitDistanceAverage = {0.0};
+                final Integer[] transitDurationAverage = {0};
                 ExecutorService threadPool = Executors.newCachedThreadPool();
                 // 计算距离
                 for (int j = 0; j < staffPointList.size(); j++) {
                     // 新建并发线程池
                     final int finalJ = j;
                     threadPool.execute(() -> {
-                        System.out.println("Executing sub " + finalJ);
-                        t1[0] += getDistance(staffPointList.get(finalJ).getBaiduRecordLng(), staffPointList.get(finalJ).getBaiduRecordLat(), poiSr.getBaiduRecordLng(), poiSr.getBaiduRecordLat());
-                        System.out.println("Line distance: " + getDistance(staffPointList.get(finalJ).getBaiduRecordLng(), staffPointList.get(finalJ).getBaiduRecordLat(), poiSr.getBaiduRecordLng(), poiSr.getBaiduRecordLat()));
+                        //System.out.println("Executing sub " + finalJ);
                         // 直线距离
-                        poiSr.setLineDistance(Double.toString(Math.round(getDistance(staffPointList.get(finalJ).getBaiduRecordLng(), staffPointList.get(finalJ).getBaiduRecordLat(), poiSr.getBaiduRecordLng(), poiSr.getBaiduRecordLat())) * 100.0 / 100.0) + " 米");
+                        lineDistanceAverage[0] += getDistance(staffPointList.get(finalJ).getBaiduRecordLng(), staffPointList.get(finalJ).getBaiduRecordLat(), poiSr.getBaiduRecordLng(), poiSr.getBaiduRecordLat());
                         // 自驾距离
                         BaiduJson.BaiduJsonDirectionDriving bdDD = null;
                         try {
@@ -182,20 +182,22 @@ public class LBSApplController {
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-                        System.out.println("Driving Distance:" + bdDD.getResult().getRoutes()[0].getDistance() + " Driving Duration:" + bdDD.getResult().getRoutes()[0].getDuration());
-                        t2[0] += bdDD.getResult().getRoutes()[0].getDistance();
-                        poiSr.setDrivingDistance(Trimmer.distance(Double.parseDouble(String.valueOf(bdDD.getResult().getRoutes()[0].getDistance()))));
-                        poiSr.setDrivingDuration(bdDD.getResult().getRoutes()[0].getDuration() + "秒");
+                        if (bdDD.getResult().getRoutes() != null) {
+                            drivingDistanceAverage[0] += bdDD.getResult().getRoutes()[0].getDistance();
+                            drivingDurationAverage[0] += bdDD.getResult().getRoutes()[0].getDuration();
+                        }
+                        //System.out.println("Driving Distance:" + bdDD.getResult().getRoutes()[0].getDistance() + " Driving Duration:" + bdDD.getResult().getRoutes()[0].getDuration());
                         // 公交距离
+                        BaiduJson.BaiduJsonDirectionTransit bdDT = null;
                         try {
-                            BaiduJson.BaiduJsonDirectionTransit bdDT = baiduAPIService.BaiduDirectionTransit(Double.toString(staffPointList.get(finalJ).getBaiduRecordLat()), Double.toString(staffPointList.get(finalJ).getBaiduRecordLng()), poiSr.getBaiduRecordLat().toString(), poiSr.getBaiduRecordLng().toString(), "上海", "上海");
-                            System.out.println("Transit Distance:" + bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance() + " Transit Duration:" + bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration());
-                            t3[0] += bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance();
-                            poiSr.setTransitDistance(Trimmer.distance(Double.parseDouble(String.valueOf(bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance()))));
-                            poiSr.setTransitDuration(bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration() + "秒");
+                            bdDT = baiduAPIService.BaiduDirectionTransit(Double.toString(staffPointList.get(finalJ).getBaiduRecordLat()), Double.toString(staffPointList.get(finalJ).getBaiduRecordLng()), poiSr.getBaiduRecordLat().toString(), poiSr.getBaiduRecordLng().toString(), "上海", "上海");
                         } catch (Exception e) {
-                            poiSr.setTransitDistance("无匹配交通");
-                            poiSr.setTransitDuration("无时间记录");
+                            e.printStackTrace();
+                        }
+                        //System.out.println("Transit Distance:" + bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance() + " Transit Duration:" + bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration());
+                        if (bdDT.getResult().getRoutes() != null) {
+                            transitDistanceAverage[0] += bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance();
+                            transitDurationAverage[0] += bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration();
                         }
                     });
                 }
@@ -207,9 +209,11 @@ public class LBSApplController {
                     System.out.println("Error happened when awaitTermination");
                 }
                 System.out.println("All sub-thread finished, starting main-thread");
-                poiSr.setLineDistance(Double.toString(t1[0] / staffPointList.size()));
-                poiSr.setDrivingDistance(Double.toString(t2[0] / staffPointList.size()));
-                poiSr.setTransitDistance(Double.toString(t3[0] / staffPointList.size()));
+                poiSr.setLineDistance(Trimmer.distance(lineDistanceAverage[0] / staffPointList.size()));
+                poiSr.setDrivingDistance(Trimmer.distance(drivingDistanceAverage[0] / staffPointList.size()));
+                poiSr.setDrivingDuration(Trimmer.time(drivingDurationAverage[0] / staffPointList.size()));
+                poiSr.setTransitDistance(Trimmer.distance(transitDistanceAverage[0] / staffPointList.size()));
+                poiSr.setTransitDuration(Trimmer.time(transitDurationAverage[0] / staffPointList.size()));
                 POISearchResultList.add(poiSr);
             }
         } catch (Exception e) {
@@ -308,6 +312,7 @@ public class LBSApplController {
     }
 
     // 两点距离计算
+
     public double getDistance(double lng1, double lat1, double lng2, double lat2) {
         double a, b, R;
         R = 6378137; // 地球半径
