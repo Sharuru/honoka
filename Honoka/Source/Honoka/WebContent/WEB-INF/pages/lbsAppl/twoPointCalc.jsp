@@ -153,14 +153,14 @@
 					        <button class="btn btn-default" type="button" id="btnReqPlaceSearch">检索</button>
 					      </span>
 					    </div>
-					  	<div class="panel-body" id="placeSearchResult" style="margin-left:-3.5%;width:107%;height:625px;"> </div>
+					  	<div class="panel-body" id="placeSearchResult" style="margin-left:-3.5%;width:107%;height:665px;"> </div>
 					  </div>
 					</div>
 				</div>
 				<div class="col-xs-8 col-sm-8">
 					<div class="panel panel-default">
 						<div class="panel-body">
-						 	<div id="mapContent" style="height: 660px"></div>
+						 	<div id="mapContent" style="height: 700px"></div>
 						</div>
 					</div>
 				</div>
