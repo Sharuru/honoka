@@ -38,6 +38,7 @@
 	});
 	// 提交 POI 检索请求
 	function reqPOIList(reqKeyword, reqPage){
+        $('#btnReqPlaceSearch').button('loading');
 		$.ajax({
 			type : "POST",
 			url : "reqPOIList&reqPage=" + reqPage,
@@ -47,7 +48,8 @@
 			success : function(returnData) {
 				//alert(returnData);
 				//document.getElementById("avgDist").innerText = "系统所有员工至目标点的平均直线距离为：" + returnData;
-				$("#placeSearchResult").html(returnData);
+                $('#btnReqPlaceSearch').button('reset');
+                $("#placeSearchResult").html(returnData);
 			}
 		});
 	}
@@ -150,7 +152,7 @@
 					    <div class="input-group">
 					      <input type="text" id="inputPlaceSearch" class="form-control" placeholder="请输入兴趣点关键字……">
 					      <span class="input-group-btn">
-					        <button class="btn btn-default" type="button" id="btnReqPlaceSearch">检索</button>
+					        <button class="btn btn-default" type="button" id="btnReqPlaceSearch" data-loading-text="正在检索……" autocomplete="off">检索</button>
 					      </span>
 					    </div>
 					  	<div class="panel-body" id="placeSearchResult" style="margin-left:-3.5%;width:107%;height:665px;"> </div>
