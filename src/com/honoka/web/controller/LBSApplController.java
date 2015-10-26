@@ -4,6 +4,7 @@
 package com.honoka.web.controller;
 
 import com.google.gson.Gson;
+import com.honoka.common.Trimmer;
 import com.honoka.entity.AmapJson.AmapJsonGeocoding;
 import com.honoka.entity.BaiduJson;
 import com.honoka.entity.BaiduJson.BaiduJsonGeocoding;
@@ -164,14 +165,14 @@ public class LBSApplController {
                 // 自驾距离
                 BaiduJson.BaiduJsonDirectionDriving bdDD = baiduAPIService.BaiduDirectionDriving(Double.toString(31.223365), Double.toString(121.538487), poiSr.getBaiduRecordLat().toString(), poiSr.getBaiduRecordLng().toString(), "上海", "上海");
                 System.out.println("Driving Distance:" + bdDD.getResult().getRoutes()[0].getDistance() + " Driving Duration:" + bdDD.getResult().getRoutes()[0].getDuration());
-                poiSr.setDrivingDistance(bdDD.getResult().getRoutes()[0].getDistance() + "米");
+                poiSr.setDrivingDistance(Trimmer.distance(Double.parseDouble(String.valueOf(bdDD.getResult().getRoutes()[0].getDistance()))));
                 poiSr.setDrivingDuration(bdDD.getResult().getRoutes()[0].getDuration() + "秒");
 
                 // 公交距离
                 try{
                     BaiduJson.BaiduJsonDirectionTransit bdDT = baiduAPIService.BaiduDirectionTransit(Double.toString(31.223365), Double.toString(121.538487), poiSr.getBaiduRecordLat().toString(), poiSr.getBaiduRecordLng().toString(), "上海", "上海");
                     System.out.println("Transit Distance:" + bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance() + " Transit Duration:" + bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration());
-                    poiSr.setTransitDistance(bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance() + "米");
+                    poiSr.setTransitDistance(Trimmer.distance(Double.parseDouble(String.valueOf(bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance()))));
                     poiSr.setTransitDuration(bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration() + "秒");
                 }
                 catch (Exception e){
@@ -207,15 +208,7 @@ public class LBSApplController {
         }
         // 保留两位小数
         Double avgDist = Math.round(totalDist / resPointList.size() * 100.0) / 100.0;
-        System.out.println("avgDist is: " + Double.toString(avgDist));
-        // 转换单位
-        String avgDistStr;
-        if (avgDist > 1000.0) {
-            // 转换成公里
-            avgDistStr = Double.toString(Math.round(avgDist / 1000 * 100.0) / 100.0) + " 公里";
-        } else {
-            avgDistStr = Double.toString(avgDist) + " 米";
-        }
+        String avgDistStr = Trimmer.distance(avgDist);
         // 返回 Json
         response.setContentType("text/json");
         response.setCharacterEncoding("UTF-8");
