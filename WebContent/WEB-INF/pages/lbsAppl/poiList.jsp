@@ -26,7 +26,7 @@
                             <p class="list-group-item-text" style="font-size: 15px">${currPOI.poiTelephone}</p>
                             <span class="list-group-item-text" style="font-size: 12px;">直线距离: ${currPOI.lineDistance}</span>
                             <span class="list-group-item-text" style="font-size: 12px;">自驾距离: ${currPOI.drivingDistance}（${currPOI.drivingDuration}）</span>
-                            <span class="list-group-item-text" style="font-size: 12px;">交通距离: 50.0 公里</span>
+                            <span class="list-group-item-text" style="font-size: 12px;">交通距离: ${currPOI.transitDistance}（${currPOI.transitDuration}）</span>
                       </a>
                     </div>
                     </c:forEach>

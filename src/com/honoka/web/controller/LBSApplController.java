@@ -159,11 +159,26 @@ public class LBSApplController {
                 poiSr.setBaiduRecordLng(bdPlaceReqResult.getResults().get(i).getLocation().getLng());
                 poiSr.setBaiduRecordLat(bdPlaceReqResult.getResults().get(i).getLocation().getLat());
                 // 计算距离
+                // 直线距离
+                poiSr.setLineDistance(Double.toString(Math.round(getDistance(121.538487, 31.223365, poiSr.getBaiduRecordLng(), poiSr.getBaiduRecordLat())) * 100.0 / 100.0) + " 米");
+                // 自驾距离
                 BaiduJson.BaiduJsonDirectionDriving bdDD = baiduAPIService.BaiduDirectionDriving(Double.toString(31.223365), Double.toString(121.538487), poiSr.getBaiduRecordLat().toString(), poiSr.getBaiduRecordLng().toString(), "上海", "上海");
                 System.out.println("Driving Distance:" + bdDD.getResult().getRoutes()[0].getDistance() + " Driving Duration:" + bdDD.getResult().getRoutes()[0].getDuration());
-                poiSr.setDrivingDistance( bdDD.getResult().getRoutes()[0].getDistance() + "米");
+                poiSr.setDrivingDistance(bdDD.getResult().getRoutes()[0].getDistance() + "米");
                 poiSr.setDrivingDuration(bdDD.getResult().getRoutes()[0].getDuration() + "秒");
-                poiSr.setLineDistance(Double.toString(Math.round(getDistance(121.538487, 31.223365,poiSr.getBaiduRecordLng(),  poiSr.getBaiduRecordLat())) * 100.0 / 100.0)+" 米");
+
+                // 公交距离
+                try{
+                    BaiduJson.BaiduJsonDirectionTransit bdDT = baiduAPIService.BaiduDirectionTransit(Double.toString(31.223365), Double.toString(121.538487), poiSr.getBaiduRecordLat().toString(), poiSr.getBaiduRecordLng().toString(), "上海", "上海");
+                    System.out.println("Transit Distance:" + bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance() + " Transit Duration:" + bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration());
+                    poiSr.setTransitDistance(bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance() + "米");
+                    poiSr.setTransitDuration(bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration() + "秒");
+                }
+                catch (Exception e){
+                    poiSr.setTransitDistance("无匹配交通");
+                    poiSr.setTransitDuration("无时间记录");
+                }
+
                 POISearchResultList.add(poiSr);
             }
         } catch (Exception e) {
@@ -357,6 +372,8 @@ public class LBSApplController {
         private String lineDistance;
         private String drivingDistance;
         private String drivingDuration;
+        private String transitDistance;
+        private String transitDuration;
 
         public String getPoiName() {
             return poiName;
@@ -420,6 +437,22 @@ public class LBSApplController {
 
         public void setDrivingDuration(String drivingDuration) {
             this.drivingDuration = drivingDuration;
+        }
+
+        public String getTransitDuration() {
+            return transitDuration;
+        }
+
+        public void setTransitDuration(String transitDuration) {
+            this.transitDuration = transitDuration;
+        }
+
+        public String getTransitDistance() {
+            return transitDistance;
+        }
+
+        public void setTransitDistance(String transitDistance) {
+            this.transitDistance = transitDistance;
         }
     }
 }
