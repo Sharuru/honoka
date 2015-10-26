@@ -70,7 +70,7 @@
 	// 地图实例初始化
 	function initBaiduMap(initType) {
 		// 创建 Map 实例
-		var map = new BMap.Map("mapContent"); 
+		var map = new BMap.Map("mapContent");
 		// 默认设定 MBP 上海的坐标点 
 	    var mbpShPoint = new BMap.Point(121.538487, 31.223365);
 		// 设定覆盖物
@@ -162,7 +162,7 @@
 				<div class="col-xs-8 col-sm-8">
 					<div class="panel panel-default">
 						<div class="panel-body">
-						 	<div id="mapContent" style="height: 700px"></div>
+						 	<div id="mapContent" style="height: 700px;"></div>
 						</div>
 					</div>
 				</div>

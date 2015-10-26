@@ -167,7 +167,7 @@ public class LBSApplController {
                 final Double[] transitDistanceAverage = {0.0};
                 final Integer[] transitDurationAverage = {0};
                 // 新建并发线程池
-                ExecutorService threadPool = Executors.newCachedThreadPool();
+                ExecutorService threadPool = Executors.newFixedThreadPool(50);
                 // 计算距离
                 for (int j = 0; j < staffPointList.size(); j++) {
                     final int finalJ = j;
@@ -186,7 +186,7 @@ public class LBSApplController {
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
-                            if (bdDD.getResult().getRoutes() != null) {
+                            if (bdDD.getResult() != null) {
                                 drivingDistanceAverage[0] += bdDD.getResult().getRoutes()[0].getDistance();
                                 drivingDurationAverage[0] += bdDD.getResult().getRoutes()[0].getDuration();
                             }
@@ -200,7 +200,7 @@ public class LBSApplController {
                                 e.printStackTrace();
                             }
                             //System.out.println("Transit Distance:" + bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance() + " Transit Duration:" + bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration());
-                            if (bdDT.getResult().getRoutes() != null) {
+                            if (bdDT.getResult() != null) {
                                 transitDistanceAverage[0] += bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance();
                                 transitDurationAverage[0] += bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration();
                             }
