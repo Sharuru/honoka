@@ -3,25 +3,24 @@
  */
 package com.honoka.DAO;
 
-import java.util.List;
-
+import com.honoka.entity.Metro;
 import org.apache.ibatis.annotations.Param;
 
-import com.honoka.entity.Metro;
+import java.util.List;
 
 public interface MetroAdminMapper {
-	Integer countMetroInfo();
+    Integer countMetroInfo();
 
-	List<Metro> selectMetroInfoByPage(Integer page);
+    List<Metro> selectMetroInfoByPage(Integer page);
 
-	void initMetroInfo();
+    void initMetroInfo();
 
-	void insertMetroInfo(@Param("lineName") String lineName, @Param("staId") String staId,
-			@Param("staName") String staName);
+    void insertMetroInfo(@Param("lineName") String lineName, @Param("staId") String staId,
+                         @Param("staName") String staName);
 
-	List<Metro> getMetroLineNameList();
+    List<Metro> getMetroLineNameList();
 
-	List<Metro> getMetroStationIdByLineName(String lineName);
+    List<Metro> getMetroStationIdByLineName(String lineName);
 
-	String getMetroStationNameByStationId(String staId);
+    String getMetroStationNameByStationId(String staId);
 }

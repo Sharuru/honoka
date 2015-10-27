@@ -2,6 +2,12 @@ package com.honoka.common;
 
 public class Trimmer {
 
+    /**
+     * 距离数据格式化
+     *
+     * @param meter 原始数据
+     * @return 格式化后数据
+     */
     public static String distance(Double meter) {
         String result;
         // 对结果保留两位小数
@@ -17,6 +23,12 @@ public class Trimmer {
         return result;
     }
 
+    /**
+     * 时间数据格式化
+     *
+     * @param second 原始数据
+     * @return 格式化后数据
+     */
     public static String time(Integer second) {
         String result;
         // 转换单位

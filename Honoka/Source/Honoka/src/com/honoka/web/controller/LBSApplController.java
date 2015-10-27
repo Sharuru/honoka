@@ -54,7 +54,7 @@ public class LBSApplController {
     public String geoCodingRouter(ModelMap model) {
         System.out.println("In /geoCoding");
         // 参数设置
-        Map<String, Object> pageParaMap = new HashMap<String, Object>();
+        Map<String, Object> pageParaMap = new HashMap<>();
         pageParaMap.put("reqAddr", "");
         pageParaMap.put("bdReqStatus", "info");
         pageParaMap.put("apReqStatus", "info");
@@ -131,7 +131,7 @@ public class LBSApplController {
     public String twoPointRouter(ModelMap model) {
         System.out.println("In /twoPointCalc");
         // 参数设置
-        Map<String, Object> pageParaMap = new HashMap<String, Object>();
+        Map<String, Object> pageParaMap = new HashMap<>();
         pageParaMap.put("bdAPIKey", apiKeyService.selectUsableAPIKeyByProvider("BAIDU"));
         pageParaMap.put("calcResult", "等待点选");
         model.addAttribute("pageParaMap", pageParaMap);
@@ -143,8 +143,8 @@ public class LBSApplController {
     public String reqPOIListRouter(ModelMap model, @PathVariable Integer reqPage, String reqKeyword) {
         System.out.println("In /reqPOIList&reqPage= " + reqPage);
         // 参数设置
-        List<POISearchResult> POISearchResultList = new ArrayList<POISearchResult>();
-        Map<String, Object> pageParaMap = new HashMap<String, Object>();
+        List<POISearchResult> POISearchResultList = new ArrayList<>();
+        Map<String, Object> pageParaMap = new HashMap<>();
         System.out.println("currPage = " + reqPage);
         System.out.println("reqKeyword = " + reqKeyword);
         try {
@@ -248,7 +248,7 @@ public class LBSApplController {
 
     // 请求两点计算
     @RequestMapping(value = "/reqTwoPointCalc", method = RequestMethod.POST)
-    public void reqTwoPointRouter(ModelMap model, String destPointLng, String destPointLat,
+    public void reqTwoPointRouter(String destPointLng, String destPointLat,
                                   HttpServletResponse response) throws Exception {
         System.out.println("In /reqTwoPointCalc");
         System.out.println("Get destPoint: " + destPointLng + "," + destPointLat);
@@ -256,9 +256,9 @@ public class LBSApplController {
         List<POINT> resPointList = pointService.selectAllStaffPointInfo();
         // 循环计算距离
         Double totalDist = 0.0;
-        for (int i = 0; i < resPointList.size(); i++) {
+        for (POINT aResPointList : resPointList) {
             totalDist += getDistance(Double.parseDouble(destPointLng), Double.parseDouble(destPointLat),
-                    resPointList.get(i).getBaiduRecordLng(), resPointList.get(i).getBaiduRecordLat());
+                    aResPointList.getBaiduRecordLng(), aResPointList.getBaiduRecordLat());
         }
         // 保留两位小数
         Double avgDist = Math.round(totalDist / resPointList.size() * 100.0) / 100.0;
@@ -272,7 +272,9 @@ public class LBSApplController {
 
     // 请求行程计算
     @RequestMapping(value = "/reqDirectionCalc", method = RequestMethod.POST)
-    public  @ResponseBody String[] reaDirectionRouter(String destPointLng, String destPointLat){
+    public
+    @ResponseBody
+    String[] reaDirectionRouter(String destPointLng, String destPointLat) {
         System.out.println("In /reqDirectionCalc");
         System.out.println("Get destPoint: " + destPointLng + "," + destPointLat);
         // 获取员工坐标点信息
@@ -289,33 +291,33 @@ public class LBSApplController {
             threadPool.execute(() -> {
                 // 新建子并发线程池
                 ExecutorService subThreadPool = Executors.newFixedThreadPool(2);
-                        subThreadPool.execute(() -> {
-                            // 自驾距离
-                            BaiduJson.BaiduJsonDirectionDriving bdDD = null;
-                            try {
-                                bdDD = baiduAPIService.BaiduDirectionDriving(Double.toString(staffPointList.get(finalJ).getBaiduRecordLat()), Double.toString(staffPointList.get(finalJ).getBaiduRecordLng()),destPointLat, destPointLng, "上海", "上海");
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                            if (bdDD.getResult() != null) {
-                                drivingDistanceAverage[0] += bdDD.getResult().getRoutes()[0].getDistance();
-                                drivingDurationAverage[0] += bdDD.getResult().getRoutes()[0].getDuration();
-                            }
-                        });
-                        subThreadPool.execute(() -> {
-                            // 公交距离
-                            BaiduJson.BaiduJsonDirectionTransit bdDT = null;
-                            try {
-                                bdDT = baiduAPIService.BaiduDirectionTransit(Double.toString(staffPointList.get(finalJ).getBaiduRecordLat()), Double.toString(staffPointList.get(finalJ).getBaiduRecordLng()), destPointLat, destPointLng, "上海", "上海");
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                            //System.out.println("Transit Distance:" + bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance() + " Transit Duration:" + bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration());
-                            if (bdDT.getResult() != null) {
-                                transitDistanceAverage[0] += bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance();
-                                transitDurationAverage[0] += bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration();
-                            }
-                        });
+                subThreadPool.execute(() -> {
+                    // 自驾距离
+                    BaiduJson.BaiduJsonDirectionDriving bdDD = null;
+                    try {
+                        bdDD = baiduAPIService.BaiduDirectionDriving(Double.toString(staffPointList.get(finalJ).getBaiduRecordLat()), Double.toString(staffPointList.get(finalJ).getBaiduRecordLng()), destPointLat, destPointLng, "上海", "上海");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    if (bdDD.getResult() != null) {
+                        drivingDistanceAverage[0] += bdDD.getResult().getRoutes()[0].getDistance();
+                        drivingDurationAverage[0] += bdDD.getResult().getRoutes()[0].getDuration();
+                    }
+                });
+                subThreadPool.execute(() -> {
+                    // 公交距离
+                    BaiduJson.BaiduJsonDirectionTransit bdDT = null;
+                    try {
+                        bdDT = baiduAPIService.BaiduDirectionTransit(Double.toString(staffPointList.get(finalJ).getBaiduRecordLat()), Double.toString(staffPointList.get(finalJ).getBaiduRecordLng()), destPointLat, destPointLng, "上海", "上海");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    //System.out.println("Transit Distance:" + bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance() + " Transit Duration:" + bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration());
+                    if (bdDT.getResult() != null) {
+                        transitDistanceAverage[0] += bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance();
+                        transitDurationAverage[0] += bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration();
+                    }
+                });
                 subThreadPool.shutdown();
                 try {
                     // 超时时间为 5 秒
@@ -349,7 +351,7 @@ public class LBSApplController {
 
     // 地理围栏初始画面
     @RequestMapping(value = "/geoFencing", method = RequestMethod.GET)
-    public String geoFencingRouter(ModelMap model) {
+    public String geoFencingRouter() {
         System.out.println("In geo fencing");
         return "lbsAppl/geoFencing";
     }
@@ -359,47 +361,49 @@ public class LBSApplController {
     public String reqCalcGeoFencing(ModelMap model, String reqRange) {
         System.out.println("In req calc geo fencing");
         // 参数设置
-        Map<String, Object> pageParaMap = new HashMap<String, Object>();
+        Map<String, Object> pageParaMap = new HashMap<>();
         System.out.println("Get reqRange = " + reqRange);
         // TODO：数据库表要重新设计，线路 ID
         // 计算准备
         // 结果保存
-        List<fencingResult> fencingResultList = new ArrayList<fencingResult>();
+        List<fencingResult> fencingResultList = new ArrayList<>();
         // 获取员工坐标点信息
         List<POINT> staffPointList = pointService.selectAllStaffPointInfo();
         // 获取系统中所有已有线路列表
         List<Metro> metroLineNameList = metroAdminService.getMetroLineNameList();
         // 获取线路对应的站点 ID
-        for (int i = 0; i < metroLineNameList.size(); i++) {
-            System.out.println("Getting station id on: " + metroLineNameList.get(i).getLineName());
+        for (Metro aMetroLineNameList : metroLineNameList) {
+            System.out.println("Getting station id on: " + aMetroLineNameList.getLineName());
             List<Metro> metroStationIdList = metroAdminService
-                    .getMetroStationIdByLineName(metroLineNameList.get(i).getLineName());
+                    .getMetroStationIdByLineName(aMetroLineNameList.getLineName());
             // 对应站点 ID 获取 POINT 信息
-            for (int j = 0; j < metroStationIdList.size(); j++) {
+            int j = 0;
+            while (j < metroStationIdList.size()) {
                 POINT stationPoint = pointService.selectPointInfoByKeyId(metroStationIdList.get(j).getStaId());
                 // 开始计算比对
-                for (int k = 0; k < staffPointList.size(); k++) {
-                    Double dist = getDistance(staffPointList.get(k).getBaiduRecordLng(),
-                            staffPointList.get(k).getBaiduRecordLat(), stationPoint.getBaiduRecordLng(),
+                for (POINT aStaffPointList : staffPointList) {
+                    Double dist = getDistance(aStaffPointList.getBaiduRecordLng(),
+                            aStaffPointList.getBaiduRecordLat(), stationPoint.getBaiduRecordLng(),
                             stationPoint.getBaiduRecordLat());
                     if (dist < Double.parseDouble(reqRange)) {
                         // 在范围内插入显示列表
                         fencingResult fRo = new fencingResult();
-                        fRo.setStaffId(staffPointList.get(k).getKeyId());
+                        fRo.setStaffId(aStaffPointList.getKeyId());
                         fRo.setStaffName(staffAdminService.selectStaffDetailByStaffId(fRo.getStaffId()).getStaffName());
-                        fRo.setLineName(metroLineNameList.get(i).getLineName());
+                        fRo.setLineName(aMetroLineNameList.getLineName());
                         fRo.setStaName(metroAdminService.getMetroStationNameByStationId(stationPoint.getKeyId()));
                         fRo.setDist(Double.toString(Math.round(dist * 100.0) / 100.0) + " 米");
                         fencingResultList.add(fRo);
                     }
                 }
+                j++;
             }
         }
         System.out.println("Calculate finished");
-        for (int i = 0; i < fencingResultList.size(); i++) {
+        for (fencingResult aFencingResultList : fencingResultList) {
             System.out.println(
-                    fencingResultList.get(i).getLineName() + " || " + fencingResultList.get(i).getStaffId() + " || "
-                            + fencingResultList.get(i).getStaffName() + " || " + fencingResultList.get(i).getStaName());
+                    aFencingResultList.getLineName() + " || " + aFencingResultList.getStaffId() + " || "
+                            + aFencingResultList.getStaffName() + " || " + aFencingResultList.getStaName());
         }
         pageParaMap.put("fencingResultList", fencingResultList);
         model.addAttribute("pageParaMap", pageParaMap);

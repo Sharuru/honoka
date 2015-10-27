@@ -28,7 +28,7 @@ public interface BaiduAPIService {
      * @return 返回 JSON 对象
      * @throws Exception 异常
      */
-    public BaiduJsonGeocoding BaiduGeoCoding(String reqAddr) throws Exception;
+    BaiduJsonGeocoding BaiduGeoCoding(String reqAddr) throws Exception;
 
     /**
      * 百度 API 位置搜索。
@@ -40,7 +40,7 @@ public interface BaiduAPIService {
      * @return 返回 JSON 对象
      * @throws Exception 异常
      */
-    public BaiduJsonPlace BaiduPlace(String reqKeyWord, Integer pageSize, Integer pageNum, String reqReqion)
+    BaiduJsonPlace BaiduPlace(String reqKeyWord, Integer pageSize, Integer pageNum, String reqReqion)
             throws Exception;
 
     /**
@@ -48,7 +48,7 @@ public interface BaiduAPIService {
      *
      * @return 返回 JSON 对象
      */
-    public BaiduJson.BaiduJsonDirectionDriving BaiduDirectionDriving(String oLat, String oLng, String dLat, String dLng, String origin_region, String destination_region) throws Exception;
+    BaiduJson.BaiduJsonDirectionDriving BaiduDirectionDriving(String oLat, String oLng, String dLat, String dLng, String origin_region, String destination_region) throws Exception;
 
-    public BaiduJson.BaiduJsonDirectionTransit BaiduDirectionTransit(String oLat, String oLng, String dLat, String dLng, String origin_region, String destination_region) throws Exception;
+    BaiduJson.BaiduJsonDirectionTransit BaiduDirectionTransit(String oLat, String oLng, String dLat, String dLng, String origin_region, String destination_region) throws Exception;
 }

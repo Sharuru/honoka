@@ -3,10 +3,10 @@
  */
 package com.honoka.DAO;
 
-import java.util.List;
-
 import com.honoka.entity.TestExample;
 
+import java.util.List;
+
 public interface TestExampleMapper {
-	List<TestExample> selectTestExample();
+    List<TestExample> selectTestExample();
 }
