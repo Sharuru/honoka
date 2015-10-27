@@ -34,6 +34,7 @@
             var targetId = (this.id.substr(7)-1);
             // 设定 POI
             var poiPoint = new BMap.Point( baiduRecordLng[targetId], baiduRecordLat[targetId]);
+            currPoint = poiPoint;
             // 设定覆盖物
             var poiMarker = new BMap.Marker(poiPoint);
             passMap.clearOverlays();
@@ -53,10 +54,8 @@
                         destPointLat : baiduRecordLat[targetId]
                     },
                     success : function(returnData) {
-                        //alert(returnData[0]);
                         document.getElementById(eleId).getElementsByTagName("span")[2].innerText = "平均自驾: " + returnData[0] + "（"+ returnData[1] + "）"
                                 + "平均公共交通: " + returnData[2] + "（"+ returnData[3] + "）";
-                        //document.getElementById("avgDist").innerText = "系统所有员工至目标点的平均直线距离为：" + returnData;
                     }
                 });
             }
@@ -124,10 +123,6 @@
                 </ul>
             </nav>
         </c:if>
-<%--				<!-- 员工详情模态框，通过 AJAX 进行替换 -->
-				<div class="modal fade" id="staffInfoModal" tabindex="-1"
-					role="dialog"></div>--%>
-				<!-- 页面加载完毕设置分页激活样式 -->
 				<script type="text/javascript">
  					$(document).ready(function() {
 						$("#poiPageNav${pageParaMap.currPage}").addClass("active");

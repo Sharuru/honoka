@@ -9,32 +9,12 @@
 <script type="text/javascript">
     //var lbsMap = new BMap.Map("lbsMapContent");
     var passMap;
+    var currPoint;
 	$(document).ready(function() {
 		// 延迟加载以给 DOM 元素切换属性的处理时间
 		setTimeout(function(){initBaiduMap(1);},200);
 		// 绑定搜索事件
 		$('#btnReqPlaceSearch').on('click', function () {
-			//var lbsMap = initBaiduMap(-1);
-			/* var local = new BMap.LocalSearch(lbsMap, {
-					renderOptions: {
-						lbsMap: lbsMap, 
-						panel: "placeSearchResult",
-						selectFirstResult: false},
-						pageCapacity: 6
-				});
-			// 设置回调函数
-			local.setInfoHtmlSetCallback(function(poi){
-				postPoint(poi.point.lng, poi.point.lat);
-				});
-			local.setSearchCompleteCallback(function(poi){
-				// 调整结果面板样式
-				setTimeout(function(){
-					$("#placeSearchResult").children().css("border","");
-					$("#placeSearchResult").children().children().children()[1].remove();
-				},0);
-			});
-			local.search(document.getElementById("inputPlaceSearch").value.trim()); */
-			// 二阶段：将前端 API 调用转移至后台
 			reqPOIList(document.getElementById("inputPlaceSearch").value.trim(),1);
 		});
 	});
@@ -48,8 +28,6 @@
 				reqKeyword : reqKeyword
 			},
 			success : function(returnData) {
-				//alert(returnData);
-				//document.getElementById("avgDist").innerText = "系统所有员工至目标点的平均直线距离为：" + returnData;
                 $('#btnReqPlaceSearch').button('reset');
                 $("#placeSearchResult").html(returnData);
 			}
@@ -65,7 +43,7 @@
 				destPointLat : destPointLat
 			},
 			success : function(returnData) {
-				document.getElementById("avgDist").innerText = "系统所有员工至目标点的平均直线距离为：" + returnData;
+                document.getElementById("directionCalcResultDiv").innerText = "计算结果：" + "\n" + "平均直线距离：" + returnData;
 			}
 		});
 	}
@@ -76,6 +54,7 @@
         passMap = lbsMap;
 		// 默认设定 MBP 上海的坐标点 
 	    var mbpShPoint = new BMap.Point(121.538487, 31.223365);
+        currPoint = mbpShPoint;
 		// 设定覆盖物
 	    var mbpShMarker = new BMap.Marker(mbpShPoint);
 	    lbsMap.addOverlay(mbpShMarker);
@@ -91,6 +70,7 @@
 				// 设置地图
 				lbsMap.clearOverlays();
 				var destPoint = new BMap.Point(e.point.lng, e.point.lat);
+                currPoint = destPoint;
 				var destMarker = new BMap.Marker(destPoint);
 				lbsMap.addOverlay(destMarker);
 				destMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
@@ -125,10 +105,71 @@
 			  // 将 DOM 元素返回
 			  return div;
 			}
-			// 创建控件
-			var backToCtrl = new ResetMapControl();
-			// 添加到地图当中
-			lbsMap.addControl(backToCtrl);
+        // 创建控件
+        var backToCtrl = new ResetMapControl();
+        // 添加到地图当中
+        lbsMap.addControl(backToCtrl);
+        // 行程计算控件
+        DirectionCalcControl.prototype = new BMap.Control();
+        DirectionCalcControl.prototype.initialize = function(lbsMap){
+            // 创建 DOM 元素
+            var div = document.createElement("div");
+            // 添加文字说明
+            div.appendChild(document.createTextNode("行程计算"));
+            div.id = "directionCalcDiv";
+            // 设置样式
+            div.style.cursor = "pointer";
+            div.style.border = "1px solid gray";
+            div.style.backgroundColor = "white";
+            // 绑定事件事件
+            div.onclick = function(e){
+                document.getElementById("directionCalcDiv").innerText = "正在计算……";
+                $.ajax({
+                    type : "POST",
+                    url : "reqDirectionCalc",
+                    data : {
+                        destPointLng : currPoint.lng,
+                        destPointLat : currPoint.lat
+                    },
+                    success : function(returnData) {
+                        //alert(returnData[0]);
+                        document.getElementById("directionCalcDiv").innerText = "行程计算";
+                        document.getElementById("directionCalcResultDiv").innerText += "\n"
+                               + "平均自驾: " + returnData[0] + "（"+ returnData[1] + "）" + "\n"
+                        + "平均公共交通: " + returnData[2] + "（"+ returnData[3] + "）";
+                    }
+                });
+            }
+            // 添加 DOM 元素到地图中
+            lbsMap.getContainer().appendChild(div);
+            // 将 DOM 元素返回
+            return div;
+        }
+        // 创建控件
+        var directCalcCtrl = new DirectionCalcControl();
+        // 添加到地图当中
+        lbsMap.addControl(directCalcCtrl);
+        // 计算结果控件
+        DirectionCalcResultControl.prototype = new BMap.Control();
+        DirectionCalcResultControl.prototype.initialize = function(lbsMap){
+            // 创建 DOM 元素
+            var div = document.createElement("div");
+            div.id = "directionCalcResultDiv";
+            // 添加文字说明
+            div.appendChild(document.createTextNode(""));
+            // 设置样式
+            //div.style.cursor = "pointer";
+            div.style.border = "1px solid gray";
+            div.style.backgroundColor = "white";
+            // 添加 DOM 元素到地图中
+            lbsMap.getContainer().appendChild(div);
+            // 将 DOM 元素返回
+            return div;
+        }
+        // 创建控件
+        var directionCalcResultCtrl = new DirectionCalcResultControl();
+        // 添加到地图当中
+        lbsMap.addControl(directionCalcResultCtrl);
 		// 设定缩放级别
 	    lbsMap.centerAndZoom(mbpShPoint, 18);
 		// 开启滚轮缩放功能
@@ -142,12 +183,20 @@
 	  this.defaultAnchor = BMAP_ANCHOR_TOP_RIGHT;
 	  this.defaultOffset = new BMap.Size(10, 10);
 	}
+    // 百度地图行程计算控件
+    function DirectionCalcControl(){
+        this.defaultAnchor = BMAP_ANCHOR_TOP_RIGHT;
+        this.defaultOffset = new BMap.Size(10, 50);
+    }
+    // 百度地图行程计算结果
+    function DirectionCalcResultControl(){
+        this.defaultAnchor = BMAP_ANCHOR_TOP_RIGHT;
+        this.defaultOffset = new BMap.Size(10, 90);
+    }
 </script>
 </head>
 <body>
 	<div id="twoPointContent">
-		<div style="margin-left:1.5%;"><p>请点击任意位置计算目前系统所有员工至目标点的平均直线距离</p>
-		<p id="avgDist">系统所有员工至目标点的平均直线距离为：等待点选</p>
 		</div>
 		<div class="container-fluid">
 			<div class="row">

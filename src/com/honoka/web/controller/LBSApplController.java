@@ -282,13 +282,13 @@ public class LBSApplController {
         final Double[] transitDistanceAverage = {0.0};
         final Integer[] transitDurationAverage = {0};
         // 新建并发线程池
-        ExecutorService threadPool = Executors.newFixedThreadPool(500);
+        ExecutorService threadPool = Executors.newFixedThreadPool(50);
         // 计算距离
         for (int j = 0; j < staffPointList.size(); j++) {
             final int finalJ = j;
             threadPool.execute(() -> {
                 // 新建子并发线程池
-                ExecutorService subThreadPool = Executors.newCachedThreadPool();
+                ExecutorService subThreadPool = Executors.newFixedThreadPool(2);
                         subThreadPool.execute(() -> {
                             // 自驾距离
                             BaiduJson.BaiduJsonDirectionDriving bdDD = null;
@@ -323,6 +323,12 @@ public class LBSApplController {
                 } catch (InterruptedException e) {
                     System.out.println("Error happened when await sub Termination");
                 }
+                //TODO：API 并发量
+//                try {
+//                    Thread.sleep(500);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
             });
         }
         threadPool.shutdown();
