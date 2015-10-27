@@ -376,14 +376,12 @@ public class LBSApplController {
                     .getMetroStationIdByLineName(metroLineNameList.get(i).getLineName());
             // 对应站点 ID 获取 POINT 信息
             for (int j = 0; j < metroStationIdList.size(); j++) {
-                // System.out.println("Getting station point for: " +
                 POINT stationPoint = pointService.selectPointInfoByKeyId(metroStationIdList.get(j).getStaId());
                 // 开始计算比对
                 for (int k = 0; k < staffPointList.size(); k++) {
                     Double dist = getDistance(staffPointList.get(k).getBaiduRecordLng(),
                             staffPointList.get(k).getBaiduRecordLat(), stationPoint.getBaiduRecordLng(),
                             stationPoint.getBaiduRecordLat());
-                    // System.out.println("Curr dist is " + dist);
                     if (dist < Double.parseDouble(reqRange)) {
                         // 在范围内插入显示列表
                         fencingResult fRo = new fencingResult();
