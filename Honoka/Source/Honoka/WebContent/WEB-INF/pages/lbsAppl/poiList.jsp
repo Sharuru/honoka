@@ -8,6 +8,17 @@
 <html>
 <head>
 <script type="text/javascript">
+    // 设定 POI 坐标集
+    <c:if test="${pageParaMap.poiSearchList != null && pageParaMap.poiSearchList.size() > 0}">
+        var baiduRecordLng = new Array();
+        var baiduRecordLat= new Array();
+        var i =0;
+        <c:forEach  var="currPOI" begin="0" end="${pageParaMap.poiSearchList.size() - 1}">
+            baiduRecordLng[i] = ${pageParaMap.poiSearchList.get(currPOI).baiduRecordLng};
+            baiduRecordLat[i] = ${pageParaMap.poiSearchList.get(currPOI).baiduRecordLat};
+            i++;
+        </c:forEach>
+    </c:if>
 	 // 子功能加载后绑定点击事件
 	$(document).ready(function() {
 		$("#poiPageNav").click(function(event) {
@@ -15,24 +26,13 @@
         });
         // 绑定 POI 结果卡片
         $("a[class='list-group-item']").click(function(){
-            //alert("get" + this.id);
             // 移除已有 active 样式
             $("a[class='list-group-item active']").removeClass("active");
             // 对当前选择的卡片添加 active 样式
             $(this).addClass("active");
+            var eleId = this.id;
             var targetId = (this.id.substr(7)-1);
-            // 设定 POI 坐标集
-            <c:if test="${pageParaMap.poiSearchList != null && pageParaMap.poiSearchList.size() > 0}">
-                var baiduRecordLng = new Array();
-                var baiduRecordLat= new Array();
-                var i =0;
-                <c:forEach  var="currPOI" begin="0" end="${pageParaMap.poiSearchList.size() - 1}">
-                        baiduRecordLng[i] = ${pageParaMap.poiSearchList.get(currPOI).baiduRecordLng};
-                        baiduRecordLat[i] = ${pageParaMap.poiSearchList.get(currPOI).baiduRecordLat};
-                        i++;
-                </c:forEach>
-            </c:if>
-            // 默认设定 MBP 上海的坐标点
+            // 设定 POI
             var poiPoint = new BMap.Point( baiduRecordLng[targetId], baiduRecordLat[targetId]);
             // 设定覆盖物
             var poiMarker = new BMap.Marker(poiPoint);
@@ -40,6 +40,26 @@
             passMap.addOverlay(poiMarker);
             poiMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
             passMap.centerAndZoom(poiPoint, 18);
+            // 仅当未计算时计算
+            if( document.getElementById(eleId).getElementsByTagName("span")[2].innerText.substr(-1) != "）"){
+                // 设定行程计算状态
+                document.getElementById(eleId).getElementsByTagName("span")[2].innerText = "正在计算……";
+                // 发送计算请求至后台
+                $.ajax({
+                    type : "POST",
+                    url : "reqDirectionCalc",
+                    data : {
+                        destPointLng : baiduRecordLng[targetId],
+                        destPointLat : baiduRecordLat[targetId]
+                    },
+                    success : function(returnData) {
+                        //alert(returnData[0]);
+                        document.getElementById(eleId).getElementsByTagName("span")[2].innerText = "平均自驾: " + returnData[0] + "（"+ returnData[1] + "）"
+                                + "平均公共交通: " + returnData[2] + "（"+ returnData[3] + "）";
+                        //document.getElementById("avgDist").innerText = "系统所有员工至目标点的平均直线距离为：" + returnData;
+                    }
+                });
+            }
         });
 	});
 </script>
@@ -50,13 +70,12 @@
             <c:forEach  var="currPOI" begin="0" end="${pageParaMap.poiSearchList.size() - 1}">
               <a href="####" id="poiCard${currPOI + 1}" class="list-group-item">
                     <p><h5 class="list-group-item-heading">
-                        <span class="glyphicon glyphicon-lbsMap-marker" aria-hidden="true"></span>&nbsp;${pageParaMap.poiSearchList.get(currPOI).poiName}
+                        <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>&nbsp;${pageParaMap.poiSearchList.get(currPOI).poiName}
                         <span class="list-group-item-text" style="float:right;font-size: 13px;">平均直线距离: ${pageParaMap.poiSearchList.get(currPOI).lineDistance}</span>
                     </h5>
                     <p class="list-group-item-text" style="font-size: 13px">${pageParaMap.poiSearchList.get(currPOI).poiAddr}</p>
                     <p class="list-group-item-text" style="font-size: 13px">${pageParaMap.poiSearchList.get(currPOI).poiTelephone}</p>
-                    <span class="list-group-item-text" style="font-size: 12px;">平均自驾: ${pageParaMap.poiSearchList.get(currPOI).drivingDistance}（${pageParaMap.poiSearchList.get(currPOI).drivingDuration}）</span>
-                    <span class="list-group-item-text" style="font-size: 12px;">平均公共交通: ${pageParaMap.poiSearchList.get(currPOI).transitDistance}（${pageParaMap.poiSearchList.get(currPOI).transitDuration}）</span>
+                    <span class="list-group-item-text" style="font-size: 12px;">点击计算行程时间</span>
               </a>
             </c:forEach>
             </div>
@@ -68,9 +87,9 @@
                     </c:if>
                         <%-- 循环设置页码 --%>
                     <c:choose>
-                        <%-- 当页面总数小于 5 --%>
-                        <c:when test="${pageParaMap.totalCount/5 + 1 le 5}">
-                            <c:forEach var="pageNum" begin="1" end="${pageParaMap.totalCount/5 + 1}">
+                        <%-- 当页面总数小于等于 5 --%>
+                        <c:when test="${pageParaMap.totalCount/5 le 5}">
+                            <c:forEach var="pageNum" begin="1" end="${pageParaMap.totalCount/5 + 0.8}">
                                 <li id="poiPageNav${pageNum}"><a href="####" id="${pageNum}">${pageNum}</a></li>
                             </c:forEach>
                         </c:when>
@@ -78,15 +97,15 @@
                         <c:when test="${pageParaMap.totalCount/5 + 1 gt 5 and pageParaMap.currPage gt 3}">
                             <c:choose>
                                 <%-- 当当前页 + 3 页码大于最大页数，不滚动显示 --%>
-                                <c:when test="${pageParaMap.currPage + 3 gt pageParaMap.totalCount/5 + 1 }">
-                                    <c:forEach var="pageNum" begin="${pageParaMap.totalCount/5 + 1 - 4 }" end="${pageParaMap.totalCount/5 + 1 }">
+                                <c:when test="${pageParaMap.currPage + 3 gt pageParaMap.totalCount/5 + 0.8 }">
+                                    <c:forEach var="pageNum" begin="${pageParaMap.totalCount/5 + 0.8 - 4 }" end="${pageParaMap.totalCount/5 + 0.8}">
                                         <li id="poiPageNav${pageNum}"><a href="####" id="${pageNum}">${pageNum}</a></li>
                                     </c:forEach>
                                 </c:when>
                                 <%-- 页码滚动 --%>
                                 <c:otherwise>
                                     <c:forEach var="pageNum" begin="${pageParaMap.currPage - 2}" end="${pageParaMap.currPage + 2 }">
-                                        <li id="poiPageNav${pageNum}"><a href="####" id="${pageNum}">A${pageNum}</a></li>
+                                        <li id="poiPageNav${pageNum}"><a href="####" id="${pageNum}">${pageNum}</a></li>
                                     </c:forEach>
                                 </c:otherwise>
                             </c:choose>
