@@ -13,22 +13,44 @@
 		$("#poiPageNav").click(function(event) {
             reqPOIList(document.getElementById("inputPlaceSearch").value.trim(),event.target.id);
         });
-        $("#poiList").click(function(event) {
-            alert("-->" + event.target.id);
-            alert("--<" + event.id);
-            var targetId = event.target.id.substr(8)
-            alert(${pageParaMap.poiSearchList.get(targetId).poiName});
+        // 绑定 POI 结果卡片
+        $("a[class='list-group-item']").click(function(){
+            alert("get" + this.id);
+            // 移除已有 active 样式
+            $("a[class='list-group-item active']").removeClass("active");
+            // 对当前选择的卡片添加 active 样式
+            $(this).addClass("active");
+            var targetId = this.id.substr(7);
+            // 设定 POI 坐标集
+            <c:if test="${pageParaMap.poiSearchList != null && pageParaMap.poiSearchList.size() > 0}">
+                var baiduRecordLng = new Array();
+                var baiduRecordLat= new Array();
+                var i =0;
+                <c:forEach  var="currPOI" begin="0" end="${pageParaMap.poiSearchList.size() - 1}">
+                        baiduRecordLng[i] = ${pageParaMap.poiSearchList.get(currPOI).baiduRecordLng};
+                        baiduRecordLat[i] = ${pageParaMap.poiSearchList.get(currPOI).baiduRecordLat};
+                        i++;
+                </c:forEach>
+            </c:if>
+            alert( this.id + "," +targetId +","+ baiduRecordLng[targetId] + "," +baiduRecordLat[targetId]);
+            // 默认设定 MBP 上海的坐标点
+            var poiPoint = new BMap.Point( baiduRecordLng[targetId], baiduRecordLat[targetId]);
+            // 设定覆盖物
+            var poiMarker = new BMap.Marker(poiPoint);
+            passMap.addOverlay(poiMarker);
+            poiMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
+            passMap.centerAndZoom(poiPoint, 18);
         });
 	});
 </script>
 </head>
 <body>
         <c:if test="${pageParaMap.poiSearchList != null && pageParaMap.poiSearchList.size() > 0}">
-            <c:forEach  var="currPOI" begin="0" end="${pageParaMap.poiSearchList.size() - 1}">
             <div class="list-group" id="poiList">
-              <a href="#" id="poiCard${currPOI + 1}" class="list-group-item">
-                    <h5 class="list-group-item-heading">
-                        <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>&nbsp;${pageParaMap.poiSearchList.get(currPOI).poiName}
+            <c:forEach  var="currPOI" begin="0" end="${pageParaMap.poiSearchList.size() - 1}">
+              <a href="####" id="poiCard${currPOI + 1}" class="list-group-item">
+                    <p><h5 class="list-group-item-heading">
+                        <span class="glyphicon glyphicon-lbsMap-marker" aria-hidden="true"></span>&nbsp;${pageParaMap.poiSearchList.get(currPOI).poiName}
                         <span class="list-group-item-text" style="float:right;font-size: 13px;">平均直线距离: ${pageParaMap.poiSearchList.get(currPOI).lineDistance}</span>
                     </h5>
                     <p class="list-group-item-text" style="font-size: 13px">${pageParaMap.poiSearchList.get(currPOI).poiAddr}</p>
@@ -36,8 +58,8 @@
                     <span class="list-group-item-text" style="font-size: 12px;">平均自驾: ${pageParaMap.poiSearchList.get(currPOI).drivingDistance}（${pageParaMap.poiSearchList.get(currPOI).drivingDuration}）</span>
                     <span class="list-group-item-text" style="font-size: 12px;">平均公共交通: ${pageParaMap.poiSearchList.get(currPOI).transitDistance}（${pageParaMap.poiSearchList.get(currPOI).transitDuration}）</span>
               </a>
-            </div>
             </c:forEach>
+            </div>
             <nav style="text-align: center;margin-top: -20px;">
                 <ul class="pagination" id="poiPageNav">
                         <%-- 若为第一页不显示左箭头 --%>

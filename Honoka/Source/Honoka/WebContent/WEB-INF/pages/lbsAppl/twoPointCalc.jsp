@@ -7,15 +7,17 @@
 <html>
 <head>
 <script type="text/javascript">
+    //var lbsMap = new BMap.Map("lbsMapContent");
+    var passMap;
 	$(document).ready(function() {
 		// 延迟加载以给 DOM 元素切换属性的处理时间
 		setTimeout(function(){initBaiduMap(1);},200);
 		// 绑定搜索事件
 		$('#btnReqPlaceSearch').on('click', function () {
-			//var map = initBaiduMap(-1);
-			/* var local = new BMap.LocalSearch(map, {
+			//var lbsMap = initBaiduMap(-1);
+			/* var local = new BMap.LocalSearch(lbsMap, {
 					renderOptions: {
-						map: map, 
+						lbsMap: lbsMap, 
 						panel: "placeSearchResult",
 						selectFirstResult: false},
 						pageCapacity: 6
@@ -70,35 +72,36 @@
 	// 地图实例初始化
 	function initBaiduMap(initType) {
 		// 创建 Map 实例
-		var map = new BMap.Map("mapContent");
+		var lbsMap = new BMap.Map("lbsMapContent");
+        passMap = lbsMap;
 		// 默认设定 MBP 上海的坐标点 
 	    var mbpShPoint = new BMap.Point(121.538487, 31.223365);
 		// 设定覆盖物
 	    var mbpShMarker = new BMap.Marker(mbpShPoint);
-	    map.addOverlay(mbpShMarker);
+	    lbsMap.addOverlay(mbpShMarker);
 	    mbpShMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
 		// 设定地图左上角比例尺和平移控件
 	    var topLeftControl = new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT});
 		var topLeftNavigation = new BMap.NavigationControl();
-		map.addControl(topLeftControl);        
-		map.addControl(topLeftNavigation);
+		lbsMap.addControl(topLeftControl);        
+		lbsMap.addControl(topLeftNavigation);
 		if(initType == 1){
 			// 绑定点击事件
-			map.addEventListener("click",function(e){
+			lbsMap.addEventListener("click",function(e){
 				// 设置地图
-				map.clearOverlays();
+				lbsMap.clearOverlays();
 				var destPoint = new BMap.Point(e.point.lng, e.point.lat);
 				var destMarker = new BMap.Marker(destPoint);
-				map.addOverlay(destMarker);
+				lbsMap.addOverlay(destMarker);
 				destMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
-				map.centerAndZoom(destPoint, map.getZoom());
+				lbsMap.centerAndZoom(destPoint, lbsMap.getZoom());
 				// 发起请求
 				postPoint(e.point.lng, e.point.lat);
 			});
 		}
 		// 设定还原状态控件
 		ResetMapControl.prototype = new BMap.Control();
-		ResetMapControl.prototype.initialize = function(map){
+		ResetMapControl.prototype.initialize = function(lbsMap){
 			  // 创建 DOM 元素
 			  var div = document.createElement("div");
 			  // 添加文字说明
@@ -116,20 +119,20 @@
 				  document.getElementById("inputPlaceSearch").value="";
 			  }
 			  // 添加 DOM 元素到地图中
-			  map.getContainer().appendChild(div);
+			  lbsMap.getContainer().appendChild(div);
 			  // 将 DOM 元素返回
 			  return div;
 			}
 			// 创建控件
 			var backToCtrl = new ResetMapControl();
 			// 添加到地图当中
-			map.addControl(backToCtrl);
+			lbsMap.addControl(backToCtrl);
 		// 设定缩放级别
-	    map.centerAndZoom(mbpShPoint, 18);
+	    lbsMap.centerAndZoom(mbpShPoint, 18);
 		// 开启滚轮缩放功能
-	    map.enableScrollWheelZoom();   
-	    map.enableContinuousZoom();
-		return map;
+	    lbsMap.enableScrollWheelZoom();   
+	    lbsMap.enableContinuousZoom();
+		return lbsMap;
 	}
 	// 百度地图还原状态控件
 	function ResetMapControl(){
@@ -162,7 +165,7 @@
 				<div class="col-xs-8 col-sm-8">
 					<div class="panel panel-default">
 						<div class="panel-body">
-						 	<div id="mapContent" style="height: 700px;"></div>
+						 	<div id="lbsMapContent" style="height: 700px;"></div>
 						</div>
 					</div>
 				</div>
