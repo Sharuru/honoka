@@ -6,6 +6,7 @@ package com.honoka.web.controller;
 import com.google.gson.Gson;
 import com.honoka.common.Trimmer;
 import com.honoka.entity.AmapJson.AmapJsonGeocoding;
+import com.honoka.entity.BaiduJson;
 import com.honoka.entity.BaiduJson.BaiduJsonGeocoding;
 import com.honoka.entity.BaiduJson.BaiduJsonPlace;
 import com.honoka.entity.Metro;
@@ -17,6 +18,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -146,7 +148,7 @@ public class LBSApplController {
         System.out.println("currPage = " + reqPage);
         System.out.println("reqKeyword = " + reqKeyword);
         try {
-            BaiduJsonPlace bdPlaceReqResult = baiduAPIService.BaiduPlace(reqKeyword, 6, reqPage - 1, "上海市");
+            BaiduJsonPlace bdPlaceReqResult = baiduAPIService.BaiduPlace(reqKeyword, 5, reqPage - 1, "上海市");
             // 设置总记录条数
             System.out.println("Get total is: " + bdPlaceReqResult.getTotal());
             pageParaMap.put("totalCount", bdPlaceReqResult.getTotal());
@@ -223,10 +225,10 @@ public class LBSApplController {
                 }
                 System.out.println("All sub-thread finished, starting main-thread");
                 poiSr.setLineDistance(Trimmer.distance(lineDistanceAverage[0] / staffPointList.size()));
-                poiSr.setDrivingDistance("等待计算");
-                poiSr.setDrivingDuration("等待计算");
-                poiSr.setTransitDistance("等待计算");
-                poiSr.setTransitDuration("等待计算");
+//                poiSr.setDrivingDistance("等待计算");
+//                poiSr.setDrivingDuration("等待计算");
+//                poiSr.setTransitDistance("等待计算");
+//                poiSr.setTransitDuration("等待计算");
 //                poiSr.setLineDistance(Trimmer.distance(lineDistanceAverage[0] / staffPointList.size()));
 //                poiSr.setDrivingDistance(Trimmer.distance(drivingDistanceAverage[0] / staffPointList.size()));
 //                poiSr.setDrivingDuration(Trimmer.time(drivingDurationAverage[0] / staffPointList.size()));
@@ -266,6 +268,77 @@ public class LBSApplController {
         response.setCharacterEncoding("UTF-8");
         Gson gson = new Gson();
         response.getWriter().write(gson.toJson(avgDistStr));
+    }
+
+    // 请求行程计算
+    @RequestMapping(value = "/reqDirectionCalc", method = RequestMethod.POST)
+    public  @ResponseBody String[] reaDirectionRouter(String destPointLng, String destPointLat){
+        System.out.println("In /reqDirectionCalc");
+        System.out.println("Get destPoint: " + destPointLng + "," + destPointLat);
+        // 获取员工坐标点信息
+        List<POINT> staffPointList = pointService.selectAllStaffPointInfo();
+        final Double[] drivingDistanceAverage = {0.0};
+        final Integer[] drivingDurationAverage = {0};
+        final Double[] transitDistanceAverage = {0.0};
+        final Integer[] transitDurationAverage = {0};
+        // 新建并发线程池
+        ExecutorService threadPool = Executors.newFixedThreadPool(500);
+        // 计算距离
+        for (int j = 0; j < staffPointList.size(); j++) {
+            final int finalJ = j;
+            threadPool.execute(() -> {
+                // 新建子并发线程池
+                ExecutorService subThreadPool = Executors.newCachedThreadPool();
+                        subThreadPool.execute(() -> {
+                            // 自驾距离
+                            BaiduJson.BaiduJsonDirectionDriving bdDD = null;
+                            try {
+                                bdDD = baiduAPIService.BaiduDirectionDriving(Double.toString(staffPointList.get(finalJ).getBaiduRecordLat()), Double.toString(staffPointList.get(finalJ).getBaiduRecordLng()),destPointLat, destPointLng, "上海", "上海");
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            if (bdDD.getResult() != null) {
+                                drivingDistanceAverage[0] += bdDD.getResult().getRoutes()[0].getDistance();
+                                drivingDurationAverage[0] += bdDD.getResult().getRoutes()[0].getDuration();
+                            }
+                        });
+                        subThreadPool.execute(() -> {
+                            // 公交距离
+                            BaiduJson.BaiduJsonDirectionTransit bdDT = null;
+                            try {
+                                bdDT = baiduAPIService.BaiduDirectionTransit(Double.toString(staffPointList.get(finalJ).getBaiduRecordLat()), Double.toString(staffPointList.get(finalJ).getBaiduRecordLng()), destPointLat, destPointLng, "上海", "上海");
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            //System.out.println("Transit Distance:" + bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance() + " Transit Duration:" + bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration());
+                            if (bdDT.getResult() != null) {
+                                transitDistanceAverage[0] += bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance();
+                                transitDurationAverage[0] += bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration();
+                            }
+                        });
+                subThreadPool.shutdown();
+                try {
+                    // 超时时间为 5 秒
+                    subThreadPool.awaitTermination(5, TimeUnit.SECONDS);
+                } catch (InterruptedException e) {
+                    System.out.println("Error happened when await sub Termination");
+                }
+            });
+        }
+        threadPool.shutdown();
+        try {
+            // 超时时间为 5 秒
+            threadPool.awaitTermination(5, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            System.out.println("Error happened when awaitTermination");
+        }
+        System.out.println("All sub-thread finished, starting main-thread");
+        String[] result = new String[4];
+        result[0] = Trimmer.distance(drivingDistanceAverage[0] / staffPointList.size());
+        result[1] = Trimmer.time(drivingDurationAverage[0] / staffPointList.size());
+        result[2] = Trimmer.distance(transitDistanceAverage[0] / staffPointList.size());
+        result[3] = Trimmer.time(transitDurationAverage[0] / staffPointList.size());
+        return result;
     }
 
     // 地理围栏初始画面

@@ -95,6 +95,8 @@
 				lbsMap.addOverlay(destMarker);
 				destMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
 				lbsMap.centerAndZoom(destPoint, lbsMap.getZoom());
+                // 去除 list 样式
+                $("a[class='list-group-item active']").removeClass("active");
 				// 发起请求
 				postPoint(e.point.lng, e.point.lat);
 			});
@@ -158,14 +160,14 @@
 					        <button class="btn btn-default" type="button" id="btnReqPlaceSearch" data-loading-text="正在检索……" autocomplete="off">检索</button>
 					      </span>
 					    </div>
-					  	<div class="panel-body" id="placeSearchResult" style="margin-left:-3.5%;width:107%;height:685px;"> </div>
+					  	<div class="panel-body" id="placeSearchResult" style="margin-left:-3.5%;width:107%;height:655px;"> </div>
 					  </div>
 					</div>
 				</div>
 				<div class="col-xs-8 col-sm-8">
 					<div class="panel panel-default">
 						<div class="panel-body">
-						 	<div id="lbsMapContent" style="height: 720px;"></div>
+						 	<div id="lbsMapContent" style="height: 690px;"></div>
 						</div>
 					</div>
 				</div>
