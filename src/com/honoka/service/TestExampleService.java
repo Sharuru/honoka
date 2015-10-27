@@ -1,20 +1,19 @@
 package com.honoka.service;
 
-import java.util.List;
-
+import com.honoka.entity.TestExample;
 import org.springframework.stereotype.Service;
 
-import com.honoka.entity.TestExample;
+import java.util.List;
 
 
 @Service
 public interface TestExampleService {
-	
-	/**
-	 * 测试
-	 *
-	 * @return the list
-	 */
-	public List<TestExample> selectTestExample();
-	
+
+    /**
+     * 测试
+     *
+     * @return the list
+     */
+    List<TestExample> selectTestExample();
+
 }

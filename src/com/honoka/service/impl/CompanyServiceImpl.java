@@ -3,37 +3,35 @@
  */
 package com.honoka.service.impl;
 
+import com.honoka.DAO.CompanyMapper;
+import com.honoka.entity.Company;
+import com.honoka.service.CompanyService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
-import org.springframework.stereotype.Service;
-
-import com.honoka.DAO.CompanyMapper;
-import com.honoka.entity.Company;
-import com.honoka.service.CompanyService;
-
 @Service
 public class CompanyServiceImpl implements CompanyService {
 
-	@Resource
-	private CompanyMapper companyMapper;
-	private static Map<String, String> comMap = new HashMap<String, String>();
+    private static Map<String, String> comMap = new HashMap<>();
+    @Resource
+    private CompanyMapper companyMapper;
 
-	@Override
-	public Map<String, String> getCompanyMap() {
-		// 只设置一次字典
-		if (comMap.isEmpty()) {
-			comMap = new HashMap<String, String>();
-			List<Company> comList = companyMapper.getCompanyMap();
-			// 将列表转换成对应的字典
-			for (int i = 0; i < comList.size(); i++) {
-				comMap.put(comList.get(i).getComId(), comList.get(i).getComName());
-			}
-		}
-		return comMap;
-	}
+    @Override
+    public Map<String, String> getCompanyMap() {
+        // 只设置一次字典
+        if (comMap.isEmpty()) {
+            comMap = new HashMap<>();
+            List<Company> comList = companyMapper.getCompanyMap();
+            // 将列表转换成对应的字典
+            for (Company aComList : comList) {
+                comMap.put(aComList.getComId(), aComList.getComName());
+            }
+        }
+        return comMap;
+    }
 
 }

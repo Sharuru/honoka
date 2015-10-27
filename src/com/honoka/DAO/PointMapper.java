@@ -3,27 +3,25 @@
  */
 package com.honoka.DAO;
 
-import java.util.List;
-
+import com.honoka.entity.POINT;
 import org.apache.ibatis.annotations.Param;
 
-import com.honoka.entity.POINT;
+import java.util.List;
 
 public interface PointMapper {
+    void insertPointInfo(@Param("keyId") String keyId, @Param("baiduRecordLng") double baiduRecordLng,
+                         @Param("baiduRecordLat") double baiduReocordLat, @Param("amapRecordLng") double amapRecordLng,
+                         @Param("amapRecordLat") double amapRecordLat);
 
-	void insertPointInfo(@Param("keyId") String keyId, @Param("baiduRecordLng") double baiduRecordLng,
-			@Param("baiduRecordLat") double baiduReocordLat, @Param("amapRecordLng") double amapRecordLng,
-			@Param("amapRecordLat") double amapRecordLat);
+    void initMetroPoint();
 
-	void initMetroPoint();
+    List<POINT> selectAllStaffPointInfo();
 
-	List<POINT> selectAllStaffPointInfo();
+    POINT selectPointInfoByKeyId(String keyId);
 
-	POINT selectPointInfoByKeyId(String keyId);
+    void trimMetroPointData();
 
-	void trimMetroPointData();
+    void updatePointInfoByKeyId(POINT point);
 
-	void updatePointInfoByKeyId(POINT point);
-
-	void deletePointInfoByKeyId(String keyId);
+    void deletePointInfoByKeyId(String keyId);
 }

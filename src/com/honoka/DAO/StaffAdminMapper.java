@@ -3,21 +3,20 @@
  */
 package com.honoka.DAO;
 
-import java.util.List;
-
 import com.honoka.entity.Staff;
 
+import java.util.List;
+
 public interface StaffAdminMapper {
+    Integer countStaffInfo();
 
-	Integer countStaffInfo();
+    List<Staff> selectStaffInfoByPage(Integer page);
 
-	List<Staff> selectStaffInfoByPage(Integer page);
+    Staff selectStaffDetailByStaffId(String staffId);
 
-	Staff selectStaffDetailByStaffId(String staffId);
+    void deleteStaffInfoByStaffId(String staffId);
 
-	void deleteStaffInfoByStaffId(String staffId);
+    void updateStaffInfo(Staff staff);
 
-	void updateStaffInfo(Staff staff);
-
-	void insertStaffInfo(Staff staff);
+    void insertStaffInfo(Staff staff);
 }

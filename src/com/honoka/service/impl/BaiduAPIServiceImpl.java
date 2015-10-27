@@ -26,51 +26,46 @@ public class BaiduAPIServiceImpl implements BaiduAPIService {
 
     @Override
     public BaiduJsonGeocoding BaiduGeoCoding(String reqAddr) throws Exception {
-        String json = null;
+        String json;
         // 拼接请求字符串获得内容
         json = APIUtil.readUrl("http://api.map.baidu.com/geocoder/v2/?address=" + URLEncoder.encode(reqAddr, "UTF-8")
                 + "&output=json&ak=" + apiKeyService.selectUsableAPIKeyByProvider("BAIDU"));
-        // System.out.println("Get Baidu Json: " + json);
         Gson gson = new Gson();
         // Json to POJO
-        BaiduJsonGeocoding bdJson = gson.fromJson(json, BaiduJsonGeocoding.class);
-        return bdJson;
+        return gson.fromJson(json, BaiduJsonGeocoding.class);
     }
 
     // TODO：传参 entity
     @Override
     public BaiduJsonPlace BaiduPlace(String reqKeyWord, Integer pageSize, Integer pageNum, String reqRegion) throws Exception {
-        String json = null;
+        String json;
         json = APIUtil.readUrl(
                 "http://api.map.baidu.com/place/v2/search?ak=" + apiKeyService.selectUsableAPIKeyByProvider("BAIDU")
                         + "&output=json&query=" + URLEncoder.encode(reqKeyWord, "UTF-8") + "&page_size=" + pageSize + "&page_num="
                         + pageNum + "&scope=1&region=" + URLEncoder.encode(reqRegion, "UTF-8"));
         Gson gson = new Gson();
-        BaiduJsonPlace bdJson = gson.fromJson(json, BaiduJsonPlace.class);
-        return bdJson;
+        return gson.fromJson(json, BaiduJsonPlace.class);
     }
 
     @Override
     public BaiduJsonDirectionDriving BaiduDirectionDriving(String oLat, String oLng, String dLat, String dLng, String origin_region, String destination_region) throws Exception {
-        String json = null;
+        String json;
         json = APIUtil.readUrl(
                 "http://api.map.baidu.com/direction/v1?mode=driving&origin=" + oLat + "," + oLng + "&destination=" + dLat + "," + dLng + "&origin_region=" + origin_region + "&destination_region="
                         + destination_region + "&output=json&ak=" + apiKeyService.selectUsableAPIKeyByProvider("BAIDU"));
         System.out.println(json);
         Gson gson = new Gson();
-        BaiduJsonDirectionDriving bdJson = gson.fromJson(json, BaiduJsonDirectionDriving.class);
-        return bdJson;
+        return gson.fromJson(json, BaiduJsonDirectionDriving.class);
     }
 
     @Override
     public BaiduJsonDirectionTransit BaiduDirectionTransit(String oLat, String oLng, String dLat, String dLng, String origin_region, String destination_region) throws Exception {
-        String json = null;
+        String json;
         json = APIUtil.readUrl(
                 "http://api.map.baidu.com/direction/v1?mode=transit&origin=" + oLat + "," + oLng + "&destination=" + dLat + "," + dLng + "&origin_region=" + origin_region + "&destination_region="
                         + destination_region + "&output=json&ak=" + apiKeyService.selectUsableAPIKeyByProvider("BAIDU"));
         System.out.println(json);
         Gson gson = new Gson();
-        BaiduJsonDirectionTransit bdJson = gson.fromJson(json, BaiduJsonDirectionTransit.class);
-        return bdJson;
+        return gson.fromJson(json, BaiduJsonDirectionTransit.class);
     }
 }

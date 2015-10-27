@@ -3,21 +3,20 @@
  */
 package com.honoka.web.controller;
 
-import javax.annotation.Resource;
-
+import com.honoka.service.TestExampleService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.honoka.service.TestExampleService;
+import javax.annotation.Resource;
 
 @Controller
 public class TestExampleController {
-	@Resource
-	private TestExampleService testExampleService;
+    @Resource
+    private TestExampleService testExampleService;
 
-	@RequestMapping(value = "/Test")
-	public String mainRouter() {
-		System.out.println("In /Test");
-		return "main";
-	}
+    @RequestMapping(value = "/Test")
+    public String mainRouter() {
+        System.out.println("In /Test");
+        return "main";
+    }
 }

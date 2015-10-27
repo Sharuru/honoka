@@ -3,11 +3,10 @@
  */
 package com.honoka.DAO;
 
-import java.util.List;
-
 import com.honoka.entity.Level;
 
-public interface LevelMapper {
+import java.util.List;
 
-	List<Level> getLevelMap();
+public interface LevelMapper {
+    List<Level> getLevelMap();
 }
