@@ -84,38 +84,39 @@
 		// 设定还原状态控件
 		ResetMapControl.prototype = new BMap.Control();
 		ResetMapControl.prototype.initialize = function(lbsMap){
-			  // 创建 DOM 元素
-			  var div = document.createElement("div");
-			  // 添加文字说明
-			  div.appendChild(document.createTextNode("还原状态"));
-			  // 设置样式
-			  div.style.cursor = "pointer";
-			  div.style.border = "1px solid gray";
-			  div.style.backgroundColor = "white";
-			  // 绑定事件事件
-			  div.onclick = function(e){
-				  initBaiduMap(1);
-				  document.getElementById("avgDist").innerText = "系统所有员工至目标点的平均直线距离为：等待点选";
-				  //清空检索列表
-				  $("#placeSearchResult").empty();
-				  document.getElementById("inputPlaceSearch").value="";
-			  }
-			  // 添加 DOM 元素到地图中
-			  lbsMap.getContainer().appendChild(div);
-			  // 将 DOM 元素返回
-			  return div;
-			}
+            // 创建 DOM 元素
+            var div = document.createElement("div");
+            // 添加文字说明
+            div.appendChild(document.createTextNode("还原状态"));
+            div.id = "resetMapDivCtrl";
+            // 设置样式
+            div.style.cursor = "pointer";
+            div.style.border = "1px solid gray";
+            div.style.backgroundColor = "white";
+            // 绑定事件事件
+            div.onclick = function(e){
+                initBaiduMap(1);
+                //清空检索列表
+                $("#placeSearchResult").empty();
+                document.getElementById("inputPlaceSearch").value="";
+            }
+            // 添加 DOM 元素到地图中
+            lbsMap.getContainer().appendChild(div);
+            // 将 DOM 元素返回
+            return div;
+            }
         // 创建控件
         var backToCtrl = new ResetMapControl();
         // 添加到地图当中
         lbsMap.addControl(backToCtrl);
+        document.getElementById("resetMapDivCtrl").className += " btn";
         // 行程计算控件
         DirectionCalcControl.prototype = new BMap.Control();
         DirectionCalcControl.prototype.initialize = function(lbsMap){
             // 创建 DOM 元素
             var div = document.createElement("div");
             // 添加文字说明
-            div.appendChild(document.createTextNode("行程计算"));
+            div.appendChild(document.createTextNode("任意点行程计算"));
             div.id = "directionCalcDiv";
             // 设置样式
             div.style.cursor = "pointer";
@@ -132,8 +133,10 @@
                         destPointLat : currPoint.lat
                     },
                     success : function(returnData) {
-                        //alert(returnData[0]);
-                        document.getElementById("directionCalcDiv").innerText = "行程计算";
+                        document.getElementById("directionCalcDiv").innerText = "任意点行程计算";
+                        if(document.getElementById("directionCalcResultDiv").innerText == ""){
+                            document.getElementById("directionCalcResultDiv").innerText += "计算结果：";
+                        }
                         document.getElementById("directionCalcResultDiv").innerText += "\n"
                                + "平均自驾: " + returnData[0] + "（"+ returnData[1] + "）" + "\n"
                         + "平均公共交通: " + returnData[2] + "（"+ returnData[3] + "）";
@@ -149,6 +152,7 @@
         var directCalcCtrl = new DirectionCalcControl();
         // 添加到地图当中
         lbsMap.addControl(directCalcCtrl);
+        document.getElementById("directionCalcDiv").className += " btn";
         // 计算结果控件
         DirectionCalcResultControl.prototype = new BMap.Control();
         DirectionCalcResultControl.prototype.initialize = function(lbsMap){
@@ -156,7 +160,7 @@
             var div = document.createElement("div");
             div.id = "directionCalcResultDiv";
             // 添加文字说明
-            div.appendChild(document.createTextNode(""));
+            //div.appendChild(document.createTextNode(""));
             // 设置样式
             //div.style.cursor = "pointer";
             div.style.border = "1px solid gray";
@@ -170,6 +174,7 @@
         var directionCalcResultCtrl = new DirectionCalcResultControl();
         // 添加到地图当中
         lbsMap.addControl(directionCalcResultCtrl);
+        document.getElementById("directionCalcResultDiv").className += " well well-sm";
 		// 设定缩放级别
 	    lbsMap.centerAndZoom(mbpShPoint, 18);
 		// 开启滚轮缩放功能
