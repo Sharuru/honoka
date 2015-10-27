@@ -146,7 +146,7 @@ public class LBSApplController {
         System.out.println("currPage = " + reqPage);
         System.out.println("reqKeyword = " + reqKeyword);
         try {
-            BaiduJsonPlace bdPlaceReqResult = baiduAPIService.BaiduPlace(reqKeyword, 5, reqPage - 1, "上海市");
+            BaiduJsonPlace bdPlaceReqResult = baiduAPIService.BaiduPlace(reqKeyword, 6, reqPage - 1, "上海市");
             // 设置总记录条数
             System.out.println("Get total is: " + bdPlaceReqResult.getTotal());
             pageParaMap.put("totalCount", bdPlaceReqResult.getTotal());
@@ -161,12 +161,12 @@ public class LBSApplController {
                 poiSr.setBaiduRecordLng(bdPlaceReqResult.getResults().get(i).getLocation().getLng());
                 poiSr.setBaiduRecordLat(bdPlaceReqResult.getResults().get(i).getLocation().getLat());
                 final Double[] lineDistanceAverage = {0.0};
-                final Double[] drivingDistanceAverage = {0.0};
-                final Integer[] drivingDurationAverage = {0};
-                final Double[] transitDistanceAverage = {0.0};
-                final Integer[] transitDurationAverage = {0};
+//                final Double[] drivingDistanceAverage = {0.0};
+//                final Integer[] drivingDurationAverage = {0};
+//                final Double[] transitDistanceAverage = {0.0};
+//                final Integer[] transitDurationAverage = {0};
                 // 新建并发线程池
-                ExecutorService threadPool = Executors.newFixedThreadPool(50);
+                ExecutorService threadPool = Executors.newFixedThreadPool(500);
                 // 计算距离
                 for (int j = 0; j < staffPointList.size(); j++) {
                     final int finalJ = j;
@@ -223,10 +223,15 @@ public class LBSApplController {
                 }
                 System.out.println("All sub-thread finished, starting main-thread");
                 poiSr.setLineDistance(Trimmer.distance(lineDistanceAverage[0] / staffPointList.size()));
-                poiSr.setDrivingDistance(Trimmer.distance(drivingDistanceAverage[0] / staffPointList.size()));
-                poiSr.setDrivingDuration(Trimmer.time(drivingDurationAverage[0] / staffPointList.size()));
-                poiSr.setTransitDistance(Trimmer.distance(transitDistanceAverage[0] / staffPointList.size()));
-                poiSr.setTransitDuration(Trimmer.time(transitDurationAverage[0] / staffPointList.size()));
+                poiSr.setDrivingDistance("等待计算");
+                poiSr.setDrivingDuration("等待计算");
+                poiSr.setTransitDistance("等待计算");
+                poiSr.setTransitDuration("等待计算");
+//                poiSr.setLineDistance(Trimmer.distance(lineDistanceAverage[0] / staffPointList.size()));
+//                poiSr.setDrivingDistance(Trimmer.distance(drivingDistanceAverage[0] / staffPointList.size()));
+//                poiSr.setDrivingDuration(Trimmer.time(drivingDurationAverage[0] / staffPointList.size()));
+//                poiSr.setTransitDistance(Trimmer.distance(transitDistanceAverage[0] / staffPointList.size()));
+//                poiSr.setTransitDuration(Trimmer.time(transitDurationAverage[0] / staffPointList.size()));
                 POISearchResultList.add(poiSr);
             }
         } catch (Exception e) {
