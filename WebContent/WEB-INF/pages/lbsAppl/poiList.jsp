@@ -15,7 +15,7 @@
         });
         // 绑定 POI 结果卡片
         $("a[class='list-group-item']").click(function(){
-            alert("get" + this.id);
+            //alert("get" + this.id);
             // 移除已有 active 样式
             $("a[class='list-group-item active']").removeClass("active");
             // 对当前选择的卡片添加 active 样式
