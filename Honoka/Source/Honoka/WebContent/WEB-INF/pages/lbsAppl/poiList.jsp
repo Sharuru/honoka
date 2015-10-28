@@ -55,11 +55,26 @@
                     },
                     success : function(returnData) {
                         document.getElementById(eleId).getElementsByTagName("span")[2].innerText = "平均自驾: " + returnData[0] + "（"+ returnData[1] + "）"
-                                + "平均公共交通: " + returnData[2] + "（"+ returnData[3] + "）";
+                                + "平均交通: " + returnData[2] + "（"+ returnData[3] + "）";
+                        // 添加对比星星
+                        $("#" + eleId+"Star").addClass("glyphicon glyphicon-star-empty");
+                        $("#" + eleId+"Star").click(function(){
+                            if(this.className == "glyphicon glyphicon-star-empty"){
+                                // 加入对比
+                                $(this).removeClass("glyphicon glyphicon-star-empty");
+                                $(this).addClass("glyphicon glyphicon-star");
+                            }
+                            else{
+                                // 退出对比
+                                $(this).removeClass("glyphicon glyphicon-star");
+                                $(this).addClass("glyphicon glyphicon-star-empty");
+                            }
+                        });
                     }
                 });
             }
         });
+
 	});
 </script>
 </head>
@@ -68,14 +83,16 @@
             <div class="list-group" id="poiList">
             <c:forEach  var="currPOI" begin="0" end="${pageParaMap.poiSearchList.size() - 1}">
               <a href="####" id="poiCard${currPOI + 1}" class="list-group-item">
-                    <p><h5 class="list-group-item-heading">
+                    <h5 class="list-group-item-heading">
                         <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>&nbsp;${pageParaMap.poiSearchList.get(currPOI).poiName}
                         <span class="list-group-item-text" style="float:right;font-size: 13px;">平均直线距离: ${pageParaMap.poiSearchList.get(currPOI).lineDistance}</span>
                     </h5>
                     <p class="list-group-item-text" style="font-size: 13px">${pageParaMap.poiSearchList.get(currPOI).poiAddr}</p>
                     <p class="list-group-item-text" style="font-size: 13px">${pageParaMap.poiSearchList.get(currPOI).poiTelephone}</p>
+                  <div id="poiCard${currPOI + 1}Star" style="float:right;"></div>
                     <span class="list-group-item-text" style="font-size: 12px;">点击计算行程时间</span>
               </a>
+
             </c:forEach>
             </div>
             <nav style="text-align: center;margin-top: -20px;">
