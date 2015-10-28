@@ -66,13 +66,13 @@ public class MetroAdminController {
                     for (int j = 0; j < bdReqResult.getResults().size(); j++) {
                         String[] lineNameSplit = bdReqResult.getResults().get(j).getAddress().split(";");
                         // 不同线路单独写入
-                        for (String aLineNameSplit : lineNameSplit) {
+                        for (String currLineName : lineNameSplit) {
                             Pattern p = Pattern.compile("地铁(.*)号线.*");
-                            Matcher m = p.matcher(aLineNameSplit);
+                            Matcher m = p.matcher(currLineName);
                             // 线路名不为空时写入（比如松江站，松江新城站），线路名不为奇怪数据时写入
                             if (m.matches()) {
                                 // TODO：站点 ID 需要自己生成
-                                metroAdminService.insertMetroInfo(aLineNameSplit, "STA" + staIdCount.toString(),
+                                metroAdminService.insertMetroInfo(currLineName, "STA" + staIdCount.toString(),
                                         bdReqResult.getResults().get(j).getName());
                                 // 写入坐标信息
                                 pointService.insertPointInfo("STA" + staIdCount.toString(),

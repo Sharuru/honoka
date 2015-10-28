@@ -47,10 +47,10 @@ public class StaffAdminController {
         Map<String, String> comMap = companyService.getCompanyMap();
         Map<String, String> deptMap = departmentService.getDeptMap();
         Map<String, String> levelMap = levelService.getLevelMap();
-        for (Staff aStaffList : staffList) {
-            aStaffList.setStaffComId(comMap.get(aStaffList.getStaffComId()));
-            aStaffList.setStaffDeptId(deptMap.get(aStaffList.getStaffDeptId()));
-            aStaffList.setStaffLevelId(levelMap.get(aStaffList.getStaffLevelId()));
+        for (Staff currStaff : staffList) {
+            currStaff.setStaffComId(comMap.get(currStaff.getStaffComId()));
+            currStaff.setStaffDeptId(deptMap.get(currStaff.getStaffDeptId()));
+            currStaff.setStaffLevelId(levelMap.get(currStaff.getStaffLevelId()));
         }
         pageParaMap.put("staffInfoList", staffList);
         model.addAttribute("pageParaMap", pageParaMap);
@@ -124,7 +124,7 @@ public class StaffAdminController {
 
     // 员工数据更新
     @RequestMapping(value = "/reqUpdateStaffInfo", method = RequestMethod.POST)
-    public String ReqUpdateStaffInfoRouter(ModelMap model, String staffId, String staffName, String staffComId,
+    public String ReqUpdateStaffInfoRouter(String staffId, String staffName, String staffComId,
                                            String staffDeptId, String staffLevelId, String staffTel, String staffAddr, String staffPointLng,
                                            String staffPointLat) {
         System.out.println("In /reqUpdateStaffInfo");
@@ -147,7 +147,7 @@ public class StaffAdminController {
 
     // 员工数据删除
     @RequestMapping(value = "/reqDeleteStaffInfo", method = RequestMethod.POST)
-    public String ReqDeleteStaffInfoRouter(ModelMap model, String staffId) {
+    public String ReqDeleteStaffInfoRouter(String staffId) {
         System.out.println("In /reqDeleteStaffInfo");
         staffAdminService.deleteStaffInfoByStaffId(staffId);
         pointService.deletePointInfoByKeyId(staffId);

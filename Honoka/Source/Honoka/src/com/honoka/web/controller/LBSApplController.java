@@ -95,7 +95,7 @@ public class LBSApplController {
         System.out.println("All sub-thread finished, starting main-thread");
         // 解析状态及超时处理
         // 参数设置
-        Map<String, Object> pageParaMap = new HashMap<String, Object>();
+        Map<String, Object> pageParaMap = new HashMap<>();
         // 百度通道
         if (bdGeoReqResult != null) {
             if (bdGeoReqResult.getStatus() == 0) {
@@ -256,9 +256,9 @@ public class LBSApplController {
         List<POINT> resPointList = pointService.selectAllStaffPointInfo();
         // 循环计算距离
         Double totalDist = 0.0;
-        for (POINT aResPointList : resPointList) {
+        for (POINT currPoint : resPointList) {
             totalDist += getDistance(Double.parseDouble(destPointLng), Double.parseDouble(destPointLat),
-                    aResPointList.getBaiduRecordLng(), aResPointList.getBaiduRecordLat());
+                    currPoint.getBaiduRecordLng(), currPoint.getBaiduRecordLat());
         }
         // 保留两位小数
         Double avgDist = Math.round(totalDist / resPointList.size() * 100.0) / 100.0;
@@ -372,25 +372,25 @@ public class LBSApplController {
         // 获取系统中所有已有线路列表
         List<Metro> metroLineNameList = metroAdminService.getMetroLineNameList();
         // 获取线路对应的站点 ID
-        for (Metro aMetroLineNameList : metroLineNameList) {
-            System.out.println("Getting station id on: " + aMetroLineNameList.getLineName());
+        for (Metro currLineName : metroLineNameList) {
+            System.out.println("Getting station id on: " + currLineName.getLineName());
             List<Metro> metroStationIdList = metroAdminService
-                    .getMetroStationIdByLineName(aMetroLineNameList.getLineName());
+                    .getMetroStationIdByLineName(currLineName.getLineName());
             // 对应站点 ID 获取 POINT 信息
             int j = 0;
             while (j < metroStationIdList.size()) {
                 POINT stationPoint = pointService.selectPointInfoByKeyId(metroStationIdList.get(j).getStaId());
                 // 开始计算比对
-                for (POINT aStaffPointList : staffPointList) {
-                    Double dist = getDistance(aStaffPointList.getBaiduRecordLng(),
-                            aStaffPointList.getBaiduRecordLat(), stationPoint.getBaiduRecordLng(),
+                for (POINT currPoint : staffPointList) {
+                    Double dist = getDistance(currPoint.getBaiduRecordLng(),
+                            currPoint.getBaiduRecordLat(), stationPoint.getBaiduRecordLng(),
                             stationPoint.getBaiduRecordLat());
                     if (dist < Double.parseDouble(reqRange)) {
                         // 在范围内插入显示列表
                         fencingResult fRo = new fencingResult();
-                        fRo.setStaffId(aStaffPointList.getKeyId());
+                        fRo.setStaffId(currPoint.getKeyId());
                         fRo.setStaffName(staffAdminService.selectStaffDetailByStaffId(fRo.getStaffId()).getStaffName());
-                        fRo.setLineName(aMetroLineNameList.getLineName());
+                        fRo.setLineName(currLineName.getLineName());
                         fRo.setStaName(metroAdminService.getMetroStationNameByStationId(stationPoint.getKeyId()));
                         fRo.setDist(Double.toString(Math.round(dist * 100.0) / 100.0) + " 米");
                         fencingResultList.add(fRo);
@@ -400,10 +400,10 @@ public class LBSApplController {
             }
         }
         System.out.println("Calculate finished");
-        for (fencingResult aFencingResultList : fencingResultList) {
+        for (fencingResult currFr : fencingResultList) {
             System.out.println(
-                    aFencingResultList.getLineName() + " || " + aFencingResultList.getStaffId() + " || "
-                            + aFencingResultList.getStaffName() + " || " + aFencingResultList.getStaName());
+                    currFr.getLineName() + " || " + currFr.getStaffId() + " || "
+                            + currFr.getStaffName() + " || " + currFr.getStaName());
         }
         pageParaMap.put("fencingResultList", fencingResultList);
         model.addAttribute("pageParaMap", pageParaMap);
