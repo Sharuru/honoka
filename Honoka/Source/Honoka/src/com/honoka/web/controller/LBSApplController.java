@@ -284,7 +284,7 @@ public class LBSApplController {
         final Double[] transitDistanceAverage = {0.0};
         final Integer[] transitDurationAverage = {0};
         // 新建并发线程池
-        ExecutorService threadPool = Executors.newFixedThreadPool(10);
+        ExecutorService threadPool = Executors.newFixedThreadPool(100);
         // 计算距离
         for (int j = 0; j < staffPointList.size(); j++) {
             final int finalJ = j;
@@ -304,11 +304,11 @@ public class LBSApplController {
                         drivingDurationAverage[0] += bdDD.getResult().getRoutes()[0].getDuration();
                     }
                     //TODO：API 并发量
-                    try {
-                        Thread.sleep(200);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+//                    try {
+//                        Thread.sleep(200);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
                 });
                 subThreadPool.execute(() -> {
                     // 公交距离
@@ -324,11 +324,11 @@ public class LBSApplController {
                         transitDurationAverage[0] += bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration();
                     }
                     //TODO：API 并发量
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+//                    try {
+//                        Thread.sleep(100);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
                 });
                 subThreadPool.shutdown();
                 try {
@@ -338,11 +338,11 @@ public class LBSApplController {
                     System.out.println("Error happened when await sub Termination");
                 }
                 //TODO：API 并发量
-                try {
-                    Thread.sleep(550);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    Thread.sleep(550);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
             });
         }
         threadPool.shutdown();
