@@ -75,14 +75,14 @@
 					<ul class="pagination" id="metroPageNav">
 						<%-- 若为第一页不显示左箭头 --%>
 						<c:if test="${pageParaMap.currPage gt 1}">
-							<li><a href="#" id="${pageParaMap.currPage -1}">&laquo;</a></li>
+							<li><a href="####" id="${pageParaMap.currPage -1}">&laquo;</a></li>
 						</c:if>
 						<%-- 循环设置页码 --%>
 						<c:choose>
                             <%-- 当页面总数小于 11 --%>
                             <c:when test="${pageParaMap.totalCount/20 + 1 le 11}">
                                 <c:forEach var="pageNum" begin="1" end="${pageParaMap.totalCount/20 + 1}">
-                                    <li id="metroPageNav${pageNum}"><a href="#" id="${pageNum}">${pageNum}</a></li>
+                                    <li id="metroPageNav${pageNum}"><a href="####" id="${pageNum}">${pageNum}</a></li>
                                 </c:forEach>
                             </c:when>
 							<%-- 当页面总数大于 11 并且当前页面大于 6 --%>
@@ -91,13 +91,13 @@
 									<%-- 当当前页 + 6 页码大于最大页数，不滚动显示 --%>
 									<c:when test="${pageParaMap.currPage + 6 gt pageParaMap.totalCount/20 + 1 }">
 										<c:forEach var="pageNum" begin="${pageParaMap.totalCount/20 + 1 - 11 }" end="${pageParaMap.totalCount/20 + 1 }">
-											<li id="metroPageNav${pageNum}"><a href="#" id="${pageNum}">${pageNum}</a></li>
+											<li id="metroPageNav${pageNum}"><a href="####" id="${pageNum}">${pageNum}</a></li>
 										</c:forEach>
 									</c:when>
 									<%-- 页码滚动 --%>
 									<c:otherwise>
 										<c:forEach var="pageNum" begin="${pageParaMap.currPage - 5}" end="${pageParaMap.currPage + 5 }">
-											<li id="metroPageNav${pageNum}"><a href="#" id="${pageNum}">${pageNum}</a></li>
+											<li id="metroPageNav${pageNum}"><a href="####" id="${pageNum}">${pageNum}</a></li>
 										</c:forEach>
 									</c:otherwise>
 								</c:choose>
@@ -105,13 +105,13 @@
 							<%-- 总页数大于 11 当前页小于 6 --%>
 							<c:otherwise>
 								<c:forEach var="pageNum" begin="1" end="11">
-									<li id="metroPageNav${pageNum}"><a href="#" id="${pageNum}">${pageNum}</a></li>
+									<li id="metroPageNav${pageNum}"><a href="####" id="${pageNum}">${pageNum}</a></li>
 								</c:forEach>
 							</c:otherwise>
 						</c:choose>
 						<%-- 若为最后一页不显示右箭头 --%>
 						<c:if test="${pageParaMap.currPage lt pageParaMap.totalCount/20}">
-							<li><a href="#" id="${pageParaMap.currPage + 1}" >&raquo;</a></li>
+							<li><a href="####" id="${pageParaMap.currPage + 1}" >&raquo;</a></li>
 						</c:if>
 					</ul>
 				</nav>
