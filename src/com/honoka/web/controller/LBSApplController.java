@@ -326,11 +326,11 @@ public class LBSApplController {
                     System.out.println("Error happened when await sub Termination");
                 }
                 //TODO：API 并发量
-//                try {
-//                    Thread.sleep(500);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             });
         }
         threadPool.shutdown();

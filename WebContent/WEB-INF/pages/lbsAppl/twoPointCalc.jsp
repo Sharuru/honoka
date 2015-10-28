@@ -20,6 +20,8 @@
 	});
 	// 提交 POI 检索请求
 	function reqPOIList(reqKeyword, reqPage){
+        // 清空结果面板
+        document.getElementById("directionCalcResultDiv").innerText = "";
         $('#btnReqPlaceSearch').button('loading');
 		$.ajax({
 			type : "POST",
@@ -139,7 +141,7 @@
                         }
                         document.getElementById("directionCalcResultDiv").innerText += "\n"
                                + "平均自驾: " + returnData[0] + "（"+ returnData[1] + "）" + "\n"
-                        + "平均公共交通: " + returnData[2] + "（"+ returnData[3] + "）";
+                        + "平均交通: " + returnData[2] + "（"+ returnData[3] + "）";
                     }
                 });
             }
