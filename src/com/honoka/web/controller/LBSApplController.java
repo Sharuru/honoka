@@ -208,8 +208,8 @@ public class LBSApplController {
 //                        });
                         subThreadPool.shutdown();
                         try {
-                            // 超时时间为 5 秒
-                            subThreadPool.awaitTermination(5, TimeUnit.SECONDS);
+                            // 超时时间为 30 秒
+                            subThreadPool.awaitTermination(30, TimeUnit.SECONDS);
                         } catch (InterruptedException e) {
                             System.out.println("Error happened when await sub Termination");
                         }
@@ -218,8 +218,8 @@ public class LBSApplController {
                 }
                 threadPool.shutdown();
                 try {
-                    // 超时时间为 5 秒
-                    threadPool.awaitTermination(5, TimeUnit.SECONDS);
+                    // 超时时间为 30 秒
+                    threadPool.awaitTermination(30, TimeUnit.SECONDS);
                 } catch (InterruptedException e) {
                     System.out.println("Error happened when awaitTermination");
                 }
@@ -284,7 +284,7 @@ public class LBSApplController {
         final Double[] transitDistanceAverage = {0.0};
         final Integer[] transitDurationAverage = {0};
         // 新建并发线程池
-        ExecutorService threadPool = Executors.newFixedThreadPool(50);
+        ExecutorService threadPool = Executors.newFixedThreadPool(10);
         // 计算距离
         for (int j = 0; j < staffPointList.size(); j++) {
             final int finalJ = j;
@@ -303,6 +303,12 @@ public class LBSApplController {
                         drivingDistanceAverage[0] += bdDD.getResult().getRoutes()[0].getDistance();
                         drivingDurationAverage[0] += bdDD.getResult().getRoutes()[0].getDuration();
                     }
+                    //TODO：API 并发量
+                    try {
+                        Thread.sleep(200);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 });
                 subThreadPool.execute(() -> {
                     // 公交距离
@@ -317,17 +323,23 @@ public class LBSApplController {
                         transitDistanceAverage[0] += bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance();
                         transitDurationAverage[0] += bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration();
                     }
+                    //TODO：API 并发量
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 });
                 subThreadPool.shutdown();
                 try {
-                    // 超时时间为 5 秒
-                    subThreadPool.awaitTermination(5, TimeUnit.SECONDS);
+                    // 超时时间为 30 秒
+                    subThreadPool.awaitTermination(30, TimeUnit.SECONDS);
                 } catch (InterruptedException e) {
                     System.out.println("Error happened when await sub Termination");
                 }
                 //TODO：API 并发量
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(550);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -335,8 +347,8 @@ public class LBSApplController {
         }
         threadPool.shutdown();
         try {
-            // 超时时间为 5 秒
-            threadPool.awaitTermination(5, TimeUnit.SECONDS);
+            // 超时时间为 30 秒
+            threadPool.awaitTermination(30, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             System.out.println("Error happened when awaitTermination");
         }
