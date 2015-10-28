@@ -26,7 +26,7 @@ public class AmapAPIServiceImpl implements AmapAPIService {
         String json;
         json = APIUtil.readUrl("http://restapi.amap.com/v3/geocode/geo?address=" + URLEncoder.encode(reqAddr, "UTF-8")
                 + "&output=json&key=" + apiKeyService.selectUsableAPIKeyByProvider("AMAPWEB"));
-        System.out.println("Get Amap Json: " + json);
+        //System.out.println("Get Amap Json: " + json);
         Gson gson = new Gson();
         return gson.fromJson(json, AmapJsonGeocoding.class);
     }
