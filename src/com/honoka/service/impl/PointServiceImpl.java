@@ -19,8 +19,8 @@ public class PointServiceImpl implements PointService {
 
     @Override
     public void insertPointInfo(String keyId, double baiduRecordLng, double baiduRecordLat, double amapRecordLng,
-                                double amapRecordLat) {
-        pointMapper.insertPointInfo(keyId, baiduRecordLng, baiduRecordLat, amapRecordLng, amapRecordLat);
+                                double amapRecordLat, String recordType) {
+        pointMapper.insertPointInfo(keyId, baiduRecordLng, baiduRecordLat, amapRecordLng, amapRecordLat, recordType);
 
     }
 

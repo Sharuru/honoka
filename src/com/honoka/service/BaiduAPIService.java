@@ -36,11 +36,11 @@ public interface BaiduAPIService {
      * @param reqKeyWord 搜索关键字
      * @param pageSize   页面尺寸
      * @param pageNum    要求页码
-     * @param reqReqion  搜索区域
+     * @param reqRegion  搜索区域
      * @return 返回 JSON 对象
      * @throws Exception 异常
      */
-    BaiduJsonPlace BaiduPlace(String reqKeyWord, Integer pageSize, Integer pageNum, String reqReqion)
+    BaiduJsonPlace BaiduPlaceLocal(String reqKeyWord, Integer pageSize, Integer pageNum, String reqRegion)
             throws Exception;
 
     /**

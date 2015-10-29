@@ -102,7 +102,7 @@ public class StaffAdminController {
                                         String staffDeptId, String staffLevelId, String staffTel, String staffAddr, String staffPointLng,
                                         String staffPointLat) {
         System.out.println("In /reqAddStaffInfo");
-        // TODO：这段代码有点事儿逼
+        // 新建员工 bean
         Staff staff = new Staff();
         staff.setStaffId(staffId);
         staff.setStaffName(staffName);
@@ -111,14 +111,11 @@ public class StaffAdminController {
         staff.setStaffLevelId(staffLevelId);
         staff.setStaffTel(staffTel);
         staff.setStaffAddr(staffAddr);
-        POINT point = new POINT();
-        point.setKeyId(staffId);
-        point.setBaiduRecordLng(Double.parseDouble(staffPointLng));
-        point.setBaiduRecordLat(Double.parseDouble(staffPointLat));
+        // 插入员工信息
         staffAdminService.insertStaffInfo(staff);
-        // TODO: entity or param
-        pointService.insertPointInfo(staff.getStaffId(), point.getBaiduRecordLng(), point.getBaiduRecordLat(), 0.0,
-                0.0);
+        // 插入对应坐标信息
+        pointService.insertPointInfo(staffId, Double.parseDouble(staffPointLng), Double.parseDouble(staffPointLat), 0.0,
+                0.0, "STAFF");
         return "staffAdmin/staffMain";
     }
 

@@ -16,14 +16,14 @@ public interface PointService {
      * @param baiduRecordLat 百度记录经度
      * @param amapRecordLng   高德记录纬度
      * @param amapRecordLat   高德记录经度
+     * @param recordType 记录类型
      */
     void insertPointInfo(String keyId, double baiduRecordLng, double baiduRecordLat, double amapRecordLng,
-                         double amapRecordLat);
+                         double amapRecordLat, String recordType);
 
     /**
      * 初始化 POINT_INFO 中的站点信息。
      */
-    // TODO：临时措施，需要重构
     void initMetroPoint();
 
     /**
