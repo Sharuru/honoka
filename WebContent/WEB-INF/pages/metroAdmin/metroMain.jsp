@@ -45,7 +45,7 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				地铁站点数据一览
-					<button type="button" style="float: right;" id="btnReqRefreshMetroInfo" data-loading-text="正在更新……" class="btn btn-warning btn-xs" autocomplete="off">
+					<button type="button" style="float: right;" id="btnReqRefreshMetroInfo" data-loading-text="正在更新…" class="btn btn-warning btn-xs" autocomplete="off">
 						  更新数据
 					</button>
 			</div>
