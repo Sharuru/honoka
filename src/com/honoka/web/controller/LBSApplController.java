@@ -6,11 +6,11 @@ package com.honoka.web.controller;
 import com.google.gson.Gson;
 import com.honoka.common.Trimmer;
 import com.honoka.entity.AmapJson.AmapJsonGeocoding;
-import com.honoka.entity.BaiduJson;
 import com.honoka.entity.BaiduJson.BaiduJsonGeocoding;
 import com.honoka.entity.BaiduJson.BaiduJsonPlace;
 import com.honoka.entity.Metro;
 import com.honoka.entity.POINT;
+import com.honoka.entity.Staff;
 import com.honoka.service.*;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -46,6 +46,13 @@ public class LBSApplController {
     private MetroAdminService metroAdminService;
     @Resource
     private StaffAdminService staffAdminService;
+    @Resource
+    private CompanyService companyService;
+    @Qualifier("departmentServiceImpl")
+    @Resource
+    private DepartmentService departmentService;
+    @Resource
+    private LevelService levelService;
     private BaiduJsonGeocoding bdGeoReqResult;
     private AmapJsonGeocoding apReqResult;
 
@@ -380,6 +387,45 @@ public class LBSApplController {
         return "lbsAppl/geoFencing";
     }
 
+    // 范围搜索
+    @RequestMapping(value = "/reqStaffFencing&reqPage={reqPage}", method = RequestMethod.POST)
+    public String reqStaffFencing(ModelMap model, @PathVariable Integer reqPage, String oLng, String oLat, String reqRange) {
+        System.out.println("In /reqStaffFencing&reqPage= " + reqPage);
+        System.out.println("currPage = " + reqPage);
+        System.out.println("reqRange = " + reqRange);
+        // 参数设置
+        Map<String, Object> pageParaMap = new HashMap<>();
+        // 获取对应 ID 字典以设置下拉列表
+        Map<String, String> comMap = companyService.getCompanyMap();
+        Map<String, String> deptMap = departmentService.getDeptMap();
+        Map<String, String> levelMap = levelService.getLevelMap();
+        // 结果保存
+        List<staffFencingResult> fencingResultList = new ArrayList<>();
+        // 获取员工坐标点信息
+        List<POINT> staffPointList = pointService.selectAllStaffPointInfo();
+        for (POINT currPoint : staffPointList) {
+            Double dist = getDistance(currPoint.getBaiduRecordLng(), currPoint.getBaiduRecordLat(), Double.parseDouble(oLng), Double.parseDouble(oLat));
+            if (dist < Double.parseDouble(reqRange)) {
+                // 在范围内插入显示列表
+                staffFencingResult sFr = new staffFencingResult();
+                Staff bs = staffAdminService.selectStaffDetailByStaffId(currPoint.getKeyId());
+                sFr.setStaffId(bs.getStaffId());
+                sFr.setBaiduRecordLng(currPoint.getBaiduRecordLng());
+                sFr.setBaiduRecordLat(currPoint.getBaiduRecordLat());
+                sFr.setStaffComId(comMap.get(bs.getStaffComId()));
+                sFr.setStaffDeptId(deptMap.get(bs.getStaffDeptId()));
+                sFr.setStaffLevelId(levelMap.get(bs.getStaffLevelId()));
+                sFr.setStaffName(bs.getStaffName());
+                sFr.setDist(Trimmer.distance(dist));
+                fencingResultList.add(sFr);
+            }
+        }
+        pageParaMap.put("fencingResultList", fencingResultList);
+        pageParaMap.put("currPage", reqPage);
+        model.addAttribute("pageParaMap", pageParaMap);
+        return "lbsAppl/staffPoiList";
+    }
+
     // 地理围栏计算
     @RequestMapping(value = "/reqCalcGeoFencing", method = RequestMethod.POST)
     public String reqCalcGeoFencing(ModelMap model, String reqRange) {
@@ -452,7 +498,7 @@ public class LBSApplController {
     }
 
     // TODO：CLEAN
-    // 站点围栏 POJO
+// 站点围栏 POJO
     public static class fencingResult {
         // 员工工号
         private String staffId;
@@ -604,6 +650,37 @@ public class LBSApplController {
 
         public void setTransitDistance(String transitDistance) {
             this.transitDistance = transitDistance;
+        }
+    }
+
+    // 员工围栏 POJO
+    public static class staffFencingResult extends Staff {
+        Double baiduRecordLng;
+        Double baiduRecordLat;
+        String dist;
+
+        public Double getBaiduRecordLng() {
+            return baiduRecordLng;
+        }
+
+        public void setBaiduRecordLng(Double baiduRecordLng) {
+            this.baiduRecordLng = baiduRecordLng;
+        }
+
+        public Double getBaiduRecordLat() {
+            return baiduRecordLat;
+        }
+
+        public void setBaiduRecordLat(Double baiduRecordLat) {
+            this.baiduRecordLat = baiduRecordLat;
+        }
+
+        public String getDist() {
+            return dist;
+        }
+
+        public void setDist(String dist) {
+            this.dist = dist;
         }
     }
 }
