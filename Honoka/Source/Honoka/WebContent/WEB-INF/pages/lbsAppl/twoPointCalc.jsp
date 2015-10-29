@@ -118,7 +118,7 @@
             // 创建 DOM 元素
             var div = document.createElement("div");
             // 添加文字说明
-            div.appendChild(document.createTextNode("任意点行程计算"));
+            div.appendChild(document.createTextNode("行程计算"));
             div.id = "directionCalcDiv";
             // 设置样式
             div.style.cursor = "pointer";
@@ -135,7 +135,7 @@
                         destPointLat : currPoint.lat
                     },
                     success : function(returnData) {
-                        document.getElementById("directionCalcDiv").innerText = "任意点行程计算";
+                        document.getElementById("directionCalcDiv").innerText = "行程计算";
                         if(document.getElementById("directionCalcResultDiv").innerText == ""){
                             document.getElementById("directionCalcResultDiv").innerText += "计算结果：";
                         }
@@ -161,10 +161,6 @@
             // 创建 DOM 元素
             var div = document.createElement("div");
             div.id = "directionCalcResultDiv";
-            // 添加文字说明
-            //div.appendChild(document.createTextNode(""));
-            // 设置样式
-            //div.style.cursor = "pointer";
             div.style.border = "1px solid gray";
             div.style.backgroundColor = "white";
             // 添加 DOM 元素到地图中
@@ -177,19 +173,89 @@
         // 添加到地图当中
         lbsMap.addControl(directionCalcResultCtrl);
         document.getElementById("directionCalcResultDiv").className += " well well-sm";
-/*        // 设定右键菜单
+        // 围栏计算控件
+        FencingCalcControl.prototype = new BMap.Control();
+        FencingCalcControl.prototype.initialize = function(lbsMap){
+            // 创建 DOM 元素
+            var div = document.createElement("div");
+            // 添加文字说明
+            div.appendChild(document.createTextNode("范围搜索"));
+            div.id = "fencingCalcDiv";
+            // 设置样式
+            div.style.cursor = "pointer";
+            div.style.border = "1px solid gray";
+            div.style.backgroundColor = "white";
+            // 绑定事件事件
+            div.onclick = function(e){
+                // 移除自带的点击属性
+                $("#fencingCalcDiv").removeAttr("onclick");
+                // 调整样式
+                $("#fencingCalcDiv").css("width","200px");
+                // 替换属性
+                document.getElementById("fencingCalcDiv").innerHTML =
+                        '<div class="input-group input-group-sm">' +
+                        ' <span class="input-group-addon">在</span>' +
+                        '<input id="inputStaffReqRange" type="text" class="form-control" >' +
+                        '<span class="input-group-addon">米</span>' +
+                        '<span class="input-group-btn">' +
+                        '<button class="btn btn-default" type="button">搜索</button>' +
+                        '</span></div>';
+                alert(currPoint.lng + ", " + currPoint.lat);
+                $.ajax({
+                    type : "POST",
+                    url : "reqStaffFencing&reqPage=1",
+                    data : {
+                       oLng : currPoint.lng,
+                        oLat : currPoint.lat,
+                        reqRange : 50000
+                        //reqRange : document.getElementById("inputStaffReqRange").value.trim()
+                    },
+                    success : function(returnData) {
+                    //$('#btnReqPlaceSearch').button('reset');
+                    $("#placeSearchResult").html(returnData);
+                }
+                });
+//                $.ajax({
+//                    type : "POST",
+//                    url : "reqTwoPointCalc",
+//                    data : {
+//                        destPointLng : currPoint.lng,
+//                        destPointLat : currPoint.lat
+//                    },
+//                    success : function(returnData) {
+//                        alert(returnData);
+//                        //document.getElementById("directionCalcResultDiv").innerText = "计算结果：" + "\n" + "平均直线距离：" + returnData;
+//                    }
+//                });
+            }
+            // 添加 DOM 元素到地图中
+            lbsMap.getContainer().appendChild(div);
+            // 将 DOM 元素返回
+            return div;
+        }
+        // 创建控件
+        var fencingCalcCtrl = new FencingCalcControl();
+        // 添加到地图当中
+        lbsMap.addControl(fencingCalcCtrl);
+        document.getElementById("fencingCalcDiv").className += " btn";
+      /*  // 设定右键菜单
         var rightMenu = new BMap.ContextMenu();
         var rightMenuItem = [
             {
-                text:"在附近搜索…",
-                callback:function(){alert("go msg")}
+                text:"在此处附近查找…",
+                callback:function(e){
+                    passMap.clearOverlays();
+                    lbsMap.addOverlay( new BMap.Marker(e));
+                    lbsMap.panTo(e);
+                   // alert("go msg" + e + e.lng);
+                }
             }
         ];
+        var rightMenuOpts ={width:175};
         for(var i=0;i<rightMenuItem.length;i++){
-            rightMenu.addItem(new BMap.MenuItem(rightMenuItem[i].text,rightMenuItem[i].callback,100));
+            rightMenu.addItem(new BMap.MenuItem(rightMenuItem[i].text,rightMenuItem[i].callback,rightMenuOpts));
         }
         lbsMap.addContextMenu(rightMenu);*/
-
 		// 设定缩放级别
 	    lbsMap.centerAndZoom(mbpShPoint, 18);
 		// 开启滚轮缩放功能
@@ -208,10 +274,15 @@
         this.defaultAnchor = BMAP_ANCHOR_TOP_RIGHT;
         this.defaultOffset = new BMap.Size(10, 50);
     }
+    // 百度地图围栏计算控件
+    function FencingCalcControl(){
+        this.defaultAnchor = BMAP_ANCHOR_TOP_RIGHT;
+        this.defaultOffset = new BMap.Size(10,90);
+    }
     // 百度地图行程计算结果
     function DirectionCalcResultControl(){
-        this.defaultAnchor = BMAP_ANCHOR_TOP_RIGHT;
-        this.defaultOffset = new BMap.Size(10, 90);
+        this.defaultAnchor = BMAP_ANCHOR_BOTTOM_RIGHT;
+        this.defaultOffset = new BMap.Size(5, 5);
     }
 </script>
 </head>
