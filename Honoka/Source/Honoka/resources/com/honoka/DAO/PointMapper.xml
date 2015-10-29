@@ -12,23 +12,23 @@
 	<insert id="insertPointInfo" parameterType="map">
 		INSERT INTO 
 		"POINT_INFO" 
-		("KEY_ID","BAIDU_RECORD_LNG","BAIDU_RECORD_LAT","AMAP_RECORD_LNG","AMAP_RECORD_LAT")
+		("KEY_ID","BAIDU_RECORD_LNG","BAIDU_RECORD_LAT","AMAP_RECORD_LNG","AMAP_RECORD_LAT","RECORD_TYPE")
 		VALUES (
 			#{keyId,jdbcType=VARCHAR},
 			#{baiduRecordLng,jdbcType=DOUBLE},
 			#{baiduRecordLat,jdbcType=DOUBLE},
 			#{amapRecordLng,jdbcType=DOUBLE},
-			#{amapRecordLat,jdbcType=DOUBLE}
+			#{amapRecordLat,jdbcType=DOUBLE},
+			#{recordType,jdbcType=VARCHAR}
 		)
 	</insert>
-	
-	<!-- 临时措施，需要重构 -->
+
 	<select id="initMetroPoint">
 		DELETE 
 		FROM 
 			"POINT_INFO" 
 		WHERE 
-			"KEY_ID" LIKE 'STA%'	
+			"RECORD_TYPE" = 'STATION'
 	</select>
 	
 	<select id="selectAllStaffPointInfo" resultMap="PointResultMap">
@@ -42,7 +42,7 @@
 		FROM 
 			"POINT_INFO"
 		WHERE 
-			"KEY_ID" LIKE 'S_______'
+			"RECORD_TYPE" = 'STAFF'
 		AND 
 			"DELETE_FLAG" = 0
 		ORDER BY "RECORD_ID" ASC

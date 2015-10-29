@@ -148,7 +148,7 @@ public class LBSApplController {
         System.out.println("currPage = " + reqPage);
         System.out.println("reqKeyword = " + reqKeyword);
         try {
-            BaiduJsonPlace bdPlaceReqResult = baiduAPIService.BaiduPlace(reqKeyword, 5, reqPage - 1, "上海市");
+            BaiduJsonPlace bdPlaceReqResult = baiduAPIService.BaiduPlaceLocal(reqKeyword, 5, reqPage - 1, "上海市");
             // 设置总记录条数
             System.out.println("Get total is: " + bdPlaceReqResult.getTotal());
             pageParaMap.put("totalCount", bdPlaceReqResult.getTotal());

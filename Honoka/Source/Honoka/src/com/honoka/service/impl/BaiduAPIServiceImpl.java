@@ -38,7 +38,7 @@ public class BaiduAPIServiceImpl implements BaiduAPIService {
 
     // TODO：传参 entity
     @Override
-    public BaiduJsonPlace BaiduPlace(String reqKeyWord, Integer pageSize, Integer pageNum, String reqRegion) throws Exception {
+    public BaiduJsonPlace BaiduPlaceLocal(String reqKeyWord, Integer pageSize, Integer pageNum, String reqRegion) throws Exception {
         String json;
         json = APIUtil.readUrl(
                 "http://api.map.baidu.com/place/v2/search?ak=" + apiKeyService.selectUsableAPIKeyByProvider("BAIDU")

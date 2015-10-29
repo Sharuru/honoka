@@ -18,6 +18,8 @@ public class POINT {
     private double amapRecordLat;
     // 删除标记
     private Integer deleteFlag;
+    // 记录类型
+    private String recordType;
 
     public Integer getRecordId() {
         return recordId;
@@ -75,4 +77,11 @@ public class POINT {
         this.deleteFlag = deleteFlag;
     }
 
+    public String getRecordType() {
+        return recordType;
+    }
+
+    public void setRecordType(String recordType) {
+        this.recordType = recordType;
+    }
 }
