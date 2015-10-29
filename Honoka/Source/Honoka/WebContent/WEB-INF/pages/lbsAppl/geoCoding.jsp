@@ -33,7 +33,7 @@
 <body>
 	<div id="geoCodingContent">
 		<div class="input-group">
-			<input type="text" class="form-control" id="inputReqAddr" placeholder="请输入需要解析的地址……" value="${pageParaMap.inputReqAddr}">
+			<input type="text" class="form-control" id="inputReqAddr" placeholder="请输入需要解析的地址…" value="${pageParaMap.inputReqAddr}">
 				<span class="input-group-btn">
 					<button class="btn btn-default" type="button" id="btnReqGeoCoding">解析</button>
 				</span>

@@ -51,7 +51,7 @@
 		// 设定覆盖物
 	    var orgMarker = new BMap.Marker(orgPoint);
 	    map.addOverlay(orgMarker);
-	    orgMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
+	    //orgMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
 		// 设定地图左上角比例尺和平移控件
 	    var topLeftControl = new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT});
 		var topLeftNavigation = new BMap.NavigationControl();
@@ -74,7 +74,7 @@
 			if (point) {
 				var newMarker = new BMap.Marker(point);
 				map.addOverlay(newMarker);
-				newMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
+				//newMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
 				var topLeftControl = new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT});
 				var topLeftNavigation = new BMap.NavigationControl();
 				map.addControl(topLeftControl);        
@@ -229,8 +229,8 @@
 	            </div>
           	</div>
 			<div class="modal-footer">
-				<button type="button" id="btnReqUpdateStaffInfo"  data-loading-text="正在保存……" class="btn btn-success" autocomplete="off">保存</button>
-				<button type="button" id="btnReqDeleteStaffInfo"  data-loading-text="正在删除……" class="btn btn-danger" autocomplete="off">删除</button>
+				<button type="button" id="btnReqUpdateStaffInfo"  data-loading-text="正在保存…" class="btn btn-success" autocomplete="off">保存</button>
+				<button type="button" id="btnReqDeleteStaffInfo"  data-loading-text="正在删除…" class="btn btn-danger" autocomplete="off">删除</button>
 			</div>
 		</div>
 	</div>

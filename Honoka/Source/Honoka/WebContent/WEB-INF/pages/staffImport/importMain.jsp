@@ -37,7 +37,7 @@
 		<div class="panel-heading">数据导入</div>
 		<div class="panel-body">
 			<div class="input-group">
-			  <input id="filePath" type="file" class="form-control" placeholder="请选择上传文件……">
+			  <input id="filePath" type="file" class="form-control" placeholder="请选择上传文件…">
 			  <span class="input-group-btn">
 			    <button class="btn btn-default" id="btnUploadFile" type="button">上传</button>
 			  </span>

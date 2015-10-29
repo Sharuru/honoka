@@ -39,12 +39,12 @@
             var poiMarker = new BMap.Marker(poiPoint);
             passMap.clearOverlays();
             passMap.addOverlay(poiMarker);
-            poiMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
+            //poiMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
             passMap.centerAndZoom(poiPoint, 18);
             // 仅当未计算时计算
             if( document.getElementById(eleId).getElementsByTagName("span")[2].innerText.substr(-1) != "）"){
                 // 设定行程计算状态
-                document.getElementById(eleId).getElementsByTagName("span")[2].innerText = "正在计算……";
+                document.getElementById(eleId).getElementsByTagName("span")[2].innerText = "正在计算…";
                 // 发送计算请求至后台
                 $.ajax({
                     type : "POST",

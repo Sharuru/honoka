@@ -54,13 +54,13 @@
 		// 创建 Map 实例
 		var lbsMap = new BMap.Map("lbsMapContent");
         passMap = lbsMap;
-		// 默认设定 MBP 上海的坐标点 
+		// 默认设定 MBP 上海的坐标点
 	    var mbpShPoint = new BMap.Point(121.538487, 31.223365);
         currPoint = mbpShPoint;
 		// 设定覆盖物
 	    var mbpShMarker = new BMap.Marker(mbpShPoint);
 	    lbsMap.addOverlay(mbpShMarker);
-	    mbpShMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
+	    //mbpShMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
 		// 设定地图左上角比例尺和平移控件
 	    var topLeftControl = new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT});
 		var topLeftNavigation = new BMap.NavigationControl();
@@ -75,7 +75,7 @@
                 currPoint = destPoint;
 				var destMarker = new BMap.Marker(destPoint);
 				lbsMap.addOverlay(destMarker);
-				destMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
+				//destMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
 				lbsMap.centerAndZoom(destPoint, lbsMap.getZoom());
                 // 去除 list 样式
                 $("a[class='list-group-item active']").removeClass("active");
@@ -126,7 +126,7 @@
             div.style.backgroundColor = "white";
             // 绑定事件事件
             div.onclick = function(e){
-                document.getElementById("directionCalcDiv").innerText = "正在计算……";
+                document.getElementById("directionCalcDiv").innerText = "正在计算…";
                 $.ajax({
                     type : "POST",
                     url : "reqDirectionCalc",
@@ -177,6 +177,19 @@
         // 添加到地图当中
         lbsMap.addControl(directionCalcResultCtrl);
         document.getElementById("directionCalcResultDiv").className += " well well-sm";
+/*        // 设定右键菜单
+        var rightMenu = new BMap.ContextMenu();
+        var rightMenuItem = [
+            {
+                text:"在附近搜索…",
+                callback:function(){alert("go msg")}
+            }
+        ];
+        for(var i=0;i<rightMenuItem.length;i++){
+            rightMenu.addItem(new BMap.MenuItem(rightMenuItem[i].text,rightMenuItem[i].callback,100));
+        }
+        lbsMap.addContextMenu(rightMenu);*/
+
 		// 设定缩放级别
 	    lbsMap.centerAndZoom(mbpShPoint, 18);
 		// 开启滚轮缩放功能
@@ -211,9 +224,9 @@
 					<div class="panel panel-default">
 					  <div class="panel-body">
 					    <div class="input-group">
-					      <input type="text" id="inputPlaceSearch" class="form-control" placeholder="请输入兴趣点关键字……">
+					      <input type="text" id="inputPlaceSearch" class="form-control" placeholder="请输入兴趣点关键字…">
 					      <span class="input-group-btn">
-					        <button class="btn btn-default" type="button" id="btnReqPlaceSearch" data-loading-text="正在检索……" autocomplete="off">检索</button>
+					        <button class="btn btn-default" type="button" id="btnReqPlaceSearch" data-loading-text="正在检索…" autocomplete="off">检索</button>
 					      </span>
 					    </div>
 					  	<div class="panel-body" id="placeSearchResult" style="margin-left:-3.5%;width:107%;height:655px;"> </div>

@@ -40,7 +40,7 @@
 				<option value="1000">1000 米</option>
 				<option value="1500">1500 米</option>
 			</select> 
-			<button type="button" id="reqGeoFencing" data-loading-text="正在计算……" class="btn btn-primary btn-xs"  autocomplete="off" >开始计算</button>
+			<button type="button" id="reqGeoFencing" data-loading-text="正在计算…" class="btn btn-primary btn-xs"  autocomplete="off" >开始计算</button>
 		</div>
 		<div id="geoFencingResultDiv">
 			<table class="table table-hover table-striped  table-condensed" contenteditable="false">
