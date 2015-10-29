@@ -12,14 +12,28 @@ import javax.annotation.Resource;
 @Service
 public class APIKeyServiceImpl implements APIKeyService {
 
+    private static String currBaiduAPIKey;
+    private static String currAmapWebAPIKey;
     @Resource
     private APIKeyMapper apiKeyMapper;
 
     @Override
     public String selectUsableAPIKeyByProvider(String provider) {
-        //TODO：缓存 key
-        return "CqTmA6FQhjfbDQl2dQMLIBnu";
-        //return apiKeyMapper.selectUsableAPIKeyByProvider(provider);
+        // TODO：缓存 KEY，未来根据次数优选或者返回 KEY 集（并发）
+        switch (provider) {
+            case "BAIDU":
+                if (currBaiduAPIKey == null) {
+                    currBaiduAPIKey = apiKeyMapper.selectUsableAPIKeyByProvider(provider);
+                }
+                return currBaiduAPIKey;
+            case "AMAPWEB":
+                if (currAmapWebAPIKey == null) {
+                    currAmapWebAPIKey = apiKeyMapper.selectUsableAPIKeyByProvider(provider);
+                }
+                return currAmapWebAPIKey;
+            default:
+                return "Error";
+        }
     }
 
     @Override

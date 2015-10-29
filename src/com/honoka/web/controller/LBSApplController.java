@@ -412,11 +412,11 @@ public class LBSApplController {
             }
         }
         System.out.println("Calculate finished");
-        for (fencingResult currFr : fencingResultList) {
-            System.out.println(
-                    currFr.getLineName() + " || " + currFr.getStaffId() + " || "
-                            + currFr.getStaffName() + " || " + currFr.getStaName());
-        }
+//        for (fencingResult currFr : fencingResultList) {
+//            System.out.println(
+//                    currFr.getLineName() + " || " + currFr.getStaffId() + " || "
+//                            + currFr.getStaffName() + " || " + currFr.getStaName());
+//        }
         pageParaMap.put("fencingResultList", fencingResultList);
         model.addAttribute("pageParaMap", pageParaMap);
         return "lbsAppl/geoFencing";

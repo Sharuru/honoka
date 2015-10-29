@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface PointMapper {
     void insertPointInfo(@Param("keyId") String keyId, @Param("baiduRecordLng") double baiduRecordLng,
-                         @Param("baiduRecordLat") double baiduReocordLat, @Param("amapRecordLng") double amapRecordLng,
+                         @Param("baiduRecordLat") double baiduRecordLat, @Param("amapRecordLng") double amapRecordLng,
                          @Param("amapRecordLat") double amapRecordLat, @Param("recordType") String recordType);
 
     void initMetroPoint();
