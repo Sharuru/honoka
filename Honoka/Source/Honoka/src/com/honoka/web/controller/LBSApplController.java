@@ -299,9 +299,13 @@ public class LBSApplController {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    if (bdDD.getResult() != null) {
+                    // 正常解析
+                    if (bdDD.getStatus() == 0 && bdDD.getResult() != null) {
                         drivingDistanceAverage[0] += bdDD.getResult().getRoutes()[0].getDistance();
                         drivingDurationAverage[0] += bdDD.getResult().getRoutes()[0].getDuration();
+                    }
+                    else{
+                        System.out.println("Error: " + bdDD.getStatus() + " " + bdDD.getMessage());
                     }
                     //TODO：API 并发量
 //                    try {
@@ -319,9 +323,13 @@ public class LBSApplController {
                         e.printStackTrace();
                     }
                     //System.out.println("Transit Distance:" + bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance() + " Transit Duration:" + bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration());
-                    if (bdDT.getResult() != null) {
+                    // 正常解析
+                    if (bdDT.getStatus() == 0 && bdDT.getResult() != null) {
                         transitDistanceAverage[0] += bdDT.getResult().getRoutes()[0].getScheme()[0].getDistance();
                         transitDurationAverage[0] += bdDT.getResult().getRoutes()[0].getScheme()[0].getDuration();
+                    }
+                    else{
+                        System.out.println("Error: " + bdDT.getStatus() + " " + bdDT.getMessage());
                     }
                     //TODO：API 并发量
 //                    try {

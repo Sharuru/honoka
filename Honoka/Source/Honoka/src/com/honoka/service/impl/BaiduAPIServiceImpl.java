@@ -30,7 +30,7 @@ public class BaiduAPIServiceImpl implements BaiduAPIService {
         // 拼接请求字符串获得内容
         json = APIUtil.readUrl("http://api.map.baidu.com/geocoder/v2/?address=" + URLEncoder.encode(reqAddr, "UTF-8")
                 + "&output=json&ak=" + apiKeyService.selectUsableAPIKeyByProvider("BAIDU"));
-        System.out.println(json);
+        //System.out.println(json);
         Gson gson = new Gson();
         // Json to POJO
         return gson.fromJson(json, BaiduJsonGeocoding.class);
@@ -44,7 +44,7 @@ public class BaiduAPIServiceImpl implements BaiduAPIService {
                 "http://api.map.baidu.com/place/v2/search?ak=" + apiKeyService.selectUsableAPIKeyByProvider("BAIDU")
                         + "&output=json&query=" + URLEncoder.encode(reqKeyWord, "UTF-8") + "&page_size=" + pageSize + "&page_num="
                         + pageNum + "&scope=1&region=" + URLEncoder.encode(reqRegion, "UTF-8"));
-        System.out.println(json);
+        //System.out.println(json);
         Gson gson = new Gson();
         return gson.fromJson(json, BaiduJsonPlace.class);
     }
@@ -55,7 +55,7 @@ public class BaiduAPIServiceImpl implements BaiduAPIService {
         json = APIUtil.readUrl(
                 "http://api.map.baidu.com/direction/v1?mode=driving&origin=" + oLat + "," + oLng + "&destination=" + dLat + "," + dLng + "&origin_region=" + origin_region + "&destination_region="
                         + destination_region + "&output=json&ak=" + apiKeyService.selectUsableAPIKeyByProvider("BAIDU"));
-        System.out.println(json);
+        //System.out.println(json);
         Gson gson = new Gson();
         return gson.fromJson(json, BaiduJsonDirectionDriving.class);
     }
@@ -66,7 +66,7 @@ public class BaiduAPIServiceImpl implements BaiduAPIService {
         json = APIUtil.readUrl(
                 "http://api.map.baidu.com/direction/v1?mode=transit&origin=" + oLat + "," + oLng + "&destination=" + dLat + "," + dLng + "&origin_region=" + origin_region + "&destination_region="
                         + destination_region + "&output=json&ak=" + apiKeyService.selectUsableAPIKeyByProvider("BAIDU"));
-        System.out.println(json);
+        //System.out.println(json);
         Gson gson = new Gson();
         return gson.fromJson(json, BaiduJsonDirectionTransit.class);
     }
