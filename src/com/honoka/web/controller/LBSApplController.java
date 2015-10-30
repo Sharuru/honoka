@@ -429,15 +429,26 @@ public class LBSApplController {
             }
         }
         pageParaMap.put("totalCount", fencingResultList.size());
+        System.out.println("Result size is:" + fencingResultList.size());
+        // Magic
         if (fencingResultList.size() > 5) {
-            pageParaMap.put("fencingResultList", fencingResultList.subList((reqPage - 1) * 5, reqPage * 5));
+            if((reqPage - 1) * 5 + 5 > fencingResultList.size() ){
+                // 最后一页超额
+                pageParaMap.put("fencingResultList", fencingResultList.subList((reqPage - 1) * 5, fencingResultList.size()));
+                System.out.println("Giving you: " + (reqPage - 1) * 5 + " TO " + fencingResultList.size());
+            }
+            else{
+                pageParaMap.put("fencingResultList", fencingResultList.subList((reqPage - 1) * 5,(reqPage - 1) * 5 + 5));
+                System.out.println("Giving you: " + (reqPage - 1) * 5 + " TO " + ((reqPage - 1) * 5 + 5));
+            }
         } else {
-            pageParaMap.put("fencingResultList", fencingResultList.subList((reqPage - 1) * 5, fencingResultList.size()));
+            pageParaMap.put("fencingResultList", fencingResultList);
         }
         pageParaMap.put("currPage", reqPage);
         model.addAttribute("pageParaMap", pageParaMap);
-        System.out.println("Result size is:" + fencingResultList.size());
         lastReqRange = reqRange;
+        lastReqOlng = oLng;
+        lastReqOlat = oLat;
         return "lbsAppl/staffPoiList";
     }
 
