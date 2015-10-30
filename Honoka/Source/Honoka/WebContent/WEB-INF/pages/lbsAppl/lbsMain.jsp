@@ -35,7 +35,7 @@
 					<a href="#geoCodingContent" id="geoCoding" data-toggle="tab">地址解析</a>
 				</li>
 				<li>
-					<a href="#twoPointCalcContent" id="twoPointCalc" data-toggle="tab">兴趣点<span class="badge">Alpha!</span></a>
+					<a href="#twoPointCalcContent" id="twoPointCalc" data-toggle="tab">兴趣点<span class="badge">Beta!</span></a>
 				</li>
 				<li>
 					<a href="#geoFencingContent" id="geoFencing" data-toggle="tab">地铁站点围栏<span class="badge">Alpha!</span></a>

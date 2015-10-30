@@ -10,8 +10,8 @@
     <script type="text/javascript">
         // 设定 POI 坐标集
         <c:if test="${pageParaMap.fencingResultList != null && pageParaMap.fencingResultList.size() > 0}">
-            var staffBaiduRecordLng = new Array();
-            var staffBaiduRecordLat= new Array();
+            var staffBaiduRecordLng = [];
+            var staffBaiduRecordLat= [];
             var i =0;
             <c:forEach  var="currPOI" begin="0" end="${pageParaMap.fencingResultList.size() - 1}">
                 staffBaiduRecordLng[i] = ${pageParaMap.fencingResultList.get(currPOI).baiduRecordLng};
@@ -19,6 +19,11 @@
                 i++;
             </c:forEach>
         </c:if>
+        // 添加标记点
+        for(var i = 0;i<staffBaiduRecordLat.length;i++){
+            var marker = new BMap.Marker(new BMap.Point(staffBaiduRecordLng[i],staffBaiduRecordLat[i]));
+            passMap.addOverlay(marker);
+        }
         // 子功能加载后绑定点击事件
         $(document).ready(function() {
             $("#staffPoiPageNav").click(function(event) {
@@ -47,11 +52,11 @@
                 var poiPoint = new BMap.Point( staffBaiduRecordLng[targetId], staffBaiduRecordLat[targetId]);
                 currPoint = poiPoint;
                 // 设定覆盖物
-                var poiMarker = new BMap.Marker(poiPoint);
-                passMap.clearOverlays();
-                passMap.addOverlay(poiMarker);
+                //var poiMarker = new BMap.Marker(poiPoint);
+                //passMap.clearOverlays();
+                //passMap.addOverlay(poiMarker);
                 //poiMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
-                passMap.centerAndZoom(poiPoint, 18);
+                passMap.panTo(poiPoint);
             });
         });
     </script>
