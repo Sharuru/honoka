@@ -24,4 +24,8 @@ public interface PointMapper {
     void updatePointInfoByKeyId(POINT point);
 
     void deletePointInfoByKeyId(String keyId);
+
+    List<POINT> selectPointInfoByPage(Integer page);
+
+    Integer countPointInfoByRecordType(String recordType);
 }

@@ -98,4 +98,31 @@
 		WHERE 
 			"KEY_ID" = #{keyId, jdbcType=VARCHAR}
 	</update>
+
+	<select id="selectPointInfoByPage" resultMap="PointResultMap" parameterType="java.lang.Integer">
+        SELECT
+            "RECORD_ID",
+            "KEY_ID",
+            "BAIDU_RECORD_LNG",
+            "BAIDU_RECORD_LAT",
+            "AMAP_RECORD_LNG",
+            "AMAP_RECORD_LAT"
+        FROM
+            "POINT_INFO"
+        WHERE
+            "DELETE_FLAG" = 0
+        LIMIT 5
+        OFFSET #{page,jdbcType=INTEGER}*5 - 5
+	</select>
+
+    <select id="countPointInfoByRecordType" resultType="java.lang.Integer">
+        SELECT
+            COUNT (*)
+        FROM
+            "POINT_INFO"
+        WHERE
+            "DELETE_FLAG" = 0
+        AND
+            "RECORD_TYPE" = #{keyId, jdbcType=VARCHAR}
+    </select>
 </mapper>
