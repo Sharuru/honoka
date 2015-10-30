@@ -59,6 +59,7 @@
 	    var mbpShPoint = new BMap.Point(121.538487, 31.223365);
         currPoint = mbpShPoint;
 		// 设定覆盖物
+        var fencingCircle;
 	    var mbpShMarker = new BMap.Marker(mbpShPoint);
 	    lbsMap.addOverlay(mbpShMarker);
 	    //mbpShMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
@@ -199,10 +200,12 @@
                         '<input id="inputStaffReqRange" type="text" class="form-control" >' +
                         '<span class="input-group-addon">米</span>' +
                         '<span class="input-group-btn">' +
-                        '<button id="btnReqStaffFencing" class="btn btn-default" type="button">搜索</button>' +
+                        '<button id="btnReqStaffFencing" class="btn btn-default" type="button" data-loading-text="正在搜索…" autocomplete="off">搜索</button>' +
                         '</span></div>';
                 //alert(currPoint.lng + ", " + currPoint.lat);
                 $("#btnReqStaffFencing").click(function(event) {
+                    $('#btnReqStaffFencing').button('loading');
+                    var reqRange =  document.getElementById("inputStaffReqRange").value.trim();
                     $.ajax({
                         type : "POST",
                         url : "reqStaffFencing&reqPage=1",
@@ -210,10 +213,38 @@
                             oLng : currPoint.lng,
                             oLat : currPoint.lat,
                             //reqRange : 50000
-                            reqRange : document.getElementById("inputStaffReqRange").value.trim()
+                            reqRange : reqRange
                         },
                         success : function(returnData) {
-                            //$('#btnReqPlaceSearch').button('reset');
+                            // 添加覆盖物
+                            lbsMap.removeOverlay(fencingCircle);
+                            fencingCircle = new BMap.Circle(currPoint,reqRange,{fillColor:"blue", strokeWeight: 1 ,fillOpacity: 0.3, strokeOpacity: 0.3});
+                            lbsMap.addOverlay(fencingCircle);
+                            if(reqRange < 60){
+                                lbsMap.zoomTo(19)
+                            }
+                            else if(reqRange < 200){
+                                lbsMap.zoomTo(18)
+                            }
+                            else if(reqRange < 300){
+                                lbsMap.zoomTo(17)
+                            }
+                            else if(reqRange < 600){
+                                lbsMap.zoomTo(16)
+                            }
+                            else if(reqRange < 1000){
+                                lbsMap.zoomTo(15)
+                            }
+                            else if(reqRange < 6000){
+                                lbsMap.zoomTo(14)
+                            }
+                            else if(reqRange < 11000){
+                                lbsMap.zoomTo(13)
+                            }
+                            else{
+                                lbsMap.zoomTo(12);
+                            }
+                            $('#btnReqStaffFencing').button('reset');
                             $("#placeSearchResult").html(returnData);
                         }
                     });

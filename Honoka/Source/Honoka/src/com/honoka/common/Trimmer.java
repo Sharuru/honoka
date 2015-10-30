@@ -18,7 +18,7 @@ public class Trimmer {
             result = Double.toString(Math.round(meter / 1000.0 * 100.0) / 100.0) + " 公里";
         } else {
             // 保留米
-            result = Double.toString(meter) + " 米";
+            result = Double.toString(Math.round(meter * 100.0) / 100.0) + " 米";
         }
         return result;
     }

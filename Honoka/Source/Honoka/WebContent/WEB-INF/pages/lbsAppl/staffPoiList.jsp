@@ -10,12 +10,12 @@
     <script type="text/javascript">
         // 设定 POI 坐标集
         <c:if test="${pageParaMap.fencingResultList != null && pageParaMap.fencingResultList.size() > 0}">
-            var baiduRecordLng = new Array();
-            var baiduRecordLat= new Array();
+            var staffBaiduRecordLng = new Array();
+            var staffBaiduRecordLat= new Array();
             var i =0;
             <c:forEach  var="currPOI" begin="0" end="${pageParaMap.fencingResultList.size() - 1}">
-                baiduRecordLng[i] = ${pageParaMap.fencingResultList.get(currPOI).baiduRecordLng};
-                baiduRecordLat[i] = ${pageParaMap.fencingResultList.get(currPOI).baiduRecordLat};
+                staffBaiduRecordLng[i] = ${pageParaMap.fencingResultList.get(currPOI).baiduRecordLng};
+                staffBaiduRecordLat[i] = ${pageParaMap.fencingResultList.get(currPOI).baiduRecordLat};
                 i++;
             </c:forEach>
         </c:if>
@@ -37,15 +37,14 @@
                 });
             });
             // 绑定员工 POI 结果卡片
-           /* $("a[class='list-group-item']").click(function(){
+            $("a[class='list-group-item']").click(function(){
                 // 移除已有 active 样式
                 $("a[class='list-group-item active']").removeClass("active");
                 // 对当前选择的卡片添加 active 样式
                 $(this).addClass("active");
-                var eleId = this.id;
-                var targetId = (this.id.substr(7)-1);
+                var targetId = (this.id.substr(12)-1);
                 // 设定 POI
-                var poiPoint = new BMap.Point( baiduRecordLng[targetId], baiduRecordLat[targetId]);
+                var poiPoint = new BMap.Point( staffBaiduRecordLng[targetId], staffBaiduRecordLat[targetId]);
                 currPoint = poiPoint;
                 // 设定覆盖物
                 var poiMarker = new BMap.Marker(poiPoint);
@@ -53,39 +52,7 @@
                 passMap.addOverlay(poiMarker);
                 //poiMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
                 passMap.centerAndZoom(poiPoint, 18);
-                // 仅当未计算时计算
-                if( document.getElementById(eleId).getElementsByTagName("span")[2].innerText.substr(-1) != "）"){
-                    // 设定行程计算状态
-                    document.getElementById(eleId).getElementsByTagName("span")[2].innerText = "正在计算…";
-                    // 发送计算请求至后台
-                    $.ajax({
-                        type : "POST",
-                        url : "reqDirectionCalc",
-                        data : {
-                            destPointLng : baiduRecordLng[targetId],
-                            destPointLat : baiduRecordLat[targetId]
-                        },
-                        success : function(returnData) {
-                            document.getElementById(eleId).getElementsByTagName("span")[2].innerText = "平均自驾: " + returnData[0] + "（"+ returnData[1] + "）"
-                                    + "平均交通: " + returnData[2] + "（"+ returnData[3] + "）";
-                            // 添加对比星星
-                            $("#" + eleId+"Star").addClass("glyphicon glyphicon-star-empty");
-                            $("#" + eleId+"Star").click(function(){
-                                if(this.className == "glyphicon glyphicon-star-empty"){
-                                    // 加入对比
-                                    $(this).removeClass("glyphicon glyphicon-star-empty");
-                                    $(this).addClass("glyphicon glyphicon-star");
-                                }
-                                else{
-                                    // 退出对比
-                                    $(this).removeClass("glyphicon glyphicon-star");
-                                    $(this).addClass("glyphicon glyphicon-star-empty");
-                                }
-                            });
-                        }
-                    });
-                }
-            });*/
+            });
         });
     </script>
 </head>
@@ -98,6 +65,7 @@
                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;${pageParaMap.fencingResultList.get(currPOI).staffName}
                     <span class="list-group-item-text" style="float:right;font-size: 13px;">距离: ${pageParaMap.fencingResultList.get(currPOI).dist}</span>
                 </h5>
+                <p class="list-group-item-text" style="font-size: 13px">${pageParaMap.fencingResultList.get(currPOI).staffId}</p>
                 <p class="list-group-item-text" style="font-size: 13px">${pageParaMap.fencingResultList.get(currPOI).staffComId}</p>
                 <p class="list-group-item-text" style="font-size: 13px">${pageParaMap.fencingResultList.get(currPOI).staffDeptId}</p>
                 <p class="list-group-item-text" style="font-size: 13px;"> ${pageParaMap.fencingResultList.get(currPOI).staffLevelId}</p>
