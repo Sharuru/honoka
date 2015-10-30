@@ -52,7 +52,6 @@ public class MetroAdminController {
         System.out.println("In /reqRefreshMetroInfo");
         try {
             BaiduJsonPlace bdReqResult = baiduAPIService.BaiduPlaceLocal("地铁站", 20, 0, "上海市");
-            // TODO：这里的结果处理要优化
             // 如果获得解析结果
             if (bdReqResult.getStatus() == 0) {
                 // 先清空所有已有数据
@@ -71,7 +70,6 @@ public class MetroAdminController {
                             Matcher m = p.matcher(currLineName);
                             // 线路名不为空时写入（比如松江站，松江新城站），线路名不为奇怪数据时写入
                             if (m.matches()) {
-                                // TODO：站点 ID 需要自己生成
                                 metroAdminService.insertMetroInfo(currLineName, "STA" + staIdCount.toString(),
                                         bdReqResult.getResults().get(j).getName());
                                 // 写入坐标信息
@@ -87,8 +85,7 @@ public class MetroAdminController {
                 pointService.trimMetroPointData();
             }
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            System.out.println("Error happened when updating metro information.");
         }
         return "redirect:metroAdmin&reqPage=1";
     }
