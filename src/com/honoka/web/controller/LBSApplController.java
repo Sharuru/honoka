@@ -55,6 +55,10 @@ public class LBSApplController {
     private LevelService levelService;
     private BaiduJsonGeocoding bdGeoReqResult;
     private AmapJsonGeocoding apReqResult;
+    private static List<staffFencingResult> fencingResultList = new ArrayList<>();
+    private static String lastReqRange = "0";
+    private static String lastReqOlat = "0.0";
+    private static String lastReqOlng = "0.0";
 
     // 地址解析初始画面
     @RequestMapping(value = "/geoCoding", method = RequestMethod.GET)
@@ -244,8 +248,7 @@ public class LBSApplController {
                 POISearchResultList.add(poiSr);
             }
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            System.out.println("Error happened when searching POI");
         }
         pageParaMap.put("poiSearchList", POISearchResultList);
         pageParaMap.put("currPage", reqPage);
@@ -395,34 +398,46 @@ public class LBSApplController {
         System.out.println("reqRange = " + reqRange);
         // 参数设置
         Map<String, Object> pageParaMap = new HashMap<>();
-        // 获取对应 ID 字典以设置下拉列表
-        Map<String, String> comMap = companyService.getCompanyMap();
-        Map<String, String> deptMap = departmentService.getDeptMap();
-        Map<String, String> levelMap = levelService.getLevelMap();
-        // 结果保存
-        List<staffFencingResult> fencingResultList = new ArrayList<>();
-        // 获取员工坐标点信息
-        List<POINT> staffPointList = pointService.selectAllStaffPointInfo();
-        for (POINT currPoint : staffPointList) {
-            Double dist = getDistance(currPoint.getBaiduRecordLng(), currPoint.getBaiduRecordLat(), Double.parseDouble(oLng), Double.parseDouble(oLat));
-            if (dist < Double.parseDouble(reqRange)) {
-                // 在范围内插入显示列表
-                staffFencingResult sFr = new staffFencingResult();
-                Staff bs = staffAdminService.selectStaffDetailByStaffId(currPoint.getKeyId());
-                sFr.setStaffId(bs.getStaffId());
-                sFr.setBaiduRecordLng(currPoint.getBaiduRecordLng());
-                sFr.setBaiduRecordLat(currPoint.getBaiduRecordLat());
-                sFr.setStaffComId(comMap.get(bs.getStaffComId()));
-                sFr.setStaffDeptId(deptMap.get(bs.getStaffDeptId()));
-                sFr.setStaffLevelId(levelMap.get(bs.getStaffLevelId()));
-                sFr.setStaffName(bs.getStaffName());
-                sFr.setDist(Trimmer.distance(dist));
-                fencingResultList.add(sFr);
+        // 与上次请求不相等时重新计算
+        if (!(lastReqRange.equals(reqRange)) || !(lastReqOlng.equals(oLng)) || !(lastReqOlat.equals(oLat))) {
+            System.out.println("New calc");
+            fencingResultList.clear();
+            // 获取对应 ID 字典以设置下拉列表
+            Map<String, String> comMap = companyService.getCompanyMap();
+            Map<String, String> deptMap = departmentService.getDeptMap();
+            Map<String, String> levelMap = levelService.getLevelMap();
+            // 结果保存
+            //List<staffFencingResult> fencingResultList = new ArrayList<>();
+            // 获取员工坐标点信息
+            List<POINT> staffPointList = pointService.selectAllStaffPointInfo();
+            for (POINT currPoint : staffPointList) {
+                Double dist = getDistance(currPoint.getBaiduRecordLng(), currPoint.getBaiduRecordLat(), Double.parseDouble(oLng), Double.parseDouble(oLat));
+                if (dist < Double.parseDouble(reqRange)) {
+                    // 在范围内插入显示列表
+                    staffFencingResult sFr = new staffFencingResult();
+                    Staff bs = staffAdminService.selectStaffDetailByStaffId(currPoint.getKeyId());
+                    sFr.setStaffId(bs.getStaffId());
+                    sFr.setBaiduRecordLng(currPoint.getBaiduRecordLng());
+                    sFr.setBaiduRecordLat(currPoint.getBaiduRecordLat());
+                    sFr.setStaffComId(comMap.get(bs.getStaffComId()));
+                    sFr.setStaffDeptId(deptMap.get(bs.getStaffDeptId()));
+                    sFr.setStaffLevelId(levelMap.get(bs.getStaffLevelId()));
+                    sFr.setStaffName(bs.getStaffName());
+                    sFr.setDist(Trimmer.distance(dist));
+                    fencingResultList.add(sFr);
+                }
             }
         }
-        pageParaMap.put("fencingResultList", fencingResultList);
+        pageParaMap.put("totalCount", fencingResultList.size());
+        if (fencingResultList.size() > 5) {
+            pageParaMap.put("fencingResultList", fencingResultList.subList((reqPage - 1) * 5, reqPage * 5));
+        } else {
+            pageParaMap.put("fencingResultList", fencingResultList.subList((reqPage - 1) * 5, fencingResultList.size()));
+        }
         pageParaMap.put("currPage", reqPage);
         model.addAttribute("pageParaMap", pageParaMap);
+        System.out.println("Result size is:" + fencingResultList.size());
+        lastReqRange = reqRange;
         return "lbsAppl/staffPoiList";
     }
 
@@ -462,7 +477,7 @@ public class LBSApplController {
                         fRo.setStaffName(staffAdminService.selectStaffDetailByStaffId(fRo.getStaffId()).getStaffName());
                         fRo.setLineName(currLineName.getLineName());
                         fRo.setStaName(metroAdminService.getMetroStationNameByStationId(stationPoint.getKeyId()));
-                        fRo.setDist(Double.toString(Math.round(dist * 100.0) / 100.0) + " 米");
+                        fRo.setDist(Trimmer.distance(dist));
                         fencingResultList.add(fRo);
                     }
                 }
@@ -498,7 +513,8 @@ public class LBSApplController {
     }
 
     // TODO：CLEAN
-// 站点围栏 POJO
+
+    // 站点围栏 POJO
     public static class fencingResult {
         // 员工工号
         private String staffId;

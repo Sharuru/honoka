@@ -35,6 +35,7 @@
 			}
 		});
 	}
+    //
 	// 提交距离计算请求
 	function postPoint(destPointLng, destPointLat) {
 		$.ajax({
@@ -198,35 +199,25 @@
                         '<input id="inputStaffReqRange" type="text" class="form-control" >' +
                         '<span class="input-group-addon">米</span>' +
                         '<span class="input-group-btn">' +
-                        '<button class="btn btn-default" type="button">搜索</button>' +
+                        '<button id="btnReqStaffFencing" class="btn btn-default" type="button">搜索</button>' +
                         '</span></div>';
-                alert(currPoint.lng + ", " + currPoint.lat);
-                $.ajax({
-                    type : "POST",
-                    url : "reqStaffFencing&reqPage=1",
-                    data : {
-                       oLng : currPoint.lng,
-                        oLat : currPoint.lat,
-                        reqRange : 50000
-                        //reqRange : document.getElementById("inputStaffReqRange").value.trim()
-                    },
-                    success : function(returnData) {
-                    //$('#btnReqPlaceSearch').button('reset');
-                    $("#placeSearchResult").html(returnData);
-                }
+                //alert(currPoint.lng + ", " + currPoint.lat);
+                $("#btnReqStaffFencing").click(function(event) {
+                    $.ajax({
+                        type : "POST",
+                        url : "reqStaffFencing&reqPage=1",
+                        data : {
+                            oLng : currPoint.lng,
+                            oLat : currPoint.lat,
+                            //reqRange : 50000
+                            reqRange : document.getElementById("inputStaffReqRange").value.trim()
+                        },
+                        success : function(returnData) {
+                            //$('#btnReqPlaceSearch').button('reset');
+                            $("#placeSearchResult").html(returnData);
+                        }
+                    });
                 });
-//                $.ajax({
-//                    type : "POST",
-//                    url : "reqTwoPointCalc",
-//                    data : {
-//                        destPointLng : currPoint.lng,
-//                        destPointLat : currPoint.lat
-//                    },
-//                    success : function(returnData) {
-//                        alert(returnData);
-//                        //document.getElementById("directionCalcResultDiv").innerText = "计算结果：" + "\n" + "平均直线距离：" + returnData;
-//                    }
-//                });
             }
             // 添加 DOM 元素到地图中
             lbsMap.getContainer().appendChild(div);

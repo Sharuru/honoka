@@ -55,4 +55,14 @@ public class PointServiceImpl implements PointService {
         pointMapper.deletePointInfoByKeyId(keyId);
     }
 
+    @Override
+    public List<POINT> selectPointInfoByPage(Integer reqPage) {
+        return pointMapper.selectPointInfoByPage(reqPage);
+    }
+
+    @Override
+    public Integer countPointInfoByRecordType(String recordType) {
+        return pointMapper.countPointInfoByRecordType(recordType);
+    }
+
 }

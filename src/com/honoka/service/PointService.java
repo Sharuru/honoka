@@ -11,12 +11,12 @@ public interface PointService {
     /**
      * 插入坐标信息。
      *
-     * @param keyId           检索关键字
-     * @param baiduRecordLng  百度记录纬度
+     * @param keyId          检索关键字
+     * @param baiduRecordLng 百度记录纬度
      * @param baiduRecordLat 百度记录经度
-     * @param amapRecordLng   高德记录纬度
-     * @param amapRecordLat   高德记录经度
-     * @param recordType 记录类型
+     * @param amapRecordLng  高德记录纬度
+     * @param amapRecordLat  高德记录经度
+     * @param recordType     记录类型
      */
     void insertPointInfo(String keyId, double baiduRecordLng, double baiduRecordLat, double amapRecordLng,
                          double amapRecordLat, String recordType);
@@ -60,4 +60,21 @@ public interface PointService {
      * @param keyId 检索关键字
      */
     void deletePointInfoByKeyId(String keyId);
+
+
+    /**
+     * 根据页数获得坐标信息
+     *
+     * @param reqPage 需要页数限制
+     * @return 坐标列表
+     */
+    List<POINT> selectPointInfoByPage(Integer reqPage);
+
+
+    /**
+     * 根据记录类型统计条目记录数
+     * @param recordType 记录类型
+     * @return 条目数
+     */
+    Integer countPointInfoByRecordType(String recordType);
 }
