@@ -10,6 +10,9 @@ import com.honoka.entity.BaiduJson.BaiduJsonGeocoding;
 import com.honoka.entity.BaiduJson.BaiduJsonPlace;
 import com.honoka.entity.Metro;
 import com.honoka.entity.POINT;
+import com.honoka.entity.Result.POISearchResult;
+import com.honoka.entity.Result.fencingResult;
+import com.honoka.entity.Result.staffFencingResult;
 import com.honoka.entity.Staff;
 import com.honoka.service.*;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -30,9 +33,15 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import static com.honoka.common.Utils.getDistance;
+
 @Controller
 public class LBSApplController {
 
+    private static List<staffFencingResult> fencingResultList = new ArrayList<>();
+    private static String lastReqRange = "0";
+    private static String lastReqOlat = "0.0";
+    private static String lastReqOlng = "0.0";
     @Qualifier("APIKeyServiceImpl")
     @Resource
     private APIKeyService apiKeyService;
@@ -55,10 +64,6 @@ public class LBSApplController {
     private LevelService levelService;
     private BaiduJsonGeocoding bdGeoReqResult;
     private AmapJsonGeocoding apReqResult;
-    private static List<staffFencingResult> fencingResultList = new ArrayList<>();
-    private static String lastReqRange = "0";
-    private static String lastReqOlat = "0.0";
-    private static String lastReqOlng = "0.0";
 
     // 地址解析初始画面
     @RequestMapping(value = "/geoCoding", method = RequestMethod.GET)
@@ -432,13 +437,12 @@ public class LBSApplController {
         System.out.println("Result size is:" + fencingResultList.size());
         // Magic
         if (fencingResultList.size() > 5) {
-            if((reqPage - 1) * 5 + 5 > fencingResultList.size() ){
+            if ((reqPage - 1) * 5 + 5 > fencingResultList.size()) {
                 // 最后一页超额
                 pageParaMap.put("fencingResultList", fencingResultList.subList((reqPage - 1) * 5, fencingResultList.size()));
                 System.out.println("Giving you: " + (reqPage - 1) * 5 + " TO " + fencingResultList.size());
-            }
-            else{
-                pageParaMap.put("fencingResultList", fencingResultList.subList((reqPage - 1) * 5,(reqPage - 1) * 5 + 5));
+            } else {
+                pageParaMap.put("fencingResultList", fencingResultList.subList((reqPage - 1) * 5, (reqPage - 1) * 5 + 5));
                 System.out.println("Giving you: " + (reqPage - 1) * 5 + " TO " + ((reqPage - 1) * 5 + 5));
             }
         } else {
@@ -459,7 +463,6 @@ public class LBSApplController {
         // 参数设置
         Map<String, Object> pageParaMap = new HashMap<>();
         System.out.println("Get reqRange = " + reqRange);
-        // TODO：数据库表要重新设计，线路 ID
         // 计算准备
         // 结果保存
         List<fencingResult> fencingResultList = new ArrayList<>();
@@ -504,210 +507,5 @@ public class LBSApplController {
         pageParaMap.put("fencingResultList", fencingResultList);
         model.addAttribute("pageParaMap", pageParaMap);
         return "lbsAppl/geoFencing";
-    }
-
-    // 两点距离计算
-
-    public double getDistance(double lng1, double lat1, double lng2, double lat2) {
-        double a, b, R;
-        R = 6378137; // 地球半径
-        lat1 = lat1 * Math.PI / 180.0;
-        lat2 = lat2 * Math.PI / 180.0;
-        a = lat1 - lat2;
-        b = (lng1 - lng2) * Math.PI / 180.0;
-        double d;
-        double sa2, sb2;
-        sa2 = Math.sin(a / 2.0);
-        sb2 = Math.sin(b / 2.0);
-        d = 2 * R * Math.asin(Math.sqrt(sa2 * sa2 + Math.cos(lat1) * Math.cos(lat2) * sb2 * sb2));
-        return d;
-    }
-
-    // TODO：CLEAN
-
-    // 站点围栏 POJO
-    public static class fencingResult {
-        // 员工工号
-        private String staffId;
-        // 员工姓名
-        private String staffName;
-        // 线路名
-        private String lineName;
-        // 站点名
-        private String staName;
-        // 距离
-        private String dist;
-
-        public String getStaffId() {
-            return staffId;
-        }
-
-        public void setStaffId(String staffId) {
-            this.staffId = staffId;
-        }
-
-        public String getStaffName() {
-            return staffName;
-        }
-
-        public void setStaffName(String staffName) {
-            this.staffName = staffName;
-        }
-
-        public String getLineName() {
-            return lineName;
-        }
-
-        public void setLineName(String lineName) {
-            this.lineName = lineName;
-        }
-
-        public String getStaName() {
-            return staName;
-        }
-
-        public void setStaName(String staName) {
-            this.staName = staName;
-        }
-
-        public String getDist() {
-            return dist;
-        }
-
-        public void setDist(String dist) {
-            this.dist = dist;
-        }
-
-    }
-
-    // POI 检索 POJO
-    public static class POISearchResult {
-        // 兴趣点名字
-        private String poiName;
-        // 兴趣点地址
-        private String poiAddr;
-        // 兴趣点联系电话
-        private String poiTelephone;
-        // 兴趣点百度记录纬度
-        private float baiduRecordLng;
-        // 兴趣点百度记录经度
-        private float baiduRecordLat;
-
-        private String lineDistance;
-        private String drivingDistance;
-        private String drivingDuration;
-        private String transitDistance;
-        private String transitDuration;
-
-        public String getPoiName() {
-            return poiName;
-        }
-
-        public void setPoiName(String poiName) {
-            this.poiName = poiName;
-        }
-
-        public String getPoiAddr() {
-            return poiAddr;
-        }
-
-        public void setPoiAddr(String poiAddr) {
-            this.poiAddr = poiAddr;
-        }
-
-        public String getPoiTelephone() {
-            return poiTelephone;
-        }
-
-        public void setPoiTelephone(String poiTelephone) {
-            this.poiTelephone = poiTelephone;
-        }
-
-        public Float getBaiduRecordLng() {
-            return baiduRecordLng;
-        }
-
-        public void setBaiduRecordLng(Float baiduRecordLng) {
-            this.baiduRecordLng = baiduRecordLng;
-        }
-
-        public Float getBaiduRecordLat() {
-            return baiduRecordLat;
-        }
-
-        public void setBaiduRecordLat(Float baiduRecordLat) {
-            this.baiduRecordLat = baiduRecordLat;
-        }
-
-        public String getLineDistance() {
-            return lineDistance;
-        }
-
-        public void setLineDistance(String lineDistance) {
-            this.lineDistance = lineDistance;
-        }
-
-        public String getDrivingDistance() {
-            return drivingDistance;
-        }
-
-        public void setDrivingDistance(String drivingDistance) {
-            this.drivingDistance = drivingDistance;
-        }
-
-        public String getDrivingDuration() {
-            return drivingDuration;
-        }
-
-        public void setDrivingDuration(String drivingDuration) {
-            this.drivingDuration = drivingDuration;
-        }
-
-        public String getTransitDuration() {
-            return transitDuration;
-        }
-
-        public void setTransitDuration(String transitDuration) {
-            this.transitDuration = transitDuration;
-        }
-
-        public String getTransitDistance() {
-            return transitDistance;
-        }
-
-        public void setTransitDistance(String transitDistance) {
-            this.transitDistance = transitDistance;
-        }
-    }
-
-    // 员工围栏 POJO
-    public static class staffFencingResult extends Staff {
-        Double baiduRecordLng;
-        Double baiduRecordLat;
-        String dist;
-
-        public Double getBaiduRecordLng() {
-            return baiduRecordLng;
-        }
-
-        public void setBaiduRecordLng(Double baiduRecordLng) {
-            this.baiduRecordLng = baiduRecordLng;
-        }
-
-        public Double getBaiduRecordLat() {
-            return baiduRecordLat;
-        }
-
-        public void setBaiduRecordLat(Double baiduRecordLat) {
-            this.baiduRecordLat = baiduRecordLat;
-        }
-
-        public String getDist() {
-            return dist;
-        }
-
-        public void setDist(String dist) {
-            this.dist = dist;
-        }
     }
 }

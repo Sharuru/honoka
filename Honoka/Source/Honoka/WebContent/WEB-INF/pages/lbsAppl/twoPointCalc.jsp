@@ -103,12 +103,12 @@
                 //清空检索列表
                 $("#placeSearchResult").empty();
                 document.getElementById("inputPlaceSearch").value="";
-            }
+            };
             // 添加 DOM 元素到地图中
             lbsMap.getContainer().appendChild(div);
             // 将 DOM 元素返回
             return div;
-            }
+            };
         // 创建控件
         var backToCtrl = new ResetMapControl();
         // 添加到地图当中
@@ -146,12 +146,12 @@
                         + "平均交通: " + returnData[2] + "（"+ returnData[3] + "）";
                     }
                 });
-            }
+            };
             // 添加 DOM 元素到地图中
             lbsMap.getContainer().appendChild(div);
             // 将 DOM 元素返回
             return div;
-        }
+        };
         // 创建控件
         var directCalcCtrl = new DirectionCalcControl();
         // 添加到地图当中
@@ -169,7 +169,7 @@
             lbsMap.getContainer().appendChild(div);
             // 将 DOM 元素返回
             return div;
-        }
+        };
         // 创建控件
         var directionCalcResultCtrl = new DirectionCalcResultControl();
         // 添加到地图当中
@@ -241,20 +241,23 @@
                             else if(reqRange < 11000){
                                 lbsMap.zoomTo(13)
                             }
+                            else if(reqRange < 16000){
+                                lbsMap.zoomTo(12)
+                            }
                             else{
-                                lbsMap.zoomTo(12);
+                                lbsMap.zoomTo(11);
                             }
                             $('#btnReqStaffFencing').button('reset');
                             $("#placeSearchResult").html(returnData);
                         }
                     });
                 });
-            }
+            };
             // 添加 DOM 元素到地图中
             lbsMap.getContainer().appendChild(div);
             // 将 DOM 元素返回
             return div;
-        }
+        };
         // 创建控件
         var fencingCalcCtrl = new FencingCalcControl();
         // 添加到地图当中

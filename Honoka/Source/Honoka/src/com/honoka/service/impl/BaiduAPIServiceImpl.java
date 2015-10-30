@@ -36,7 +36,6 @@ public class BaiduAPIServiceImpl implements BaiduAPIService {
         return gson.fromJson(json, BaiduJsonGeocoding.class);
     }
 
-    // TODO：传参 entity
     @Override
     public BaiduJsonPlace BaiduPlaceLocal(String reqKeyWord, Integer pageSize, Integer pageNum, String reqRegion) throws Exception {
         String json;
