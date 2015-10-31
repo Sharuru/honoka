@@ -114,6 +114,7 @@
 	}
 	function reqDeleteStaffInfo(){
 		$.ajax({
+			cache: false,
 			type : "POST",
 			url : "reqDeleteStaffInfo",
 			data : {

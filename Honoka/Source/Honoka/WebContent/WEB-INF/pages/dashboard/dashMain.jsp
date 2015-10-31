@@ -12,6 +12,7 @@
 		<div class="panel-heading">系统信息</div>
 		<div class="panel-body">
 			<h3>欢迎使用本系统</h3>
+			<p>使用访问时会被强制缓存数据，您的更改可能无法实时更新。</p>
 		</div>
 	</div>
 	<div class="panel panel-default">

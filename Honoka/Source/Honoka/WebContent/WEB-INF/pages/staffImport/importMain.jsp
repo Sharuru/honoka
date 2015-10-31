@@ -16,6 +16,7 @@
 	        formData.append('file', $('input[type=file]')[0].files[0]);
 	        // POST 数据
 	        $.ajax({
+	        	cache: false,
 	            url : 'uploadStaffFile',
 	            data : formData,
 	            processData : false,

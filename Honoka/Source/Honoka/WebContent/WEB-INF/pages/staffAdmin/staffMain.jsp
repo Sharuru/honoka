@@ -25,6 +25,7 @@
 	// AJAX 获取子页面的内容
 	function loadStaffListContent(dest) {
 		$.ajax({
+			cache: false,
 			type : "GET",
 			url : "staffAdmin&reqPage=" + dest,
 			success : function(data) {
@@ -35,6 +36,7 @@
 	// 触发模态框，读取员工详情
 	function loadStaffDetailInfo(staffId){ 
 		$.ajax({
+			cache: false,
 			type : "GET",
 			url: "staffDetail&reqStaffId=" + staffId,
 			success : function(data) {
@@ -45,6 +47,7 @@
 	// 触发模态，读取新增模态画面
 	function loadAddStaffModal(){
 		$.ajax({
+			cache: false,
 			type : "GET",
 			url : "addStaffInfo",
 			success : function(data) {

@@ -80,6 +80,7 @@
 	}
 	function reqAddStaffInfo(){
 		$.ajax({
+			cache: false,
 			type : "POST",
 			url : "reqAddStaffInfo",
 			data : {
@@ -102,6 +103,7 @@
 	}
 	function reqDeleteStaffInfo(){
 		$.ajax({
+			cache: false,
 			type : "POST",
 			url : "reqDeleteStaffInfo",
 			data : {

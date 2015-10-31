@@ -47,6 +47,7 @@
                 document.getElementById(eleId).getElementsByTagName("span")[2].innerText = "正在计算…";
                 // 发送计算请求至后台
                 $.ajax({
+                	cache: false,
                     type : "POST",
                     url : "reqDirectionCalc",
                     data : {

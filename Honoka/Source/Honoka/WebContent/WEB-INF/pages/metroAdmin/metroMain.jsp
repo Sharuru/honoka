@@ -30,6 +30,7 @@
 	}
 	function reqRefreshMetroInfo(){
 		$.ajax({
+			cache: false,
 			type : "GET",
 			url : "reqRefreshMetroInfo",
 			success : function(data) {

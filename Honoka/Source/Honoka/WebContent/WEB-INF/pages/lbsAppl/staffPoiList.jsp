@@ -28,6 +28,7 @@
         $(document).ready(function() {
             $("#staffPoiPageNav").click(function(event) {
                 $.ajax({
+                	cache: false,
                     type : "POST",
                     url : "reqStaffFencing&reqPage=" + event.target.id,
                     data : {
