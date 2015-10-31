@@ -17,6 +17,7 @@
 	function reqGeoCoding() {
 		var userInput = document.getElementById("inputReqAddr").value;
 		$.ajax({
+			cache: false,
 			type : "POST",
 			url : "reqGeoCoding",
 			data : {

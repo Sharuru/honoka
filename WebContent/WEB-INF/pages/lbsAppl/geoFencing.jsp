@@ -18,6 +18,7 @@
 	// AJAX 获取子页面的内容
 	function loadGeoFencingContent() {
 		$.ajax({
+			cache: false,
 			type : "POST",
 			url : "reqCalcGeoFencing",
 			data : {
