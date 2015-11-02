@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.honoka.DAO.APIKeyMapper">
+	<resultMap id="APIKeyResultMap" type="com.honoka.entity.APIKey">
+		<id column="RECORD_ID" property="recordId" jdbcType="INTEGER"/>
+		<result column="KEY" property="key" jdbcType="VARCHAR"/>
+		<result column="PROVIDER" property="provider" jdbcType="VARCHAR" />
+		<result column="AMOUNT" property="amount" jdbcType="INTEGER" />
+		<result column="LAST_CALL" property="lastCall" jdbcType="TIMESTAMP"/>	
+	</resultMap>
+	<select id="selectUsableAPIKeyByProvider" resultType="java.lang.String" parameterType="java.lang.String">
+		SELECT 
+			"KEY"
+		FROM 
+			"API_KEY"
+		WHERE 
+			"PROVIDER" = #{provider,jdbcType=VARCHAR}
+		ORDER BY 
+			"AMOUNT" ASC
+	</select>
+	<select id="selectAmountByAPIKey" resultType="java.lang.Integer" parameterType="java.lang.String">
+		SELECT 
+			"AMOUNT"
+		FROM 
+			"API_KEY"
+		WHERE 
+			"KEY" = #{key,jdbcType=VARCHAR}
+	</select>
+</mapper>
