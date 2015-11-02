@@ -1,7 +1,7 @@
 <%--
   Created by Sharuru
-  Date: 2015/10/1 0008
-  Time: 15:10
+  Date: 2015/10/19 0008
+  Time: 10:32
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
@@ -11,43 +11,32 @@
 
 <script type="text/javascript">
 	var staffInfoUpdateConfirm = false;
-	var staffInfoDeleteConfirm = false;
 	$(document).ready(function() {
-		// 监听解析按钮 class，sdrgbtn 为不存在的样式 
-		$('.sdrgbtn').click(function(event) {
+		// 监听解析按钮 class，asbtn 为不存在的样式 
+		$('.asbtn').click(function(event) {
 			reqGeoCodingByInput();
 		});
-		// 更新员工信息
-		$('#btnReqUpdateStaffInfo').on('click', function () {
+		$('#btnReqAddStaffInfo').on('click', function () {
 			if(staffInfoUpdateConfirm){
+				// 更改按钮状态
 			    var $btn = $(this).button('loading')
-			    reqUpdateStaffInfo();
+			    reqAddStaffInfo();
 			}
 			else{
-				document.getElementById("btnReqUpdateStaffInfo").innerText = "确定保存";
+				// 二次确认保存
+				document.getElementById("btnReqAddStaffInfo").innerText = "确定保存";
 				staffInfoUpdateConfirm = true;
 			}
-		});
-		// 删除员工信息
-		$('#btnReqDeleteStaffInfo').on('click', function () {
-			if(staffInfoDeleteConfirm){
-			    var $btn = $(this).button('loading')
-			    reqDeleteStaffInfo();
-			}
-			else{
-				document.getElementById("btnReqDeleteStaffInfo").innerText = "确定删除";
-				staffInfoDeleteConfirm = true;
-			}
-		});		
+		});	
 		// 延迟加载百度地图以刷新 DOM
 		setTimeout(function(){initStaffDetailBaiduMap();},200);
 	});
 	// 员工信息详情地图实例初始化
 	function initStaffDetailBaiduMap() {
 		// 创建 Map 实例
-		var map = new BMap.Map("staffDetailMapContent",{enableMapClick:false}); 
+		var map = new BMap.Map("AddStaffMapContent",{enableMapClick:false}); 
 		// 默认设定记录坐标点 
-	    var orgPoint = new BMap.Point(${pageParaMap.staffPoint.baiduRecordLng }, ${pageParaMap.staffPoint.baiduRecordLat });
+		var orgPoint = new BMap.Point(0,0);
 		// 设定覆盖物
 	    var orgMarker = new BMap.Marker(orgPoint);
 	    map.addOverlay(orgMarker);
@@ -64,7 +53,7 @@
 	    map.enableContinuousZoom();
 	}
 	function reqGeoCodingByInput(){
-		var map = new BMap.Map("staffDetailMapContent",{enableMapClick:false});
+		var map = new BMap.Map("AddStaffMapContent",{enableMapClick:false});
 		// 创建地址解析器实例
 		var reqGeo = new BMap.Geocoder();
 		// 将地址解析结果显示在地图上,并调整地图视野
@@ -82,18 +71,18 @@
 				map.centerAndZoom(point, 16);
 			    map.enableScrollWheelZoom();   
 			    map.enableContinuousZoom();
-			    //回写界面信息
+			    // 回写界面信息
 			    document.getElementById("inputStallPoint").value = " " + point.lng + "," + point.lat;
 			}else{
 				alert("选择的地址没有解析到结果!");
 			}
 		});
 	}
-	function reqUpdateStaffInfo(){
+	function reqAddStaffInfo(){
 		$.ajax({
 			cache : false,
 			type : "POST",
-			url : "reqUpdateStaffInfo",
+			url : "reqAddStaffInfo",
 			data : {
 				staffId: document.getElementById("inputStaffId").value.trim(),
 				staffName: document.getElementById("inputStaffName").value.trim(),
@@ -105,17 +94,16 @@
 				staffPointLng: document.getElementById("inputStallPoint").value.trim().split(",")[0],
 				staffPointLat: document.getElementById("inputStallPoint").value.trim().split(",")[1]
 			},success : function(data) {
-				$('#btnReqUpdateStaffInfo').button('reset');
-				$('#staffInfoModal').modal('hide');
+				$('#btnReqAddStaffInfo').button('reset');
+				$('#addStaffInfoModal').modal('hide');
 				// 成功后返回第一页，理论上应该停留在当前页
 				setTimeout(function(){loadStaffListContent(1);},200);
-				//loadStaffListContent(1);
 			}
 		});
 	}
 	function reqDeleteStaffInfo(){
 		$.ajax({
-			cache: false,
+			cache : false,
 			type : "POST",
 			url : "reqDeleteStaffInfo",
 			data : {
@@ -125,7 +113,6 @@
 				$('#staffInfoModal').modal('hide');
 				// 成功后返回第一页，理论上应该停留在当前页
 				setTimeout(function(){loadStaffListContent(1);},200);
-				//loadStaffListContent(1);
 			}
 		});
 	}
@@ -139,7 +126,7 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 				<h4 class="modal-title" id="myModalLabel">
-					<b>员工详情</b>
+					<b>新增员工</b>
 				</h4>
 			</div>
 			<div class="modal-body">
@@ -148,11 +135,11 @@
 	                <div class="col-xs-8 col-sm-6">
 						<div class="input-group">
 							<span class="input-group-addon" >员工工号</span> 
-							<input id="inputStaffId" type="text" class="form-control" disabled value="&nbsp;${pageParaMap.staffDetail.staffId}">
+							<input id="inputStaffId" type="text" class="form-control">
 						</div>
 						<div class="input-group">
 							<span class="input-group-addon" >员工姓名</span> 
-							<input id="inputStaffName" type="text" class="form-control" placeholder="员工姓名" value="&nbsp;${pageParaMap.staffDetail.staffName}">
+							<input id="inputStaffName" type="text" class="form-control" placeholder="员工姓名">
 						</div>
 						<div class="input-group">
 							<span class="input-group-addon" id="inputCom">所属公司</span>
@@ -160,14 +147,7 @@
 							  <select class="form-control" id="selectCom">
 								<c:forEach items="${pageParaMap.comMap}" var="map"
 									varStatus="id" begin="0">
-									<c:choose>
-										<c:when test="${pageParaMap.staffDetail.staffComId eq map.key}">
-											<option value="${map.key}" selected>${map.value}</option>
-										</c:when>
-										<c:otherwise>
-											<option value="${map.key}">${map.value}</option>
-										</c:otherwise>
-									</c:choose>
+									<option value="${map.key}">${map.value}</option>
 								</c:forEach>
 							  </select>
 							</div>
@@ -178,14 +158,7 @@
 							  <select class="form-control" id="selectDept">
 								<c:forEach items="${pageParaMap.deptMap}" var="map"
 									varStatus="id" begin="0">
-									<c:choose>
-										<c:when test="${pageParaMap.staffDetail.staffDeptId eq map.key}">
-											<option value="${map.key}" selected>${map.value}</option>
-										</c:when>
-										<c:otherwise>
-											<option value="${map.key}">${map.value}</option>
-										</c:otherwise>
-									</c:choose>
+									<option value="${map.key}">${map.value}</option>
 								</c:forEach>
 							  </select>
 							</div>
@@ -196,43 +169,35 @@
 							  <select class="form-control" id="selectLevel">
 								<c:forEach items="${pageParaMap.levelMap}" var="map"
 									varStatus="id" begin="0">
-									<c:choose>
-										<c:when test="${pageParaMap.staffDetail.staffLevelId eq map.key}">
-											<option value="${map.key}" selected>${map.value}</option>
-										</c:when>
-										<c:otherwise>
-											<option value="${map.key}">${map.value}</option>
-										</c:otherwise>
-									</c:choose>
+									<option value="${map.key}">${map.value}</option>
 								</c:forEach>
 							  </select>
 							</div>
 						</div>
 						<div class="input-group">
 							<span class="input-group-addon" >联系电话</span>
-							<input id="inputStaffTel" type="text" class="form-control" placeholder="联系电话" value="&nbsp;${pageParaMap.staffDetail.staffTel}">
+							<input id="inputStaffTel" type="text" class="form-control" placeholder="联系电话">
 						</div>
 						<div class="input-group">
-							<span class="input-group-addon" >家庭住址</span> 
-							<input id="inputStaffAddr" type="text" class="form-control" placeholder="家庭住址" value="&nbsp;${pageParaMap.staffDetail.staffAddr}">
+							<span class="input-group-addon" >家庭住址</span>
+							<input id="inputStaffAddr" type="text" class="form-control" placeholder="家庭住址">
 							<span class="input-group-btn">
-								<button class="btn btn-default sdrgbtn" type="button" id="btnReqGeoCoding">解析</button>
+								<button class="btn btn-default asbtn" type="button" id="btnReqGeoCoding">解析</button>
 							</span>
 						</div>
 						<div class="input-group">
-							<span class="input-group-addon" >解析坐标</span> 
-							<input type="text" class="form-control" placeholder="StaffPoint" id="inputStallPoint" disabled value="&nbsp;${pageParaMap.staffPoint.baiduRecordLng },${pageParaMap.staffPoint.baiduRecordLat }">
+							<span class="input-group-addon" >解析坐标</span> <input
+								type="text" class="form-control" disable placeholder="请单击解析按钮" id="inputStallPoint" >
 						</div>
 	                </div>
 	                <div class="col-xs-4 col-sm-6">
-	                  <div id="staffDetailMapContent" style="height: 272px"></div>
+	                  <div id="AddStaffMapContent" style="height: 272px"></div>
 	                </div>
 	              </div>
 	            </div>
           	</div>
 			<div class="modal-footer">
-				<button type="button" id="btnReqUpdateStaffInfo"  data-loading-text="正在保存…" class="btn btn-success" autocomplete="off">保存</button>
-				<button type="button" id="btnReqDeleteStaffInfo"  data-loading-text="正在删除…" class="btn btn-danger" autocomplete="off">删除</button>
+				<button type="button" id="btnReqAddStaffInfo"  data-loading-text="正在保存…" class="btn btn-success" autocomplete="off">保存</button>
 			</div>
 		</div>
 	</div>

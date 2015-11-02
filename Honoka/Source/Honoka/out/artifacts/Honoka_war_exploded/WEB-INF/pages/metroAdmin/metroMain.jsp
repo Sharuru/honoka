@@ -21,7 +21,7 @@
 	// AJAX 获取子页面的内容
 	function loadMetroListContent(dest) {
 		$.ajax({
-			cache: false,
+			cache : false,
 			type : "GET",
 			url : "metroAdmin&reqPage=" + dest,
 			success : function(data) {
@@ -31,7 +31,7 @@
 	}
 	function reqRefreshMetroInfo(){
 		$.ajax({
-			cache: false,
+			cache : false,
 			type : "GET",
 			url : "reqRefreshMetroInfo",
 			success : function(data) {

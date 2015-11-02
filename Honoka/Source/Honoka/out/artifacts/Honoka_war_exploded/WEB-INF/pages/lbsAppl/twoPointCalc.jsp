@@ -24,7 +24,7 @@
         document.getElementById("directionCalcResultDiv").innerText = "";
         $('#btnReqPlaceSearch').button('loading');
 		$.ajax({
-			cache: false,
+			cache : false,
 			type : "POST",
 			url : "reqPOIList&reqPage=" + reqPage,
 			data : {
@@ -40,7 +40,7 @@
 	// 提交距离计算请求
 	function postPoint(destPointLng, destPointLat) {
 		$.ajax({
-			cache: false,
+			cache : false,
 			type : "POST",
 			url : "reqTwoPointCalc",
 			data : {
@@ -132,7 +132,7 @@
             div.onclick = function(e){
                 document.getElementById("directionCalcDiv").innerText = "正在计算…";
                 $.ajax({
-                	cache: false,
+                	cache : false,
                     type : "POST",
                     url : "reqDirectionCalc",
                     data : {
@@ -210,7 +210,7 @@
                     $('#btnReqStaffFencing').button('loading');
                     var reqRange =  document.getElementById("inputStaffReqRange").value.trim();
                     $.ajax({
-                    	cache: false,
+                    	cache : false,
                         type : "POST",
                         url : "reqStaffFencing&reqPage=1",
                         data : {

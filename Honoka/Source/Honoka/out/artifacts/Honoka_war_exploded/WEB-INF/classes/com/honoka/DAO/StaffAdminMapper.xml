@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.honoka.DAO.StaffAdminMapper">
+	<resultMap id="StaffAdminResultMap" type="com.honoka.entity.Staff">
+		<id column="RECORD_ID" property="recordId" jdbcType="INTEGER"/>
+		<result column="STAFF_COM_ID" property="staffComId" jdbcType="VARCHAR"/>
+		<result column="STAFF_DEPT_ID" property="staffDeptId" jdbcType="VARCHAR" />
+		<result column="STAFF_LEVEL_ID" property="staffLevelId" jdbcType="VARCHAR" />
+		<result column="STAFF_ID" property="staffId" jdbcType="VARCHAR"/>
+		<result column="STAFF_NAME" property="staffName" jdbcType="VARCHAR" />
+		<result column="STAFF_TEL" property="staffTel" jdbcType="VARCHAR" />
+		<result column="STAFF_ADDR" property="staffAddr" jdbcType="VARCHAR" />
+		<result column="DELETE_FLAG" property="deleteFlag" jdbcType="INTEGER" />
+	</resultMap>
+	<select id="countStaffInfo" resultType="java.lang.Integer">
+		SELECT 
+			COUNT (*)
+		FROM 
+			"STAFF_INFO"
+		WHERE 
+			"DELETE_FLAG" = 0	
+	</select>
+	
+	<select id="selectStaffInfoByPage" resultMap="StaffAdminResultMap" parameterType="java.lang.Integer">
+		SELECT 
+			"RECORD_ID", 
+			"STAFF_COM_ID", 
+			"STAFF_DEPT_ID", 
+			"STAFF_LEVEL_ID", 
+			"STAFF_ID", "STAFF_NAME", 
+			"STAFF_TEL", 
+			"STAFF_ADDR", 
+			"DELETE_FLAG"
+		FROM 
+			"STAFF_INFO"
+		WHERE 
+			"DELETE_FLAG" = 0	
+		ORDER BY 
+			"STAFF_ID" ASC
+		<!-- 这里也要设置 -->
+		LIMIT 20
+		OFFSET #{page,jdbcType=INTEGER}*20 - 20
+	</select>
+	
+	<select id="selectStaffDetailByStaffId" resultMap="StaffAdminResultMap" parameterType="java.lang.String">
+		SELECT 
+			"RECORD_ID", 
+			"STAFF_COM_ID", 
+			"STAFF_DEPT_ID", 
+			"STAFF_LEVEL_ID", 
+			"STAFF_ID", 
+			"STAFF_NAME", 
+			"STAFF_TEL", 
+			"STAFF_ADDR", 
+			"DELETE_FLAG"
+		FROM 
+			"STAFF_INFO"
+		WHERE 
+			"STAFF_ID" = #{staffId,jdbcType=VARCHAR}
+		AND 
+			"DELETE_FLAG" = 0
+	</select>
+	
+	<update id="deleteStaffInfoByStaffId" parameterType="java.lang.String">
+		UPDATE 
+			"STAFF_INFO"
+		SET 
+			"DELETE_FLAG" = 1
+		WHERE 
+			"STAFF_ID" = #{staffId,jdbcType=VARCHAR}
+	</update>
+	
+	<update id="updateStaffInfo" parameterType="com.honoka.entity.Staff">
+		UPDATE 
+			"STAFF_INFO"
+		SET 
+			"STAFF_COM_ID" = #{staffComId, jdbcType=VARCHAR},
+			"STAFF_DEPT_ID" = #{staffDeptId, jdbcType=VARCHAR},
+			"STAFF_LEVEL_ID" = #{staffLevelId, jdbcType=VARCHAR},
+			"STAFF_NAME" = #{staffName, jdbcType=VARCHAR},
+			"STAFF_TEL" = #{staffTel, jdbcType=VARCHAR},
+			"STAFF_ADDR" = #{staffAddr, jdbcType=VARCHAR}
+		WHERE 
+			"STAFF_ID" = #{staffId, jdbcType=VARCHAR}
+	</update>
+	
+	<insert id="insertStaffInfo" parameterType="com.honoka.entity.Staff">
+		INSERT INTO 
+			"STAFF_INFO"
+		("STAFF_ID","STAFF_COM_ID","STAFF_DEPT_ID","STAFF_LEVEL_ID","STAFF_NAME","STAFF_TEL","STAFF_ADDR")
+		VALUES
+		(
+			#{staffId,jdbcType=VARCHAR},
+			#{staffComId, jdbcType=VARCHAR},
+			#{staffDeptId, jdbcType=VARCHAR},
+			#{staffLevelId, jdbcType=VARCHAR},
+			#{staffName, jdbcType=VARCHAR},
+			#{staffTel, jdbcType=VARCHAR},
+			#{staffAddr, jdbcType=VARCHAR}
+		)
+	</insert>
+</mapper>
