@@ -6,6 +6,7 @@ package com.honoka.web.controller;
 import com.google.gson.Gson;
 import com.honoka.common.Trimmer;
 import com.honoka.entity.AmapJson.AmapJsonGeocoding;
+import com.honoka.entity.BaiduJson;
 import com.honoka.entity.BaiduJson.BaiduJsonGeocoding;
 import com.honoka.entity.BaiduJson.BaiduJsonPlace;
 import com.honoka.entity.Metro;
@@ -292,7 +293,7 @@ public class LBSApplController {
     String[] reaDirectionRouter(String destPointLng, String destPointLat) {
         System.out.println("In /reqDirectionCalc");
         System.out.println("Get destPoint: " + destPointLng + "," + destPointLat);
-       /* // 获取员工坐标点信息
+        // 获取员工坐标点信息
         List<POINT> staffPointList = pointService.selectAllStaffPointInfo();
         final Double[] drivingDistanceAverage = {0.0};
         final Integer[] drivingDurationAverage = {0};
@@ -375,16 +376,16 @@ public class LBSApplController {
         } catch (InterruptedException e) {
             System.out.println("Error happened when awaitTermination");
         }
-        System.out.println("All sub-thread finished, starting main-thread");*/
+        System.out.println("All sub-thread finished, starting main-thread");
         String[] result = new String[4];
-        result[0] = "N/A";
-        result[1] = "N/A";
-        result[2] = "N/A";
-        result[3] = "N/A";
-        /*result[0] = Trimmer.distance(drivingDistanceAverage[0] / staffPointList.size());
+//        result[0] = "N/A";
+//        result[1] = "N/A";
+//        result[2] = "N/A";
+//        result[3] = "N/A";
+        result[0] = Trimmer.distance(drivingDistanceAverage[0] / staffPointList.size());
         result[1] = Trimmer.time(drivingDurationAverage[0] / staffPointList.size());
         result[2] = Trimmer.distance(transitDistanceAverage[0] / staffPointList.size());
-        result[3] = Trimmer.time(transitDurationAverage[0] / staffPointList.size());*/
+        result[3] = Trimmer.time(transitDurationAverage[0] / staffPointList.size());
         return result;
     }
 
