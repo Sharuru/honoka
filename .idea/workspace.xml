@@ -1,34 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" readonly="true" id="7fae5e43-3c07-4d95-ae91-9b0dae1f0971" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/out/artifacts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/out" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/StockMonitor_war_exploded.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/config.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/action/StockMonitorAction.java" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/action/StockMonitorAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorAlertDeleteDatabean.java" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorAlertDeleteDatabean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/CSS/StockMonitorAlertFrame.css" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/CSS/StockMonitorAlertFrame.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JS/StockMonitorAlertFrame.js" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JS/StockMonitorAlertFrame.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JSP/StockMonitorAlertFrame.jsp" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JSP/StockMonitorAlertFrame.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorAlertInfoDatabean.java" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorAlertInfoDatabean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorAlertListDatabean.java" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorAlertListDatabean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorCommonDatabean.java" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorCommonDatabean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorDatabean.java" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorDatabean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorDetailDatabean.java" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorDetailDatabean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/CSS/StockMonitorDetailFrame.css" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/CSS/StockMonitorDetailFrame.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JS/StockMonitorDetailFrame.js" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JS/StockMonitorDetailFrame.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JSP/StockMonitorDetailFrame.jsp" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JSP/StockMonitorDetailFrame.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/CSS/StockMonitorMainFrame.css" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/CSS/StockMonitorMainFrame.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JS/StockMonitorMainFrame.js" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JS/StockMonitorMainFrame.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JSP/StockMonitorMainFrame.jsp" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JSP/StockMonitorMainFrame.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/service/StockMonitorService.java" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/service/StockMonitorService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+    <list default="true" readonly="true" id="9dd25736-b4b6-4b61-8914-b902fc8f9815" name="Default" comment="">
+      <change type="DELETED" beforePath="D:\AdminSVNRepo\Honoka\Source\Honoka\Honoka.iml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/StockMonitor_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/StockMonitor_war_exploded.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/peixun.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/peixun.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="StockMonitor.iws" />
@@ -53,48 +29,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="StockMonitorAction.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/action/StockMonitorAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="255" column="10" selection-start-line="255" selection-start-column="10" selection-end-line="255" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StockMonitorService.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="StockMonitorService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/service/StockMonitorService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="142" column="53" selection-start-line="142" selection-start-column="53" selection-end-line="142" selection-end-column="53" />
+            <state vertical-scroll-proportion="0.55593807">
+              <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3459#3529#0" expanded="false" />
-                <element signature="e#6542#6589#0" expanded="false" />
-                <element signature="e#10444#10491#0" expanded="false" />
-                <element signature="e#13346#13402#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StockMonitorMainFrame.jsp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JSP/StockMonitorMainFrame.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.37842464">
-              <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StockMonitorAlertFrame.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JSP/StockMonitorAlertFrame.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.692307">
-              <caret line="108" column="51" selection-start-line="108" selection-start-column="51" selection-end-line="108" selection-end-column="51" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -104,25 +46,6 @@
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
       <projects_view />
-    </option>
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/CSS/StockMonitorAlertFrame.css" />
-        <option value="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/CSS/StockMonitorDetailFrame.css" />
-        <option value="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/CSS/StockMonitorMainFrame.css" />
-        <option value="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JS/StockMonitorDetailFrame.js" />
-        <option value="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorDetailDatabean.java" />
-        <option value="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JSP/StockMonitorDetailFrame.jsp" />
-        <option value="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/config.properties" />
-        <option value="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/action/StockMonitorAction.java" />
-        <option value="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/service/StockMonitorService.java" />
-        <option value="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JS/StockMonitorAlertFrame.js" />
-        <option value="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JS/StockMonitorMainFrame.js" />
-        <option value="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JSP/StockMonitorAlertFrame.jsp" />
-        <option value="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JSP/StockMonitorMainFrame.jsp" />
-      </list>
     </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" />
@@ -152,7 +75,7 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="2" id="Add" />
+    <ConfirmationsSetting value="0" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
@@ -168,8 +91,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -188,91 +109,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StockMonitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StockMonitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WebContent" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StockMonitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StockMonitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WebContent" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JSP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StockMonitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StockMonitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WebContent" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StockMonitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StockMonitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WebContent" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CSS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StockMonitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StockMonitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -280,12 +121,12 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="recentsLimit" value="5" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/out/artifacts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/WEB-INF/lib" />
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat Local">
     <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
@@ -543,6 +384,7 @@
       <method />
     </configuration>
     <configuration default="false" name="Tomcat Local" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7.0.56" ALTERNATIVE_JRE_ENABLED="false" ALTERNATIVE_JRE_PATH="">
+      <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="StockMonitor:war exploded">
           <settings>
@@ -551,7 +393,7 @@
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="Unnamed_StockMonitor" />
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_StockMonitor_4" />
       </server-settings>
       <predefined_log_file id="Tomcat" enabled="true" />
       <predefined_log_file id="Tomcat Catalina" enabled="true" />
@@ -560,7 +402,7 @@
       <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="54913" />
+        <option name="DEBUG_PORT" value="62412" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -654,47 +496,47 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="7fae5e43-3c07-4d95-ae91-9b0dae1f0971" name="Default" comment="" />
-      <created>1446610779589</created>
+      <changelist id="9dd25736-b4b6-4b61-8914-b902fc8f9815" name="Default" comment="" />
+      <created>1446631914772</created>
       <option name="number" value="Default" />
-      <updated>1446610779589</updated>
-      <workItem from="1446610788615" duration="12268000" />
+      <updated>1446631914772</updated>
+      <workItem from="1446631920770" duration="301000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12268000" />
+    <option name="totallyTimeSpent" value="301000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1688" height="1030" extended-state="6" />
+    <frame x="-4" y="-4" width="1688" height="1030" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24945055" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30879122" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2010989" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="JSF" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2978022" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -702,9 +544,7 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <option name="time" value="47" />
-    </breakpoint-manager>
+    <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="antWorkspaceConfiguration">
@@ -712,167 +552,13 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/CSS/StockMonitorAlertFrame.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.255">
-          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/CSS/StockMonitorMainFrame.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.56666666">
-          <caret line="181" column="12" selection-start-line="181" selection-start-column="12" selection-end-line="181" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JS/StockMonitorDetailFrame.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.213333">
-          <caret line="2" column="3" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorDetailDatabean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.006666667">
-          <caret line="133" column="7" selection-start-line="133" selection-start-column="7" selection-end-line="133" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorAlertListDatabean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19833334">
-          <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorAlertInfoDatabean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11333334">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorAlertDeleteDatabean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorDatabean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="51" column="41" selection-start-line="51" selection-start-column="41" selection-end-line="51" selection-end-column="41" />
-          <folding>
-            <element signature="e#1231#1232#0" expanded="true" />
-            <element signature="e#1271#1272#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorCommonDatabean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.816">
-          <caret line="45" column="16" selection-start-line="45" selection-start-column="16" selection-end-line="45" selection-end-column="16" />
-          <folding>
-            <element signature="e#737#738#0" expanded="true" />
-            <element signature="e#783#784#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/action/StockMonitorAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="255" column="10" selection-start-line="255" selection-start-column="10" selection-end-line="255" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/config.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11147541">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JSP/StockMonitorDetailFrame.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="79.53846">
-          <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JS/StockMonitorAlertFrame.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6967213">
-          <caret line="163" column="38" selection-start-line="163" selection-start-column="38" selection-end-line="163" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JS/StockMonitorMainFrame.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08196721">
-          <caret line="281" column="67" selection-start-line="281" selection-start-column="67" selection-end-line="281" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/struts.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32130584">
-          <caret line="11" column="34" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/CSS/StockMonitorDetailFrame.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42786884">
-          <caret line="193" column="0" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/service/StockMonitorService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="142" column="53" selection-start-line="142" selection-start-column="53" selection-end-line="142" selection-end-column="53" />
+        <state vertical-scroll-proportion="0.55593807">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3459#3529#0" expanded="false" />
-            <element signature="e#6542#6589#0" expanded="false" />
-            <element signature="e#10444#10491#0" expanded="false" />
-            <element signature="e#13346#13402#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JSP/StockMonitorAlertFrame.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.692307">
-          <caret line="108" column="51" selection-start-line="108" selection-start-column="51" selection-end-line="108" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JSP/StockMonitorMainFrame.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37842464">
-          <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -895,7 +581,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>Web</last-edited>
+          <last-edited>Web (StockMonitor)|Web</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -930,7 +616,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>Struts 2|Web2|StockMonitor</last-edited>
+          <last-edited>StockMonitor</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
