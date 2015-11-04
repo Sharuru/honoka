@@ -1,0 +1,26 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="StockMonitor:war exploded">
+    <output-path>$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/out/artifacts</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="StockMonitor" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/WEB-INF/lib/javaee.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/WEB-INF/lib/ojdbc14.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/WEB-INF/lib/jstl-1.2.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/WEB-INF/lib/ognl-3.0.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/WEB-INF/lib/servlet-api.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/WEB-INF/lib/commons-io-1.3.2.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/WEB-INF/lib/javassist-3.7.ga.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/WEB-INF/lib/xwork-core-2.2.1.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/WEB-INF/lib/freemarker-2.3.16.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/WEB-INF/lib/struts2-core-2.2.1.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/WEB-INF/lib/commons-fileupload-1.2.1.jar" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="StockMonitor/web/Web" />
+    </root>
+  </artifact>
+</component>

@@ -1,15 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ArtifactsWorkspaceSettings">
-    <artifacts-to-build>
-      <artifact name="Honoka:war exploded" />
-    </artifacts-to-build>
-  </component>
   <component name="ChangeListManager">
-    <list default="true" readonly="true" id="90ac5f54-1be8-4d11-b1b7-25729af6e33e" name="Default" comment="Milestone" />
-    <ignored path="Honoka.iws" />
+    <list default="true" readonly="true" id="7fae5e43-3c07-4d95-ae91-9b0dae1f0971" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/out/artifacts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/out" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/StockMonitor_war_exploded.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/config.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="$PROJECT_DIR$/.idea/.name" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/action/StockMonitorAction.java" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/action/StockMonitorAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorAlertDeleteDatabean.java" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorAlertDeleteDatabean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/CSS/StockMonitorAlertFrame.css" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/CSS/StockMonitorAlertFrame.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JS/StockMonitorAlertFrame.js" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JS/StockMonitorAlertFrame.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JSP/StockMonitorAlertFrame.jsp" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JSP/StockMonitorAlertFrame.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorAlertInfoDatabean.java" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorAlertInfoDatabean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorAlertListDatabean.java" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorAlertListDatabean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorCommonDatabean.java" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorCommonDatabean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorDatabean.java" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorDatabean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorDetailDatabean.java" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorDetailDatabean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/CSS/StockMonitorDetailFrame.css" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/CSS/StockMonitorDetailFrame.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JS/StockMonitorDetailFrame.js" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JS/StockMonitorDetailFrame.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JSP/StockMonitorDetailFrame.jsp" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JSP/StockMonitorDetailFrame.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/CSS/StockMonitorMainFrame.css" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/CSS/StockMonitorMainFrame.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JS/StockMonitorMainFrame.js" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JS/StockMonitorMainFrame.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JSP/StockMonitorMainFrame.jsp" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JSP/StockMonitorMainFrame.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/service/StockMonitorService.java" afterPath="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/service/StockMonitorService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/peixun.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/peixun.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
+    <ignored path="StockMonitor.iws" />
     <ignored path=".idea/workspace.xml" />
-    <ignored path="$PROJECT_DIR$/build/classes/" />
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/build/classes/" />
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,26 +47,59 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="DatabaseView">
-    <option name="FLATTEN" value="false" />
-    <option name="GROUP_BY_TYPE" value="true" />
-    <option name="SORT_CHILDREN" value="false" />
-    <option name="SHOW_TABLE_CONSTRAINTS" value="true" />
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
-    <favorites_list name="Honoka" />
+    <favorites_list name="StockMonitor" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Jsp File" />
-        <option value="Class" />
-      </list>
-    </option>
+    <leaf>
+      <file leaf-file-name="StockMonitorAction.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/action/StockMonitorAction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="255" column="10" selection-start-line="255" selection-start-column="10" selection-end-line="255" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StockMonitorService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/service/StockMonitorService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="142" column="53" selection-start-line="142" selection-start-column="53" selection-end-line="142" selection-end-column="53" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#3459#3529#0" expanded="false" />
+                <element signature="e#6542#6589#0" expanded="false" />
+                <element signature="e#10444#10491#0" expanded="false" />
+                <element signature="e#13346#13402#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StockMonitorMainFrame.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JSP/StockMonitorMainFrame.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.37842464">
+              <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StockMonitorAlertFrame.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JSP/StockMonitorAlertFrame.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-11.692307">
+              <caret line="108" column="51" selection-start-line="108" selection-start-column="51" selection-end-line="108" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -51,49 +109,19 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/com/honoka/entity/BaiduJson.java" />
-        <option value="$PROJECT_DIR$/build/classes/properties/log4j.properties" />
-        <option value="$PROJECT_DIR$/src/com/honoka/common/APIUtil.java" />
-        <option value="$PROJECT_DIR$/src/com/honoka/DAO/CompanyMapper.java" />
-        <option value="$PROJECT_DIR$/src/com/honoka/DAO/DepartmentMapper.java" />
-        <option value="$PROJECT_DIR$/src/com/honoka/DAO/LevelMapper.java" />
-        <option value="$PROJECT_DIR$/src/com/honoka/DAO/MetroAdminMapper.java" />
-        <option value="$PROJECT_DIR$/src/com/honoka/DAO/StaffAdminMapper.java" />
-        <option value="$PROJECT_DIR$/src/com/honoka/entity/AmapJson.java" />
-        <option value="$PROJECT_DIR$/src/com/honoka/service/impl/CompanyServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/com/honoka/service/impl/DepartmentServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/com/honoka/service/impl/LevelServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/com/honoka/service/AmapAPIService.java" />
-        <option value="$PROJECT_DIR$/src/com/honoka/service/APIKeyService.java" />
-        <option value="$PROJECT_DIR$/src/com/honoka/service/TestExampleService.java" />
-        <option value="$PROJECT_DIR$/src/com/honoka/web/filter/CharacterEncodingFilter.java" />
-        <option value="$PROJECT_DIR$/src/com/honoka/web/controller/TestExampleController.java" />
-        <option value="$PROJECT_DIR$/src/com/honoka/web/controller/MainController.java" />
-        <option value="$PROJECT_DIR$/WebContent/WEB-INF/pages/metroAdmin/metroMain.jsp" />
-        <option value="$PROJECT_DIR$/WebContent/WEB-INF/pages/staffAdmin/staffMain.jsp" />
-        <option value="$PROJECT_DIR$/src/com/honoka/service/impl/AmapAPIServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/com/honoka/service/BaiduAPIService.java" />
-        <option value="$PROJECT_DIR$/src/com/honoka/entity/POINT.java" />
-        <option value="$PROJECT_DIR$/src/com/honoka/web/controller/StaffAdminController.java" />
-        <option value="$PROJECT_DIR$/src/com/honoka/service/impl/APIKeyServiceImpl.java" />
-        <option value="$PROJECT_DIR$/WebContent/WEB-INF/pages/staffAdmin/addStaffModal.jsp" />
-        <option value="$PROJECT_DIR$/WebContent/WEB-INF/pages/staffAdmin/staffDetailModal.jsp" />
-        <option value="$PROJECT_DIR$/WebContent/WEB-INF/pages/lbsAppl/poiList.jsp" />
-        <option value="$PROJECT_DIR$/WebContent/WEB-INF/pages/lbsAppl/geoCoding.jsp" />
-        <option value="$PROJECT_DIR$/src/com/honoka/service/impl/PointServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/com/honoka/service/PointService.java" />
-        <option value="$PROJECT_DIR$/src/com/honoka/DAO/PointMapper.java" />
-        <option value="$PROJECT_DIR$/resources/com/honoka/DAO/PointMapper.xml" />
-        <option value="$PROJECT_DIR$/src/com/honoka/common/Trimmer.java" />
-        <option value="$PROJECT_DIR$/WebContent/WEB-INF/pages/lbsAppl/twoPointCalc.jsp" />
-        <option value="$PROJECT_DIR$/src/com/honoka/service/impl/BaiduAPIServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/com/honoka/common/Utils.java" />
-        <option value="$PROJECT_DIR$/src/com/honoka/entity/Result.java" />
-        <option value="$PROJECT_DIR$/src/com/honoka/web/controller/MetroAdminController.java" />
-        <option value="$PROJECT_DIR$/src/com/honoka/web/controller/LBSApplController.java" />
-        <option value="$PROJECT_DIR$/WebContent/WEB-INF/pages/lbsAppl/staffPoiList.jsp" />
-        <option value="$PROJECT_DIR$/WebContent/WEB-INF/pages/lbsAppl/lbsMain.jsp" />
-        <option value="$PROJECT_DIR$/WebContent/WEB-INF/pages/main.jsp" />
+        <option value="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/CSS/StockMonitorAlertFrame.css" />
+        <option value="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/CSS/StockMonitorDetailFrame.css" />
+        <option value="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/CSS/StockMonitorMainFrame.css" />
+        <option value="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JS/StockMonitorDetailFrame.js" />
+        <option value="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorDetailDatabean.java" />
+        <option value="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JSP/StockMonitorDetailFrame.jsp" />
+        <option value="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/config.properties" />
+        <option value="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/action/StockMonitorAction.java" />
+        <option value="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/service/StockMonitorService.java" />
+        <option value="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JS/StockMonitorAlertFrame.js" />
+        <option value="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JS/StockMonitorMainFrame.js" />
+        <option value="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JSP/StockMonitorAlertFrame.jsp" />
+        <option value="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JSP/StockMonitorMainFrame.jsp" />
       </list>
     </option>
   </component>
@@ -108,13 +136,6 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHome" value="Bundled (Maven 3)" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
   <component name="NamedScopeManager">
     <order />
   </component>
@@ -123,67 +144,6 @@
     <option name="y" value="-4" />
     <option name="width" value="1688" />
     <option name="height" value="1030" />
-  </component>
-  <component name="ProjectInspectionProfilesVisibleTreeState">
-    <entry key="Project Default">
-      <profile-state>
-        <expanded-state>
-          <State>
-            <id />
-          </State>
-          <State>
-            <id>Android Lint</id>
-          </State>
-          <State>
-            <id>Data flow issuesJava</id>
-          </State>
-          <State>
-            <id>Groovy</id>
-          </State>
-          <State>
-            <id>Initialization issuesJava</id>
-          </State>
-          <State>
-            <id>Internationalization issues</id>
-          </State>
-          <State>
-            <id>Internationalization issuesJava</id>
-          </State>
-          <State>
-            <id>J2ME issuesJava</id>
-          </State>
-          <State>
-            <id>Java</id>
-          </State>
-          <State>
-            <id>JavaScript</id>
-          </State>
-          <State>
-            <id>Memory issuesJava</id>
-          </State>
-          <State>
-            <id>Performance issuesJava</id>
-          </State>
-          <State>
-            <id>Potentially confusing code constructsJavaScript</id>
-          </State>
-          <State>
-            <id>Threading issuesGroovy</id>
-          </State>
-          <State>
-            <id>Threading issuesJava</id>
-          </State>
-          <State>
-            <id>WebSocket issues</id>
-          </State>
-        </expanded-state>
-        <selected-state>
-          <State>
-            <id>Android</id>
-          </State>
-        </selected-state>
-      </profile-state>
-    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -208,64 +168,124 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Honoka" />
+              <option name="myItemId" value="StockMonitor" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Problems" />
-        <subPane subId="Changed Files">
           <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StockMonitor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Honoka">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StockMonitor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StockMonitor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Honoka">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StockMonitor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT=".idea">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WebContent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StockMonitor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StockMonitor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WebContent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JSP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StockMonitor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StockMonitor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WebContent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StockMonitor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StockMonitor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WebContent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CSS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StockMonitor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StockMonitor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
+    <property name="settings.editor.selected.configurable" value="project.propDebugger" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="recentsLimit" value="5" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/WebContent/WEB-INF/lib" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="OverrideImplement.combined" value="true" />
-    <property name="OverrideImplement.overriding.sorted" value="false" />
-    <property name="TODO_SCOPE" value="Project Files" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/out/artifacts" />
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat Local">
     <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
@@ -277,23 +297,6 @@
       <predefined_log_file id="Tomcat Host Manager" enabled="false" />
       <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <method />
-    </configuration>
-    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Remote" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="LOCAL" value="false" />
-      <deployment />
-      <server-settings>
-        <data>
-          <option name="transportHostId" value="" />
-          <host-id />
-        </data>
-      </server-settings>
-      <predefined_log_file id="Tomcat" enabled="true" />
-      <predefined_log_file id="TOMCAT_LOCALHOST_LOG_ID" enabled="true" />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="60328" />
-        <option name="LOCAL" value="false" />
-      </RunnerSettings>
       <method />
     </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -531,12 +534,6 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <pass-parent-envs>true</pass-parent-envs>
-      <envs />
       <method />
     </configuration>
     <configuration default="true" type="osgi.bnd.run" factoryName="Run Launcher">
@@ -546,16 +543,15 @@
       <method />
     </configuration>
     <configuration default="false" name="Tomcat Local" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7.0.56" ALTERNATIVE_JRE_ENABLED="false" ALTERNATIVE_JRE_PATH="">
-      <option name="OPEN_IN_BROWSER" value="false" />
       <deployment>
-        <artifact name="Honoka:war exploded">
+        <artifact name="StockMonitor:war exploded">
           <settings>
             <option name="CONTEXT_PATH" value="/" />
           </settings>
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="Unnamed_Honoka_3" />
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_StockMonitor" />
       </server-settings>
       <predefined_log_file id="Tomcat" enabled="true" />
       <predefined_log_file id="Tomcat Catalina" enabled="true" />
@@ -564,7 +560,7 @@
       <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="59540" />
+        <option name="DEBUG_PORT" value="54913" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -613,7 +609,7 @@
       </ConfigurationWrapper>
       <method>
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="Honoka:war exploded" />
+          <artifact name="StockMonitor:war exploded" />
         </option>
       </method>
     </configuration>
@@ -622,9 +618,6 @@
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
-  <component name="SshConsoleOptionsProvider">
-    <option name="myConnectionType" value="NONE" />
-  </component>
   <component name="SvnConfiguration" cleanupOnStartRun="true">
     <configuration>C:\Users\peixun\AppData\Roaming\Subversion</configuration>
     <supportedVersion>125</supportedVersion>
@@ -640,6 +633,10 @@
           <option name="myVcsRoot" value="D:\AdminSVNRepo\Honoka\Source\Honoka\.idea" />
           <option name="myCopyRoot" value="D:\AdminSVNRepo\Honoka\Source\Honoka\.idea" />
         </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="D:\AdminSVNRepo\StockMonitor\Source\StockMonitor" />
+          <option name="myCopyRoot" value="D:\AdminSVNRepo\StockMonitor\Source\StockMonitor" />
+        </SvnCopyRootSimple>
       </list>
     </option>
     <option name="myMoreRealMappingRoots">
@@ -648,297 +645,61 @@
           <option name="myVcsRoot" value="D:\AdminSVNRepo\Honoka\Source\Honoka" />
           <option name="myCopyRoot" value="D:\AdminSVNRepo\Honoka\Source\Honoka" />
         </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="D:\AdminSVNRepo\StockMonitor\Source\StockMonitor" />
+          <option name="myCopyRoot" value="D:\AdminSVNRepo\StockMonitor\Source\StockMonitor" />
+        </SvnCopyRootSimple>
       </list>
     </option>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="90ac5f54-1be8-4d11-b1b7-25729af6e33e" name="Default" comment="" />
-      <created>1445821649664</created>
+      <changelist id="7fae5e43-3c07-4d95-ae91-9b0dae1f0971" name="Default" comment="" />
+      <created>1446610779589</created>
       <option name="number" value="Default" />
-      <updated>1445821649664</updated>
-      <workItem from="1445821663198" duration="32260000" />
-      <workItem from="1445907537012" duration="27947000" />
-      <workItem from="1445994563633" duration="20690000" />
-      <workItem from="1446080688017" duration="26816000" />
-      <workItem from="1446111713534" duration="681000" />
-      <workItem from="1446168659062" duration="15220000" />
-      <workItem from="1446187381621" duration="4970000" />
+      <updated>1446610779589</updated>
+      <workItem from="1446610788615" duration="12268000" />
     </task>
-    <task id="LOCAL-00001" summary="Milestone">
-      <created>1445822085220</created>
-      <option name="number" value="00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1445822085220</updated>
-    </task>
-    <task id="LOCAL-00002" summary="自驾距离，时间计算">
-      <created>1445835649903</created>
-      <option name="number" value="00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1445835649903</updated>
-    </task>
-    <task id="LOCAL-00003" summary="交通距离，时间计算">
-      <created>1445839057670</created>
-      <option name="number" value="00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1445839057670</updated>
-    </task>
-    <task id="LOCAL-00004" summary="新增距离 Trim 工具">
-      <created>1445840085284</created>
-      <option name="number" value="00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1445840085284</updated>
-    </task>
-    <task id="LOCAL-00005" summary="性能问题怎么破">
-      <created>1445841374826</created>
-      <option name="number" value="00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1445841374826</updated>
-    </task>
-    <task id="LOCAL-00006" summary="并发大法好">
-      <created>1445843691781</created>
-      <option name="number" value="00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1445843691782</updated>
-    </task>
-    <task id="LOCAL-00007" summary="有个想法">
-      <created>1445847095796</created>
-      <option name="number" value="00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1445847095796</updated>
-    </task>
-    <task id="LOCAL-00008" summary="又开了四倍的子线程，然而并没有什么用">
-      <created>1445847958204</created>
-      <option name="number" value="00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1445847958204</updated>
-    </task>
-    <task id="LOCAL-00009" summary="TODO：卡片 ID 的 listener">
-      <created>1445856469596</created>
-      <option name="number" value="00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1445856469596</updated>
-    </task>
-    <task id="LOCAL-00010" summary="POI 结果卡片与地图信息联动">
-      <created>1445915613472</created>
-      <option name="number" value="00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1445915613472</updated>
-    </task>
-    <task id="LOCAL-00011" summary="调整结果样式">
-      <created>1445916048283</created>
-      <option name="number" value="00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1445916048283</updated>
-    </task>
-    <task id="LOCAL-00012" summary="调整结果样式">
-      <created>1445916266381</created>
-      <option name="number" value="00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1445916266381</updated>
-    </task>
-    <task id="LOCAL-00013" summary="调整翻页参数">
-      <created>1445926064285</created>
-      <option name="number" value="00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1445926064285</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Place API 转移至后台 v1">
-      <created>1445932566817</created>
-      <option name="number" value="00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1445932566817</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Milestone">
-      <created>1445937891351</created>
-      <option name="number" value="00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1445937891351</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Cleanup">
-      <created>1445939802576</created>
-      <option name="number" value="00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1445939802576</updated>
-    </task>
-    <task id="LOCAL-00017" summary="设定翻页时不自动回滚页面">
-      <created>1445996443202</created>
-      <option name="number" value="00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1445996443202</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Cleanup code">
-      <created>1445997603677</created>
-      <option name="number" value="00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1445997603677</updated>
-    </task>
-    <task id="LOCAL-00019" summary="对比星星样式确定">
-      <created>1446002907777</created>
-      <option name="number" value="00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1446002907777</updated>
-    </task>
-    <task id="LOCAL-00020" summary="性能瓶颈暂无法解决，Milestone">
-      <created>1446013429238</created>
-      <option name="number" value="00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1446013429238</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Milestone">
-      <created>1446021325488</created>
-      <option name="number" value="00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1446021325488</updated>
-    </task>
-    <task id="LOCAL-00022" summary="支持自定义工号内容了">
-      <created>1446085641001</created>
-      <option name="number" value="00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1446085641001</updated>
-    </task>
-    <task id="LOCAL-00023" summary="缓存 KEY">
-      <created>1446087863807</created>
-      <option name="number" value="00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1446087863807</updated>
-    </task>
-    <task id="LOCAL-00024" summary="改二验证完成，API 超额提示">
-      <created>1446088776318</created>
-      <option name="number" value="00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1446088776318</updated>
-    </task>
-    <task id="LOCAL-00025" summary="我要静静">
-      <created>1446102211316</created>
-      <option name="number" value="00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1446102211316</updated>
-    </task>
-    <task id="LOCAL-00026" summary="简单的围栏功能实现">
-      <created>1446180245210</created>
-      <option name="number" value="00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1446180245210</updated>
-    </task>
-    <task id="LOCAL-00027" summary="围栏结果的获取">
-      <created>1446182368126</created>
-      <option name="number" value="00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1446182368126</updated>
-    </task>
-    <task id="LOCAL-00028" summary="好像做完了？">
-      <created>1446185175699</created>
-      <option name="number" value="00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1446185175702</updated>
-    </task>
-    <task id="LOCAL-00029" summary="Cleanup todo">
-      <created>1446187222739</created>
-      <option name="number" value="00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1446187222739</updated>
-    </task>
-    <task id="LOCAL-00030" summary="Milestone">
-      <created>1446191082590</created>
-      <option name="number" value="00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1446191082590</updated>
-    </task>
-    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="128584000" />
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <flatten-packages value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
+    <option name="totallyTimeSpent" value="12268000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1688" height="1030" extended-state="0" />
+    <frame x="-4" y="-4" width="1688" height="1030" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2725275" sideWeight="0.49755502" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25824177" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.49572128" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5042787" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44615385" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27142859" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19193155" sideWeight="0.48333332" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19193155" sideWeight="0.51666665" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294621" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24945055" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30879122" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2010989" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="JSF" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19193155" sideWeight="0.51666665" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34065935" sideWeight="0.49633253" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2978022" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32637364" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
-  </component>
-  <component name="UpdateCopyrightCheckinHandler">
-    <option name="UPDATE_COPYRIGHT" value="true" />
-  </component>
-  <component name="Vcs.Log.UiProperties">
-    <option name="RECENTLY_FILTERED_USER_GROUPS">
-      <collection />
-    </option>
-    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-      <collection />
-    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="交通距离，时间计算" />
-    <MESSAGE value="新增距离 Trim 工具" />
-    <MESSAGE value="性能问题怎么破" />
-    <MESSAGE value="并发大法好" />
-    <MESSAGE value="有个想法" />
-    <MESSAGE value="又开了四倍的子线程，然而并没有什么用" />
-    <MESSAGE value="TODO：卡片 ID 的 listener" />
-    <MESSAGE value="POI 结果卡片与地图信息联动" />
-    <MESSAGE value="调整结果样式" />
-    <MESSAGE value="调整翻页参数" />
-    <MESSAGE value="Place API 转移至后台 v1" />
-    <MESSAGE value="Cleanup" />
-    <MESSAGE value="设定翻页时不自动回滚页面" />
-    <MESSAGE value="Cleanup code" />
-    <MESSAGE value="对比星星样式确定" />
-    <MESSAGE value="性能瓶颈暂无法解决，Milestone" />
-    <MESSAGE value="支持自定义工号内容了" />
-    <MESSAGE value="缓存 KEY" />
-    <MESSAGE value="改二验证完成，API 超额提示" />
-    <MESSAGE value="我要静静" />
-    <MESSAGE value="简单的围栏功能实现" />
-    <MESSAGE value="围栏结果的获取" />
-    <MESSAGE value="好像做完了？" />
-    <MESSAGE value="Cleanup todo" />
-    <MESSAGE value="Milestone" />
-    <option name="LAST_COMMIT_MESSAGE" value="Milestone" />
-    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
-    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -951,417 +712,166 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/service/impl/CompanyServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/CSS/StockMonitorAlertFrame.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23407917">
-          <caret line="18" column="60" selection-start-line="18" selection-start-column="60" selection-end-line="18" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/service/impl/LevelServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23407917">
-          <caret line="18" column="62" selection-start-line="18" selection-start-column="62" selection-end-line="18" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/service/impl/TestExampleServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26333907">
-          <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/service/impl/StaffAdminServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17555939">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/service/impl/MetroAdminServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17555939">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/service/DepartmentService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14629948">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.255">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/service/LevelService.java">
+    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/CSS/StockMonitorMainFrame.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14629948">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.56666666">
+          <caret line="181" column="12" selection-start-line="181" selection-start-column="12" selection-end-line="181" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/service/MetroAdminService.java">
+    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JS/StockMonitorDetailFrame.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14629948">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+        <state vertical-scroll-proportion="-5.213333">
+          <caret line="2" column="3" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/web/filter/CharacterEncodingFilter.java">
+    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorDetailDatabean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11703958">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        <state vertical-scroll-proportion="-0.006666667">
+          <caret line="133" column="7" selection-start-line="133" selection-start-column="7" selection-end-line="133" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/service/TestExampleService.java">
+    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorAlertListDatabean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38037866">
-          <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.19833334">
+          <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/web/controller/MainController.java">
+    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorAlertInfoDatabean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23407917">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.11333334">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/web/controller/TestExampleController.java">
+    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorAlertDeleteDatabean.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/gson-2.4.jar!/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.5709157">
-          <caret line="103" column="13" selection-start-line="103" selection-start-column="13" selection-end-line="103" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/service/impl/AmapAPIServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/WEB-INF/pages/staffAdmin/staffMain.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.1538463">
-          <caret line="138" column="24" selection-start-line="138" selection-start-column="24" selection-end-line="138" selection-end-column="24" />
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/entity/POINT.java">
+    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorDatabean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.4629948">
-          <caret line="80" column="26" selection-start-line="80" selection-start-column="26" selection-end-line="80" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="51" column="41" selection-start-line="51" selection-start-column="41" selection-end-line="51" selection-end-column="41" />
           <folding>
-            <element signature="e#1684#1685#0" expanded="false" />
-            <element signature="e#1717#1718#0" expanded="false" />
-            <element signature="e#1769#1770#0" expanded="false" />
-            <element signature="e#1813#1814#0" expanded="false" />
+            <element signature="e#1231#1232#0" expanded="true" />
+            <element signature="e#1271#1272#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/service/APIKeyService.java">
+    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/model/StockMonitorCommonDatabean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/service/BaiduAPIService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47204968">
-          <caret line="42" column="103" selection-start-line="42" selection-start-column="103" selection-end-line="42" selection-end-column="103" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/service/CompanyService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17598344">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/service/impl/DepartmentServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2815735">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/entity/BaiduJson.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7763975">
-          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.816">
+          <caret line="45" column="16" selection-start-line="45" selection-start-column="16" selection-end-line="45" selection-end-column="16" />
           <folding>
-            <element signature="e#3517#3518#0" expanded="false" />
-            <element signature="e#3552#3553#0" expanded="false" />
+            <element signature="e#737#738#0" expanded="true" />
+            <element signature="e#783#784#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/WEB-INF/pages/staffAdmin/staffDetailModal.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.653846">
-          <caret line="86" column="8" selection-start-line="86" selection-start-column="8" selection-end-line="86" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/WEB-INF/pages/lbsAppl/geoCoding.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.61637425">
-          <caret line="31" column="7" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/WEB-INF/pages/staffAdmin/addStaffModal.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.384615">
-          <caret line="150" column="34" selection-start-line="143" selection-start-column="28" selection-end-line="150" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/WEB-INF/pages/lbsAppl/geoFencing.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.5384617">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="29" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/entity/Staff.java">
+    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/action/StockMonitorAction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="29" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="29" />
+          <caret line="255" column="10" selection-start-line="255" selection-start-column="10" selection-end-line="255" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/DAO/StaffAdminMapper.java">
+    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/config.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23817864">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/service/AmapAPIService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4168126">
-          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/service/StaffAdminService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.057793345">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/com/honoka/DAO/StaffAdminMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4168126">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="21" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/service/PointService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.67250437">
-          <caret line="74" column="13" selection-start-line="74" selection-start-column="13" selection-end-line="74" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/DAO/PointMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7145359">
-          <caret line="29" column="58" selection-start-line="29" selection-start-column="58" selection-end-line="29" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/com/honoka/DAO/PointMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.61295974">
-          <caret line="120" column="12" selection-start-line="120" selection-start-column="12" selection-end-line="120" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/service/impl/PointServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.73204905">
-          <caret line="64" column="37" selection-start-line="64" selection-start-column="37" selection-end-line="64" selection-end-column="37" />
-          <folding>
-            <element signature="method#trimMetroPointData#0;class#PointServiceImpl#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/WEB-INF/pages/lbsAppl/poiList.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25137615">
-          <caret line="115" column="98" selection-start-line="115" selection-start-column="76" selection-end-line="115" selection-end-column="98" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/common/Trimmer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/service/impl/BaiduAPIServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/common/APIUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11703958">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/common/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35111877">
-          <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/entity/Result.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.11147541">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/service/impl/APIKeyServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JSP/StockMonitorDetailFrame.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="79.53846">
+          <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JS/StockMonitorAlertFrame.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6967213">
+          <caret line="163" column="38" selection-start-line="163" selection-start-column="38" selection-end-line="163" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JS/StockMonitorMainFrame.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.08196721">
+          <caret line="281" column="67" selection-start-line="281" selection-start-column="67" selection-end-line="281" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/struts.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.32130584">
+          <caret line="11" column="34" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/CSS/StockMonitorDetailFrame.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42786884">
+          <caret line="193" column="0" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/src/service/StockMonitorService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
+          <caret line="142" column="53" selection-start-line="142" selection-start-column="53" selection-end-line="142" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#3459#3529#0" expanded="false" />
+            <element signature="e#6542#6589#0" expanded="false" />
+            <element signature="e#10444#10491#0" expanded="false" />
+            <element signature="e#13346#13402#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/web/controller/StaffImportController.java">
+    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JSP/StockMonitorAlertFrame.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="11" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
+        <state vertical-scroll-proportion="-11.692307">
+          <caret line="108" column="51" selection-start-line="108" selection-start-column="51" selection-end-line="108" selection-end-column="51" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/web/controller/LBSApplController.java">
+    <entry file="file://$PROJECT_DIR$/../../../StockMonitor/Source/StockMonitor/WebContent/JSP/StockMonitorMainFrame.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="479" column="21" selection-start-line="479" selection-start-column="21" selection-end-line="479" selection-end-column="21" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="imports" expanded="true" />
-            <element signature="method#geoCodingRouter#0;class#LBSApplController#0" expanded="false" />
-            <element signature="method#reqGeoCodingRouter#0;class#LBSApplController#0" expanded="false" />
-            <element signature="method#twoPointRouter#0;class#LBSApplController#0" expanded="false" />
-            <element signature="e#7739#7803#0" expanded="false" />
-            <element signature="e#8743#8798#0" expanded="false" />
-            <element signature="e#12094#12145#0" expanded="false" />
-            <element signature="e#20746#20753#0" expanded="false" />
-            <element signature="e#25447#25505#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/WEB-INF/pages/lbsAppl/staffPoiList.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.730769">
-          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/WEB-INF/pages/metroAdmin/metroMain.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.961538">
-          <caret line="113" column="46" selection-start-line="113" selection-start-column="46" selection-end-line="113" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/WEB-INF/pages/lbsAppl/twoPointCalc.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.615385">
-          <caret line="284" column="0" selection-start-line="284" selection-start-column="0" selection-end-line="284" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/web/controller/MetroAdminController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/WEB-INF/pages/lbsAppl/lbsMain.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.676311">
-          <caret line="37" column="114" selection-start-line="37" selection-start-column="114" selection-end-line="37" selection-end-column="114" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/WEB-INF/pages/main.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.153846">
-          <caret line="55" column="4" selection-start-line="55" selection-start-column="0" selection-end-line="56" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/config/spring/spring-mvc.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7986577">
-          <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/honoka/web/controller/StaffAdminController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.216842">
-          <caret line="49" column="21" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.37842464">
+          <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -1372,7 +882,7 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>Honoka:war exploded</last-edited>
+          <last-edited>StockMonitor:war exploded</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1385,7 +895,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>Spring</last-edited>
+          <last-edited>Web</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1420,12 +930,11 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>untitled</last-edited>
+          <last-edited>Struts 2|Web2|StockMonitor</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
